@@ -41,11 +41,11 @@
 </head>
 <body>
 
-    <form action="" method="post">
-        <input type="button" id="btn teste" value="Botão Teste">
-    </form>
     <div id="map"></div>
-
+    <form>
+        <input type="button" id="btn teste" value="Habilitar marcador" onclick="habilitarMarcador()">
+    </form>
+    
         
 
         <!-- prettier-ignore -->
@@ -54,42 +54,66 @@
         ({key: "<?php echo $MapsAPIKey;?>", v: "weekly"});
     </script>
     <script>
+    
         let map;
         const margem = {norte: -23.332912, leste: -46.719139, sul: -23.338775, oeste: -46.725957};
-        console.log(margem.norte);
+        
         async function initMap() {
-        const { Map } = await google.maps.importLibrary("maps");
+            const { Map } = await google.maps.importLibrary("maps");
+            map = new Map(document.getElementById("map"), {
+                //Configurações de Setup
+                zoom:10,
+                center: { lat: -23.335872, lng: -46.722554},
 
-        console.log(Map);
-        map = new Map(document.getElementById("map"), {
-            zoom:10,
-            //-23.335872, -46.722554
-            center: { lat: -23.335872, lng: -46.722554},
-            mapTypeId: 'satellite',
-            disableDefaultUI: false,
-            zoomControl: true,
-            mapTypeControl: true,
-            scaleControl: true,
-            streetViewControl: true,
-            rotateControl: true,
-            fullscreenControl: true,
-            //Restrições
-            restriction: { 
-                strictBounds: true,
-                //-23.332912, -46.725957
-                //-23.338775, -46.719139
-                latLngBounds: { //Limitar as Bordas 
-                    north: margem.norte,
-                    south: margem.sul,
-                    east: margem.leste,
-                    west: margem.oeste,
+                //Algumas configurações
+                mapTypeId: 'satellite',
+                disableDefaultUI: false,
+                zoomControl: true,
+                mapTypeControl: false,
+                scaleControl: true,
+                streetViewControl: false,
+                rotateControl: false,
+                fullscreenControl: true,
+
+                //Restrições
+                restriction: { 
+                    strictBounds: true,
+                    latLngBounds: { //Limitar as Bordas 
+                        north: margem.norte,
+                        south: margem.sul,
+                        east: margem.leste,
+                        west: margem.oeste,
+                    },
                 },
-            },
-        });
+            });
         }
         initMap();
-    </script>
-    
-    
+
+        var habMarcador = null;
+        function habilitarMarcador()
+        {
+            console.log("habilitarMarcador-Início");
+            
+            habMarcador = map.addListener("click", (e) => adicionarMarcador(e.latLng,map));
+
+            console.log("habilitarMarcador-Fim");
+        }
+        let n = 1;
+        function adicionarMarcador(coordenadas, map)
+        {
+            console.log("adicionarMarcador-Início");
+
+            new google.maps.Marker({
+                position: coordenadas,
+                label: n.toString(),
+                map: map,
+            });
+            google.maps.event.removeListener(habMarcador);
+            n++;
+            
+            console.log("adicionarMarcador-Fim");
+        }
+
+    </script>  
 </body>
 </html>

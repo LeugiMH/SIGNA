@@ -1,0 +1,23 @@
+sequenceDiagram
+  actor U as admin:Usuário
+  participant UI as main:MainPage
+  participant D as sdb:SignaDatabase
+  participant S as modulovalidação:ValidadordeSenha
+
+  
+  activate U
+
+ 
+  %% Edit Admin
+  U ->> UI: selectAdmin
+  U ->> UI: clickEditAdmin
+  UI ->> U: "ConfirmaSenha
+  U ->> UI: inputSenha
+  UI ->> S: validateSenha
+  U ->> UI: editAtributosDesejados
+
+  U ->> UI: saveAdmin
+
+  UI ->> D: updateAdmin
+
+  deactivate U

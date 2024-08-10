@@ -22,6 +22,11 @@ if($_GET)
             $direciona->abrirInicio();
         break;
 
+        case "mapa":
+            $direciona = new Controller();
+            $direciona->testeMaps();
+        break;
+
         // LOGIN 
         case "login": 
             $direciona = new Controller();

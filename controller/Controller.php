@@ -17,6 +17,10 @@ class Controller
     {
        include_once "view/nExist404.php";
     }
+    function testeMaps()
+    {
+       include_once "testeCoordenadas.php";
+    }
 }
 
 ?>

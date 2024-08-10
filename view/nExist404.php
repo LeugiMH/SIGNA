@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="PT-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="<?php echo URL.'resource/favicon.png'?>" type="image/x-icon">
-    <title>PÁGINA NÃO ENCONTRADA</title>
+    <?php include_once "resource/head.php";?>
+    <title>SIGNA - PÁGINA NÃO ENCONTRADA</title>
 </head>
 <body>
-    <h2>Página não encontrada</h2>
+    <h2>Página não encontradaa</h2>
 </body>
 </html>

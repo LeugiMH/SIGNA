@@ -14,7 +14,7 @@ if($_GET)
     $url = explode("/",$url);
     
     //Definindo os nomes das telas que vão aparecer na URL
-    switch($url[])
+    switch($url[0])
     {   
         // PÁGINA INICIAL
         case "inicio":

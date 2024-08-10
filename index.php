@@ -1,12 +1,9 @@
 <?php
 session_start();
 
-/*  
+    //Import de controllers
     include_once "controller/Controller.php";
-    include_once "controller/AnimalController.php";
-    include_once "controller/UsuarioController.php";
-    include_once "controller/ClinicaController.php";
-*/
+
 
 //Definindo uma constante para a URL do site
 define("URL","http://localhost/SIGNA/");
@@ -15,9 +12,9 @@ if($_GET)
     //Pegando a URL e apagando a "/" no final dela.
     $url = $_GET["url"];
     $url = explode("/",$url);
-
+    
     //Definindo os nomes das telas que vão aparecer na URL
-    switch($url[0])
+    switch($url[])
     {   
         // PÁGINA INICIAL
         case "inicio":
@@ -68,49 +65,7 @@ if($_GET)
             $usuario = new Controller();
             $usuario->abrirAlterarSenha($url[1]);
         break;
-        case "cadastra-animal":
-            $animal = new Controller();
-            $animal->abrirCadAnimal();
-        break;
-        case "carregar-raca":
-            $raca = new AnimalController();
-            $raca->carregarRaca($url[1]);    
-        break;
-        case "cadastrar-animal":
-            $animal = new AnimalController();
-            $animal->cadastrarAnimal();
-        break;
-        case "meus-animais":
-            $usuario = new Controller();
-            $usuario->abrirMeusAnimais();
-        break;
-        case "atualizar-animal":
-            $usuario = new AnimalController();
-            $usuario->atualizarAnimal($url[1],$url[2]);
-        break;
-        case "excluir-animal":
-            $usuario = new AnimalController();
-            $usuario->excluirAnimal($url[1],$url[2],$url[3]);
-        break;
-        case "solicitar-castracao":
-            $usuario = new UsuarioController();
-            $usuario->solicitarCastracao();
-        break;
-        case"excluir-tutor":
-            $usuario = new UsuarioController();
-            $usuario->excluir($url[1],$url[2]);
-        break;
 
-        // ADM
-        case "novo-mes":
-            $adm = new UsuarioController();
-            $adm->novoMes();
-        break;
-        case "home-adm":
-            $adm = new Controller();
-            $adm->abrirHomeAdm();
-        break;
-               
         // LOGOUT
         case "encerrar-sessao":
             $login = new UsuarioController();
@@ -118,7 +73,7 @@ if($_GET)
         break;
 
         // TESTE
-        case "teste":
+        case "tst":
             $teste = new Controller();
             $teste->abrirTeste();
         break;

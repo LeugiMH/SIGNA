@@ -4,4 +4,6 @@
     # run
     # git config --global user.email "miguelhenriquegs369@gmail.com"
     # git config --global user.name "LeugiMH"
+    # git config --global user.email "carolinamattiazzoreder@gmail.com"
+    # git config --global user.name "Drynee"
 ?>

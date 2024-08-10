@@ -25,22 +25,6 @@ if($_GET)
             $direciona->abrirInicio();
         break;
 
-        // CADASTRO TUTOR
-        case "cadastra-tutor";
-            $direciona = new Controller();
-            $direciona->abrirCadastro();
-        break;
-        case "cadastrar-tutor";
-            $direciona = new UsuarioController();
-            $direciona->cadastrarUsuario();
-        break;
-        
-        // PÁGINAS IMPORTANTES
-        case "sobre":
-            $teste = new Controller();
-            $teste->abrirSobre();
-        break;
-
         // LOGIN 
         case "login": 
             $direciona = new Controller();
@@ -126,107 +110,7 @@ if($_GET)
             $adm = new Controller();
             $adm->abrirHomeAdm();
         break;
-        #CADASTROS
-        case "cadastra-raca":
-            $raca = new Controller();
-            $raca->abrirCadRaca();
-        break;
-        case "cadastrar-raca":
-            $raca = new AnimalController();
-            $raca->cadastrarRaca();
-        break;
-        case "cadastra-clinica":
-            $clinica = new Controller();  
-            $clinica->abrirCadClinica();
-        break;
-        case "cadastrar-clinica":
-            $clinica = new ClinicaController();  
-            $clinica->cadastrarClinica();
-        break;
-        #ATUALIZAÇÕES
-        case "atualiza-tutor":
-            $usuario = new UsuarioController();
-            $usuario->atualizarUsuario();
-        break;
-        case "atualiza-perfil":
-            $usuario = new UsuarioController();
-            $usuario->atualizarDadosUsuario();
-        break;
-        case "atualiza-endereco":
-            $usuario = new UsuarioController();
-            $usuario->atualizarEnderecoUsuario();
-        break;
-        case "atualiza-raca":
-            $raca = new AnimalController();
-            $raca->atualizarRaca();
-        break;
-        #CONSULTAS
-        case "consulta-usuario":
-            $adm = new Controller();
-            $adm->abrirConsultaUsuario($url[1]);
-        break;
-        case "consulta-clinica":
-            $adm = new Controller();
-            $adm->abrirConsultaClinica($url[1]);
-        break;
-        case "consulta-castracao":
-            $adm = new Controller();
-            $adm->abrirConsultaCastracao();
-        break;
-        case "consulta-animais":
-            $adm = new Controller();
-            $adm->abrirConsultaAnimais($url[1]);    
-        break;
-        case "consulta-raca":
-            $adm = new Controller();
-            $adm->abrirConsultaRaca();
-        break;
-        #EXCLUSÕES
-        case "excluir-raca":
-            $raca = new AnimalController();
-            $raca->excluirRaca($url[1]);
-        break;
-        
-        // CASTRAÇÃO - vizualização, confirmação e atualização
-        case "lista-solicitacao":
-            $adm = new Controller();
-            $adm->abrirListaSolicitacao();   
-        break;
-        case "agendamento":
-            $adm = new Controller();
-            $adm->abrirAgendamento($url[1]);
-        break;
-        case "agendar-clinica":
-            $castracao = new UsuarioController();
-            $castracao->agendarClinicaCastracao();
-        break;
-        case "agendar":
-            $castracao = new ClinicaController();
-            $castracao->agendarDataCastracao();
-        break;
-        case "atualizar-castracao":
-            $castracao = new UsuarioController();
-            $castracao->atualizarCastracao();
-        break;
-        case "excluir-castracao":
-            $castracao = new UsuarioController();
-            $castracao->excluirCastracao($url[1]);
-        break;
-
-        // CLÍNICA
-        case "home-clinica":
-            $clinica = new Controller();
-            $clinica->abrirHomeClinica();
-        break;
-        case "atualizar-clinica":
-            $clinica = new ClinicaController();
-            $clinica->atualizarClinica();
-        break;
-        case "excluir-clinica":
-            $clinica = new ClinicaController();
-            $clinica->excluirClinica($url[1], $url[2]);
-        break;
-
+               
         // LOGOUT
         case "encerrar-sessao":
             $login = new UsuarioController();
@@ -234,7 +118,7 @@ if($_GET)
         break;
 
         // TESTE
-        case "vazio":
+        case "teste":
             $teste = new Controller();
             $teste->abrirTeste();
         break;

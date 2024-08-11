@@ -14,8 +14,10 @@
                 <!--Container de conteúdo-->
             </div>
         </div>
-        <div class="rodape bg-dark text-white">
-            <h2>RODAPÉ</h2>
+        <div class="rodape bg-dark text-white row m-0">
+            <div class="col py-4 text-center">
+                <h3 class="m-0">RODAPÉ</h3>
+            </div>
         </div>
     </div>
 

@@ -1,0 +1,31 @@
+:root
+{
+    --verde-claro:#C3F8A5;
+}
+.navbar
+{
+    height: 70px;
+}
+.folhas
+{
+    background-color: var(--verde-claro);
+    background-image:url('../ui/bg/bg_arvore_topo_esquerdo.svg'),url('../ui/bg/bg_arvore_topo_direito.svg'),url('../ui/bg/bg_arvore_inferior_esquerdo.svg'),url('../ui/bg/bg_arvore_inferior_direito.svg'),url('../ui/bg/bg_nuvem_completo.svg');
+    background-repeat: no-repeat,no-repeat,no-repeat,no-repeat,repeat-x;
+    background-position: top left, top right, bottom left, bottom right,center bottom;
+    background-size: 20%,20%,20%,20%,auto;
+}
+/*GRID*/
+.corpo
+{
+    display: grid;
+    grid-template-areas: 'conteudo''rodape';
+    grid-template-rows: minmax(calc(100vh - 140px),100%) minmax(70px,auto);
+}
+.conteudo
+{
+    grid-area: conteudo;
+}
+.rodape
+{
+    grid-area: rodape;    
+}

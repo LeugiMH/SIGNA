@@ -27,7 +27,7 @@ if($_GET)
             $route->testeMaps();
         break;
 
-        /*bbba
+        /*
         // LOGIN 
         case "login": 
             $route = new Controller();

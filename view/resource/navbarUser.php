@@ -30,7 +30,8 @@
             </ul>
             <span class="navbar-text p-0 me-1 d">
                 <a class="navbar-text p-0 me-1" href="#">
-                    <img src="<?php echo URL.'resource/user.png'?>" alt="Login" style="width: 40px;">
+                    <img src="<?php echo URL.'resource/user.svg'?>" alt="Login" style="width: 40px;">
+
                 </a>
             </span>
         </div>

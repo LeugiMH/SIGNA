@@ -17,7 +17,10 @@
             <div class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6">
+                    <h1 class="display-1 text-center my-5">MAPA INTERATIVO</h1>
+                    <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
+                    <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
                 </div>
             </div>
             <div class="container-fluid folhas2 p-3 m-0 row justify-content-center align-content-center position-relative" style="min-height: 50vh;">

@@ -48,11 +48,7 @@
                 </div>
             </div>
         </div>
-        <div class="rodape bg-dark text-white h-100">
-            <div class="py-4 text-center row m-0 p-0">
-                <h3 class="m-0 p-0 col" id="teste_coord">RODAPÉ</h3>
-            </div>
-        </div>
+        <?php include_once "resource/rodape.php";?>
     </div>
     <script>
         //Exibir Mapa

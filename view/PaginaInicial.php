@@ -11,7 +11,7 @@
 <body>
 
     <?php include_once "resource/navbarControle.php";?>
-
+<!-- comentário foda demais (apagar depois)-->
     <div class="corpo h-100">
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">

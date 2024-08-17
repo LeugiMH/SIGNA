@@ -1,20 +1,19 @@
 <?php
 
-// Import models
-
+// Import Controllers
 
 class Route
 {
     #Página inicial
     function abrirInicio()
     {
-        include_once "view/PaginaInicial.php";
+        include_once "view/paginaInicial.php";
     }
 
-    #Página de testes
-    function abrirTeste()
+    #Página de login
+    function abrirLogin()
     {
-        include_once "view/paginaTeste.php";
+        include_once "view/paginaLogin.php";
     }
 
     #Página não encontrada
@@ -22,12 +21,5 @@ class Route
     {
        include_once "view/paginaNaoEncontrada.php";
     }
-
-    #Teste mapa
-    function testeMaps()
-    {
-       include_once "testeCoordenadas.php";
-    }
 }
-
 ?>

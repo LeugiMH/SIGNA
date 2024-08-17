@@ -27,14 +27,23 @@
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem px-0 mt-0">
                 <div class="col-lg-6 mt-5">
                     <?php 
-                        echo phpversion();
-                        echo phpinfo();
-
-                        require_once "model/conn.php";
+                        require_once "model/conexao.php";
                         
-                        Conexao::connect();
-                        #$teste = connect();
+                        $conn = Conexao::connect();
+                        $cmd = $conn->prepare("SELECT * FROM TBADMIN");
+                        $cmd->execute();
+                        $usersAll = $cmd->fetchAll(PDO::FETCH_OBJ);
 
+                        foreach($usersAll as $user)
+                        {
+                            echo "<p>ID: $user->IDADMIN</p>";
+                            echo "<p>Nome: $user->NOME</p>";
+                            echo "<p>Matrícula: $user->MATRICULA</p>";
+                            echo "<p>Senha: $user->SENHA</p>";
+                            echo "<p>Email: $user->EMAIL</p>";
+                            echo "<p>DataCad: $user->DATACAD</p>";
+                            echo "<p>Estado: $user->ESTADO</p>";
+                        }
                     ?>
                 </div>
             </div>

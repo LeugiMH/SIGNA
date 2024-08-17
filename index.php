@@ -2,7 +2,7 @@
 session_start();
 
     //Import de controllers
-    include_once "controller/Routes.php";
+    include_once "controller/routes.php";
 
 
 //Definindo uma constante para a URL do site
@@ -22,21 +22,17 @@ if($_GET)
             $route->abrirInicio();
         break;
 
-        case "mapa":
-            $route = new Route();
-            $route->testeMaps();
-        break;
-
-        /*
         // LOGIN 
         case "login": 
-            $route = new Controller();
+            $route = new Route();
             $route->abrirLogin();
         break;
+        /*
         case "logar": 
             $route = new UsuarioController();
             $route->logar();
         break;
+        /*
         case "esqueci-a-senha": 
             $route = new Controller();
             $route->abrirEsqSenha();
@@ -78,11 +74,6 @@ if($_GET)
             $route->sair();
         break;
         */
-        // TESTE
-        case "tst":
-            $route = new Route();
-            $route->abrirTeste();
-        break;
 
         default:
             // URL INVÁLIDA

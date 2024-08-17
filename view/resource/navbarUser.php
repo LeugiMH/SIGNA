@@ -28,10 +28,9 @@
                     </ul>
                 </li>
             </ul>
-            <span class="navbar-text p-0 me-1 d">
-                <a class="navbar-text p-0 me-1" href="#">
+            <span class="navbar-text p-0 me-1">
+                <a class="navbar-text p-0 me-1" href="login">
                     <img src="<?php echo URL.'resource/user.svg'?>" alt="Login" style="width: 40px;">
-
                 </a>
             </span>
         </div>

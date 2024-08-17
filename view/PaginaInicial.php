@@ -23,10 +23,19 @@
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
                 </div>
             </div>
-            <div class="container-fluid folhas2 p-3 m-0 row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
+            <div class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem px-0 mt-0">
-                <div class="col-lg-6">
-                <h1>aa</h1>
+                <div class="col-lg-6 mt-5">
+                    <?php 
+                        echo phpversion();
+                        echo phpinfo();
+
+                        require_once "model/conn.php";
+                        
+                        Conexao::connect();
+                        #$teste = connect();
+
+                    ?>
                 </div>
             </div>
         </div>

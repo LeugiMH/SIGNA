@@ -74,6 +74,10 @@ if($_GET)
             $route->sair();
         break;
         */
+        case "tst":
+            $route = new Route();
+            $route->abrirTeste();
+        break;
 
         default:
             // URL INVÁLIDA

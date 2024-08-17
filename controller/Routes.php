@@ -21,5 +21,11 @@ class Route
     {
        include_once "view/paginaNaoEncontrada.php";
     }
+
+    #Página teste
+    function abrirTeste()
+    {
+        include_once "view/LAYOUTPaginaRolavel.php";
+    }
 }
 ?>

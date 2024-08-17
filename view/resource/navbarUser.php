@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-warning">
+<nav class="navbar navbar-expand-lg bg-warning" style="z-index: 10;">
     <div class="container-fluid">
         <a class="navbar-brand" href="inicio" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo">SIGNA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"

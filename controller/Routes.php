@@ -25,7 +25,7 @@ class Route
     #Página teste
     function abrirTeste()
     {
-        include_once "view/LAYOUTPaginaRolavel.php";
+        include_once "view/LAYOUTPaginaFixa.php";
     }
 }
 ?>

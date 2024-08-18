@@ -9,9 +9,23 @@
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
-                <div class="col-lg-6" style="z-index: 2;">
+                <div class="col-sm-8 col-lg-6 col-xl-4 p-0" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <h1 class="display-1 text-center my-5">Login</h1>
+                    <h1 class="display-1 text-center mb-5">Login</h1>
+                    <form action="logar" method="$_POST" class="bg-verde p-3 p-lg-5 rounded-4 text-white">
+                        <div class="mb-3">
+                            <label for="inputEmail" class="form-label">Endereço de Email</label>
+                            <input type="email" class="form-control" id="inputEmail" aria-describedby="Ajuda Email" maxlength="256">
+                        </div>
+                        <div class="mb-3">
+                            <label for="inputSenha" class="form-label">Senha</label>
+                            <input type="password" class="form-control" id="inputSenha" maxlength="256">
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
+                            <button type="submit" class="btn btn-success">Logar</button>
+                        </div>
+                    </form>
                 </div>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">
             </div>

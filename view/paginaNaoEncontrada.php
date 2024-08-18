@@ -10,7 +10,7 @@
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
-                <div class="col-lg-6" style="z-index: 2;">
+                <div class="col-lg-12" style="z-index: 2;">
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center my-5">Página não encontrada</h1>
                 </div>

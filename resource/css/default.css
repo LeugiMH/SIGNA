@@ -1,7 +1,14 @@
 :root
 {
     overflow-x: hidden;
+    --verde:#4D9B44;
     --verde-claro:#C3F8A5;
+    --verde-escuro:#205732;
+    --terroso-creme:#FFC7A4;
+}
+.bg-verde
+{
+    background-color: var(--verde);
 }
 .navbar
 {

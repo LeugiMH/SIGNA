@@ -1,14 +1,12 @@
 <?php
 //CONTROLE DA NAVBAR
-if(isset($_SESSION["dadosLogin"])) //caso esteja logado e exista uma sessão
+if(isset($_SESSION["dadosLogin"])) //caso esteja logado
 {
-    switch($_SESSION["dadosLogin"]->nivelacesso)
-    {
-        //caso tenha nível de acesso de usuário
-        case 0: include_once "navbarUser.php"; break;
-        //caso tenha nível de acesso de Administrador
-        case 2: include_once "navbarAdm.php"; break;
-    }
+    include_once "navbarAdm.php"
 }
-else{ include_once "navbarUser.php"; }
+//caso não esteja logado
+else
+{
+    include_once "navbarUser.php";
+}
 ?>

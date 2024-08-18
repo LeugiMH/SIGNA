@@ -3,18 +3,18 @@ class Conexao{
 
     static function connect(){
 
-        //Informações para acessar o servidor do banco de dados
+        //Informações do host para acessar o servidor do banco de dados
         $host = "sqlsrv:Server=localhost;Database=SIGNA";
+        //Usuário e senha nulos para autenticação windows
         $usuario = null;
         $senha = null;
         
-
-        $con = new PDO($host,$usuario,$senha);
+        $conn = new PDO($host,$usuario,$senha);
         
         //Ativando recurso de exibição de erro
-        $con->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+        $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         
-        return $con;//Retorna conexão para uso
+        return $conn;//Retorna conexão para uso
     }
 }
 ?>

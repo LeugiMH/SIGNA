@@ -10,4 +10,6 @@
     # git config --global user.name "LeugiMH"
     # git config --global user.email "carolinamattiazzoreder@gmail.com"
     # git config --global user.name "Drynee"
+    # git config --global user.email "valimnathaly@outlook.com"
+    # git config --global user.name "valimnathaly"
 ?>

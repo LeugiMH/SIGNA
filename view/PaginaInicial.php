@@ -27,6 +27,8 @@
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0 mt-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                     <?php 
+                        echo phpversion();
+
                         require_once "model/conexao.php";
                         
                         $conn = Conexao::connect();

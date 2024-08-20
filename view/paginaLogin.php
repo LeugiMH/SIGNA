@@ -12,14 +12,14 @@
                 <div class="col-sm-8 col-lg-6 col-xl-4 p-0" style="z-index: 2;">
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center mb-5">Login</h1>
-                    <form action="logar" method="$_POST" class="bg-verde p-3 p-lg-5 rounded-4 text-white">
+                    <form action="logar" method="POST" class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label">Endereço de Email</label>
-                            <input type="email" class="form-control" id="inputEmail" aria-describedby="Ajuda Email" maxlength="256">
+                            <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="Ajuda Email" maxlength="256">
                         </div>
                         <div class="mb-3">
                             <label for="inputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="inputSenha" maxlength="256">
+                            <input type="password" class="form-control" id="inputSenha" name="inputSenha" maxlength="256">
                         </div>
                         <div class="d-flex justify-content-between">
                             <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>

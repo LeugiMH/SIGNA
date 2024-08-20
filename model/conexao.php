@@ -1,7 +1,7 @@
 <?php
 class Conexao{
 
-    static function connect(){
+    static function conectar(){
 
         //Informações do host para acessar o servidor do banco de dados
         $host = "sqlsrv:Server=localhost;Database=SIGNA";

@@ -26,9 +26,26 @@ class Admin
     function __construct()
     {
         //Importando arquivo de conexão com banco de dados
-        require_once "Conexao.php";
+        require_once "conexao.php";
     }
 
+    //Método realiza Login
+    function logar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT * FROM TBADMIN WHERE EMAIL = :EMAIL");
+        
+        //Parâmetros SQL
+        $cmd->bindParam(":EMAIL", $this->EMAIL);
+
+        //Executando o comando SQL
+        $cmd->execute();
+
+        return $cmd->fetch(PDO::FETCH_OBJ);
+    }
 
     //OBSERVAÇÃO: Seguir diagrama de classe
     //Método Cadastrar

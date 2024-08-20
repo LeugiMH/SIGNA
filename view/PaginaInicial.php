@@ -31,7 +31,7 @@
 
                         require_once "model/conexao.php";
                         
-                        $conn = Conexao::connect();
+                        $conn = Conexao::conectar();
                         $cmd = $conn->prepare("SELECT * FROM TBADMIN");
                         $cmd->execute();
                         $usersAll = $cmd->fetchAll(PDO::FETCH_OBJ);

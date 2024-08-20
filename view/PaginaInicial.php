@@ -61,7 +61,7 @@
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
+        var imageUrl = 'resource/ui/mapa.webp',
             imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

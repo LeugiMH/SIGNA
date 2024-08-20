@@ -23,12 +23,26 @@ class AdminController
         {
             //Faça isso
             $_SESSION['sessaoLogada'] = $dadosLogin;
+
+            //Direciona para administrador
+            header("Location:".URL."inicio");
         }
         else
         {
-            echo "<script type='text/javascript'> alert('Email ou senha estão incorretos'); </script>";
-            header("");
+            //Define mensagem de erro
+            setcookie("msg","Email ou senha estão incorretos.");
+
+            //Direciona para login 
+            header("Location:".URL."login");
+            return;
         }
+    }
+
+    function sair()
+    {
+        $_SESSION[] = null;
+        session_destroy();
+        header("Location: login");
     }
 }
 ?>

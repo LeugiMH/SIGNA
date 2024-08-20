@@ -68,13 +68,14 @@ if($_GET)
             $route = new Controller();
             $route->abrirAlterarSenha($url[1]);
         break;
+        */  
 
-        // LOGOUT
-        case "encerrar-sessao":
-            $route = new UsuarioController();
+        // LOGOFF
+        case "sair":
+            $route = new AdminController();
             $route->sair();
         break;
-        */
+        
         case "tst":
             $route = new Route();
             $route->abrirTeste();

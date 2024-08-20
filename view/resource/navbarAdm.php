@@ -8,29 +8,21 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="https://fatecfrancodarocha.edu.br/" target="_blank">FATEC Franco da Rocha</a>
+                    <a class="nav-link" href="#">Espécies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Features</a>
+                    <a class="nav-link" href="#">Atributos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Pricing</a>
+                    <a class="nav-link" href="#">Admins</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
-                        Dropdown link
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
-                    </ul>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Assuntos</a>
                 </li>
             </ul>
             <span class="navbar-text p-0 me-1">
-                <a class="navbar-text p-0 me-1" href="login">
-                    <img src="<?php echo URL.'resource/user.svg'?>" alt="Login" style="width: 40px;">
+                <a class="navbar-text p-0 me-1" href="sair">
+                    <div class="btn btn-danger">Sair</div>
                 </a>
             </span>
         </div>

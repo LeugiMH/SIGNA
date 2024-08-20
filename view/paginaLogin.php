@@ -13,13 +13,24 @@
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center mb-5">Login</h1>
                     <form action="logar" method="POST" class="bg-verde p-3 p-lg-5 rounded-4 text-white">
+                        <?php
+                            //Exibindo mensagem de erro
+                            if(isset($_COOKIE["msg"]))
+                            {
+                                echo "<div class='alert alert-danger' role='alert'>
+                                    ".$_COOKIE['msg'] ."
+                                </div>";
+                            }
+                            //Excluindo cookie de erro
+                            setcookie("msg","",time() - 3600);
+                        ?>
                         <div class="mb-3">
                             <label for="inputEmail" class="form-label">Endereço de Email</label>
-                            <input type="email" class="form-control" id="inputEmail" name="inputEmail" aria-describedby="Ajuda Email" maxlength="256">
+                            <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email para login" maxlength="256" required>
                         </div>
                         <div class="mb-3">
                             <label for="inputSenha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="inputSenha" name="inputSenha" maxlength="256">
+                            <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha para login" maxlength="256" required>
                         </div>
                         <div class="d-flex justify-content-between">
                             <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>

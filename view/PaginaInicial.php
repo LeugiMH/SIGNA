@@ -54,15 +54,17 @@
     </div>
     <script>
         //Exibir Mapa
-        var map = L.map('map').setView([40.712216, -74.22655], 21);
+        var map = L.map('map',{ zoomControl:false }).setView([-23.336067, -46.722125], 30);
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
 
+        map.scrollWheelZoom.disable();
+
         //Overlay Imagem
         var imageUrl = 'resource/ui/mapa.webp',
-            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
+            imageBounds = [[-23.336252, -46.722497], [-23.335853, -46.721622]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker

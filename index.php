@@ -3,6 +3,7 @@ session_start();
 
     //Import de controllers
     include_once "controller/routes.php";
+    include_once "controller/admin.php";
 
 
 //Definindo uma constante para a URL do site
@@ -27,9 +28,9 @@ if($_GET)
             $route = new Route();
             $route->abrirLogin();
         break;
-        /*
+        
         case "logar": 
-            $route = new UsuarioController();
+            $route = new AdminController();
             $route->logar();
         break;
         /*
@@ -67,13 +68,14 @@ if($_GET)
             $route = new Controller();
             $route->abrirAlterarSenha($url[1]);
         break;
+        */  
 
-        // LOGOUT
-        case "encerrar-sessao":
-            $route = new UsuarioController();
+        // LOGOFF
+        case "sair":
+            $route = new AdminController();
             $route->sair();
         break;
-        */
+        
         case "tst":
             $route = new Route();
             $route->abrirTeste();

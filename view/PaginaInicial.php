@@ -36,20 +36,25 @@
     </div>
     <script>
         //Exibir Mapa
-        var map = L.map('map').setView([40.712216, -74.22655], 21);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // initialize the map on the "map" div with a given center and zoom
+        var map = L.map('map', {
+            center: [-23.33605, -46.72202],
+            zoom: 20
+        });
+        // Tile do
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
             maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl = 'resource/ui/mapa.webp',
+        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
             imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.png'?>',
+            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.svg'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             /*popupAnchor: [-3, -76],

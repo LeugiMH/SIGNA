@@ -39,24 +39,28 @@
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
             center: [-23.33605, -46.72202],
-            zoom: 21
+            zoom: 20
         });
         // Tile do
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
-            maxZoom: 19,
+            //Não mudar cinza
+            maxNativeZoom: 19,
+            maxZoom: 20,
+            minZoom: 20,
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
-            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
-            L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        /*var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
+            imageBounds = [[-23.335673, -46.722682], [-23.336424, -46.721539]];
+            L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
             iconUrl: '<?php echo URL.'resource/ui/bg/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
+            alt: 'Marcador'
             /*popupAnchor: [-3, -76],
             shadowUrl: 'ui\bg\arvore.png',
             shadowSize: [68, 95],

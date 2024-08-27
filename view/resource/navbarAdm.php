@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Espécies</a>
+                    <a class="nav-link" href="especies/listar">Espécies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Atributos</a>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <span class="navbar-text p-0 me-1">
-                <a class="navbar-text p-0 me-1" href="sair">
+                <a class="navbar-text p-0 me-1" href="<?php echo URL.'sair';?>">
                     <div class="btn btn-danger">Sair</div>
                 </a>
             </span>

@@ -33,6 +33,16 @@ if($_GET)
             $route = new AdminController();
             $route->logar();
         break;
+        
+        case "especies":
+            switch($url[1])
+            {
+                case "listar":
+                    $route = new Route();
+                    $route->abrirListaEspecie();
+                break;
+            }
+        break;
         /*
         case "esqueci-a-senha": 
             $route = new Controller();

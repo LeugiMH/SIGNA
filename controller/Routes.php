@@ -2,6 +2,7 @@
 
 // Import Controllers
 
+
 class Route
 {
     #Página inicial
@@ -16,6 +17,14 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    function abrirListaEspecie()
+    {
+        $especies = new EspecieController();
+        $especies->listar();
+        include_once "view/listaEspecie.php";
+    }
+
+    /*  */
     #Página não encontrada
     function abrirPaginaNaoEncontrada()
     {

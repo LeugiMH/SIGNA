@@ -41,6 +41,10 @@ if($_GET)
                     $route = new Route();
                     $route->abrirListaEspecie();
                 break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
             }
         break;
         /*

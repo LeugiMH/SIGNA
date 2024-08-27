@@ -1,7 +1,7 @@
 <?php
 
 // Import Controllers
-
+include_once "especie.php";
 
 class Route
 {
@@ -20,7 +20,7 @@ class Route
     function abrirListaEspecie()
     {
         $especies = new EspecieController();
-        $especies->listar();
+        $especies = $especies->listar();
         include_once "view/listaEspecie.php";
     }
 

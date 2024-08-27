@@ -12,51 +12,58 @@
         <div class="conteudo bg-secondary h-100">
             <div
                 class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
-                <div class="col-sm-12 col-lg-10 col-xl-8 p-0" style="z-index: 2;">
+                <div class="col-sm-12 col-lg-10 col-xl-8 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center mb-5">ESPÉCIES</h1>
                     <div class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <table id="tabela" class="table table-striped" style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>IDESPÉCIE</th>
+                                    <th>NOMECIE</th>
+                                    <th>NOMEPOP</th>
+                                    <th>FAMILIA</th>
+                                    <th>HABITAT</th>
+                                    <th>ALTURA</th>
+                                    <th>IMAGEM</th>
+                                    <th>DESCRICAOIMG</th>
+                                    <th>DATACAD</th>
+                                    <th>IDCADADM</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php
-                                foreach($especie as $especies)
+                                foreach($especies as $especie)
                                 {
                                 echo "
                                 <tr>
                                     <td>$especie->IDESPECIE</td>
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
-                                    
+                                    <td>$especie->NOMECIE</td>
+                                    <td>$especie->NOMEPOP</td>
+                                    <td>$especie->FAMILIA</td>
+                                    <td>$especie->HABITAT</td>
+                                    <td>$especie->ALTURA</td>
+                                    <td>$especie->IMAGEM</td>
+                                    <td>$especie->DESCRICAOIMG</td>
+                                    <td>$especie->DATACAD</td>                               
+                                    <td>$especie->IDCADADM</td>                               
                                 </tr>
                                 ";
                                 }
-
                                 ?>
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Position</th>
-                                    <th>Office</th>
-                                    <th>Age</th>
-                                    <th>Start date</th>
-                                    <th>Salary</th>
+                                    <th>IDESPÉCIE</th>
+                                    <th>NOMECIE</th>
+                                    <th>NOMEPOP</th>
+                                    <th>FAMILIA</th>
+                                    <th>HABITAT</th>
+                                    <th>ALTURA</th>
+                                    <th>IMAGEM</th>
+                                    <th>DESCRICAOIMG</th>
+                                    <th>DATACAD</th>
+                                    <th>IDCADADM</th>
                                 </tr>
                             </tfoot>
                         </table>

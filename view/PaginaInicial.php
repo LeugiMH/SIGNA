@@ -39,7 +39,7 @@
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
             center: [-23.33605, -46.72202],
-            zoom: 20
+            zoom: 21
         });
         // Tile do
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
@@ -54,7 +54,7 @@
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.svg'?>',
+            iconUrl: '<?php echo URL.'resource/ui/bg/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             /*popupAnchor: [-3, -76],

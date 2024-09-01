@@ -1,14 +1,16 @@
 <?php
-class Admin
+class Especie
 {
-    private $IDADMIN;
-    private $NOME;
-    private $MATRICULA;
-    private $EMAIL;
-    private $SENHA;
-    private $CODRECUPERACAO;
+    private $IDESPECIE;
+    private $NOMECIE;
+    private $NOMEPOP;
+    private $FAMILIA;
+    private $HABITAT;
+    private $ALTURA;
+    private $IMAGEM;
+    private $DESCRICAOIMG;
     private $DATACAD;
-    private $ESTADO;
+    private $IDCADADM;
 
     //Método get
     function __get($atributo)
@@ -29,29 +31,23 @@ class Admin
         require_once "conexao.php";
     }
 
-    //Método realiza Login
-    function logar()
+    //OBSERVAÇÃO: Seguir diagrama de classe
+    //Método Cadastrar
+
+    //Método Consultar
+    function listar()
     {
         //Conectando ao banco de dados
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBADMIN WHERE EMAIL = :EMAIL");
-        
-        //Parâmetros SQL
-        $cmd->bindParam(":EMAIL", $this->EMAIL);
+        $cmd = $con->prepare("SELECT * FROM TBESPECIE");
 
         //Executando o comando SQL
         $cmd->execute();
 
-        return $cmd->fetch(PDO::FETCH_OBJ);
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
     }
-
-    //OBSERVAÇÃO: Seguir diagrama de classe
-    //Método Cadastrar
-
-    //Método Consultar
-
     //Método Alterar
 
     //Método Excluir

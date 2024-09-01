@@ -28,24 +28,6 @@
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                     <?php 
                         echo phpversion();
-
-                        require_once "model/conexao.php";
-                        
-                        $conn = Conexao::connect();
-                        $cmd = $conn->prepare("SELECT * FROM TBADMIN");
-                        $cmd->execute();
-                        $usersAll = $cmd->fetchAll(PDO::FETCH_OBJ);
-
-                        foreach($usersAll as $user)
-                        {
-                            echo "<p>ID: $user->IDADMIN</p>";
-                            echo "<p>Nome: $user->NOME</p>";
-                            echo "<p>Matrícula: $user->MATRICULA</p>";
-                            echo "<p>Senha: $user->SENHA</p>";
-                            echo "<p>Email: $user->EMAIL</p>";
-                            echo "<p>DataCad: $user->DATACAD</p>";
-                            echo "<p>Estado: $user->ESTADO</p>";
-                        }
                     ?>
                 </div>
             </div>
@@ -54,22 +36,27 @@
     </div>
     <script>
         //Exibir Mapa
-        var map = L.map('map',{ zoomControl:false }).setView([-23.336067, -46.722125], 30);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // initialize the map on the "map" div with a given center and zoom
+        var map = L.map('map', {
+            center: [-23.33605, -46.72202],
+            zoom: 20
+        });
+        // Tile do
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
             maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem
         var imageUrl = 'resource/ui/mapa.webp',
-            imageBounds = [[-23.336252, -46.722497], [-23.335853, -46.721622]];
+            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.png'?>',
+            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.svg'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             /*popupAnchor: [-3, -76],

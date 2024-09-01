@@ -9,7 +9,7 @@
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
-                <div class="col-sm-8 col-lg-6 col-xl-4 p-0" style="z-index: 2;">
+                <div class="col-sm-8 col-lg-6 col-xl-4 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center mb-5">CONTAINER</h1>
                     <div class="bg-verde p-3 p-lg-5 rounded-4 text-white">

@@ -16,7 +16,8 @@
                     <!-- Conteúdo -->
                     <h1 class="display-1 text-center mb-5">ESPÉCIES</h1>
                     <div class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                        <table id="lista" class="table table-striped" style="white-space: nowrap;">
+                        <a href="<?php echo URL.'especies/cadastrar';?>" class="btn btn-warning">Cadastrar</a>
+                        <table id="lista" class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>IDESPÉCIE</th>
@@ -82,10 +83,12 @@
     </script>
 
 
-    <script src= "https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src= "https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
-    <script src= "https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
-    <script src= "https://cdn.datatables.net/responsive/3.0.3/js/responsive.dataTables.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.5/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.3/js/dataTables.responsive.js"></script>
+    <script src="https://cdn.datatables.net/responsive/3.0.3/js/responsive.bootstrap5.js"></script>
 
     <script>
     $(document).ready(function() {
@@ -93,7 +96,8 @@
             responsive: true,
             language: {
                 url: "<?php echo URL.'resource/json/pt_br.json';?>"
-            }
+            },
+            stateSave: true
         });
     });
     </script>

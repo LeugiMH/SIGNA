@@ -17,7 +17,7 @@
                     <h1 class="display-1 text-center mb-5">ESPÉCIES</h1>
                     <div class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <a href="<?php echo URL.'especies/cadastrar';?>" class="btn btn-warning">Cadastrar</a>
-                        <table id="lista" class="table table-striped">
+                        <table id="lista" class="table table-striped nowrap">
                             <thead>
                                 <tr>
                                     <th>IDESPÉCIE</th>

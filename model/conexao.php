@@ -11,14 +11,15 @@ class Conexao{
         
         try
         {
-
             $conn = new PDO($host,$usuario,$senha);
 
             //Ativando recurso de exibição de erro
             $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        
+
             //Retorna conexão para uso
-            return $conn;            
+            return $conn;
+
+            $conn = null;
         }
         //Tratamento de erro
         catch(PDOException $e)

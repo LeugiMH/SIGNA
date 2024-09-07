@@ -10,10 +10,10 @@
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
-                <div class="col-lg-12" style="z-index: 2;">
+                <section class="col-lg-12" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <h1 class="display-1 text-center my-5">Página não encontrada</h1>
-                </div>
+                    <header class="display-1 text-center my-5">Página não encontrada</header>
+                </section>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">
             </div>
         </div>

@@ -9,12 +9,26 @@ class Conexao{
         $usuario = null;
         $senha = null;
         
-        $conn = new PDO($host,$usuario,$senha);
+        try
+        {
+
+            $conn = new PDO($host,$usuario,$senha);
+
+            //Ativando recurso de exibição de erro
+            $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
         
-        //Ativando recurso de exibição de erro
-        $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        
-        return $conn;//Retorna conexão para uso
+            //Retorna conexão para uso
+            return $conn;            
+        }
+        //Tratamento de erro
+        catch(PDOException $e)
+        {
+            echo "
+            <script>
+                alert('ERRO AO REALIZAR CONEXÃO COM BANCO DE DADOS.');
+                window.location.href = '".URL."inicio';
+            </script>";
+        }
     }
 }
 ?>

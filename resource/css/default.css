@@ -51,7 +51,7 @@ src:
 }
 .nuvem-top
 {
-    margin-top: -14% !important;
+    margin-top: -13% !important;
 }
 .nuvem-mid
 {
@@ -88,6 +88,7 @@ src:
     display: grid;
     grid-template-areas: 'navbar''conteudo''rodape';
     grid-template-rows: minmax(70px,min-content) auto minmax(70px,min-content);
+    grid-template-columns: 100%;
 }
 .conteudo
 {

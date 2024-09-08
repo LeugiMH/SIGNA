@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-warning" style="z-index: 10;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="inicio" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo">SIGNA - ADMIN</a>
+        <a class="navbar-brand" href="<?php echo URL.'inicio';?>" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo">SIGNA - ADMIN</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Espécies</a>
+                    <a class="nav-link" href="<?php echo URL.'especies/listar';?>">Espécies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Atributos</a>
@@ -21,7 +21,7 @@
                 </li>
             </ul>
             <span class="navbar-text p-0 me-1">
-                <a class="navbar-text p-0 me-1" href="sair">
+                <a class="navbar-text p-0 me-1" href="<?php echo URL.'sair';?>">
                     <div class="btn btn-danger">Sair</div>
                 </a>
             </span>

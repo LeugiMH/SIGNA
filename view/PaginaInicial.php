@@ -46,14 +46,14 @@
             //Não mudar cinza
             maxNativeZoom: 19,
             maxZoom: 20,
-            minZoom: 20,
+            minZoom: 19,
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         //Overlay Imagem
-        /*var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
-            imageBounds = [[-23.335673, -46.722682], [-23.336424, -46.721539]];
-            L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
+        var imageUrl = 'resource/ui/map/map.png'
+            imageBounds = [[-23.335604, -46.722684], [-23.336513, -46.721595]];
+            L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
@@ -62,7 +62,7 @@
             iconAnchor: [15, 30],
             alt: 'Marcador'
             /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui\bg\arvore.png',
+            shadowUrl: 'ui/bg/arvore.png',
             shadowSize: [68, 95],
             shadowAnchor: [22, 94]*/
         });

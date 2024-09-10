@@ -14,18 +14,17 @@
                 class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <div class="col-sm-12 col-lg-10 col-xl-8 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <h1 class="display-1 text-center mb-5">ESPÉCIES</h1>
+                    <h1 class="display-1 text-center mb-5">Plantas Registradas</h1>
                     <div class="bg-verde p-3 rounded-4 text-white">
                         <div class="table-responsive">
                         <table id="tabela" class="table table-sm table-striped">
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Nome Cientifico</th>
-                                    <th>Família</th>
-                                    <th>Habitat</th>
-                                    <th>Altura (m)</th>
+                                    <th>Espécie</th>
+                                    <th>Estado</th>
+                                    <th>Coord</th>
+                                    <th>DAP</th>
                                     <th>Imagem</th>
                                     <th>DescImg</th>
                                     <th>Cadastro</th>
@@ -34,20 +33,19 @@
                             </thead>
                             <tbody>
                                 <?php
-                                foreach($especies as $especie)
+                                foreach($plantas as $planta)
                                 {
                                 echo "
                                 <tr>
-                                    <td>$especie->IDESPECIE</td>
-                                    <td>$especie->NOMEPOP</td>
-                                    <td>$especie->NOMECIE</td>
-                                    <td>$especie->FAMILIA</td>
-                                    <td>$especie->HABITAT</td>
-                                    <td>$especie->ALTURA</td>
-                                    <td>$especie->IMAGEM</td>
-                                    <td>$especie->DESCRICAOIMG</td>
-                                    <td>$especie->DATACAD</td>                               
-                                    <td>$especie->IDCADADM</td>                               
+                                    <td>$planta->IDESPECIME</td>
+                                    <td>$planta->IDESPECIE</td>
+                                    <td>$planta->ESTADO</td>
+                                    <td>$planta->COORD</td>
+                                    <td>$planta->DAP</td>
+                                    <td>$planta->IMAGEM</td>
+                                    <td>$planta->DESCRICAOIMG</td>
+                                    <td>$planta->DATACAD</td>                               
+                                    <td>$planta->IDCADADM</td>                               
                                 </tr>
                                 ";
                                 }
@@ -55,16 +53,15 @@
                             </tbody>
                             <tfoot>
                             <tr>
-                                    <th>ID</th>
-                                    <th>Nome</th>
-                                    <th>Nome Cientifico</th>
-                                    <th>Família</th>
-                                    <th>Habitat</th>
-                                    <th>Altura (cm)</th>
-                                    <th>Imagem</th>
-                                    <th>DescImg</th>
-                                    <th>Cadastro</th>
-                                    <th>Admin</th>
+                                <th>ID</th>
+                                <th>Espécie</th>
+                                <th>Estado</th>
+                                <th>Coord</th>
+                                <th>DAP</th>
+                                <th>Imagem</th>
+                                <th>DescImg</th>
+                                <th>Cadastro</th>
+                                <th>Admin</th>
                                 </tr>
                             </tfoot>
                         </table>

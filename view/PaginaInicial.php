@@ -36,50 +36,26 @@
     </div>
     <script>
         //Exibir Mapa
-        // initialize the map on the "map" div with a given center and zoom
-        var map = L.map('map', {
-            center: [-23.33605, -46.72202],
-            zoom: 20
-        });
-        // Tile do
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
-            //Não mudar cinza
-            maxNativeZoom: 19,
-            maxZoom: 20,
-            minZoom: 19,
-            aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        // set the initial map center and zoom level
+        var map = L.map('map').setView([51.505, -0.09], 13);
+        
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
+        
+        map.whenReady(function() {
+            var imageUrl = 'resource/ui/map/map.png';
+            imageBounds = [[51.505, -0.09], [-23.336513, -46.721595]];
 
-        //Overlay Imagem
-        var imageUrl = 'resource/ui/map/map.png'
-            imageBounds = [[-23.335604, -46.722684], [-23.336513, -46.721595]];
-            L.imageOverlay(imageUrl, imageBounds).addTo(map);
-
-        //Alterar ìcone do Marker
-        var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/plant.png'?>',
-            iconSize: [30, 30],
-            iconAnchor: [15, 30],
-            alt: 'Marcador'
-            /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui/bg/arvore.png',
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]*/
+        // By default, 'img' will be placed centered on the map view specified above
+        img = L.distortableImageOverlay('example.jpg').addTo(map);
         });
 
-        //Exibir um marcador ao clicar
-        function onMapClick(e) {
-            /*popup
-            .setLatLng(e.latlng)
-            .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);*/
-            L.marker(e.latlng, {icon: myIcon}).addTo(map);
-            var teste = document.getElementById("teste_coord");
-            teste.innerHTML = e.latlng;
-        }
         map.on('click', onMapClick);
 
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="<?php echo URL."resource/leaflet_plugin/leaflet.distortableimage.js";?>"></script>
 </body>
 </html>

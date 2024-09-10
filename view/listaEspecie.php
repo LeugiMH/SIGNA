@@ -15,7 +15,7 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mb-5">ESPÉCIES</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                        <a href="<?php echo URL.'especies/cadastrar';?>" class="btn btn-warning">Cadastrar</a>
+                        <a href="<?php echo URL.'especies/cadastro';?>" class="btn btn-warning">Cadastrar</a>
                         <table id="lista" class="table table-striped nowrap">
                             <thead>
                                 <tr>

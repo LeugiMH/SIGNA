@@ -37,9 +37,13 @@ if($_GET)
         case "especies":
             switch($url[1])
             {
-                case "listar":
+                case "lista":
                     $route = new Route();
                     $route->abrirListaEspecie();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroEstagio();
                 break;
                 default:
                     // URL INVÁLIDA

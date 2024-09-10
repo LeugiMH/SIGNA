@@ -36,5 +36,9 @@ class Route
     {
         include_once "view/LAYOUTPaginaFixa.php";
     }
+    function abrirCadastroEstagio()
+    {
+        include_once "view/paginaCadastraEspecie.php";
+    }
 }
 ?>

@@ -13,8 +13,7 @@
             responsive: true,
             language: {
                 url: "<?php echo URL.'resource/json/pt_br.json';?>"
-            },
-            stateSave: true
+            }
         });
     });
 </script>

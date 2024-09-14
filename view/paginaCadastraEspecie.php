@@ -13,15 +13,12 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mb-5">CADASTRO DA ESPÉCIE</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                    <form action="logar" method="POST">
+                    <form action="cadastrar" method="POST">
                         <?php
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msg"]))
-                            {
-                                echo "<div class='alert alert-danger' role='alert'>
-                                    ".$_COOKIE['msg'] ."
-                                </div>";
-                            }
+                            {echo $_COOKIE['msg'];}
+                            
                             //Excluindo cookie de erro
                             setcookie("msg","",time() - 3600);
                         ?>
@@ -40,25 +37,23 @@
                                     <input type="text" value="" placeholder="Habitat Natural" class="form-control" id="inputHabitat" name="inputHabitat" aria-label="Digite o habitat natural" maxlength="256" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" value="" placeholder="Altura adulta(m)" step="0.1" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" maxlength="4" required>
+                                    <input type="number" value="" placeholder="Altura adulta(m)" step="0.1" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
-                                <div class="row mb-3" style="height:calc(100% - 70px);">
+                                <div class="row mb-3">
                                     <div class="col">
                                         <img src="<?php echo URL."resource/exemplo.webp";?>" class="w-100 h-100 rounded">
                                     </div>
                                     <div class="col">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height:100%; resize:none;"></textarea>
+                                        <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;"></textarea>
                                     </div>
                                 </div>
                                 <div class="">
                                     <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
-                                    <button type="submit" class="btn btn-success float-end">Logar</button>
+                                    <button type="submit" class="btn btn-success float-end">Cadastrar</button>
                                 </div>
                             </div>
-                        </div>
-                        <div class="d-flex justify-content-between">
                         </div>
                     </article>
                 </section>

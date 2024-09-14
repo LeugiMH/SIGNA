@@ -33,6 +33,37 @@ class Especie
 
     //OBSERVAÇÃO: Seguir diagrama de classe
     //Método Cadastrar
+    function cadastrar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+        
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
+                                            VALUES (:NOMECIE,:NOMEPOP,:FAMILIA,:HABITAT,:ALTURA,:IMAGEM,:DESCRICAOIMG,:DATACAD,:IDCADADM)");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
+        $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
+        $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
+        $cmd->bindParam(":HABITAT",     $this->HABITAT);
+        $cmd->bindParam(":ALTURA",      $this->ALTURA);
+        $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
+        $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
+        $cmd->bindParam(":DATACAD",     $this->DATACAD);
+        $cmd->bindParam(":IDCADADM",    $this->IDCADADM);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+        
+    }
 
     //Método Consultar
     function listar()

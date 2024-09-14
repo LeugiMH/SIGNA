@@ -17,11 +17,8 @@
                             <?php
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msg"]))
-                                {
-                                    echo "<div class='alert alert-danger' role='alert'>
-                                        ".$_COOKIE['msg'] ."
-                                    </div>";
-                                }
+                                {echo $_COOKIE['msg'];}
+                                
                                 //Excluindo cookie de erro
                                 setcookie("msg","",time() - 3600);
                             ?>

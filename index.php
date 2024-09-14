@@ -45,6 +45,10 @@ if($_GET)
                     $route = new Route();
                     $route->abrirCadastroEstagio();
                 break;
+                case "cadastrar":
+                    $route = new EspecieController();
+                    $route->CadastrarEspecie();
+                break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();

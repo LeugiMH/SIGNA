@@ -34,7 +34,7 @@ CREATE TABLE TBESPECIE
 	NOMEPOP VARCHAR(256),						                                 -- NOME POPULAR
 	FAMILIA VARCHAR(256),						                                 -- FAMÍLIA
 	HABITAT VARCHAR(256),						                                 -- HABITAT NATURAL
-	ALTURA VARCHAR(4),							                                 -- ALTURA DA MÁXIMA DA PLANTA
+	ALTURA NUMERIC(5,2),							                             -- ALTURA DA MÁXIMA DA PLANTA (999.99)
 	IMAGEM VARCHAR(256),						                                 -- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),					                                 -- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
 	DATACAD SMALLDATETIME,						                                 -- DATA DE CADASTRO
@@ -43,7 +43,7 @@ CREATE TABLE TBESPECIE
 	CONSTRAINT TBESPECIE_FK_TBADMIN FOREIGN KEY (IDCADADM) REFERENCES TBADMIN(IDADMIN)
 )
 -- SELECT * FROM TBESPECIE
--- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Nome CietíficoTeste','Nome PopTeste','FamíliaTeste','HabitatTeste','15M','Nome da imagem','Descrição da imagem','27/08/2024',1)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Nome CietíficoTeste','Nome PopTeste','FamíliaTeste','HabitatTeste',999.99,'Nome da imagem','Descrição da imagem','27/08/2024',1)
 -- DELETE TBESPECIE
 GO
 CREATE TABLE TBATRIBUTO

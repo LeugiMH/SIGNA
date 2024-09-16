@@ -14,62 +14,49 @@
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
-            <div class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
+            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
-                    <h1 class="display-1 text-center my-5">MAPA INTERATIVO</h1>
+                    <header class="display-1 text-center my-5">MAPA INTERATIVO</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
                 </div>
-            </div>
-            <div class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0 mt-0">
+            </section>
+            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                     <?php 
                         echo phpversion();
-
-                        require_once "model/conexao.php";
-                        
-                        $conn = Conexao::connect();
-                        $cmd = $conn->prepare("SELECT * FROM TBADMIN");
-                        $cmd->execute();
-                        $usersAll = $cmd->fetchAll(PDO::FETCH_OBJ);
-
-                        foreach($usersAll as $user)
-                        {
-                            echo "<p>ID: $user->IDADMIN</p>";
-                            echo "<p>Nome: $user->NOME</p>";
-                            echo "<p>Matrícula: $user->MATRICULA</p>";
-                            echo "<p>Senha: $user->SENHA</p>";
-                            echo "<p>Email: $user->EMAIL</p>";
-                            echo "<p>DataCad: $user->DATACAD</p>";
-                            echo "<p>Estado: $user->ESTADO</p>";
-                        }
                     ?>
                 </div>
-            </div>
+            </section>
         </div>
         <?php include_once "resource/rodape.php";?>
     </div>
     <script>
         //Exibir Mapa
-        var map = L.map('map',{ zoomControl:false }).setView([-23.336067, -46.722125], 30);
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // initialize the map on the "map" div with a given center and zoom
+        var map = L.map('map', {
+            center: [-23.33605, -46.72202],
+            zoom: 20
+        });
+        // Tile do
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
             maxZoom: 19,
-            attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+            aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem
-        var imageUrl = 'resource/ui/mapa.webp',
-            imageBounds = [[-23.336252, -46.722497], [-23.335853, -46.721622]];
+        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
+            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.png'?>',
+            iconUrl: '<?php echo URL.'resource/ui/bg/arvore.svg'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             /*popupAnchor: [-3, -76],

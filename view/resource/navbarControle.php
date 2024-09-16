@@ -1,6 +1,7 @@
 <?php
+
 //CONTROLE DA NAVBAR
-if(isset($_SESSION["dadosLogin"])) //caso esteja logado
+if(isset($_SESSION["sessaoLogada"])) //caso esteja logado
 {
     include_once "navbarAdm.php";
 }

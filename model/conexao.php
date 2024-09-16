@@ -1,7 +1,7 @@
 <?php
 class Conexao{
 
-    static function connect(){
+    static function conectar(){
 
         //Informações do host para acessar o servidor do banco de dados
         $host = "sqlsrv:Server=localhost;Database=SIGNA";
@@ -9,12 +9,27 @@ class Conexao{
         $usuario = null;
         $senha = null;
         
-        $conn = new PDO($host,$usuario,$senha);
-        
-        //Ativando recurso de exibição de erro
-        $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
-        
-        return $conn;//Retorna conexão para uso
+        try
+        {
+            $conn = new PDO($host,$usuario,$senha);
+
+            //Ativando recurso de exibição de erro
+            $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
+
+            //Retorna conexão para uso
+            return $conn;
+
+            $conn = null;
+        }
+        //Tratamento de erro
+        catch(PDOException $e)
+        {
+            echo "
+            <script>
+                alert('ERRO AO REALIZAR CONEXÃO COM BANCO DE DADOS.');
+                window.location.href = '".URL."inicio';
+            </script>";
+        }
     }
 }
 ?>

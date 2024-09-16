@@ -1,6 +1,7 @@
 <?php
 
 // Import Controllers
+include_once "especie.php";
 
 class Route
 {
@@ -16,6 +17,14 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    function abrirListaEspecie()
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        include_once "view/listaEspecie.php";
+    }
+
+    /*  */
     #Página não encontrada
     function abrirPaginaNaoEncontrada()
     {
@@ -26,6 +35,10 @@ class Route
     function abrirTeste()
     {
         include_once "view/LAYOUTPaginaFixa.php";
+    }
+    function abrirCadastroEstagio()
+    {
+        include_once "view/paginaCadastraEspecie.php";
     }
 }
 ?>

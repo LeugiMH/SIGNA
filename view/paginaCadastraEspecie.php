@@ -13,7 +13,7 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mb-5">CADASTRO DA ESPÉCIE</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                    <form action="cadastrar" method="POST">
+                    <form action="cadastrar" method="POST" enctype="multipart/form-data">
                         <?php
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msg"]))
@@ -37,13 +37,16 @@
                                     <input type="text" value="" placeholder="Habitat Natural" class="form-control" id="inputHabitat" name="inputHabitat" aria-label="Digite o habitat natural" maxlength="256" required>
                                 </div>
                                 <div class="mb-3">
-                                    <input type="number" value="" placeholder="Altura adulta(m)" step="0.1" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
+                                    <input type="number" value="" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                 </div>
                             </div>
                             <div class="col-12 col-sm-6">
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <img src="<?php echo URL."resource/exemplo.webp";?>" class="w-100 h-100 rounded">
+                                        <input type="file" name="inputImagem" id="inputImagem" accept="image/*" hidden>
+                                        <label for="inputImagem">
+                                            <img src="<?php echo URL."resource/exemplo.webp";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
+                                        </label>
                                     </div>
                                     <div class="col">
                                         <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;"></textarea>
@@ -62,6 +65,21 @@
         </div>
         <?php include_once "resource/rodape.php";?>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <?php include_once "resource/plugins.php";?>
+    
+    <!-- SCRIPT PARA MOSTRAR A FOTO ENVIADA EM TEMPO REAL-->
+    <script>
+        inputImagem.onchange = evt => {
+            var [file] = inputImagem.files
+            if (file && $("#inputImagem").val() != "") {
+                var url = URL.createObjectURL(file);
+                imagem.src = url;
+            }
+            else
+            {
+                imagem.src = "recursos/img/imagem_exemplo.jpg";
+            }
+        }
+    </script>
 </body>
 </html>

@@ -17,12 +17,20 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    /* Espécies */
+    #Lista
     function abrirListaEspecie()
     {
         $especies = new EspecieController();
         $especies = $especies->listar();
         include_once "view/listaEspecie.php";
     }
+    function abrirALteraEspecie($id)
+    {
+        var_dump($id);
+        include_once "view/";
+    }
+
 
     /*  */
     #Página não encontrada

@@ -39,7 +39,7 @@ class AdminController
         else
         {
             //Define mensagem de erro
-            setcookie("msg","<div class='alert alert-success'>Email ou senha estão incorretos.</div>");
+            setcookie("msg","<div class='alert alert-danger'>Email ou senha estão incorretos.</div>");
 
             //Direciona para login 
             header("Location:".URL."login");

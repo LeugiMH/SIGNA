@@ -49,6 +49,14 @@ if($_GET)
                     $route = new EspecieController();
                     $route->CadastrarEspecie();
                 break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraEspecie($url[2]);
+                break;
+                case "":
+                break;
+                case "":
+                break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();

@@ -88,7 +88,7 @@ class EspecieController
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
         var_dump($_POST);
-/*
+        /*
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
         $cmd->IDESPECIE    = $idEspecie;

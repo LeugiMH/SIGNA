@@ -102,7 +102,7 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIE (NOMECIE = :NOMECIE ,NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG)
+        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE ,NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
                                             WHERE IDESPECIE = :IDESPESCIE");
 
         //Definindo parâmetros (SQL INJECTION)

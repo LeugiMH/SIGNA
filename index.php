@@ -43,19 +43,19 @@ if($_GET)
                 break;
                 case "cadastro":
                     $route = new Route();
-                    $route->abrirCadastroEstagio();
+                    $route->abrirCadastroEspecie();
                 break;
                 case "cadastrar":
                     $route = new EspecieController();
-                    $route->CadastrarEspecie();
+                    $route->cadastrarEspecie();
                 break;
                 case "altera":
                     $route = new Route();
                     $route->abrirAlteraEspecie($url[2]);
                 break;
-                case "":
-                break;
-                case "":
+                case "alterar":
+                    $route = new EspecieController();
+                    $route->alterarEspecie();
                 break;
                 default:
                     // URL INVÁLIDA

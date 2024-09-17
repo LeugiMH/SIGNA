@@ -79,7 +79,53 @@ class Especie
 
         return $cmd->fetchAll(PDO::FETCH_OBJ);
     }
+
+    //Método Buscar
+    function buscar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT * FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
+        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+
+        //Executando o comando SQL
+        $cmd->execute();
+
+        return $cmd->fetch(PDO::FETCH_OBJ);
+    }
     //Método Alterar
+    function alterar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+        
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("UPDATE TBESPECIE (NOMECIE = :NOMECIE ,NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG)
+                                            WHERE IDESPECIE = :IDESPESCIE");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
+        $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
+        $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
+        $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
+        $cmd->bindParam(":HABITAT",     $this->HABITAT);
+        $cmd->bindParam(":ALTURA",      $this->ALTURA);
+        $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
+        $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+        
+    }
 
     //Método Excluir
 }

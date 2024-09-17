@@ -25,12 +25,19 @@ class Route
         $especies = $especies->listar();
         include_once "view/listaEspecie.php";
     }
-    function abrirALteraEspecie($id)
+
+    function abrirCadastroEspecie()
     {
-        var_dump($id);
-        include_once "view/";
+        include_once "view/paginaCadAltEspecie.php";
     }
 
+    function abrirAlteraEspecie($id)
+    {
+        $especie = new EspecieController();
+        $especie = $especie->buscar($id);
+        include_once "view/paginaCadAltEspecie.php";
+    }
+    
 
     /*  */
     #Página não encontrada
@@ -43,10 +50,6 @@ class Route
     function abrirTeste()
     {
         include_once "view/LAYOUTPaginaFixa.php";
-    }
-    function abrirCadastroEstagio()
-    {
-        include_once "view/paginaCadastraEspecie.php";
     }
 }
 ?>

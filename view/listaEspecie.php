@@ -49,7 +49,10 @@
                                     <td>$especie->DESCRICAOIMG</td>
                                     <td>$especie->DATACAD</td>                               
                                     <td>$especie->IDCADADM</td>
-                                    <td><a href='".URL."especies/altera/$especie->IDESPECIE'>Alterar</a></td>
+                                    <td>
+                                    <a href='".URL."especies/altera/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                    <a href='".URL."especies/excluir/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                    </td>
                                 </tr>
                                 ";
                                 }

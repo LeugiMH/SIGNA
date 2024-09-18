@@ -57,6 +57,10 @@ if($_GET)
                     $route = new EspecieController();
                     $route->alterarEspecie();
                 break;
+                case "excluir":
+                    $route = new EspecieController();
+                    $route->excluirEspecie($url[2]);
+                break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();

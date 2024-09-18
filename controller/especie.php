@@ -102,9 +102,10 @@ class EspecieController
         $busca->IDESPECIE = $idEspecie;
         $dadosEspecie = $busca->buscar();
 
-        //Cadastra imagem
+        //Altera imagem
         if($_FILES["inputImagem"]["error"] == 0)
         {
+            //Verifica se existia imagem cadastrada
             if(empty($dadosEspecie->IMAGEM))
             {
                 $nomeArquivo = $_FILES["inputImagem"]["name"];    //Nome do arquivo
@@ -156,6 +157,10 @@ class EspecieController
                 $cmd->IMAGEM = $novoNome;
             }
         }
+        else
+        {
+            $cmd->IMAGEM = $dadosEspecie->IMAGEM;
+        }
 
         if($cmd->alterar())
         {
@@ -166,6 +171,23 @@ class EspecieController
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>");
             header("location: ".URL."especies/altera/$idEspecie");
         }
+    }
+
+    //Excluir
+    function excluirEspecie($id)
+    {
+        $idEspecie = $id;
+
+        $cmd = new Especie();
+        $cmd->IDESPECIE = $idEspecie;
+        $especie = $cmd->buscar();
+
+        if($cmd->excluir())
+        {
+            unlink("resource/imagens/especies/$especie->IMAGEM"); //Excluir imagem
+        }
+        header("location: ".URL."especies/lista");
+        return;
     }
 }
 

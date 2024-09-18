@@ -7,7 +7,6 @@
 </head>
 
 <body>
-    <?php setcookie("msg","",time() -3600);?>
     <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
@@ -16,6 +15,10 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mb-5">ESPÉCIES</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
+                        <?php
+                            //Excluindo cookie de erro
+                            setcookie("msg","",time() -3600);
+                        ?>
                         <a href="<?php echo URL.'especies/cadastro';?>" class="btn btn-warning">Cadastrar</a>
                         <table id="lista" class="table table-striped nowrap text-center">
                             <thead>

@@ -14,7 +14,7 @@
                     <header class="display-1 text-center mb-5">CADASTRO DA ESPÉCIE</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                     <?php $url = $_GET["url"]; $url = explode("/",$url);?>
-                    <form action="<?php echo $url[1] == 'cadastro'?'cadastrar':'alterar';?>" method="POST" enctype="multipart/form-data">
+                    <form action="<?php echo $url[1] == 'cadastro'? URL.'especies/cadastrar':URL.'especies/alterar';?>" method="POST" enctype="multipart/form-data">
                         <?php
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msg"]))

@@ -92,9 +92,10 @@ class Especie
 
         //Executando o comando SQL
         $cmd->execute();
-
+        
         return $cmd->fetch(PDO::FETCH_OBJ);
     }
+
     //Método Alterar
     function alterar()
     {
@@ -102,11 +103,10 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE ,NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
-                                            WHERE IDESPECIE = :IDESPESCIE");
+        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE, NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
+                                            WHERE IDESPECIE = :IDESPECIE");
 
         //Definindo parâmetros (SQL INJECTION)
-        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
         $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
         $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
         $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
@@ -114,6 +114,7 @@ class Especie
         $cmd->bindParam(":ALTURA",      $this->ALTURA);
         $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
+        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
 
         //Executando e retornando resultado
         try

@@ -87,8 +87,7 @@ class EspecieController
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
-        var_dump($_POST);
-        /*
+        
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
         $cmd->IDESPECIE    = $idEspecie;
@@ -133,7 +132,7 @@ class EspecieController
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>");
         }
-        header("location: ".URL."especies/altera");*/
+        header("location: ".URL."especies/lista");
     }
 }
 

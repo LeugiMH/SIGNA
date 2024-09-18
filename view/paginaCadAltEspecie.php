@@ -18,7 +18,7 @@
                         <?php
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msg"]))
-                            {echo $_COOKIE['msg'];}
+                            {echo $_COOKIE["msg"];}
                             
                             //Excluindo cookie de erro
                             setcookie("msg","",time() - 3600);
@@ -38,7 +38,7 @@
                                 <div class="mb-3">
                                     <input type="text" value="<?php echo isset($especie)?$especie->HABITAT:'';?>" placeholder="Habitat Natural" class="form-control" id="inputHabitat" name="inputHabitat" aria-label="Digite o habitat natural" maxlength="256" required>
                                 </div>
-                                <div class="mb-3">
+                                <div class="">
                                     <input type="number" value="<?php echo isset($especie)?$especie->ALTURA:'';?>" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
                                     <div class="col">
                                         <input type="file" name="inputImagem" id="inputImagem" accept="image/*" hidden>
                                         <label for="inputImagem">
-                                            <img src="<?php echo isset($especie)? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/exemplo.webp";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
+                                            <img src="<?php echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
                                         </label>
                                     </div>
                                     <div class="col">

@@ -7,6 +7,7 @@
 </head>
 
 <body>
+    <?php setcookie("msg","",time() -3600);?>
     <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
@@ -44,7 +45,7 @@
                                     <td>$especie->FAMILIA</td>
                                     <td>$especie->HABITAT</td>
                                     <td>$especie->ALTURA</td>
-                                    <td><img src='".URL."resource/imagens/especies/$especie->IMAGEM' style='width:100px;'></td>
+                                    <td><img src='"; echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpeg"; echo "' style='width:100px;'></td>
                                     <td>$especie->DESCRICAOIMG</td>
                                     <td>$especie->DATACAD</td>                               
                                     <td>$especie->IDCADADM</td>

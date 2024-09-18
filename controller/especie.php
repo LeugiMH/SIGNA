@@ -98,41 +98,74 @@ class EspecieController
         $cmd->ALTURA       = $altura;
         $cmd->DESCRICAOIMG = $ImgDesc;
         
+        $busca = new Especie();
+        $busca->IDESPECIE = $idEspecie;
+        $dadosEspecie = $busca->buscar();
+
         //Cadastra imagem
         if($_FILES["inputImagem"]["error"] == 0)
         {
-            $nomeArquivo = $_FILES["inputImagem"]["name"];    //Nome do arquivo
-            $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];   //nome temporário
-            
-            //pegar a extensão do arquivo
-            $info = new SplFileInfo($nomeArquivo);
-            $extensao = $info->getExtension();
-            
-            if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
+            if(empty($dadosEspecie->IMAGEM))
             {
-                setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
-                header("location: ".URL."especies/cadastro");
-                return;
+                $nomeArquivo = $_FILES["inputImagem"]["name"];    //Nome do arquivo
+                $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];   //Nome temporário
+                
+                //pegar a extensão do arquivo
+                $info = new SplFileInfo($nomeArquivo);
+                $extensao = $info->getExtension();
+                
+                if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
+                {
+                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
+                    header("location: ".URL."especies/altera/$idEspecie");
+                    setcookie("msg","",time() - 3600);
+                    return;
+                }
+                //gerar novo nome
+                $novoNome = md5(microtime()) . ".$extensao";
+                
+                $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
+                move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+                
+                //enviando para o banco de dados
+                $cmd->IMAGEM = $novoNome;
             }
-            //gerar novo nome
-            $novoNome = md5(microtime()) . ".$extensao";
-            
-            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
-            move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
-            
-            //enviando para o banco de dados
-            $cmd->IMAGEM = $novoNome;
+            else {
+                unlink("resource/imagens/especies/$dadosEspecie->IMAGEM"); //excluir o arquivo
+
+                $nomeArquivo = $_FILES["inputImagem"]["name"];       //Nome do arquivo
+                $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];      //nome temporário
+                
+                //pegar a extensão do arquivo
+                $info = new SplFileInfo($nomeArquivo);
+                $extensao = $info->getExtension();
+                
+                if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
+                {
+                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
+                    header("location: ".URL."especies/altera/$idEspecie");
+                    return;
+                }
+                //gerar novo nome
+                $novoNome = md5(microtime()) . ".$extensao";
+                
+                $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
+                move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+                
+                //enviando para o banco
+                $cmd->IMAGEM = $novoNome;
+            }
         }
 
         if($cmd->alterar())
         {
-            setcookie("msg","<div class='alert alert-success'>Espécie alterada com sucesso</div>");
+            header("location: ".URL."especies/lista");
         }
         else
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>");
+            header("location: ".URL."especies/altera/$idEspecie");
         }
-        header("location: ".URL."especies/lista");
     }
 }
 

@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <?php include_once "resource/head.php";?>
     <title>SIGNA</title>
@@ -16,8 +15,9 @@
                     <header class="display-1 text-center mb-5">ESPÉCIES</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <?php
-                            //Excluindo cookie de erro
-                            setcookie("msg","",time() -3600);
+                            //Exibindo mensagem de erro
+                            if(isset($_COOKIE["msgLista"]))
+                            {echo $_COOKIE["msgLista"];}
                         ?>
                         <a href="<?php echo URL.'especies/cadastro';?>" class="btn btn-warning">Cadastrar</a>
                         <table id="lista" class="table table-striped nowrap text-center">

@@ -19,9 +19,6 @@
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msg"]))
                             {echo $_COOKIE["msg"];}
-                            
-                            //Excluindo cookie de erro
-                            setcookie("msg","",time() - 3600);
                         ?>
                         <div class="row">
                             <div class="col-12 col-sm-6">
@@ -55,7 +52,7 @@
                                     </div>
                                 </div>
                                 <div class="">
-                                    <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
+                                    <a href="<?php echo URL."especies/lista" ?>" class="btn btn-success" >Voltar</a>
                                     <button type="submit" class="btn btn-success float-end"><?php echo $url[1] == 'cadastro'? 'Cadastrar':'Alterar';?></button>
                                 </div>
                             </div>

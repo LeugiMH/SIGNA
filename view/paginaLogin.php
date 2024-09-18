@@ -18,9 +18,6 @@
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msg"]))
                                 {echo $_COOKIE['msg'];}
-                                
-                                //Excluindo cookie de erro
-                                setcookie("msg","",time() - 3600);
                             ?>
                             <div class="mb-3">
                                 <label for="inputEmail" class="form-label">Endereço de Email</label>

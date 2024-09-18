@@ -65,6 +65,7 @@ if($_GET)
                     // URL INVÁLIDA
                     $route = new Route();
                     $route->abrirPaginaNaoEncontrada();
+                break;
             }
         break;
         /*

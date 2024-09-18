@@ -139,7 +139,14 @@ class Especie
         $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
         
         //Executando o comando SQL
-        return $cmd->execute();
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {            
+            return false;
+        }
     }
 }
 

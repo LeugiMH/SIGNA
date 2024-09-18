@@ -36,7 +36,7 @@ class EspecieController
             
             if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
             {
-                setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
+                setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
                 header("location: ".URL."especies/cadastro");
                 return;
             }
@@ -53,11 +53,11 @@ class EspecieController
         
         if($cmd->cadastrar())
         {
-            setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>");
+            setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>",time() + 1,"/");
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
         }
         header("location: ".URL."especies/cadastro");
     }
@@ -117,9 +117,8 @@ class EspecieController
                 
                 if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
                 {
-                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
+                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
                     header("location: ".URL."especies/altera/$idEspecie");
-                    setcookie("msg","",time() - 3600);
                     return;
                 }
                 //gerar novo nome
@@ -143,7 +142,7 @@ class EspecieController
                 
                 if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
                 {
-                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>");
+                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
                     header("location: ".URL."especies/altera/$idEspecie");
                     return;
                 }
@@ -168,7 +167,7 @@ class EspecieController
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>",time() + 1,"/");
             header("location: ".URL."especies/altera/$idEspecie");
         }
     }
@@ -180,14 +179,18 @@ class EspecieController
 
         $cmd = new Especie();
         $cmd->IDESPECIE = $idEspecie;
+
         $especie = $cmd->buscar();
 
         if($cmd->excluir())
         {
             unlink("resource/imagens/especies/$especie->IMAGEM"); //Excluir imagem
         }
+        else
+        {
+            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime relacionado.</div>",time() + 1,"/");
+        }
         header("location: ".URL."especies/lista");
-        return;
     }
 }
 

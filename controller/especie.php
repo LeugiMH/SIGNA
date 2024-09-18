@@ -24,6 +24,8 @@ class EspecieController
         $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
         $cmd->IDCADADM     = $_SESSION["sessaoLogada"]->IDADMIN; //Id do administrador logado
         
+        $novoNome = "";
+        $nomeTemp = "";
         //Cadastra imagem
         if($_FILES["inputImagem"]["error"] == 0)
         {
@@ -43,17 +45,17 @@ class EspecieController
             //gerar novo nome
             $novoNome = md5(microtime()) . ".$extensao";
             
-            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
-            move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
-            
             //enviando para o banco de dados
             $cmd->IMAGEM = $novoNome;
         }
 
-        
-        if($cmd->cadastrar())
+        if($cmd->cadastrar())  //Sucesso ao cadastrar espécie
         {
             setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>",time() + 1,"/");
+
+            //Mover imagem para pastas no servidor
+            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
+            move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
         }
         else
         {
@@ -102,68 +104,47 @@ class EspecieController
         $busca->IDESPECIE = $idEspecie;
         $dadosEspecie = $busca->buscar();
 
-        //Altera imagem
+        $nomeTemp = "";
+        $novoNome = "";
+        //Caso imagem seja enviada sem erros
         if($_FILES["inputImagem"]["error"] == 0)
         {
-            //Verifica se existia imagem cadastrada
-            if(empty($dadosEspecie->IMAGEM))
+            //Espécie já possuia uma imagem
+            if(isset($dadosEspecie->IMAGEM))
             {
-                $nomeArquivo = $_FILES["inputImagem"]["name"];    //Nome do arquivo
-                $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];   //Nome temporário
-                
-                //pegar a extensão do arquivo
-                $info = new SplFileInfo($nomeArquivo);
-                $extensao = $info->getExtension();
-                
-                if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
-                {
-                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
-                    header("location: ".URL."especies/altera/$idEspecie");
-                    return;
-                }
-                //gerar novo nome
-                $novoNome = md5(microtime()) . ".$extensao";
-                
-                $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
-                move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
-                
-                //enviando para o banco de dados
-                $cmd->IMAGEM = $novoNome;
+                unlink("resource/imagens/especies/$dadosEspecie->IMAGEM"); //excluir a imagem
             }
-            else {
-                unlink("resource/imagens/especies/$dadosEspecie->IMAGEM"); //excluir o arquivo
-
-                $nomeArquivo = $_FILES["inputImagem"]["name"];       //Nome do arquivo
-                $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];      //nome temporário
-                
-                //pegar a extensão do arquivo
-                $info = new SplFileInfo($nomeArquivo);
-                $extensao = $info->getExtension();
-                
-                if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
-                {
-                    setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
-                    header("location: ".URL."especies/altera/$idEspecie");
-                    return;
-                }
-                //gerar novo nome
-                $novoNome = md5(microtime()) . ".$extensao";
-                
-                $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
-                move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
-                
-                //enviando para o banco
-                $cmd->IMAGEM = $novoNome;
+            $nomeArquivo = $_FILES["inputImagem"]["name"];       //Nome do arquivo
+            $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];      //nome temporário
+            
+            //pegar a extensão do arquivo
+            $info = new SplFileInfo($nomeArquivo);
+            $extensao = $info->getExtension();
+            
+            if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
+            {
+                setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
+                header("location: ".URL."especies/altera/$idEspecie");
+                return;
             }
+            //gerar novo nome
+            $novoNome = md5(microtime()) . ".$extensao";
+            
+            //enviando para o banco
+            $cmd->IMAGEM = $novoNome;
         }
-        else
+        else //Caso não seja enviada mantém imagem original
         {
             $cmd->IMAGEM = $dadosEspecie->IMAGEM;
         }
 
-        if($cmd->alterar())
+        if($cmd->alterar()) //Sucesso ao alterar espécie
         {
             header("location: ".URL."especies/lista");
+
+            //Mover imagem para pastas no servidor
+            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
+            move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
         }
         else
         {

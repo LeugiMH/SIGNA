@@ -8,7 +8,10 @@ class Route
     #Página inicial
     function abrirInicio()
     {
-        include_once "view/paginaInicial.php";
+        if(isset($_SESSION["sessaoLogada"])) 
+        {include_once "view/paginaInicialADM.php";}
+        else 
+        {include_once "view/paginaInicial.php";}
     }
 
     #Página de login

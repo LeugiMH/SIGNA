@@ -68,6 +68,40 @@ if($_GET)
                 break;
             }
         break;
+        case "especimes":
+            switch($url[1])
+            {
+                case "lista":
+                    $route = new Route();
+                    $route->abrirListaEspecime();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroEspecime();
+                break;
+                case "cadastrar":
+                    $route = new EspecieController();
+                    $route->cadastrarEspecime();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraEspecime($url[2]);
+                break;
+                case "alterar":
+                    $route = new EspecieController();
+                    $route->alterarEspecime();
+                break;
+                case "excluir":
+                    $route = new EspecieController();
+                    $route->excluirEspecime($url[2]);
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+        break;
         /*
         case "esqueci-a-senha": 
             $route = new Controller();

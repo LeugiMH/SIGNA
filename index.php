@@ -71,16 +71,12 @@ if($_GET)
         case "especimes":
             switch($url[1])
             {
-                case "lista":
-                    $route = new Route();
-                    $route->abrirListaEspecime();
-                break;
                 case "cadastro":
                     $route = new Route();
                     $route->abrirCadastroEspecime();
                 break;
                 case "cadastrar":
-                    $route = new EspecieController();
+                    $route = new EspecimeController();
                     $route->cadastrarEspecime();
                 break;
                 case "altera":
@@ -88,12 +84,8 @@ if($_GET)
                     $route->abrirAlteraEspecime($url[2]);
                 break;
                 case "alterar":
-                    $route = new EspecieController();
+                    $route = new EspecimeController();
                     $route->alterarEspecime();
-                break;
-                case "excluir":
-                    $route = new EspecieController();
-                    $route->excluirEspecime($url[2]);
                 break;
                 default:
                     // URL INVÁLIDA

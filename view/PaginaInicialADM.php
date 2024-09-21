@@ -20,9 +20,9 @@
                     <header class="display-1 text-center my-5">ADMINISTRADOR BIOSFERA</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
-                        <form action="<?php echo URL."especime/cadastro"?>">
+                        <form action="<?php echo URL."especimes/cadastro"?>" method="post">
                             <button class="btn btn-warning">ADICIONAR PLANTA</button>
-                            <input type="text" class="form-control" id="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaPin(this.value)";>
+                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarker(this.value)";>
                         </form>
                     </div>
                     <div class="col-xl-9">
@@ -72,33 +72,41 @@
             shadowAnchor: [22, 94]*/
         });
 
-        var markerIndex = 1;
-        var marker = new Array();
+        //Declara variáveis marcador e índice
+        var markerIndex = 0;
+        var marker = [];
 
         //Exibir um marcador ao clicar
         function onMapClick(e) {
-            //map.removeLayer(marker[markerIndex]);
             
-            new L.marker(e.latlng, {icon: myIcon}).addTo(map);
-            //map.addLayer();
+            console.log(e);
+            //Adiciona marcador baseado no índice e incrementa índice
+            marker [markerIndex] = L.marker(e.latlng, {icon: myIcon}).addTo(map);
+            map.addLayer(marker[markerIndex]);
             
-            markerIndex = markerIndex + 1
+            //Remove marcador do índice anterior
+            if(markerIndex){
+                map.removeLayer(marker[markerIndex-1]);
+            }
+            
             //Elemento input
-            var coordInput = document.getElementById("inputCoord");
+            const coordInput = document.getElementById("inputCoord");
             
             //Define valor ao input
             coord = e.latlng.lat+", "+e.latlng.lng;
             coordInput.value = coord;
+            markerIndex ++;
         }
 
         //Cria um marcador para visualização baseado na coordenada informada
-        function criaPin(coordTxt){
+        function criaMarker(coordTxt){
             const coordArray = coordTxt.split(", ");
-            latlng = {lat:coordArray[0], lng:coordArray[1]};
-            L.marker(latlng, {icon: myIcon}).addTo(map);
-        }
-        map.on('click', onMapClick);
+            latlngObj = { latlng: {lat:coordArray[0], lng:coordArray[1]}};
 
+            onMapClick(latlngObj);
+        }
+
+        map.on('click', onMapClick);
     </script>
 </body>
 </html>

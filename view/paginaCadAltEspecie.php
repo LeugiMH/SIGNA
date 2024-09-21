@@ -14,49 +14,50 @@
                     <header class="display-1 text-center mb-5">CADASTRO DA ESPÉCIE</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                     <?php $url = $_GET["url"]; $url = explode("/",$url);?>
-                    <form action="<?php echo $url[1] == 'cadastro'? URL.'especies/cadastrar':URL.'especies/alterar';?>" method="POST" enctype="multipart/form-data">
-                        <?php
-                            //Exibindo mensagem de erro
-                            if(isset($_COOKIE["msg"]))
-                            {echo $_COOKIE["msg"];}
-                        ?>
-                        <div class="row">
-                            <div class="col-12 col-sm-6">
-                                <input type="hidden" name="inputId" value="<?php echo isset($especie)?$especie->IDESPECIE:'';?>">
-                                <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($especie)?$especie->NOMECIE:'';?>" placeholder="Nome Científico" class="form-control" id="inputNomeCie" name="inputNomeCie" aria-label="Digite o nome científico" maxlength="256" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($especie)?$especie->NOMEPOP:'';?>" placeholder="Nome Popular" class="form-control" id="inputNomePop" name="inputNomePop" aria-label="Digite o nome popular" maxlength="256" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($especie)?$especie->FAMILIA:'';?>" placeholder="Família" class="form-control" id="inputFamilia" name="inputFamilia" aria-label="Digite o nome da família da espécie" maxlength="256" required>
-                                </div>
-                                <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($especie)?$especie->HABITAT:'';?>" placeholder="Habitat Natural" class="form-control" id="inputHabitat" name="inputHabitat" aria-label="Digite o habitat natural" maxlength="256" required>
-                                </div>
-                                <div class="">
-                                    <input type="number" value="<?php echo isset($especie)?$especie->ALTURA:'';?>" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
-                                </div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                                <div class="row mb-3">
-                                    <div class="col">
-                                        <input type="file" name="inputImagem" id="inputImagem" accept="image/*" hidden>
-                                        <label for="inputImagem">
-                                            <img src="<?php echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
-                                        </label>
+                        <form action="<?php echo $url[1] == 'cadastro'? URL.'especies/cadastrar':URL.'especies/alterar';?>" method="POST" enctype="multipart/form-data">
+                            <?php
+                                //Exibindo mensagem de erro
+                                if(isset($_COOKIE["msg"]))
+                                {echo $_COOKIE["msg"];}
+                            ?>
+                            <div class="row">
+                                <div class="col-12 col-sm-6">
+                                    <input type="hidden" name="inputId" value="<?php echo isset($especie)?$especie->IDESPECIE:'';?>">
+                                    <div class="mb-3">
+                                        <input type="text" value="<?php echo isset($especie)?$especie->NOMECIE:'';?>" placeholder="Nome Científico" class="form-control" id="inputNomeCie" name="inputNomeCie" aria-label="Digite o nome científico" maxlength="256" required>
                                     </div>
-                                    <div class="col">
-                                        <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;"><?php echo isset($especie)?$especie->DESCRICAOIMG:'';?></textarea>
+                                    <div class="mb-3">
+                                        <input type="text" value="<?php echo isset($especie)?$especie->NOMEPOP:'';?>" placeholder="Nome Popular" class="form-control" id="inputNomePop" name="inputNomePop" aria-label="Digite o nome popular" maxlength="256" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" value="<?php echo isset($especie)?$especie->FAMILIA:'';?>" placeholder="Família" class="form-control" id="inputFamilia" name="inputFamilia" aria-label="Digite o nome da família da espécie" maxlength="256" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <input type="text" value="<?php echo isset($especie)?$especie->HABITAT:'';?>" placeholder="Habitat Natural" class="form-control" id="inputHabitat" name="inputHabitat" aria-label="Digite o habitat natural" maxlength="256" required>
+                                    </div>
+                                    <div class="">
+                                        <input type="number" value="<?php echo isset($especie)?$especie->ALTURA:'';?>" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                     </div>
                                 </div>
-                                <div class="">
-                                    <a href="<?php echo URL."especies/lista" ?>" class="btn btn-success" >Voltar</a>
-                                    <button type="submit" class="btn btn-success float-end"><?php echo $url[1] == 'cadastro'? 'Cadastrar':'Alterar';?></button>
+                                <div class="col-12 col-sm-6">
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <input type="file" name="inputImagem" id="inputImagem" accept="image/*" hidden>
+                                            <label for="inputImagem">
+                                                <img src="<?php echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
+                                            </label>
+                                        </div>
+                                        <div class="col">
+                                            <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;"><?php echo isset($especie)?$especie->DESCRICAOIMG:'';?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="">
+                                        <a href="<?php echo URL."especies/lista" ?>" class="btn btn-success" >Voltar</a>
+                                        <button type="submit" class="btn btn-success float-end"><?php echo $url[1] == 'cadastro'? 'Cadastrar':'Alterar';?></button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        </form> 
                     </article>
                 </section>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">

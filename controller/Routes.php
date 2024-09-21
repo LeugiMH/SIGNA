@@ -2,6 +2,7 @@
 
 // Import Controllers
 include_once "especie.php";
+include_once "especime.php";
 
 class Route
 {
@@ -41,6 +42,13 @@ class Route
         include_once "view/paginaCadAltEspecie.php";
     }
     
+    /* Espécimes */
+    function abrirCadastroEspecime()
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        include_once "view/paginaCadAltEspecime.php";
+    }
 
     /*  */
     #Página não encontrada

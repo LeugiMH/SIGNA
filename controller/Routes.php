@@ -9,6 +9,8 @@ class Route
     #Página inicial
     function abrirInicio()
     {
+        $especimes = new EspecimeController();
+        $especimes = $especimes->listar();
         if(isset($_SESSION["sessaoLogada"])) 
         {include_once "view/paginaInicialADM.php";}
         else 

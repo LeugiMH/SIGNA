@@ -22,7 +22,7 @@
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post">
                             <button class="btn btn-warning">ADICIONAR PLANTA</button>
-                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarker(this.value)";>
+                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)";>
                         </form>
                     </div>
                     <div class="col-xl-9">
@@ -78,8 +78,7 @@
 
         //Exibir um marcador ao clicar
         function onMapClick(e) {
-            
-            console.log(e);
+
             //Adiciona marcador baseado no índice e incrementa índice
             marker [markerIndex] = L.marker(e.latlng, {icon: myIcon}).addTo(map);
             map.addLayer(marker[markerIndex]);
@@ -88,7 +87,6 @@
             if(markerIndex){
                 map.removeLayer(marker[markerIndex-1]);
             }
-            
             //Elemento input
             const coordInput = document.getElementById("inputCoord");
             
@@ -99,7 +97,7 @@
         }
 
         //Cria um marcador para visualização baseado na coordenada informada
-        function criaMarker(coordTxt){
+        function criaMarkerView(coordTxt){
             const coordArray = coordTxt.split(", ");
             latlngObj = { latlng: {lat:coordArray[0], lng:coordArray[1]}};
 
@@ -107,6 +105,16 @@
         }
 
         map.on('click', onMapClick);
+    </script>
+    <script>
+        <?php
+            echo "var markerBD = [";
+            foreach ($especimes as $especime)
+            {
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map),";
+            }
+            echo "''];";
+        ?>
     </script>
 </body>
 </html>

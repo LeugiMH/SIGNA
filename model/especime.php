@@ -72,7 +72,7 @@ class Especime
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBESPECIE");
+        $cmd = $con->prepare("SELECT * FROM TBESPECIME");
 
         //Executando o comando SQL
         $cmd->execute();

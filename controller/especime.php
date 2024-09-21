@@ -59,22 +59,22 @@ class EspecimeController
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
         }
-        //header("location: ".URL."inicio");
+        header("location: ".URL."inicio");
     }
 
     //Consultar
     function buscar($id)
     {
-        $especie = new Especie();
-        $especie->IDESPECIE = $id;
-        return $especie->buscar();
+        $especime = new Especime();
+        $especime->especime = $id;
+        return $especime->buscar();
     }
 
     //Listar
     function listar()
     {
-        $cmd = new Especie();
-        return $cmd->listar();
+        $especimes = new Especime();
+        return $especimes->listar();
     }
 
     //Alterar

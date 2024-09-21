@@ -67,7 +67,7 @@ CREATE TABLE TBESPECIME
 (
 	IDESPECIME INT IDENTITY(1,1),																	-- ID ESPÉCIME
 	IDESPECIE INT,																					-- ESPÉCIE
-	COORD VARCHAR(MAX),																				-- COORDENADAS
+	COORD VARCHAR(50),																				-- COORDENADAS
 	IMAGEM VARCHAR(256),																			-- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),																		-- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
 	ESTADO CHAR(1),																					-- STATUS (DEFINIR)

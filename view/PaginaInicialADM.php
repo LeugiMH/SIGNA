@@ -21,8 +21,8 @@
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post">
-                            <button class="btn btn-warning">ADICIONAR PLANTA</button>
-                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)";>
+                            <button class="btn btn-warning">ADICIONAR MARCADOR</button>
+                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)" maxlength="50">
                         </form>
                     </div>
                     <div class="col-xl-9">
@@ -111,7 +111,7 @@
             echo "var markerBD = [";
             foreach ($especimes as $especime)
             {
-                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map),";
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie:$especime->NOMEPOP</p><a href=\"".URL."especimes/alterar/$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a>'),";
             }
             echo "''];";
         ?>

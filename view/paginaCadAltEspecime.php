@@ -23,7 +23,7 @@
                             <div class="row">
                                 <div class="col-12 col-sm-6">
                                     <input type="hidden" name="inputId" value="<?php echo isset($especime)?$especime->IDESPECIE:'';?>">
-                                    <input type="hidden" name="inputCoord" value="<?php echo isset($especime)?$especime->IDESPECIE: $_POST['inputCoord'];?>">
+                                    <input type="hidden" name="inputCoord" value="<?php echo isset($especime)?$especime->IDESPECIE: $_POST['inputCoord'];?>" maxlength="50">
                                     <div class="mb-3">
                                         <select name="inputEspecie" id="inputEspecie" class="form-select" aria-label="Selecione a espécie da planta" required>
                                             <option disabled selected>Selecione uma Espécie</option> 

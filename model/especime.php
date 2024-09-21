@@ -72,7 +72,7 @@ class Especime
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBESPECIME");
+        $cmd = $con->prepare("SELECT TBA.*,NOMEPOP FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE");
 
         //Executando o comando SQL
         $cmd->execute();

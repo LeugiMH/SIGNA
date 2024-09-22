@@ -55,7 +55,7 @@
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/ui/bg/plant.png'?>',
+            iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             alt: 'Marcador'

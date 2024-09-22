@@ -63,9 +63,9 @@
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
-            iconUrl: '<?php echo URL.'resource/imagens/icons/arvore.png'?>',
+            iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
             iconSize: [30, 30],
-            iconAnchor: [15, 15],
+            iconAnchor: [15, 30],
             /*popupAnchor: [-3, -76],
             shadowUrl: 'ui\bg\arvore.png',
             shadowSize: [68, 95],

@@ -6,6 +6,9 @@ session_start();
     include_once "controller/admin.php";
 
 
+//Definindo fuso horário default
+date_default_timezone_set("America/Sao_Paulo");
+
 //Definindo uma constante para a URL do site
 define("URL","http://localhost/SIGNA/");
 if($_GET)

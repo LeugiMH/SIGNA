@@ -25,11 +25,11 @@ class Route
         include_once "view/listaEspecie.php";
     }
 
-    function abrirListaEspecime()
+    function abrirInicioAdmin()
     {
         $plantas = new EspecimeController();
         $plantas = $plantas->listar();
-        include_once "view/listaEspecime.php";
+        include_once "view/PaginaIniAdmin.php";
     }
 
     /*  */

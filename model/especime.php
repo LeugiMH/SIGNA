@@ -40,7 +40,17 @@ class Especime
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBESPECIME");
+        $cmd = $con->prepare("
+            SELECT
+                em.*
+                , ep.NOMEPOP
+                , ad.NOME as NOMEADMIN
+            FROM TBESPECIME em
+            INNER JOIN TBESPECIE ep
+                ON em.IDESPECIE = ep.IDESPECIE
+            INNER JOIN TBADMIN ad
+                ON em.IDCADADM = ad.IDADMIN
+        ");
 
         //Executando o comando SQL
         $cmd->execute();

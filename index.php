@@ -48,18 +48,10 @@ if($_GET)
             }
         break;
 
-        case "especimes":
-            switch($url[1])
-            {
-                case "listar":
-                    $route = new Route();
-                    $route->abrirListaEspecime();
-                break;
-                default:
-                    // URL INVÁLIDA
-                    $route = new Route();
-                    $route->abrirPaginaNaoEncontrada();
-            }
+        case "iniAdmin":
+            $route = new Route();
+            $route->abrirInicioAdmin();
+
         break;
         /*
         case "esqueci-a-senha": 

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg bg-warning" style="z-index: 10;">
     <div class="container-fluid">
-        <a class="navbar-brand" href="inicio" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo">SIGNA</a>
+        <a class="navbar-brand" href="<?php echo URL.'inicio'?>" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo">SIGNA</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -12,7 +12,7 @@
                 </li>
             </ul>
             <span class="navbar-text p-0 me-1">
-                <a class="navbar-text p-0 me-1" href="login">
+                <a class="navbar-text p-0 me-1" href="<?php echo URL.'login'?>">
                     <img src="<?php echo URL.'resource/user.svg'?>" alt="Login" style="width: 40px;">
                 </a>
             </span>

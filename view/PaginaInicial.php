@@ -14,23 +14,23 @@
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
-            <div class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
+            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
-                    <h1 class="display-1 text-center my-5">MAPA INTERATIVO</h1>
+                    <header class="display-1 text-center my-5">MAPA INTERATIVO</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
                 </div>
-            </div>
-            <div class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0 mt-0">
+            </section>
+            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                     <?php 
                         echo phpversion();
                     ?>
                 </div>
-            </div>
+            </section>
         </div>
         <?php include_once "resource/rodape.php";?>
     </div>
@@ -50,7 +50,7 @@
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem
-        var imageUrl = 'resource/ui/mapa.webp',
+        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
             imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

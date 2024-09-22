@@ -21,21 +21,30 @@ class AdminController
         //Se o email existir e a senha estiver correta
         if (isset($dadosLogin) && password_verify($senha,$dadosLogin->SENHA))
         {
-            //Faça isso
-            $_SESSION['sessaoLogada'] = $dadosLogin;
-
-            //Direciona para administrador
-            header("Location:".URL."inicio");
+            //Caso usuário esteja desativado
+            if($dadosLogin->ESTADO != 1)
+            {
+                setcookie("msg","Usuário desativado.");
+                header("Location:".URL."login");
+            }
+            else
+            {
+                //Define informações do usuário para uma sessão
+                $_SESSION['sessaoLogada'] = $dadosLogin;
+    
+                //Direciona para administrador
+                header("Location:".URL."inicio");
+            }
         }
         else
         {
             //Define mensagem de erro
-            setcookie("msg","Email ou senha estão incorretos.");
+            setcookie("msg","<div class='alert alert-success'>Email ou senha estão incorretos.</div>");
 
             //Direciona para login 
             header("Location:".URL."login");
-            return;
         }
+        return 0;
     }
 
     function sair()

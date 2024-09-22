@@ -50,5 +50,9 @@ class Route
     {
         include_once "view/LAYOUTPaginaRolavel.php";
     }
+    function abrirCadastroEstagio()
+    {
+        include_once "view/paginaCadastraEspecie.php";
+    }
 }
 ?>

@@ -8,7 +8,7 @@
         <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav me-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="especies/listar">Espécies</a>
+                    <a class="nav-link" href="<?php echo URL.'especies/lista';?>">Espécies</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Atributos</a>

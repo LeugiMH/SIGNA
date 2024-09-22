@@ -34,7 +34,7 @@ CREATE TABLE TBESPECIE
 	NOMEPOP VARCHAR(256),						                                 -- NOME POPULAR
 	FAMILIA VARCHAR(256),						                                 -- FAMÍLIA
 	HABITAT VARCHAR(256),						                                 -- HABITAT NATURAL
-	ALTURA VARCHAR(4),							                                 -- ALTURA DA MÁXIMA DA PLANTA
+	ALTURA DECIMAL(5,2),							                             -- ALTURA DA MÁXIMA DA PLANTA (999.99)
 	IMAGEM VARCHAR(256),						                                 -- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),					                                 -- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
 	DATACAD SMALLDATETIME,						                                 -- DATA DE CADASTRO
@@ -43,7 +43,7 @@ CREATE TABLE TBESPECIE
 	CONSTRAINT TBESPECIE_FK_TBADMIN FOREIGN KEY (IDCADADM) REFERENCES TBADMIN(IDADMIN)
 )
 -- SELECT * FROM TBESPECIE
--- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Nome CietíficoTeste','Nome PopTeste','FamíliaTeste','HabitatTeste','15M','Nome da imagem','Descrição da imagem','27/08/2024',1)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Paubrasilia echinata','Pau-Brasil','Fabaceae','Seu habitat natural é a floresta ombrófila densa da Mata Atlântica, a partir do extremo nordeste do Brasil até o Rio de Janeiro,[9] ou seja, os estados do Rio Grande do Norte, Paraíba, Pernambuco, Alagoas, Sergipe, Bahia, Espírito Santo e Rio de Janeiro.',15.00,'pauBrasil.webp','Imagem de um Pau-Brasil','27/08/2024',1)
 -- DELETE TBESPECIE
 GO
 CREATE TABLE TBATRIBUTO
@@ -67,18 +67,20 @@ CREATE TABLE TBESPECIME
 (
 	IDESPECIME INT IDENTITY(1,1),																	-- ID ESPÉCIME
 	IDESPECIE INT,																					-- ESPÉCIE
-	DATPLANT SMALLDATETIME,																			-- DATA DE PLANTIU
-	DATACAD SMALLDATETIME,																			-- DATA DE CADASTRO					
+	COORD VARCHAR(50),																				-- COORDENADAS
 	IMAGEM VARCHAR(256),																			-- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),																		-- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
-	ESTADO VARCHAR(1),																				-- STATUS (DEFINIR)
-	COORD VARCHAR(MAX),																				-- COORDENADAS
+	ESTADO CHAR(1),																					-- STATUS (DEFINIR)
 	DAP DECIMAL(4,2),																				-- DIÂMETRO NA ALTURA DO PEITO
+	DATPLANT SMALLDATETIME,																			-- DATA DE PLANTIU
+	DATACAD SMALLDATETIME,																			-- DATA DE CADASTRO					
 	IDCADADM INT,																					-- ID DO USUÁRIO
 	CONSTRAINT TBESPECIME_PK PRIMARY KEY (IDESPECIME),
 	CONSTRAINT TBESPECIME_FK_TBESPECIE FOREIGN KEY (IDESPECIE) REFERENCES TBESPECIE(IDESPECIE),
 	CONSTRAINT TBESPECIME_FK_TBADMIN FOREIGN KEY (IDCADADM) REFERENCES TBADMIN(IDADMIN)
 )
+-- SELECT * FROM TBESPECIME
+-- INSERT INTO TBESPECIME (IDESPECIE,DATPLANT,DATACAD,IMAGEM,DESCRICAOIMG,ESTADO,COORD,DAP,IDCADADM) VALUES (1,'21-08-2024','21-09-2024',NULL,NULL,'1','-23.336055, -46.722261',15,1)
 GO
 CREATE TABLE TBLOGEXEC
 (

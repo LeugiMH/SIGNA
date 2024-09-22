@@ -2,13 +2,19 @@
 
 // Import Controllers
 include_once "especie.php";
+include_once "especime.php";
 
 class Route
 {
     #Página inicial
     function abrirInicio()
     {
-        include_once "view/paginaInicial.php";
+        $especimes = new EspecimeController();
+        $especimes = $especimes->listar();
+        if(isset($_SESSION["sessaoLogada"])) 
+        {include_once "view/paginaInicialADM.php";}
+        else 
+        {include_once "view/paginaInicial.php";}
     }
 
     #Página de login
@@ -17,11 +23,41 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    /* Espécies */
+    #Lista
     function abrirListaEspecie()
     {
         $especies = new EspecieController();
         $especies = $especies->listar();
         include_once "view/listaEspecie.php";
+    }
+
+    function abrirCadastroEspecie()
+    {
+        include_once "view/paginaCadAltEspecie.php";
+    }
+
+    function abrirAlteraEspecie($id)
+    {
+        $especie = new EspecieController();
+        $especie = $especie->buscar($id);
+        include_once "view/paginaCadAltEspecie.php";
+    }
+    
+    /* Espécimes */
+    function abrirCadastroEspecime()
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        include_once "view/paginaCadAltEspecime.php";
+    }
+    function abrirAlteraEspecime($id)
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        $especime = new EspecimeController();
+        $especime = $especime->buscar($id);
+        include_once "view/paginaCadAltEspecime.php";
     }
 
     /*  */

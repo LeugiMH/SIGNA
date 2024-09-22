@@ -26,9 +26,7 @@
             <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
-                    <?php 
-                        echo phpversion();
-                    ?>
+
                 </div>
             </section>
         </div>
@@ -68,18 +66,18 @@
         });
 
         //Exibir um marcador ao clicar
-        function onMapClick(e) {
-            /*popup
+        /*function onMapClick(e) {
+            popup
             .setLatLng(e.latlng)
             .setContent("You clicked the map at " + e.latlng.toString())
-            .openOn(map);*/
+            .openOn(map);
             L.marker(e.latlng, {icon: myIcon}).addTo(map);
             var teste = document.getElementById("teste_coord");
             teste.innerHTML = e.latlng;
         }
-        map.on('click', onMapClick);
+        map.on('click', onMapClick);*/
 
     </script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+        <?php include_once "resource/plugins.php";?>
 </body>
 </html>

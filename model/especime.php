@@ -1,14 +1,14 @@
 <?php
-class Especie
+class Especime
 {
+    private $IDESPECIME;
     private $IDESPECIE;
-    private $NOMECIE;
-    private $NOMEPOP;
-    private $FAMILIA;
-    private $HABITAT;
-    private $ALTURA;
+    private $COORD;
     private $IMAGEM;
     private $DESCRICAOIMG;
+    private $ESTADO;
+    private $DAP;
+    private $DATPLANT;
     private $DATACAD;
     private $IDCADADM;
 
@@ -31,7 +31,6 @@ class Especie
         require_once "conexao.php";
     }
 
-    //OBSERVAÇÃO: Seguir diagrama de classe
     //Método Cadastrar
     function cadastrar()
     {
@@ -39,20 +38,19 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
-                                            VALUES (:NOMECIE,:NOMEPOP,:FAMILIA,:HABITAT,:ALTURA,:IMAGEM,:DESCRICAOIMG,:DATACAD,:IDCADADM)");
+        $cmd = $con->prepare("INSERT INTO TBESPECIME (IDESPECIE,COORD,IMAGEM,DESCRICAOIMG,ESTADO,DAP,DATPLANT,DATACAD,IDCADADM) 
+                                            VALUES (:IDESPECIE,:COORD,:IMAGEM,:DESCRICAOIMG,:ESTADO,:DAP,:DATPLANT,:DATACAD,:IDCADADM)");
 
         //Definindo parâmetros (SQL INJECTION)
-        $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
-        $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
-        $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
-        $cmd->bindParam(":HABITAT",     $this->HABITAT);
-        $cmd->bindParam(":ALTURA",      $this->ALTURA);
+        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
+        $cmd->bindParam(":COORD",       $this->COORD);
         $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
+        $cmd->bindParam(":ESTADO",      $this->ESTADO);
+        $cmd->bindParam(":DAP",         $this->DAP);
+        $cmd->bindParam(":DATPLANT",    $this->DATPLANT);
         $cmd->bindParam(":DATACAD",     $this->DATACAD);
         $cmd->bindParam(":IDCADADM",    $this->IDCADADM);
-
         //Executando e retornando resultado
         try
         {
@@ -60,9 +58,10 @@ class Especie
         }
         catch (PDOException $e)
         {
+            //Debug
+            //setcookie("erro",$e, time() + 1,"/");
             return false;
         }
-        
     }
 
     //Método Consultar
@@ -72,7 +71,7 @@ class Especie
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBESPECIE");
+        $cmd = $con->prepare("SELECT TBA.*,NOMEPOP FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE");
 
         //Executando o comando SQL
         $cmd->execute();
@@ -87,8 +86,8 @@ class Especie
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
-        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+        $cmd = $con->prepare("SELECT * FROM TBESPECIME WHERE IDESPECIME = :IDESPECIME");
+        $cmd->bindParam(":IDESPECIME", $this->IDESPECIME);
 
         //Executando o comando SQL
         $cmd->execute();
@@ -103,18 +102,17 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE, NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
-                                            WHERE IDESPECIE = :IDESPECIE");
+        $cmd = $con->prepare("UPDATE TBESPECIME SET IDESPECIE = :IDESPECIE, COORD = :COORD, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG, ESTADO = :ESTADO, DAP = :DAP
+                                            WHERE IDESPECIME = :IDESPECIME");
 
         //Definindo parâmetros (SQL INJECTION)
-        $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
-        $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
-        $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
-        $cmd->bindParam(":HABITAT",     $this->HABITAT);
-        $cmd->bindParam(":ALTURA",      $this->ALTURA);
+        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
+        $cmd->bindParam(":COORD",       $this->COORD);
         $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
-        $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
+        $cmd->bindParam(":ESTADO",      $this->ESTADO);
+        $cmd->bindParam(":DAP",         $this->DAP);
+        $cmd->bindParam(":IDESPECIME",  $this->IDESPECIME);
 
         //Executando e retornando resultado
         try
@@ -123,37 +121,10 @@ class Especie
         }
         catch (PDOException $e)
         {
-            return false;
-        }
-        
-    }
-
-    //Método Excluir
-    //Conectando ao banco de dados
-    function excluir()
-    {
-        $con = Conexao::conectar();
-        
-        //Preparar comando SQL para retornar
-        $cmd = $con->prepare("delete FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
-        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
-        
-        //Executando o comando SQL
-        try
-        {
-            return $cmd->execute();
-        }
-        catch (PDOException $e)
-        {            
+            //Debug
+            //setcookie("erro",$e, time() + 1,"/");
             return false;
         }
     }
 }
-
-
-
-
-
-
-
 ?>

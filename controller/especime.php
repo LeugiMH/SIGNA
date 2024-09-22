@@ -6,16 +6,16 @@ class EspecimeController
     //Cadastrar
     function cadastrarEspecime()
     {
-        $especie =  $_POST["inputEspecie"];
-        $coord =  $_POST["inputCoord"];
-        $status =  $_POST["inputStatus"];
-        $DAP =  $_POST["inputDAP"];
-        $inputDatPlant  =  $_POST["inputDatPlant"];
-        $ImgDesc =  $_POST["inputImgDesc"];
+        $idEspecie          =  $_POST["inputEspecie"];
+        $coord              =  $_POST["inputCoord"];
+        $status             =  $_POST["inputStatus"];
+        $DAP                =  $_POST["inputDAP"];
+        $inputDatPlant      =  date("d-m-Y",strtotime($_POST["inputDatPlant"]));
+        $ImgDesc            =  $_POST["inputImgDesc"];
 
-        //Cria objeto da classe espécie e define valores
+        //Cria objeto da classe espécime e define valores
         $cmd = new Especime();
-        $cmd->IDESPECIE     = $especie;
+        $cmd->IDESPECIE     = $idEspecie;
         $cmd->COORD         = $coord;
         $cmd->ESTADO        = $status;
         $cmd->DAP           = $DAP;
@@ -39,6 +39,7 @@ class EspecimeController
             if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
             {
                 setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
+                setcookie("coord",$coord,time() + 1,"/");
                 header("location: ".URL."especimes/cadastro");
                 return;
             }
@@ -49,24 +50,27 @@ class EspecimeController
             $cmd->IMAGEM = $novoNome;
         }
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar espécie
+        if($cmd->cadastrar())  //Sucesso ao cadastrar espécime
         {
             //Mover imagem para pastas no servidor
             $pastaDestino = "resource/imagens/especimes/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+
+            header("location: ".URL."inicio");
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécime</div>",time() + 1,"/");
+            setcookie("coord",$coord,time() + 1,"/");
+            header("location: ".URL."especimes/cadastro");
         }
-        header("location: ".URL."inicio");
     }
 
     //Consultar
     function buscar($id)
     {
         $especime = new Especime();
-        $especime->especime = $id;
+        $especime->IDESPECIME = $id;
         return $especime->buscar();
     }
 
@@ -78,39 +82,39 @@ class EspecimeController
     }
 
     //Alterar
-    function alterarEspecie()
+    function alterarEspecime()
     {
-        $idEspecie =  $_POST["inputId"];
-        $nomeCie =  $_POST["inputNomeCie"];
-        $nomePop =  $_POST["inputNomePop"];
-        $Familia =  $_POST["inputFamilia"];
-        $habitat =  $_POST["inputHabitat"];
-        $altura  =  $_POST["inputAltura"];
+        $idEspecime =  $_POST["inputEspecime"];
+        $idEspecie =  $_POST["inputEspecie"];
+        $coord =  $_POST["inputCoord"];
+        $status =  $_POST["inputStatus"];
+        $DAP =  $_POST["inputDAP"];
+        $inputDatPlant  =  $_POST["inputDatPlant"];
         $ImgDesc =  $_POST["inputImgDesc"];
         
-        //Cria objeto da classe espécie e define valores
-        $cmd = new Especie();
-        $cmd->IDESPECIE    = $idEspecie;
-        $cmd->NOMECIE      = $nomeCie;
-        $cmd->NOMEPOP      = $nomePop;
-        $cmd->FAMILIA      = $Familia;
-        $cmd->HABITAT      = $habitat;
-        $cmd->ALTURA       = $altura;
-        $cmd->DESCRICAOIMG = $ImgDesc;
+        //Cria objeto da classe espécime e define valores
+        $cmd = new Especime();
+        $cmd->IDESPECIME    = $idEspecime;
+        $cmd->IDESPECIE     = $idEspecie;
+        $cmd->COORD         = $coord;
+        $cmd->ESTADO        = $status;
+        $cmd->DAP           = $DAP;
+        $cmd->DATPLANT      = $inputDatPlant;
+        $cmd->DESCRICAOIMG  = $ImgDesc;
         
-        $busca = new Especie();
-        $busca->IDESPECIE = $idEspecie;
-        $dadosEspecie = $busca->buscar();
+        $busca = new Especime();
+        $busca->IDESPECIME = $idEspecime;
+        $dadosEspecime = $busca->buscar();
 
         $nomeTemp = "";
         $novoNome = "";
         //Caso imagem seja enviada sem erros
         if($_FILES["inputImagem"]["error"] == 0)
         {
-            //Espécie já possuia uma imagem
-            if(isset($dadosEspecie->IMAGEM))
+            //espécime já possuia uma imagem
+            if(isset($dadosEspecime->IMAGEM))
             {
-                unlink("resource/imagens/especies/$dadosEspecie->IMAGEM"); //excluir a imagem
+                unlink("resource/imagens/especimes/$dadosEspecime->IMAGEM"); //excluir a imagem
             }
             $nomeArquivo = $_FILES["inputImagem"]["name"];       //Nome do arquivo
             $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];      //nome temporário
@@ -122,7 +126,7 @@ class EspecimeController
             if($extensao != "jpg" && $extensao != "png" && $extensao != "jpeg" && $extensao != "webp")
             {
                 setcookie("msg","<div class='alert alert-danger'>Imagem deve ter a extensão .JPG, .JPEG, .PNG, ou .WEBP.</div>",time() + 1,"/");
-                header("location: ".URL."especies/altera/$idEspecie");
+                header("location: ".URL."especimes/altera/$dadosEspecime->IDESPECIME");
                 return;
             }
             //gerar novo nome
@@ -133,43 +137,22 @@ class EspecimeController
         }
         else //Caso não seja enviada mantém imagem original
         {
-            $cmd->IMAGEM = $dadosEspecie->IMAGEM;
+            $cmd->IMAGEM = $dadosEspecime->IMAGEM;
         }
 
-        if($cmd->alterar()) //Sucesso ao alterar espécie
+        if($cmd->alterar()) //Sucesso ao alterar espécime
         {
-            header("location: ".URL."especies/lista");
-
             //Mover imagem para pastas no servidor
-            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
+            $pastaDestino = "resource/imagens/especimes/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+
+            header("location: ".URL."inicio");
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécie</div>",time() + 1,"/");
-            header("location: ".URL."especies/altera/$idEspecie");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécime</div>",time() + 1,"/");
+            header("location: ".URL."especimes/altera/$idEspecime");
         }
-    }
-
-    //Excluir
-    function excluirEspecie($id)
-    {
-        $idEspecie = $id;
-
-        $cmd = new Especie();
-        $cmd->IDESPECIE = $idEspecie;
-
-        $especie = $cmd->buscar();
-
-        if($cmd->excluir())
-        {
-            unlink("resource/imagens/especies/$especie->IMAGEM"); //Excluir imagem
-        }
-        else
-        {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime relacionado.</div>",time() + 1,"/");
-        }
-        header("location: ".URL."especies/lista");
     }
 }
 

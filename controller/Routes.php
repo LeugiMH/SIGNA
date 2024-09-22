@@ -51,6 +51,14 @@ class Route
         $especies = $especies->listar();
         include_once "view/paginaCadAltEspecime.php";
     }
+    function abrirAlteraEspecime($id)
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        $especime = new EspecimeController();
+        $especime = $especime->buscar($id);
+        include_once "view/paginaCadAltEspecime.php";
+    }
 
     /*  */
     #Página não encontrada

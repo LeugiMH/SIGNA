@@ -5,15 +5,15 @@
     <title>SIGNA</title>
 </head>
 <body>
+    <?php $url = $_GET["url"]; $url = explode("/",$url);?>
     <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-12 col-lg-10 col-xl-8 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <header class="display-1 text-center mb-5">CADASTRO DA ESPÉCIE</header>
+                    <header class="display-1 text-center mb-5"><?php echo $url[1] == 'cadastro'? 'CADASTRO':'ALTERAÇÃO';?> DA ESPÉCIE</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                    <?php $url = $_GET["url"]; $url = explode("/",$url);?>
                         <form action="<?php echo $url[1] == 'cadastro'? URL.'especies/cadastrar':URL.'especies/alterar';?>" method="POST" enctype="multipart/form-data">
                             <?php
                                 //Exibindo mensagem de erro

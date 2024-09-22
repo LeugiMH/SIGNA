@@ -140,11 +140,11 @@ class EspecieController
 
         if($cmd->alterar()) //Sucesso ao alterar espécie
         {
-            header("location: ".URL."especies/lista");
-
             //Mover imagem para pastas no servidor
             $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+
+            header("location: ".URL."especies/lista");
         }
         else
         {

@@ -20,9 +20,9 @@
                     <header class="display-1 text-center my-5">ADMINISTRADOR BIOSFERA</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
-                        <form action="<?php echo URL."especimes/cadastro"?>" method="post">
-                            <button class="btn btn-warning">ADICIONAR MARCADOR</button>
-                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)" maxlength="50">
+                        <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">
+                            <button class="btn btn-warning w-100">ADICIONAR PLANTA</button>
+                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)" maxlength="50" required>
                         </form>
                     </div>
                     <div class="col-xl-9">
@@ -111,7 +111,7 @@
             echo "var markerBD = [";
             foreach ($especimes as $especime)
             {
-                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie:$especime->NOMEPOP</p><a href=\"".URL."especimes/alterar/$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a>'),";
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span>"; echo "</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a>'),";
             }
             echo "''];";
         ?>

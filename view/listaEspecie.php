@@ -20,7 +20,7 @@
                             {echo $_COOKIE["msgLista"];}
                         ?>
                         <a href="<?php echo URL.'especies/cadastro';?>" class="btn btn-warning">Cadastrar</a>
-                        <table id="lista" class="table table-striped nowrap text-center">
+                        <table id="lista" class="table table-striped text-center">
                             <thead>
                                 <tr>
                                     <th>IDESPÉCIE</th>

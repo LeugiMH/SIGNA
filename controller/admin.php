@@ -24,7 +24,7 @@ class AdminController
             //Caso usuário esteja desativado
             if($dadosLogin->ESTADO != 1)
             {
-                setcookie("msg","Usuário desativado.");
+                setcookie("msg","Usuário desativado.",time() + 1,"/");
                 header("Location:".URL."login");
             }
             else
@@ -39,7 +39,7 @@ class AdminController
         else
         {
             //Define mensagem de erro
-            setcookie("msg","<div class='alert alert-success'>Email ou senha estão incorretos.</div>");
+            setcookie("msg","<div class='alert alert-danger'>Email ou senha estão incorretos.</div>",time() + 1,"/");
 
             //Direciona para login 
             header("Location:".URL."login");

@@ -3,13 +3,19 @@
 // Import Controllers
 include_once "especie.php";
 include_once "especime.php";
+include_once "especime.php";
 
 class Route
 {
     #Página inicial
     function abrirInicio()
     {
-        include_once "view/paginaInicial.php";
+        $especimes = new EspecimeController();
+        $especimes = $especimes->listar();
+        if(isset($_SESSION["sessaoLogada"])) 
+        {include_once "view/paginaInicialADM.php";}
+        else 
+        {include_once "view/paginaInicial.php";}
     }
 
     #Página de login
@@ -18,6 +24,8 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    /* Espécies */
+    #Lista
     function abrirListaEspecie()
     {
         $especies = new EspecieController();
@@ -25,11 +33,32 @@ class Route
         include_once "view/listaEspecie.php";
     }
 
-    function abrirInicioAdmin()
+    function abrirCadastroEspecie()
     {
-        $plantas = new EspecimeController();
-        $plantas = $plantas->listar();
-        include_once "view/PaginaIniAdmin.php";
+        include_once "view/paginaCadAltEspecie.php";
+    }
+
+    function abrirAlteraEspecie($id)
+    {
+        $especie = new EspecieController();
+        $especie = $especie->buscar($id);
+        include_once "view/paginaCadAltEspecie.php";
+    }
+    
+    /* Espécimes */
+    function abrirCadastroEspecime()
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        include_once "view/paginaCadAltEspecime.php";
+    }
+    function abrirAlteraEspecime($id)
+    {
+        $especies = new EspecieController();
+        $especies = $especies->listar();
+        $especime = new EspecimeController();
+        $especime = $especime->buscar($id);
+        include_once "view/paginaCadAltEspecime.php";
     }
 
     /*  */
@@ -42,17 +71,7 @@ class Route
     #Página teste
     function abrirTeste()
     {
-        include_once "view/list.php";
-    }
-
-    #Página teste
-    function abrirTeste2()
-    {
-        include_once "view/LAYOUTPaginaRolavel.php";
-    }
-    function abrirCadastroEstagio()
-    {
-        include_once "view/paginaCadastraEspecie.php";
+        include_once "view/LAYOUTPaginaFixa.php";
     }
 }
 ?>

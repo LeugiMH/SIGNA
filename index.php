@@ -6,6 +6,9 @@ session_start();
     include_once "controller/admin.php";
 
 
+//Definindo fuso horário default
+date_default_timezone_set("America/Sao_Paulo");
+
 //Definindo uma constante para a URL do site
 define("URL","http://localhost/SIGNA/");
 if($_GET)
@@ -43,16 +46,55 @@ if($_GET)
                 break;
                 case "cadastro":
                     $route = new Route();
-                    $route->abrirCadastroEstagio();
+                    $route->abrirCadastroEspecie();
                 break;
                 case "cadastrar":
                     $route = new EspecieController();
-                    $route->CadastrarEspecie();
+                    $route->cadastrarEspecie();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraEspecie($url[2]);
+                break;
+                case "alterar":
+                    $route = new EspecieController();
+                    $route->alterarEspecie();
+                break;
+                case "excluir":
+                    $route = new EspecieController();
+                    $route->excluirEspecie($url[2]);
                 break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();
                     $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+        break;
+        case "especimes":
+            switch($url[1])
+            {
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroEspecime();
+                break;
+                case "cadastrar":
+                    $route = new EspecimeController();
+                    $route->cadastrarEspecime();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraEspecime($url[2]);
+                break;
+                case "alterar":
+                    $route = new EspecimeController();
+                    $route->alterarEspecime();
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
             }
         break;
 

@@ -36,7 +36,8 @@ if($_GET)
             $route = new AdminController();
             $route->logar();
         break;
-        
+
+        // FUNÇÕES ESPÉCIE
         case "especies":
             switch($url[1])
             {
@@ -71,6 +72,14 @@ if($_GET)
                 break;
             }
         break;
+
+        // PÁGINA DA PLANTA
+        case "especime":
+            $route = new Route();
+            $route->abrirExibirEspecime($url[1]);
+        break;
+        
+        // FUNÇÕES ESPÉCIMES
         case "especimes":
             switch($url[1])
             {

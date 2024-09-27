@@ -8,20 +8,20 @@
 }
 
 @font-face {
-    font-family: "Luciole";
-    src:
-      local("Luciole"),
-      url("fonts/Luciole-Regular/Luciole-Regular.ttf") format("opentype") tech(color-COLRv1),
-      url("fonts/Luciole-Regular/Luciole-Regular.eot") format("eot"),
-      url("fonts/Luciole-Regular/Luciole-Regular.woff") format("woff"),
-      url("fonts/Luciole-Regular/Luciole-Regular.woff2") format("woff2");
-  }
+font-family: "Luciole";
+src:
+    local("Luciole"),
+    url("fonts/Luciole-Regular/Luciole-Regular.ttf") format("opentype") tech(color-COLRv1),
+    url("fonts/Luciole-Regular/Luciole-Regular.eot") format("eot"),
+    url("fonts/Luciole-Regular/Luciole-Regular.woff") format("woff"),
+    url("fonts/Luciole-Regular/Luciole-Regular.woff2") format("woff2");
+}
 
 @font-face {
 font-family: "Luciole-Bold";
 src:
     local("Luciole-Bold"),
-    url("fonts/Luciole-Bold/Luciole-Bold.ttf") format("opentype") tech(color-COLRv1),
+      url("fonts/Luciole-Bold/Luciole-Bold.ttf") format("opentype") tech(color-COLRv1),
       url("fonts/Luciole-Bold/Luciole-Bold.eot") format("eot"),
       url("fonts/Luciole-Bold/Luciole-Bold.woff") format("woff"),
       url("fonts/Luciole-Bold/Luciole-Bold.woff2") format("woff2");
@@ -33,6 +33,9 @@ src:
     url("fonts/Luciole-Italic/Luciole-Italic.ttf") format("opentype") tech(color-COLRv1),
     url("fonts/Luciole-Italic/Luciole-Italic.woff") format("woff"),
     url("fonts/Luciole-Italic/Luciole-Italic.woff2") format("woff2");
+}
+*{
+    font-family: "luciole" !important;
 }
 .bg-verde
 {

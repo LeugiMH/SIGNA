@@ -16,7 +16,11 @@
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white ">
                         <div class="row m-0 mb-md-3">
                             <div class="col-md-6 p-0 mb-3 mb-md-0">
-                                <img src="<?php echo URL."resource/imagens/especies/$planta->IMGESPECIE";?>" aria-label="<?php echo "$planta->DESCESPECIE";?>" alt="Imagem da espécie" class="w-100 rounded imgview1">
+                                <figure class="figure imgview1">
+                                    <img src="<?php echo URL."resource/imagens/especies/$planta->IMGESPECIE";?>" aria-label="<?php echo "$planta->DESCESPECIE";?>" alt="<?php echo "$planta->DESCESPECIE";?>" class="w-100 rounded">
+                                    <figcaption class="figure-caption text-white">Imagem de exemplo da espécie.</figcaption>
+                                </figure>
+                                    
                             </div>
                             <div class="col-md-6 p-0">
                                 <p><strong><?php echo "Família:</strong> $planta->FAMILIA";?></p>
@@ -30,10 +34,14 @@
                             <div class="col-md-6 p-0">
                                 <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> $planta->DAP";?></p>
                                 <hr>
-                                <p><strong><?php echo "Data de plantiu:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
+                                <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
                             </div>
                             <div class="col-md-6 p-0">
-                                <img src="<?php echo URL."resource/imagens/especimes/$planta->IMGESPECIME";?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" alt="Imagem da espécie" class="w-100 rounded imgview2">
+                                <figure class="figure imgview2">
+                                    <img src="<?php echo URL."resource/imagens/especimes/$planta->IMGESPECIME";?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" class=" w-100 figure-img img-fluid rounded" alt="<?php echo "$planta->DESCESPECIME";?>">
+                                    <figcaption class="figure-caption text-end text-white">Imagem da planta na instituição.</figcaption>
+                                </figure>
+                                <!--<img src="<?php echo URL."resource/imagens/especimes/$planta->IMGESPECIME";?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" alt="Imagem da espécie" class="w-100 rounded imgview2">-->
                             </div>
                         </div>
                     </article>

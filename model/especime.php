@@ -94,6 +94,20 @@ class Especime
         
         return $cmd->fetch(PDO::FETCH_OBJ);
     }
+    function buscarTudo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT TBA.IMAGEM 'IMGESPECIME',TBA.DESCRICAOIMG 'DESCESPECIME',DAP,CONVERT(DATE,DATPLANT) 'DATPLANT',NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,TBB.IMAGEM 'IMGESPECIE',TBB.DESCRICAOIMG 'DESCESPECIE' FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE WHERE IDESPECIME = :IDESPECIME");
+        $cmd->bindParam(":IDESPECIME", $this->IDESPECIME);
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetch(PDO::FETCH_OBJ);
+    }
 
     //Método Alterar
     function alterar()

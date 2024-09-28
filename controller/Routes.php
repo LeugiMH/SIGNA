@@ -17,6 +17,12 @@ class Route
         else 
         {include_once "view/paginaInicial.php";}
     }
+    function abrirExibirEspecime($id)
+    {
+        $planta = new EspecimeController();
+        $planta = $planta->buscarTudo($id);
+        include_once "view/paginaExibePlanta.php";
+    }
 
     #Página de login
     function abrirLogin()

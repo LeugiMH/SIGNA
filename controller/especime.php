@@ -73,6 +73,12 @@ class EspecimeController
         $especime->IDESPECIME = $id;
         return $especime->buscar();
     }
+    function buscarTudo($id)
+    {
+        $especime = new Especime();
+        $especime->IDESPECIME = $id;
+        return $especime->buscarTudo();
+    }
 
     //Listar
     function listar()

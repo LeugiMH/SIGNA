@@ -33,7 +33,7 @@ CREATE TABLE TBESPECIE
 	NOMECIE VARCHAR(256),						                                 -- NOME CIENTÍFICO
 	NOMEPOP VARCHAR(256),						                                 -- NOME POPULAR
 	FAMILIA VARCHAR(256),						                                 -- FAMÍLIA
-	HABITAT VARCHAR(256),						                                 -- HABITAT NATURAL
+	HABITAT VARCHAR(max),						                                 -- HABITAT NATURAL
 	ALTURA DECIMAL(5,2),							                             -- ALTURA DA MÁXIMA DA PLANTA (999.99)
 	IMAGEM VARCHAR(256),						                                 -- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),					                                 -- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
@@ -43,7 +43,7 @@ CREATE TABLE TBESPECIE
 	CONSTRAINT TBESPECIE_FK_TBADMIN FOREIGN KEY (IDCADADM) REFERENCES TBADMIN(IDADMIN)
 )
 -- SELECT * FROM TBESPECIE
--- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Paubrasilia echinata','Pau-Brasil','Fabaceae','Seu habitat natural é a floresta ombrófila densa da Mata Atlântica, a partir do extremo nordeste do Brasil até o Rio de Janeiro,[9] ou seja, os estados do Rio Grande do Norte, Paraíba, Pernambuco, Alagoas, Sergipe, Bahia, Espírito Santo e Rio de Janeiro.',15.00,'pauBrasil.webp','Imagem de um Pau-Brasil','27/08/2024',1)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Paubrasilia echinata','Pau-Brasil','Fabaceae','Seu habitat natural é a floresta ombrófila densa da Mata Atlântica, a partir do extremo nordeste do Brasil até o Rio de Janeiro, ou seja, os estados do Rio Grande do Norte, Paraíba, Pernambuco, Alagoas, Sergipe, Bahia, Espírito Santo e Rio de Janeiro.',15.00,'pauBrasil.webp','Imagem de um Pau-Brasil','27/08/2024',1)
 -- DELETE TBESPECIE
 GO
 CREATE TABLE TBATRIBUTO
@@ -66,7 +66,7 @@ GO
 CREATE TABLE TBESPECIME
 (
 	IDESPECIME INT IDENTITY(1,1),																	-- ID ESPÉCIME
-	IDESPECIE INT,																					-- ESPÉCIE
+	IDESPECIE INT NOT NULL,																			-- ESPÉCIE
 	COORD VARCHAR(50),																				-- COORDENADAS
 	IMAGEM VARCHAR(256),																			-- ENDEREÇO DA IMAGEM
 	DESCRICAOIMG VARCHAR(256),																		-- DESCRIÇÃO IMAGEM (AUDIODESCRIÇÃO)
@@ -81,6 +81,7 @@ CREATE TABLE TBESPECIME
 )
 -- SELECT * FROM TBESPECIME
 -- INSERT INTO TBESPECIME (IDESPECIE,DATPLANT,DATACAD,IMAGEM,DESCRICAOIMG,ESTADO,COORD,DAP,IDCADADM) VALUES (1,'21-08-2024','21-09-2024',NULL,NULL,'1','-23.336055, -46.722261',15,1)
+-- ALTER TABLE TBESPECIME ALTER COLUMN IDESPECIE INT NOT NULL
 GO
 CREATE TABLE TBLOGEXEC
 (

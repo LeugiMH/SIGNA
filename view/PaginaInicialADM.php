@@ -17,7 +17,7 @@
             <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-8 row" style="z-index: 2;">
-                    <header class="display-1 text-center my-5">ADMINISTRADOR BIOSFERA</header>
+                    <header class="display-1 text-center my-5 text-break p-0">ADMINISTRADOR BIOSFERA</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">

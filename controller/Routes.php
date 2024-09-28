@@ -18,8 +18,8 @@ class Route
     }
     function abrirExibirEspecime($id)
     {
-        $especimes = new EspecimeController();
-        $especimes = $especimes->buscar($id);
+        $planta = new EspecimeController();
+        $planta = $planta->buscarTudo($id);
         include_once "view/paginaExibePlanta.php";
     }
 

@@ -108,6 +108,7 @@ src:
 /*GRID*/
 .corpo
 {
+    height: 100%;
     font-family: 'Luciole';
     display: grid;
     grid-template-areas: 'navbar''conteudo''rodape';
@@ -127,6 +128,7 @@ src:
 .rodape
 {
     grid-area: rodape;
+    
 }
 .navbar
 {

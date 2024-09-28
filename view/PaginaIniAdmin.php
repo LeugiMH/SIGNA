@@ -15,7 +15,7 @@
     </style>
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
 
     <div class="corpo h-100">
@@ -126,7 +126,7 @@
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0 mt-0">
             </div>
         </div>
-        <?php include_once "resource/rodape.php";?>
+        <?php include_once "resource/footerControle.php";?>
     </div>
     <script>
     //Exibir Mapa

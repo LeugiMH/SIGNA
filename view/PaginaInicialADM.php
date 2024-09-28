@@ -8,7 +8,7 @@
     #map { height: 500px; z-index: 100; cursor:pointer;}
     </style>
 </head>
-<body>
+<body class="d-flex flex-column min-vh-100">
 
     
     <div class="corpo h-100">
@@ -40,7 +40,7 @@
                 </div>
             </section>
         </div>
-        <?php include_once "resource/rodape.php";?>
+        <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
     <script>

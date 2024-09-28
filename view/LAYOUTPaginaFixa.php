@@ -20,6 +20,6 @@
         </div>
         <?php include_once "resource/rodape.php";?>
     </div>
-    <?php include_once "resource/plugins.php";?>
+    <?php include_once "resource/footerControle.php";?>
 </body>
 </html>

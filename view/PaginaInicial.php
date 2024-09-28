@@ -78,6 +78,6 @@
         map.on('click', onMapClick);*/
 
     </script>
-        <?php include_once "resource/plugins.php";?>
+    <?php include_once "resource/plugins.php";?>
 </body>
 </html>

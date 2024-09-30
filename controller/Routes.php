@@ -3,6 +3,7 @@
 // Import Controllers
 include_once "especie.php";
 include_once "especime.php";
+include_once "assunto.php";
 
 class Route
 {
@@ -15,6 +16,12 @@ class Route
         {include_once "view/paginaInicialADM.php";}
         else 
         {include_once "view/paginaInicial.php";}
+    }
+    function abrirExibirEspecime($id)
+    {
+        $planta = new EspecimeController();
+        $planta = $planta->buscarTudo($id);
+        include_once "view/paginaExibePlanta.php";
     }
 
     #Página de login
@@ -59,6 +66,26 @@ class Route
         $especime = $especime->buscar($id);
         include_once "view/paginaCadAltEspecime.php";
     }
+
+    /* Assuntos */
+    #Lista
+    function abrirListaAssunto()
+    {
+        $assuntos = new AssuntoController();
+        $assuntos = $assuntos->listar();
+        include_once "view/listaAssuntos.php";
+    }
+    function abrirCadastroAssunto()
+    {
+        include_once "view/paginaCadAltAssunto.php";
+    }
+    function abrirAlteraAssunto($id)
+    {
+        $assunto = new AssuntoController();
+        $assunto = $assunto->buscar($id);
+        include_once "view/paginaCadAltAssunto.php";
+    }
+    
 
     /*  */
     #Página não encontrada

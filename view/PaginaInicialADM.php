@@ -17,7 +17,7 @@
             <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-8 row" style="z-index: 2;">
-                    <header class="display-1 text-center my-5">ADMINISTRADOR BIOSFERA</header>
+                    <header class="display-1 text-center my-5 text-break p-0">ADMINISTRADOR BIOSFERA</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">
@@ -91,7 +91,9 @@
             const coordInput = document.getElementById("inputCoord");
             
             //Define valor ao input
-            coord = e.latlng.lat+", "+e.latlng.lng;
+            
+            //var coord = e.latlng.lat+", "+e.latlng.lng;
+            var coord = Math.round(e.latlng.lat * 10000000) / 10000000 + ", " + Math.round(e.latlng.lng * 10000000) / 10000000;
             coordInput.value = coord;
             markerIndex ++;
         }
@@ -111,7 +113,7 @@
             echo "var markerBD = [";
             foreach ($especimes as $especime)
             {
-                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span>"; echo "</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a>'),";
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span>"; echo "</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
             }
             echo "''];";
         ?>

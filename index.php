@@ -36,7 +36,8 @@ if($_GET)
             $route = new AdminController();
             $route->logar();
         break;
-        
+
+        // FUNÇÕES ESPÉCIE
         case "especies":
             switch($url[1])
             {
@@ -71,6 +72,14 @@ if($_GET)
                 break;
             }
         break;
+
+        // PÁGINA DA PLANTA
+        case "especime":
+            $route = new Route();
+            $route->abrirExibirEspecime($url[1]);
+        break;
+        
+        // FUNÇÕES ESPÉCIMES
         case "especimes":
             switch($url[1])
             {
@@ -89,6 +98,40 @@ if($_GET)
                 case "alterar":
                     $route = new EspecimeController();
                     $route->alterarEspecime();
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+        break;
+        case "assuntos":
+            switch($url[1])
+            {
+                case "lista":
+                    $route = new Route();
+                    $route->abrirListaAssunto();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroAssunto();
+                break;
+                case "cadastrar":
+                    $route = new AssuntoController();
+                    $route->cadastrarAssunto();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraAssunto($url[2]);
+                break;
+                case "alterar":
+                    $route = new AssuntoController();
+                    $route->alterarAssunto();
+                break;
+                case "excluir":
+                    $route = new AssuntoController();
+                    $route->excluirAssunto($url[2]);
                 break;
                 default:
                     // URL INVÁLIDA

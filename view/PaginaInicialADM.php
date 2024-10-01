@@ -57,8 +57,8 @@
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl = 'https://blog.yurimotatech.com/wp-content/uploads/2022/02/Hello-World-Python.png',
-            imageBounds = [[40.712216, -74.22655], [40.773941, -74.12544]];
+        var imageUrl = 'resource/ui/map/map.png'
+            imageBounds = [[-23.3357271, -46.7216205], [-23.3365669, -46.722789]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker

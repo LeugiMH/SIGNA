@@ -10,12 +10,20 @@ class Route
     #Página inicial
     function abrirInicio()
     {
-        $especimes = new EspecimeController();
-        $especimes = $especimes->listar();
         if(isset($_SESSION["sessaoLogada"])) 
-        {include_once "view/paginaInicialADM.php";}
+        {
+            $especimes = new EspecimeController();
+            $especimes = $especimes->listarAdm();
+            //$especimes->DATPLANT = date("d/m",strtotime($especimes->DATPLANT));
+            include_once "view/paginaInicialADM.php";
+        }
         else 
-        {include_once "view/paginaInicial.php";}
+        {
+            $especimes = new EspecimeController();
+            $especimes = $especimes->listarUsu();
+            //$especimes->DATPLANT = date("d/m/Y",strtotime($especimes->DATPLANT));
+            include_once "view/paginaInicial.php";
+        }
     }
     function abrirExibirEspecime($id)
     {

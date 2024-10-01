@@ -139,3 +139,15 @@ src:
 {
     font-family: Luciole;
 }
+
+.rating{
+    width: 100%;
+}
+.star-a{
+    content:url('../imagens/icons/star-active.png');
+    height: 32px;
+}
+.star-i{
+    content:url('../imagens/icons/star-inactive.png');
+    height: 32px;
+}

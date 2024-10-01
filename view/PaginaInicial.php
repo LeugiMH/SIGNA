@@ -50,7 +50,7 @@
 
         //Overlay Imagem
         var imageUrl = 'resource/ui/map/map.png'
-            imageBounds = [[-23.335604, -46.722684], [-23.336513, -46.721595]];
+            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker

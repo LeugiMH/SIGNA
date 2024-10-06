@@ -12,7 +12,7 @@
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-12 col-lg-11 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <header class="display-1 text-center mb-5">ESPÉCIES</header>
+                    <header class="display-1 text-center mb-4">ESPÉCIES</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <?php
                             //Exibindo mensagem de erro

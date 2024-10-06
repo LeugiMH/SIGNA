@@ -40,22 +40,23 @@
             ?>
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Endereço de Email</label>
-                <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email (opcional)" maxlength="256">
+                <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email (opcional)" placeholder="Digite o email (opcional)" maxlength="256">
             </div>
             <div class="mb-3">
                 <label for="rating" class="form-label">Avaliação</label>
-                <div class="rating">
-                    <img class="rating__star star-i star me-2"></img>
-                    <img class="rating__star star-i star me-2"></img>
-                    <img class="rating__star star-i star me-2"></img>
-                    <img class="rating__star star-i star me-2"></img>
-                    <img class="rating__star star-i star me-2"></img>
+                <div class="rating" aria-label="Insira qual a sua avaliação em estrelas (máximo 5)" >
+                    <img class="rating__star star-i star me-2" aria-label="1 estrela" ></img>
+                    <img class="rating__star star-i star me-2" aria-label="2 estrelas"></img>
+                    <img class="rating__star star-i star me-2" aria-label="3 estrelas"></img>
+                    <img class="rating__star star-i star me-2" aria-label="4 estrelas"></img>
+                    <img class="rating__star star-i star me-2" aria-label="5 estrelas"></img>
               </div>
               <input type="hidden" value="" class="form-control" id="rating" name="rating">
             </div>
             <div class="mb-3">
+              <label for="inputEmail" class="form-label">Assunto</label>
               <select name="inputAssunto" id="inputAssunto" class="form-select" aria-label="Selecione um assunto para enviar o feedback" required>
-                <option disabled selected>Selecione uma Espécie</option> 
+                <option disabled selected>Selecione um Assunto</option> 
                 <?php
                 foreach ($assuntos as $assunto)
                 {
@@ -64,14 +65,16 @@
                 ?>
               </select>
             </div>
-            <div class="d-flex justify-content-between">
-                <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
-                <button type="submit" class="btn btn-success">Logar</button>
+            <div class="mb-3">
+                <label for="inputMessage" class="form-label">Mensagem</label>
+                <textarea class="form-control" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback"></textarea>
             </div>
+            
         </form>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Enviar Feedback</button>
+      <div class="modal-footer d-flex justify-content-between">
+            <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
+            <button type="submit" class="btn btn-success">Logar</button>
       </div>
     </div>
   </div>

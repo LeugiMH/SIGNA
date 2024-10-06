@@ -17,7 +17,7 @@
             <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
-                    <header class="display-1 text-center my-5">MAPA INTERATIVO</header>
+                    <header class="display-1 text-center my-4">MAPA INTERATIVO</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
@@ -26,7 +26,6 @@
             <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
-
                 </div>
             </section>
         </div>

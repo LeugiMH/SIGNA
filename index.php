@@ -112,6 +112,40 @@ if($_GET)
             $route->abrirInicioAdmin();
 
         break;
+        case "assuntos":
+            switch($url[1])
+            {
+                case "lista":
+                    $route = new Route();
+                    $route->abrirListaAssunto();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroAssunto();
+                break;
+                case "cadastrar":
+                    $route = new AssuntoController();
+                    $route->cadastrarAssunto();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraAssunto($url[2]);
+                break;
+                case "alterar":
+                    $route = new AssuntoController();
+                    $route->alterarAssunto();
+                break;
+                case "excluir":
+                    $route = new AssuntoController();
+                    $route->excluirAssunto($url[2]);
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+        break;
         /*
         case "esqueci-a-senha": 
             $route = new Controller();

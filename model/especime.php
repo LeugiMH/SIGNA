@@ -65,13 +65,26 @@ class Especime
     }
 
     //Método Consultar
-    function listar()
+    function listarAdm()
     {
         //Conectando ao banco de dados
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT TBA.*,NOMEPOP FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE");
+        $cmd = $con->prepare("SELECT TBA.*,NOMEPOP,NOME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE JOIN TBADMIN ADM ON TBA.IDCADADM = ADM.IDADMIN");
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
+    }
+    function listarUsu()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT TBB.NOMEPOP, CONVERT(DATE,TBA.DATPLANT) 'DATPLANT',TBA.COORD, TBA.IDESPECIME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE WHERE TBA.ESTADO = '1'");
 
         //Executando o comando SQL
         $cmd->execute();

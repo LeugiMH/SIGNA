@@ -4,18 +4,27 @@
 include_once "especie.php";
 include_once "especime.php";
 include_once "especime.php";
+include_once "assunto.php";
 
 class Route
 {
     #Página inicial
     function abrirInicio()
     {
-        $especimes = new EspecimeController();
-        $especimes = $especimes->listar();
         if(isset($_SESSION["sessaoLogada"])) 
-        {include_once "view/paginaInicialADM.php";}
+        {
+            $especimes = new EspecimeController();
+            $especimes = $especimes->listarAdm();
+            //$especimes->DATPLANT = date("d/m",strtotime($especimes->DATPLANT));
+            include_once "view/paginaInicialADM.php";
+        }
         else 
-        {include_once "view/paginaInicial.php";}
+        {
+            $especimes = new EspecimeController();
+            $especimes = $especimes->listarUsu();
+            //$especimes->DATPLANT = date("d/m/Y",strtotime($especimes->DATPLANT));
+            include_once "view/paginaInicial.php";
+        }
     }
     function abrirExibirEspecime($id)
     {
@@ -66,6 +75,26 @@ class Route
         $especime = $especime->buscar($id);
         include_once "view/paginaCadAltEspecime.php";
     }
+
+    /* Assuntos */
+    #Lista
+    function abrirListaAssunto()
+    {
+        $assuntos = new AssuntoController();
+        $assuntos = $assuntos->listar();
+        include_once "view/listaAssuntos.php";
+    }
+    function abrirCadastroAssunto()
+    {
+        include_once "view/paginaCadAltAssunto.php";
+    }
+    function abrirAlteraAssunto($id)
+    {
+        $assunto = new AssuntoController();
+        $assunto = $assunto->buscar($id);
+        include_once "view/paginaCadAltAssunto.php";
+    }
+    
 
     /*  */
     #Página não encontrada

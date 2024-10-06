@@ -81,10 +81,15 @@ class EspecimeController
     }
 
     //Listar
-    function listar()
+    function listarAdm()
     {
         $especimes = new Especime();
-        return $especimes->listar();
+        return $especimes->listarAdm();
+    }
+    function listarUsu()
+    {
+        $especimes = new Especime();
+        return $especimes->listarUsu();
     }
 
     //Alterar

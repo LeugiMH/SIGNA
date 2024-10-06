@@ -79,6 +79,21 @@
         map.on('click', onMapClick);*/
 
     </script>
-        <?php include_once "resource/plugins.php";?>
+    <?php include_once "resource/plugins.php";?>
+    <script>
+        //Exibir espécimes no mapa
+        <?php
+            //var_dump(date("d-m-Y"));
+            //var_dump(date_diff(date_create("25-09-2024"), date_create(date("d-m-Y"))));
+            echo "var markerBD = [";
+            foreach ($especimes as $especime)
+            {   
+                $especime->DATPLANT = date("d-m-Y",strtotime($especime->DATPLANT));
+                $especime->IDADE = date_diff(date_create($especime->DATPLANT), date_create(date("d-m-Y")));
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Data de platio: $especime->DATPLANT </p><p>Idade: "; echo $especime->IDADE->format("%y ano(s), %m mês(es) e %d dia(s)."); echo"</p><a href=\"".URL."especime/$especime->IDESPECIME\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
+            }
+            echo "''];";
+        ?>
+    </script>
 </body>
 </html>

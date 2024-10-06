@@ -17,7 +17,7 @@
                     <a class="nav-link" href="#">Admins</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Assuntos</a>
+                    <a class="nav-link" href="<?php echo URL.'assuntos/lista';?>">Assuntos</a>
                 </li>
             </ul>
             <span class="navbar-text p-0 me-1">

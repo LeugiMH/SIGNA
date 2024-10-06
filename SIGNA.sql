@@ -44,6 +44,11 @@ CREATE TABLE TBESPECIE
 )
 -- SELECT * FROM TBESPECIE
 -- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Paubrasilia echinata','Pau-Brasil','Fabaceae','Seu habitat natural é a floresta ombrófila densa da Mata Atlântica, a partir do extremo nordeste do Brasil até o Rio de Janeiro, ou seja, os estados do Rio Grande do Norte, Paraíba, Pernambuco, Alagoas, Sergipe, Bahia, Espírito Santo e Rio de Janeiro.',15.00,'pauBrasil.webp','Imagem de um Pau-Brasil','27/08/2024',1)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Eugenia brasiliensis Lam','Grumixamao','Myrtaceae',' Árvore de até 15 metros de altura, nativa das matas primárias desde a Bahia até Santa Catarina, em mata aluviais e encostas suaves, é, hoje, rara. Possuem três variedades, a xaneira anã, xaneira amarela e a xaneira grande. Seus frutos - pequenas bagas esféricas roxas-escuras, com polpa aquosa levemente ácida[2] e de uma ou duas sementes ',14.00,NULL,'Imagem de Ipê Amarelo','27/08/2024',2)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Handroanthus chrysotricus','Ipê-amarelo','Bignoniaceae',' É muito conhecido por sua beleza, exuberância das flores e ampla distribuição em todas as regiões do Brasil. Os ipês são caducifólias, ou seja, perdem todas as folhas que são substituídas por cachos de flores de cores intensas. São árvores de grande porte que gostam de calor e sol pleno.',14.00,NULL,'Imagem de Ipê Amarelo','27/08/2024',6)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Pseudobombax grandiflorum','Imbiruçu','Malvaceae','Flores brancas muito bonitas, geralmente aparecem com a árvore sem folhas. Fruto capsula que se abre mostrando sementes pequenas, envoltas em paina marrom. Germinação fácil, desenvolvimento da muda rápido.',25.00,NULL,'Imagem de Imbiruçu','27/08/2024',2)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Handroanthus chrysotricus','Ipê-amarelo','Bignoniaceae',' É muito conhecido por sua beleza, exuberância das flores e ampla distribuição em todas as regiões do Brasil. Os ipês são caducifólias, ou seja, perdem todas as folhas que são substituídas por cachos de flores de cores intensas. São árvores de grande porte que gostam de calor e sol pleno.',14.00,NULL,'Imagem de Ipê Amarelo','27/08/2024',6)
+-- INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) VALUES ('Leucochloron incuriale','Angico rajado','Fabaceae','Possui glândulas secretoras de néctar; tronco possui cortiças salientes e é utilizada em ações de reflorestamento e devido sua madeira resistente, ele pode ser utilizado na construção civil',25.00,NULL,'Imagem de Angico Rajado','27/08/2024',2)
 -- DELETE TBESPECIE
 GO
 CREATE TABLE TBATRIBUTO
@@ -81,7 +86,7 @@ CREATE TABLE TBESPECIME
 )
 -- SELECT * FROM TBESPECIME
 -- INSERT INTO TBESPECIME (IDESPECIE,DATPLANT,DATACAD,IMAGEM,DESCRICAOIMG,ESTADO,COORD,DAP,IDCADADM) VALUES (1,'21-08-2024','21-09-2024',NULL,NULL,'1','-23.336055, -46.722261',15,1)
--- ALTER TABLE TBESPECIME ALTER COLUMN IDESPECIE INT NOT NULL
+-- INSERT INTO TBESPECIME (IDESPECIE,DATPLANT,DATACAD,IMAGEM,DESCRICAOIMG,ESTADO,COORD,DAP,IDCADADM) VALUES (2,'28-08-2024','28-08-2024',NULL,NULL,'1','-23.336055, -46.722261',15,1)
 GO
 CREATE TABLE TBLOGEXEC
 (
@@ -115,6 +120,12 @@ CREATE TABLE TBASSUNTO
 	DESCRICAO VARCHAR(256),
 	CONSTRAINT TBASSUNTO_PK PRIMARY KEY (IDASSUNTO)
 )
+-- SELECT * FROM TBASSUNTO
+-- INSERT INTO TBASSUNTO (DESCRICAO) VALUES ('Informações incorretas')
+-- INSERT INTO TBASSUNTO (DESCRICAO) VALUES ('Mal funcionamento do site')
+-- INSERT INTO TBASSUNTO (DESCRICAO) VALUES ('Acessibilidade não funcionando')
+-- INSERT INTO TBASSUNTO (DESCRICAO) VALUES ('Outros')
+
 GO
 CREATE TABLE TBFEEDBACK
 (

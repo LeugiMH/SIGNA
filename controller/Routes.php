@@ -35,7 +35,7 @@ class Route
 
     #Página de login
     function abrirLogin()
-    {
+    {  
         include_once "view/paginaLogin.php";
     }
 

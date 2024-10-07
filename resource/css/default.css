@@ -45,6 +45,14 @@ src:
     .imgview1,.imgview2{
         transform:translate(0,0) rotate(0);
     }
+    .clouds .folhas2, .clouds .folhas1{
+        background-size: 25%,15%;
+        min-height: 30vh;
+    }
+
+    .rodape a img{
+        width: 48px;
+    }
 }
 @media only screen and (max-width: 1200px){ /*xl*/
     .display-1{
@@ -74,7 +82,7 @@ src:
 }
 .nuvem-top
 {
-    margin-top: -15% !important;
+    bottom: 0 !important;
 }
 .nuvem-mid
 {
@@ -99,11 +107,17 @@ src:
 .folhas2
 {
     background-color: white;
-    background-image:url('../ui/bg/bg_arvore_inferior_esquerdo.svg'),url('../ui/bg/bg_arvore_inferior_direito.svg');
+    background-image:url('../ui/bg/bg_arvore_inferior_esquerdo.svg'),url('../ui/bg/bg_arvore_inferior_direito-svg.svg');
     background-repeat: no-repeat;
     background-position: bottom left, bottom right;
     background-clip: unset;
     background-size: 20%,10%;
+    min-height: 35vh;
+    z-index: 1;
+}
+
+.folhas2 img{
+    z-index: 0;
 }
 /*GRID*/
 .corpo
@@ -129,6 +143,9 @@ src:
 {
     grid-area: rodape;
     
+}
+.rodape a img{
+    width: 64px;
 }
 .navbar
 {

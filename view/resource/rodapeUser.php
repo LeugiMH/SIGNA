@@ -1,5 +1,6 @@
+<?php $feedback = new FeedbackController(); ?>
 <footer class="rodape text-white mt-auto">
-    <div class=" bg-verde text-center justify-content-center row m-0 p-3">
+    <div class="bg-verde text-center justify-content-center row m-0 p-3">
         <a type="button" data-bs-toggle="modal" data-bs-target="#feedback">
             Enviar um Feedback
         </a>
@@ -7,13 +8,13 @@
     <div class="align-content-center bg-dark text-center justify-content-center m-0 p-3">
         <div class="d-flex d-flex-row text-center justify-content-center">
             <a href="https://www.facebook.com/fatecfrancodarocha/?locale=pt_BR" class="me-3">
-                <img src="<?php echo URL.'resource/imagens/icons/facebook.png'?>" alt="Facebook icon" style="width: 64px;">
+                <img src="<?php echo URL.'resource/imagens/icons/facebook.png'?>" alt="Facebook icon">
             </a>
             <a href="https://www.instagram.com/fatecfrancodarocha/" class="me-3">
-                <img src="<?php echo URL.'resource/imagens/icons/instagram.png'?>" alt="Instragram logo" style="width: 64px;">
+                <img src="<?php echo URL.'resource/imagens/icons/instagram.png'?>" alt="Instragram logo">
             </a>
             <a href="https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br" class="me-3">
-            <img src="<?php echo URL.'resource/imagens/icons/linkedin.png'?>" alt="Linkedin logo" style="width: 64px;">
+              <img src="<?php echo URL.'resource/imagens/icons/linkedin.png'?>" alt="Linkedin logo">
             </a>
         </div>
         
@@ -32,7 +33,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="enviarFeedback" method="POST">
+        <form action="" method="POST">
             <?php
                 //Exibindo mensagem de erro
                 if(isset($_COOKIE["msg"]))
@@ -58,23 +59,24 @@
               <select name="inputAssunto" id="inputAssunto" class="form-select" aria-label="Selecione um assunto para enviar o feedback" required>
                 <option disabled selected>Selecione um Assunto</option> 
                 <?php
-                foreach ($assuntos as $assunto)
-                {
-                  echo"<option value='$assunto->IDASSUNTO'>$assunto->DESCRICAO</option>";
-                }
+                  foreach ($assuntos as $assunto)
+                  {
+                    echo"<option value='$assunto->IDASSUNTO'>$assunto->DESCRICAO</option>";
+                  }
                 ?>
               </select>
             </div>
             <div class="mb-3">
                 <label for="inputMessage" class="form-label">Mensagem</label>
-                <textarea class="form-control" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback"></textarea>
+                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback"></textarea>
             </div>
+            <input type="hidden" value="<?php "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>" class="form-control" id="url" name="url">
+            <button type="submit" class="btn btn-success" name="envFeedback">Enviar Feedback</button>
             
         </form>
       </div>
-      <div class="modal-footer d-flex justify-content-between">
-            <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
-            <button type="submit" class="btn btn-success">Logar</button>
+      <div class="modal-footer d-flex justify-content-center">
+            
       </div>
     </div>
   </div>

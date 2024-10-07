@@ -13,8 +13,8 @@
     
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
-            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
+        <div class="conteudo bg-secondary h-100 clouds">
+            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" >
                 <!--Container de conteúdo-->
                 <div class="col-lg-8 row" style="z-index: 2;">
                     <header class="display-1 text-center my-4 text-break p-0">ADMINISTRADOR BIOSFERA</header>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </section>
-            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
+            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" >
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                     <?php 

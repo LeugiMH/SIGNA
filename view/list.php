@@ -7,7 +7,7 @@
 <body>
     <div class="corpo-list min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
+        <div class="conteudo bg-secondary h-100 clouds">
             <div class="container-sm folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <div class="col-sm-2 col-lg-6 col-xl-8 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->

@@ -13,8 +13,8 @@
     
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
-            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" style="min-height: 50vh;">
+        <div class="conteudo bg-secondary h-100 clouds">
+            <section class="container-fluid folhas1 pt-3 m-0 row justify-content-center align-content-center" style="min-height: 30vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
                     <header class="display-1 text-center my-4">MAPA INTERATIVO</header>
@@ -23,8 +23,8 @@
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
                 </div>
             </section>
-            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
+            <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
+            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative">
                 <div class="col-lg-6 mt-5" style="z-index: 2;">
                 </div>
             </section>

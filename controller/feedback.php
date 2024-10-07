@@ -9,42 +9,43 @@ class FeedbackController
         $email =  $_POST["inputEmail"];
         $rating =  $_POST["rating"];
         $assunto =  $_POST["inputAssunto"];
-        $comentario =  $_POST["inputComentario"];
+        $comentario =  $_POST["inputMessage"];
+        $url =  $_POST["url"];
+        #$usuario = $_POST["inputUsuario"];
 
 
-        //Cria objeto da classe espécie e define valores
+        #Cria objeto da classe espécie e define valores
         $cmd = new Feedback();
-        $cmd->IDFEEDBACK      = $nomeCie;
-        $cmd->IDESPECIME      = $nomePop;
-        $cmd->TPUSUARIO      = $nomePop;
-        $cmd->AVALIACAO      = $Familia;
-        $cmd->IDASSUNTO      = $habitat;
-        $cmd->TEXTO       = $altura;
-        $cmd->EMAIL = $ImgDesc;
+        $cmd->IDESPECIME      = 0;
+        $cmd->TPUSUARIO      = 0;
+        $cmd->AVALIACAO      = $rating;
+        $cmd->IDASSUNTO      = $assunto;
+        $cmd->TEXTO       = $comentario;
+        $cmd->EMAIL = $email;
         $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
-        $cmd->IDADMIN     = $_SESSION["sessaoLogada"]->IDADMIN;
-        COMENT_ADMIN //Id do administrador logado
-        
-        $novoNome = "";
-        $nomeTemp = "";
         
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar espécie
+        if($cmd->sendFeedback())  //Sucesso ao cadastrar espécie
         {
-            setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>",time() + 1,"/");
-
-            //Mover imagem para pastas no servidor
-            $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
-            move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+            setcookie("msg","<div class='alert alert-success'>Feedback enviado com sucesso</div>",time() + 1,"/");
+            echo 'foi';
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao enviar feedback</div>",time() + 1,"/");
+            echo 'n foi';
         }
-        header("location: ".URL."especies/cadastro");
+
+        echo("<script> history.back();</script>");
+        echo 'hmmmmmmmm';
+
+        if(isset($_COOKIE["msg"]))
+        {echo $_COOKIE["msg"];}
+
+        //echo'<script>console.log("'.$email.$rating.$assunto.$comentario.'")</script>';
     }
 
-    //Consultar
+    /*Consultar
     function buscar($id)
     {
         $especie = new Especie();
@@ -152,7 +153,13 @@ class FeedbackController
             setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime relacionado.</div>",time() + 1,"/");
         }
         header("location: ".URL."especies/lista");
-    }
+    }*/
 }
+
+if(isset($_POST['envFeedback']))
+{
+    $feedback = new FeedbackController();
+    $feedback->enviarFeedback();
+} 
 
 ?>

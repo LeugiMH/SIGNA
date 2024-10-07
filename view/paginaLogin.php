@@ -7,11 +7,11 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
+        <div class="conteudo bg-secondary h-100 clouds">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-8 col-lg-6 col-xl-4 p-0" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <header class="display-1 text-center mt-5 mb-4">Login</header>
+                    <header class="display-1 text-center mt- mb-4">Login</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <form action="logar" method="POST">
                             <?php
@@ -34,7 +34,7 @@
                         </form>
                     </article>
                 </section>
-                <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" style="min-height: 50vh;">
+                <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" >
                     <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
                     <div class="col-lg-6 mt-5" style="z-index: 2;">
                     </div>

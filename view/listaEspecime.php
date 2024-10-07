@@ -9,7 +9,7 @@
 <body class="d-flex flex-column min-vh-100">
     <div class="corpo-list min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
+        <div class="conteudo bg-secondary h-100 clouds">
             <div
                 class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <div class="col-sm-12 col-lg-10 col-xl-8 p-0 my-5" style="z-index: 2;">

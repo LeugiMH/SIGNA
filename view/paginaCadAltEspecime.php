@@ -8,7 +8,7 @@
     <?php $url = $_GET["url"]; $url = explode("/",$url);?>
     <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
-        <div class="conteudo bg-secondary h-100">
+        <div class="conteudo bg-secondary h-100 clouds">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-12 col-lg-8 col-xl-6 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->

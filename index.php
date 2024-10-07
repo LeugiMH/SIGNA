@@ -4,6 +4,7 @@ session_start();
     //Import de controllers
     include_once "controller/routes.php";
     include_once "controller/admin.php";
+    include_once "controller/feedback.php";
 
 
 //Definindo fuso horário default
@@ -24,6 +25,11 @@ if($_GET)
         case "inicio":
             $route = new Route();
             $route->abrirInicio();
+        break;
+
+        case "envFeedback":
+            $route = new FeedbackController();
+            $route->enviarFeedback();
         break;
 
         // LOGIN 

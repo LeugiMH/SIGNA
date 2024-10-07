@@ -48,7 +48,7 @@
                                     <td>$especie->FAMILIA</td>
                                     <td>$especie->HABITAT</td>
                                     <td>$especie->ALTURA</td>
-                                    <td><img src='"; echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpeg"; echo "' style='width:100px;'></td>
+                                    <td><img src='"; echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpg"; echo "' style='width:100px;'></td>
                                     <td>$especie->DESCRICAOIMG</td>
                                     <td>$especie->DATACAD</td>                               
                                     <td>$especie->IDCADADM</td>

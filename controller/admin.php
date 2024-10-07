@@ -24,7 +24,7 @@ class AdminController
             //Caso usuário esteja desativado
             if($dadosLogin->ESTADO != 1)
             {
-                setcookie("msg","Usuário desativado.",time() + 1,"/");
+                setcookie("msg","<div class='alert alert-danger'>Usuário desativado.</div>",time() + 1,"/");
                 header("Location:".URL."login");
             }
             else

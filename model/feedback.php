@@ -58,6 +58,8 @@ class Feedback
         }
         catch (PDOException $e)
         {
+            //Debug
+            //setcookie("msg","$e",time() + 1,"/");
             return false;
         }
         

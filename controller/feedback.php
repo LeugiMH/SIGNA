@@ -16,7 +16,7 @@ class FeedbackController
 
         #Cria objeto da classe espécie e define valores
         $cmd = new Feedback();
-        $cmd->IDESPECIME      = 0;
+        $cmd->IDESPECIME      = null;
         $cmd->TPUSUARIO      = 0;
         $cmd->AVALIACAO      = $rating;
         $cmd->IDASSUNTO      = $assunto;
@@ -28,12 +28,10 @@ class FeedbackController
         if($cmd->sendFeedback())  //Sucesso ao cadastrar espécie
         {
             setcookie("msg","<div class='alert alert-success'>Feedback enviado com sucesso</div>",time() + 1,"/");
-            echo 'foi';
         }
         else
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao enviar feedback</div>",time() + 1,"/");
-            echo 'n foi';
         }
 
         echo("<script> history.back();</script>");

@@ -68,7 +68,7 @@
             </div>
             <div class="mb-3">
                 <label for="inputMessage" class="form-label">Mensagem</label>
-                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback"></textarea>
+                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback" maxlength="256"></textarea>
             </div>
             <input type="hidden" value="<?php "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>" class="form-control" id="url" name="url">
             <button type="submit" class="btn btn-success" name="envFeedback">Enviar Feedback</button>

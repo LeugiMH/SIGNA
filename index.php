@@ -5,7 +5,6 @@ session_start();
     include_once "controller/routes.php";
     include_once "controller/admin.php";
 
-
 //Definindo fuso horário default
 date_default_timezone_set("America/Sao_Paulo");
 
@@ -79,6 +78,17 @@ if($_GET)
             $route->abrirExibirEspecime($url[1]);
         break;
         
+        //ATRIBUTOS
+        case "atributos":
+            switch(($url[1]))
+            {   
+                case "cadastrar":
+                    $route = new AtributoController();
+                    $route->cadastrarAtributo();
+                break;
+            }
+        break;
+
         // FUNÇÕES ESPÉCIMES
         case "especimes":
             switch($url[1])
@@ -106,6 +116,7 @@ if($_GET)
                 break;
             }
         break;
+
         case "assuntos":
             switch($url[1])
             {

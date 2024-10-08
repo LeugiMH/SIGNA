@@ -4,6 +4,7 @@
 include_once "especie.php";
 include_once "especime.php";
 include_once "assunto.php";
+include_once "atributo.php";
 
 class Route
 {
@@ -49,6 +50,8 @@ class Route
 
     function abrirCadastroEspecie()
     {
+        $atributos = new AtributoController();
+        $atributos = $atributos->listar();
         include_once "view/paginaCadAltEspecie.php";
     }
 
@@ -56,6 +59,8 @@ class Route
     {
         $especie = new EspecieController();
         $especie = $especie->buscar($id);
+        $atributos = new AtributoController();
+        $atributos = $atributos->listar();
         include_once "view/paginaCadAltEspecie.php";
     }
     

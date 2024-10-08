@@ -27,18 +27,24 @@ class FeedbackController
 
         if($cmd->sendFeedback())  //Sucesso ao cadastrar espécie
         {
-            setcookie("msg","<div class='alert alert-success'>Feedback enviado com sucesso</div>",time() + 1,"/");
+            setcookie("msgF","<div class='alert alert-success'>Feedback enviado com sucesso</div>",time() + 1,"/");
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao enviar feedback</div>",time() + 1,"/");
+            setcookie("msgF","<div class='alert alert-danger'>Erro ao enviar feedback</div>",time() + 1,"/");
         }
 
-        echo("<script> history.back();</script>");
+        echo("
+                <script> 
+
+                history.back();
+                
+            </script>
+        ");
         echo 'hmmmmmmmm';
 
-        if(isset($_COOKIE["msg"]))
-        {echo $_COOKIE["msg"];}
+        if(isset($_COOKIE["msgF"]))
+        {echo $_COOKIE["msgF"];}
 
         //echo'<script>console.log("'.$email.$rating.$assunto.$comentario.'")</script>';
     }
@@ -49,9 +55,9 @@ class FeedbackController
         $especie = new Especie();
         $especie->IDESPECIE = $id;
         return $especie->buscar();
-    }
+    }*/
 
-    //Listar
+    #Listar
     function listar()
     {
         $cmd = new Especie();
@@ -59,7 +65,7 @@ class FeedbackController
     }
 
     //Alterar
-    function alterarEspecie()
+    /*function alterarEspecie()
     {
         $idEspecie =  $_POST["inputId"];
         $nomeCie =  $_POST["inputNomeCie"];

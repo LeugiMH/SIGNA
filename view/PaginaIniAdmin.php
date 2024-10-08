@@ -121,10 +121,11 @@
                 </div>
             </div>
 
-            <div class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative"
-                >
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0 mt-0">
-            </div>
+            <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
+            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative">
+                <div class="col-lg-6 mt-5" style="z-index: 2;">
+                </div>
+            </section>
         </div>
         <?php include_once "resource/footerControle.php";?>
     </div>

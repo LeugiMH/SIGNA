@@ -31,12 +31,97 @@
                     </div>
                 </div>
             </section>
-            <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" >
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
-                <div class="col-lg-6 mt-5" style="z-index: 2;">
-                    <?php 
-                        echo phpversion();
+
+            <!-- Feedbacks -->
+            <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
+            <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative">
+                <h2 class="text-center mb-3">Feedbacks</h2>
+                <div class="col-lg-3 me-3" style="z-index: 2;">
+                    <h3>ASSUNTOS</h3>
+                    <?php
+                        //Exibindo mensagem de erro
+                        if(isset($_COOKIE["msgLista"]))
+                        {echo $_COOKIE["msgLista"];}
                     ?>
+                    <a href="<?php echo URL.'assuntos/cadastro';?>" class="btn btn-warning">Cadastrar</a>
+                    <table id="listaAssunto" class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>AÇÕES</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($assuntos as $assunto)
+                            {
+                            echo "
+                            <tr>
+                                <td>$assunto->IDASSUNTO</td>
+                                <td>$assunto->DESCRICAO</td>
+                                <td>
+                                <a href='".URL."assuntos/altera/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                </td>
+                            </tr>
+                            ";
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>AÇÕES</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div class="col-lg-6" style="z-index: 2; background-color: red;">
+                <h3>ASSUNTOS</h3>
+                    <?php
+                        //Exibindo mensagem de erro
+                        if(isset($_COOKIE["msgF"]))
+                        {echo $_COOKIE["msgF"];}
+                    ?>
+                    <table id="listaFeedback" class="table table-striped text-center">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>AVALIACAO</th>
+                                <th>ASSUNTO</th>
+                                <th>TEXTO</th>
+                                <th>EMAIL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            foreach($feedbacks as $feedback)
+                            {
+                            echo "
+                            <tr>
+                                <td>$feedback->IDFEEDBACK</td>
+                                <td>$feedback->AVALIACAO</td>
+                                <td>$feedback->IDASSUNTO</td>
+                                <td>$feedback->TEXTO</td>
+                                <td>$feedback->EMAIL</td>
+                            
+                            </tr>
+                            ";
+                            }
+                            ?>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                            <th>ID</th>
+                                <th>AVALIACAO</th>
+                                <th>ASSUNTO</th>
+                                <th>TEXTO</th>
+                                <th>EMAIL</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
             </section>
         </div>

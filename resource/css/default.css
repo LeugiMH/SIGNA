@@ -82,7 +82,7 @@ src:
 }
 .nuvem-top
 {
-    bottom: 0 !important;
+   margin-top: -12% !important;
 }
 .nuvem-mid
 {

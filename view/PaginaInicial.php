@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
+  
     <title>SIGNA</title>
     <style>
 
@@ -80,6 +81,7 @@
 
     </script>
     <?php include_once "resource/plugins.php";?>
+
     <script>
         //Exibir espécimes no mapa
         <?php

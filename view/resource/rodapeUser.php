@@ -36,8 +36,10 @@
         <form action="" method="POST">
             <?php
                 //Exibindo mensagem de erro
-                if(isset($_COOKIE["msg"]))
-                {echo $_COOKIE['msg'];}
+                if(isset($_COOKIE["msgF"]))
+                {
+                  echo $_COOKIE['msgF'];
+                }
             ?>
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Endereço de Email</label>

@@ -34,12 +34,8 @@
                         </form>
                     </article>
                 </section>
-                <section class="container-fluid folhas2 p-3 m-0  row justify-content-center align-content-center position-relative" >
-                    <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_icon.svg'?>" class="nuvem nuvem-top px-0">
-                    <div class="col-lg-6 mt-5" style="z-index: 2;">
-                    </div>
-            </section>
-        </div>
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">
+            </div>
         </div>
         <?php include_once "resource/footerControle.php";?>
     </div>

@@ -79,7 +79,7 @@
                     </table>
                 </div>
                 <div class="col-lg-6" style="z-index: 2; background-color: red;">
-                <h3>ASSUNTOS</h3>
+                <h3>aaa</h3>
                     <?php
                         //Exibindo mensagem de erro
                         if(isset($_COOKIE["msgF"]))
@@ -95,9 +95,9 @@
                                 <th>EMAIL</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!--<tbody>
                             <?php
-                            foreach($feedbacks as $feedback)
+                            /*foreach($feedbacks as $feedback)
                             {
                             echo "
                             <tr>
@@ -109,9 +109,26 @@
                             
                             </tr>
                             ";
-                            }
+                            }*/
                             ?>
+                        </tbody>-->
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>3</td>
+                                <td>Planta Inexistente</td>
+                                <td>O mapa informa que temos um pé de amora, mas não existe essa planta no local.</td>
+                                <td>aluno@email.com</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>5</td>
+                                <td>Outros</td>
+                                <td>Gostei muito do site.</td>
+                                <td></td>
+                            </tr>
                         </tbody>
+
                         <tfoot>
                             <tr>
                             <th>ID</th>

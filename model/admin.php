@@ -49,12 +49,117 @@ class Admin
 
     //OBSERVAÇÃO: Seguir diagrama de classe
     //Método Cadastrar
+    function cadastrar()
+    { 
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+                
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("INSERT INTO TBADMIN (NOME,MATRICULA,EMAIL,SENHA,DATACAD,ESTADO) 
+                                            VALUES (:NOME,:MATRICULA,:EMAIL,:SENHA,:DATACAD,:ESTADO)");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":NOME",        $this->NOME);
+        $cmd->bindParam(":MATRICULA",   $this->MATRICULA);
+        $cmd->bindParam(":EMAIL",       $this->EMAIL);
+        $cmd->bindParam(":SENHA",       $this->SENHA);
+        $cmd->bindParam(":DATACAD",     $this->DATACAD);
+        $cmd->bindParam(":ESTADO",      $this->ESTADO);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+    }
 
     //Método Consultar
+    function listar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT * FROM TBADMIN");
+
+        //Executando o comando SQL
+        $cmd->execute();
+
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    //Método Buscar
+    function buscar()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT * FROM TBADMIN WHERE IDADMIN = :IDADMIN");
+
+        $cmd->bindParam(":IDADMIN", $this->IDADMIN);
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetch(PDO::FETCH_OBJ);
+    }
 
     //Método Alterar
+    function alterar()
+    { 
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+                
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("UPDATE TBADMIN SET NOME = :NOME, MATRICULA = :MATRICULA, EMAIL = :EMAIL, SENHA = :SENHA, DATACAD = :DATACAD, ESTADO = :ESTADO
+                                            WHERE IDADMIN = :IDADMIN");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        $cmd->bindParam(":NOME",        $this->NOME);
+        $cmd->bindParam(":NOME",        $this->NOME);
+        $cmd->bindParam(":MATRICULA",   $this->MATRICULA);
+        $cmd->bindParam(":EMAIL",       $this->EMAIL);
+        $cmd->bindParam(":SENHA",       $this->SENHA);
+        $cmd->bindParam(":DATACAD",     $this->DATACAD);
+        $cmd->bindParam(":ESTADO",      $this->ESTADO);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+    }
 
     //Método Excluir
+    //Conectando ao banco de dados
+    function excluir()
+    {
+        $con = Conexao::conectar();
+        
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("DELETE FROM TBADMIN WHERE IDADMIN = :IDADMIN");
+        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        
+        //Executando o comando SQL
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {            
+            return false;
+        }
+    }
 }
 
 

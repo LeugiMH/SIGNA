@@ -1,6 +1,7 @@
 <?php
 
 // Import Controllers
+include_once "admin.php";
 include_once "especie.php";
 include_once "especime.php";
 include_once "assunto.php";
@@ -62,6 +63,27 @@ class Route
         $atributos = new AtributoController();
         $atributos = $atributos->listar();
         include_once "view/paginaCadAltEspecie.php";
+    }
+
+    /* Admins */
+    #Lista
+    function abrirListaAdmin()
+    {
+        $admins = new AdminController();
+        $admins = $admins->listar();
+        include_once "view/listaAdmin.php";
+    }
+
+    function abrirCadastroAdmin()
+    {
+        include_once "view/paginaCadAltAdmin.php";
+    }
+
+    function abrirAlteraAdmin($id)
+    {
+        $admin = new AdminController();
+        $admin = $admin->buscar($id);
+        include_once "view/paginaCadAltAdmin.php";
     }
     
     /* Espécimes */

@@ -3,7 +3,6 @@ session_start();
 
     //Import de controllers
     include_once "controller/routes.php";
-    include_once "controller/admin.php";
 
 //Definindo fuso horário default
 date_default_timezone_set("America/Sao_Paulo");
@@ -34,6 +33,42 @@ if($_GET)
         case "logar": 
             $route = new AdminController();
             $route->logar();
+        break;
+
+        // FUNÇÕES ADMIN
+        case "admins":
+            switch($url[1])
+            {
+                case "lista":
+                    $route = new Route();
+                    $route->abrirListaAdmin();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroAdmin();
+                break;
+                case "cadastrar":
+                    $route = new AdminController();
+                    $route->cadastrarAdmin();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraAdmin($url[2]);
+                break;
+                case "alterar":
+                    $route = new AdminController();
+                    $route->alterarAdmin();
+                break;
+                case "excluir":
+                    $route = new AdminController();
+                    $route->excluirAdmin($url[2]);
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
         break;
 
         // FUNÇÕES ESPÉCIE
@@ -117,6 +152,7 @@ if($_GET)
             }
         break;
 
+        // FUNÇÕES ASSUNTOS
         case "assuntos":
             switch($url[1])
             {

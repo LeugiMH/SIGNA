@@ -24,13 +24,13 @@
                                 <input type="hidden" name="inputId" value="<?php echo isset($admin)?$admin->IDADMIN:'';?>">
                                 <input type="hidden" name="inputSenhaBkp" value="<?php echo isset($admin)?$admin->SENHA:'';?>">
                                 <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($admin)?$admin->NOME:'';?>" placeholder="Nome do administrador" class="form-control" id="inputNome" name="inputNome" aria-label="Digite o nome do admin" required>
+                                    <input type="text" value="<?php echo isset($admin)?$admin->NOME:'';?>" placeholder="Nome do administrador" class="form-control" id="inputNome" name="inputNome" aria-label="Digite o nome do admin" required maxlength="256">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="text" value="<?php echo isset($admin)?$admin->MATRICULA:'';?>" placeholder="Matrícula do administrador" class="form-control" id="inputMatricula" name="inputMatricula" aria-label="Digite a matrícula do admin" required>
+                                    <input type="text" value="<?php echo isset($admin)?$admin->MATRICULA:'';?>" placeholder="Matrícula do administrador" class="form-control" id="inputMatricula" name="inputMatricula" aria-label="Digite a matrícula do admin" required maxlength="256">
                                 </div>
                                 <div class="mb-3">
-                                    <input type="email" value="<?php echo isset($admin)?$admin->EMAIL:'';?>" placeholder="Email do administrador" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email do admin" required>
+                                    <input type="email" value="<?php echo isset($admin)?$admin->EMAIL:'';?>" placeholder="Email do administrador" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email do admin" required maxlength="256">
                                 </div>
                                 <div class="mb-3">
                                     <input type="password" placeholder="Senha do administrador" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha do admin" <?php echo isset($admin) ? '' : 'required'; ?> >

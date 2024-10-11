@@ -59,6 +59,10 @@ if($_GET)
                     $route = new AdminController();
                     $route->alterarAdmin();
                 break;
+                case "alterarEstado":
+                    $route = new AdminController();
+                    $route->alterarEstado($url[2]);
+                break;
                 case "excluir":
                     $route = new AdminController();
                     $route->excluirAdmin($url[2]);

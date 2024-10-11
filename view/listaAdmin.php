@@ -12,14 +12,14 @@
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-12 col-lg-11 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <header class="display-1 text-center mb-5">ASSUNTOS</header>
+                    <header class="display-1 text-center mb-5">ADMINISTRADORES</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <?php
                             //Exibindo mensagem de erro
                             if(isset($_COOKIE["msgLista"]))
                             {echo $_COOKIE["msgLista"];}
                         ?>
-                        <a href="<?php echo URL.'assuntos/cadastro';?>" class="btn btn-warning">Cadastrar</a>
+                        <a href="<?php echo URL.'admins/cadastro';?>" class="btn btn-warning">Cadastrar</a>
                         <table id="lista" class="table table-striped text-center">
                             <thead>
                                 <tr>
@@ -36,8 +36,15 @@
                                 <?php
                                 foreach($admins as $admin)
                                 {
-                                echo "
-                                <tr>
+                                    if($admin->IDADMIN == $_SESSION['sessaoLogada']->IDADMIN)
+                                    {
+                                        echo "<tr class='table-info'>";
+                                    }
+                                    else
+                                    {
+                                        echo "<tr>";
+                                    }
+                                    echo "
                                     <td>$admin->IDADMIN</td>
                                     <td>$admin->NOME</td>
                                     <td>$admin->MATRICULA</td>
@@ -46,6 +53,7 @@
                                     <td>"; echo $admin->ESTADO == 1 ?  "<span class='badge text-bg-success'>Ativo</span>" : "<span class='badge text-bg-danger'>Inativo</span>"; echo"</td>
                                     <td>
                                     <a href='".URL."admins/altera/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                    <a href='".URL."admins/alterarEstado/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/on-off.png' style='width:25px;'></a><div class='vr mx-2'></div>
                                     <a href='".URL."admins/excluir/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                     </td>
                                 </tr>

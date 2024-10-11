@@ -57,13 +57,22 @@ class AdminController
     //Cadastrar
     function cadastrarAdmin()
     {
-        $descricao =  $_POST["inputDescricao"];
+        $nome =  $_POST["inputNome"];
+        $matricula =  $_POST["inputMatricula"];
+        $email =  $_POST["inputEmail"];
+        $senha =  $_POST["inputSenha"];
+        $estado = 1;
 
         //Cria objeto da classe espécie e define valores
         $cmd = new Admin();
-        $cmd->DESCRICAO = $descricao;
+        $cmd->NOME = $nome;
+        $cmd->MATRICULA = $matricula;
+        $cmd->EMAIL = $email;
+        $cmd->SENHA = password_hash($senha,PASSWORD_DEFAULT);
+        $cmd->DATACAD = date("d-m-Y h:i:s"); //Data atual de cadastro;
+        $cmd->ESTADO = $estado;
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
+        if($cmd->cadastrar())  //Sucesso ao cadastrar admin
         {
             setcookie("msg","<div class='alert alert-success'>Administrador cadastrado com sucesso</div>",time() + 1,"/");
         }
@@ -92,23 +101,32 @@ class AdminController
     //Alterar
     function alterarAdmin()
     {
-        $idAssunto =  $_POST["inputId"];
-        $descricao =  $_POST["inputDescricao"];
+        $id =  $_POST["inputId"];
+        $nome =  $_POST["inputNome"];
+        $matricula =  $_POST["inputMatricula"];
+        $email =  $_POST["inputEmail"];
+        $senha =  $_POST["inputSenha"];
+        $senhaBkp =  $_POST["inputSenhaBkp"];
+        $estado = 1;
 
-        
         //Cria objeto da classe espécie e define valores        
         $cmd = new Admin();
-        $cmd->IDASSUNTO = $idAssunto;
-        $cmd->DESCRICAO = $descricao;
+        $cmd->IDADMIN = $id;
+        $cmd->NOME = $nome;
+        $cmd->MATRICULA = $matricula;
+        $cmd->EMAIL = $email;
+        $cmd->SENHA = $senha!="" ? password_hash($senha,PASSWORD_DEFAULT) : $senhaBkp; // caso a senha esteja vazia, vai manter a senha antiga
+        $cmd->DATACAD = date("d-m-Y h:i:s"); //Data atual de cadastro;
+        $cmd->ESTADO = $estado;
 
-        if($cmd->alterar()) //Sucesso ao alterar assunto
+        if($cmd->alterar()) //Sucesso ao alterar admin
         {
             header("location: ".URL."admins/lista");
         }
         else
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar administrador</div>",time() + 1,"/");
-            header("location: ".URL."admins/altera/$idEspecie");
+            header("location: ".URL."admins/altera/$id");
         }
     }
 
@@ -125,6 +143,28 @@ class AdminController
         else
         {
             setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a administrador, é possível que esse adminstrador possua algum registro relacionado.</div>",time() + 1,"/");
+        }
+        header("location: ".URL."admins/lista");
+    }
+
+    //Ativa / Inativa
+    function alterarEstado($id)
+    {
+        $idAdmin = $id;
+
+        $cmd = new Admin();
+        $cmd->IDADMIN = $idAdmin;
+        $buscaAdm = $cmd->buscar();
+
+        if($buscaAdm->ESTADO == '1')
+        {
+            $cmd->ESTADO = 0;
+            $cmd->altEstado();
+        }
+        else
+        {
+            $cmd->ESTADO = 1;
+            $cmd->altEstado();
         }
         header("location: ".URL."admins/lista");
     }

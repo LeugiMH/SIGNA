@@ -141,14 +141,36 @@ class Admin
     }
 
     //Método Excluir
-    //Conectando ao banco de dados
     function excluir()
     {
+        //Conectando ao banco de dados
         $con = Conexao::conectar();
         
         //Preparar comando SQL para retornar
         $cmd = $con->prepare("DELETE FROM TBADMIN WHERE IDADMIN = :IDADMIN");
         $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        
+        //Executando o comando SQL
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {            
+            return false;
+        }
+    }
+
+    //Método Ativa
+    function altEstado()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+        
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("UPDATE TBADMIN SET ESTADO = :ESTADO WHERE IDADMIN = :IDADMIN");
+        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        $cmd->bindParam(":ESTADO",     $this->ESTADO);
         
         //Executando o comando SQL
         try

@@ -161,7 +161,7 @@ class Admin
         }
     }
 
-    //Método Ativa
+    //Método altera status
     function altEstado()
     {
         //Conectando ao banco de dados

@@ -100,7 +100,7 @@
                                         </tfoot>
                                     </table>
                                     <div class="mt-3">
-                                    <textarea class="form-control" placeholder="Conteúdo do Atributo " onchange="updInputAtr()" data-idAtr="" id="inputDescAtr" name="inputDescAtr" rows="3" style="height:100%; resize:none;"></textarea>
+                                    <textarea class="form-control" placeholder="Conteúdo do Atributo " onblur="updInputAtr()" data-idAtr="" id="inputDescAtr" name="inputDescAtr" rows="3" style="height:100%; resize:none;"></textarea>
                                 </div>
                                 </div>  
                                 <?php 

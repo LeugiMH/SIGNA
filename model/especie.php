@@ -59,7 +59,8 @@ class Especie
         //Executando e retornando resultado
         try
         {
-            return $cmd->execute();
+            $cmd->execute();
+            return $con->lastInsertId();
         }
         catch (PDOException $e)
         {

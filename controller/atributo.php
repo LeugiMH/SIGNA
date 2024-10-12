@@ -6,21 +6,20 @@ class AtributoController
     //Cadastrar
     function cadastrarAtributo()
     {
-        $descricao =  $_POST["inputDescricao"];
+        $nome =  $_POST["inputNomeAtr"];
 
         //Cria objeto da classe espécie e define valores
         $cmd = new Atributo();
-        $cmd->DESCRICAO = $descricao;
+        $cmd->NOMEATRIBUTO = $nome;
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
+        if($cmd->cadastrar())  //Sucesso ao cadastrar atributo
         {
-            setcookie("msg","<div class='alert alert-success'>Assunto cadastrado com sucesso</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-success'>Atributo cadastrado com sucesso</div>",time() + 1,"/");
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar o assunto</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar o Atributo</div>",time() + 1,"/");
         }
-        header("location: ".URL."assuntos/cadastro");
     }
 
     //Consultar
@@ -37,6 +36,11 @@ class AtributoController
         $cmd = new Atributo();
         return $cmd->listar();
     }
+    function listarAtributos()
+    {
+        $cmd = new Atributo();
+        echo json_encode($cmd->listar());
+    }
 
     //Alterar
     function alterarAtributo()
@@ -50,7 +54,7 @@ class AtributoController
         $cmd->IDASSUNTO = $idAssunto;
         $cmd->DESCRICAO = $descricao;
 
-        if($cmd->alterar()) //Sucesso ao alterar assunto
+        if($cmd->alterar()) //Sucesso ao alterar atributo
         {
             header("location: ".URL."assuntos/lista");
         }
@@ -64,20 +68,19 @@ class AtributoController
     //Excluir
     function excluirAtributo($id)
     {
-        $idAssunto = $id;
+        $idAtr = $id;
 
         $cmd = new Atributo();
-        $cmd->IDASSUNTO = $idAssunto;
-
-        $especie = $cmd->buscar();
+        $cmd->IDATRIBUTO = $idAtr;
 
         if($cmd->excluir())
-        {}
+        {
+            return true;
+        }
         else
         {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.</div>",time() + 1,"/");
+            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a atributo, é possível que esse atributo possua alguma espécie relacionado.</div>",time() + 1,"/");
         }
-        header("location: ".URL."assuntos/lista");
     }
 }
 

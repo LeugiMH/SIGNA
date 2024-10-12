@@ -119,11 +119,24 @@ if($_GET)
         
         //ATRIBUTOS
         case "atributos":
-            switch(($url[1]))
+            switch($url[1])
             {   
+                case "listar":
+                    $route = new AtributoController();
+                    $route->ListarAtributos();
+                break;
                 case "cadastrar":
                     $route = new AtributoController();
                     $route->cadastrarAtributo();
+                break;
+                case "excluir":
+                    $route = new AtributoController();
+                    $route->excluirAtributo($url[2]);
+                break;
+                default:
+                // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
                 break;
             }
         break;

@@ -69,8 +69,8 @@
                                     <table id="lista" class="table table-striped text-center">
                                         <thead>
                                             <tr>
-                                                <th>IDATRIBUTO</th>
-                                                <th>NOMEATRIBUTO</th>
+                                                <th>ID</th>
+                                                <th>ATRIBUTO</th>
                                                 <th>AÇÕES</th>
                                             </tr>
                                         </thead>
@@ -83,8 +83,8 @@
                                                 <td>$atributo->IDATRIBUTO</td>
                                                 <td>$atributo->NOMEATRIBUTO</td>
                                                 <td>
-                                                <a href='".URL."atributos/altera/$atributo->IDATRIBUTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                                <a href='".URL."atributos/excluir/$atributo->NOMEATRIBUTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                                <a href='#'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                                <a href='#' onClick='excluirAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                                 </td>
                                             </tr>
                                             ";
@@ -93,13 +93,22 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>IDATRIBUTO</th>
-                                                <th>NOMEATRIBUTO</th>
+                                                <th>ID</th>
+                                                <th>ATRIBUTO</th>
                                                 <th>AÇÕES</th>
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <div class="mt-3">
+                                    <textarea class="form-control" placeholder="Conteúdo do Atributo " id="inputDescAtr" name="inputDescAtr" rows="3" style="height:100%; resize:none;"></textarea>
+                                </div>
                                 </div>  
+                                <?php 
+                                foreach($atributos as $atributo)
+                                {
+                                    //echo "<input type='text'> ";
+                                }
+                                ?>
                             </div>
                             <a href="<?php echo URL."especies/lista" ?>" class="btn btn-success" >Voltar</a>
                             <button type="submit" class="btn btn-success float-end"><?php echo $url[1] == 'cadastro'? 'Cadastrar':'Alterar';?></button>
@@ -115,27 +124,27 @@
     <div class="modal fade" id="CadAtributo" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-            <div class="modal-header">
-                <h1 class="modal-title fs-5">Cadastro de atributo</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <form action="<?php echo $url[1] == 'cadastro'? URL.'atributos/cadastrar':URL.'atributos/alterar';?>">
-                    
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5">Cadastro de atributo</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="d-flex">
+                        <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
+                        <button onClick="cadastrarAtr()" class="btn btn-success float-end ms-3">Cadastrar</button>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
             </div>
         </div>
     </div>
     <?php include_once "resource/plugins.php";?>
     <?php include_once "resource/pluginsDataTables.php";?>
     
-    <!-- SCRIPT PARA MOSTRAR A FOTO ENVIADA EM TEMPO REAL-->
     <script>
+        //SCRIPT PARA MOSTRAR A FOTO ENVIADA EM TEMPO REAL
         inputImagem.onchange = evt => {
             var [file] = inputImagem.files
             if (file && $("#inputImagem").val() != "") {
@@ -146,6 +155,76 @@
             {
                 imagem.src = "recursos/img/imagem_exemplo.jpg";
             }
+        }
+    </script>
+    <script>
+        //Script de inicialização personalizado da tabela
+        table = $('#lista').DataTable({
+            responsive: true,
+            language: {
+                url: "<?php echo URL.'resource/json/pt_br.json';?>"
+            },
+            pageLength: 3,
+            lengthChange: false
+        });        
+    </script>
+    <script>
+
+        function atualizaListaAtr()
+        {
+            table = $('#lista').DataTable();
+
+            table.clear().draw();
+
+            //Consulta a tabela novamente
+            $.ajax({
+                url: '<?php echo URL;?>atributos/listar/',
+                dataType: "JSON",
+                success: function(result){
+                    $(result).each(function (index, data)
+                    {
+                        table.row.add([
+                            data.IDATRIBUTO,
+                            data.NOMEATRIBUTO,
+                            `<a href='#'><img src='<?php echo URL.'resource/imagens/icons/caneta-de-pena.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
+                        ]).draw();
+                    });
+                },
+            });
+        }
+
+        //Cadastrar atributo 
+        function cadastrarAtr()
+        {
+            $.ajax({
+                // Cadastra o novo atributo
+                url: '<?php echo URL;?>atributos/cadastrar/',
+                type: 'POST',
+                data: {inputNomeAtr: $("input#inputNomeAtr").val()},
+                success: function(){
+                    atualizaListaAtr(); // atualiza a lista
+                    $('input#inputNomeAtr').val(""); //Limpa o valor do campo 
+                    },
+                error: function(){
+                    alert("Erro ao cadastrar atributo");
+                }
+            });
+        }
+    </script>
+    <script>
+        //Excluir atributo
+        function excluirAtr(id)
+        {
+            $.ajax({
+                //exclui atributo
+                url: '<?php echo URL;?>atributos/excluir/'+id,
+                success: function(msg){
+                    atualizaListaAtr();
+                    },
+                error: function(msg){
+                    alert("Erro ao excluir atributo");
+                }
+            });
         }
     </script>
 </body>

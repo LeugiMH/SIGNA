@@ -3,7 +3,7 @@ class Atributo
 {
     private $IDATRIBUTO;
     private $NOMEATRIBUTO;
-
+    private $request;
 
     //Método get
     function __get($atributo)

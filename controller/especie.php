@@ -12,6 +12,7 @@ class EspecieController
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
+        $atributos = $_POST["atributo"];
 
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
@@ -49,13 +50,28 @@ class EspecieController
             $cmd->IMAGEM = $novoNome;
         }
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar espécie
+        $lastId = $cmd->cadastrar();
+        if($lastId)  //Sucesso ao cadastrar espécie
         {
             setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>",time() + 1,"/");
 
             //Mover imagem para pastas no servidor
             $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+
+            //Cadastra os atributos
+            foreach ($atributos as $atrId=>$atrDesc)
+            {
+                if(!empty($atrDesc))
+                {
+                    $atr = new Especie();
+                    $atr->IDESPECIE = $lastId;
+                    $atr->IDATRIBUTO = $atrId;
+                    $atr->DESCRICAO = $atrDesc;
+
+                    $atr->associarAtributo();
+                }
+            }
         }
         else
         {

@@ -11,6 +11,9 @@ class Especie
     private $DESCRICAOIMG;
     private $DATACAD;
     private $IDCADADM;
+    //Atributo
+    private $IDATRIBUTO;
+    private $DESCRICAO;
 
     //Método get
     function __get($atributo)
@@ -63,6 +66,34 @@ class Especie
             return false;
         }
         
+    }
+
+    //Método associar atributo
+    function associarAtributo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("INSERT INTO TBATRI_ESPECIE (IDESPECIE,IDATRIBUTO,DESCRICAO) 
+                                            VALUES (:IDESPECIE,:IDATRIBUTO,:DESCRICAO)");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDESPECIE",     $this->IDESPECIE);
+        $cmd->bindParam(":IDATRIBUTO",     $this->IDATRIBUTO);
+        $cmd->bindParam(":DESCRICAO",     $this->DESCRICAO);
+
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+                
     }
 
     //Método Consultar

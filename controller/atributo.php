@@ -14,20 +14,12 @@ class AtributoController
 
         if($cmd->cadastrar())  //Sucesso ao cadastrar atributo
         {
-            setcookie("msg","<div class='alert alert-success'>Atributo cadastrado com sucesso</div>",time() + 1,"/");
+            echo true;
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar o Atributo</div>",time() + 1,"/");
+            echo false;
         }
-    }
-
-    //Consultar
-    function buscar($id)
-    {
-        $assunto = new Atributo();
-        $assunto->IDASSUNTO = $id;
-        return $assunto->buscar();
     }
 
     //Listar
@@ -42,29 +34,6 @@ class AtributoController
         echo json_encode($cmd->listar());
     }
 
-    //Alterar
-    function alterarAtributo()
-    {
-        $idAssunto =  $_POST["inputId"];
-        $descricao =  $_POST["inputDescricao"];
-
-        
-        //Cria objeto da classe espécie e define valores        
-        $cmd = new Atributo();
-        $cmd->IDASSUNTO = $idAssunto;
-        $cmd->DESCRICAO = $descricao;
-
-        if($cmd->alterar()) //Sucesso ao alterar atributo
-        {
-            header("location: ".URL."assuntos/lista");
-        }
-        else
-        {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar assunto</div>",time() + 1,"/");
-            header("location: ".URL."assuntos/altera/$idEspecie");
-        }
-    }
-
     //Excluir
     function excluirAtributo($id)
     {
@@ -75,11 +44,11 @@ class AtributoController
 
         if($cmd->excluir())
         {
-            return true;
+            echo true;
         }
         else
         {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a atributo, é possível que esse atributo possua alguma espécie relacionado.</div>",time() + 1,"/");
+            echo false;
         }
     }
 }

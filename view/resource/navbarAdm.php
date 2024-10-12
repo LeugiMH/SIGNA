@@ -11,9 +11,6 @@
                     <a class="nav-link" href="<?php echo URL.'especies/lista';?>">Espécies</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Atributos</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="<?php echo URL.'admins/lista';?>">Admins</a>
                 </li>
                 <li class="nav-item">

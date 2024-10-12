@@ -38,10 +38,10 @@
                                         <textarea class="form-control" placeholder="Habitat Natural" id="inputHabitat" name="inputHabitat" rows="7" style="height:100%; resize:none;"><?php echo isset($especie)?$especie->HABITAT:'';?></textarea>
                                     </div>
                                     <div class="row">
-                                        <div class="col sm-6">
+                                        <div class="col-sm-6 mb-3 mb-sm-0">
                                             <input type="number" value="<?php echo isset($especie)?$especie->ALTURA:'';?>" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                         </div>
-                                        <div class="col sm-6">
+                                        <div class="col-sm-6">
                                             <input type="text" value="" placeholder="Estado de conservação" class="form-control" aria-label="Estado de conservação">
                                         </div>
                                     </div>
@@ -79,11 +79,11 @@
                                             foreach($atributos as $atributo)
                                             {
                                             echo "
-                                            <tr>    
+                                            <tr id='$atributo->IDATRIBUTO'>    
                                                 <td>$atributo->IDATRIBUTO</td>
                                                 <td>$atributo->NOMEATRIBUTO</td>
                                                 <td>
-                                                <a href='#'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                                <a href='#' onClick='addAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/botao-adicionar.png' style='width:25px;'></a><div class='vr mx-2'></div>
                                                 <a href='#' onClick='excluirAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                                 </td>
                                             </tr>
@@ -100,13 +100,13 @@
                                         </tfoot>
                                     </table>
                                     <div class="mt-3">
-                                    <textarea class="form-control" placeholder="Conteúdo do Atributo " id="inputDescAtr" name="inputDescAtr" rows="3" style="height:100%; resize:none;"></textarea>
+                                    <textarea class="form-control" placeholder="Conteúdo do Atributo " onchange="updInputAtr()" data-idAtr="" id="inputDescAtr" name="inputDescAtr" rows="3" style="height:100%; resize:none;"></textarea>
                                 </div>
                                 </div>  
                                 <?php 
                                 foreach($atributos as $atributo)
                                 {
-                                    //echo "<input type='text'> ";
+                                    echo "<input type='hidden' name='atributo[$atributo->IDATRIBUTO]' id='atributo[$atributo->IDATRIBUTO]' value=''>";
                                 }
                                 ?>
                             </div>
@@ -170,6 +170,7 @@
     </script>
     <script>
 
+        //Script para atualizar a lista de atributos
         function atualizaListaAtr()
         {
             table = $('#lista').DataTable();
@@ -186,12 +187,50 @@
                         table.row.add([
                             data.IDATRIBUTO,
                             data.NOMEATRIBUTO,
-                            `<a href='#'><img src='<?php echo URL.'resource/imagens/icons/caneta-de-pena.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
+                            `<a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
                         ]).draw();
                     });
                 },
             });
         }
+
+        //Coloca o valor do atributo textarea
+        function addAtr(idAtr)
+        {
+            input = $(`input#atributo\\[${idAtr}\\]`);
+            textArea = $('#inputDescAtr');
+            listItem = $(`tr#${idAtr}`);
+
+            //Define classe para melhor visualização
+            $('tr').removeClass('table-warning');
+            listItem.addClass("table-warning");
+
+            textArea.attr("data-idAtr",idAtr);
+            textArea.val(input.val());
+        }
+
+        //Atualiza input do atributo
+        function updInputAtr()
+        {
+            textArea = $('#inputDescAtr');
+            atrId = textArea.attr("data-idAtr");
+            listItem = $(`tr#${atrId}`);
+            
+            //Define classe para melhor visualização
+
+            input = $(`input#atributo\\[${atrId}\\]`);
+            
+            input.val(textArea.val());
+            if(input.val() != "")
+            {
+                listItem.addClass('table-success');
+            }
+            else
+            {
+                listItem.removeClass('table-success');
+            }
+        }
+
 
         //Cadastrar atributo 
         function cadastrarAtr()
@@ -210,8 +249,7 @@
                 }
             });
         }
-    </script>
-    <script>
+
         //Excluir atributo
         function excluirAtr(id)
         {

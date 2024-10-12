@@ -59,7 +59,7 @@
                                     </div>
                                 </div>
                                 <!--Lista de Atributos-->
-                                <div class="col-12 col-sm-4 mb-3 mb-sm-0">
+                                <div class="col-12 col-sm-4 mb-3 mb-sm-0" id="listaAtributos">
                                     <?php
                                         //Exibindo mensagem de erro
                                         if(isset($_COOKIE["msgLista"]))
@@ -130,8 +130,10 @@
                 </div>
                 <div class="modal-body">
                     <div class="d-flex">
-                        <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
-                        <button onClick="cadastrarAtr()" class="btn btn-success float-end ms-3">Cadastrar</button>
+                        <form id="cadAtr" class="d-flex w-100">
+                            <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
+                            <button onClick="cadastrarAtr()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
+                        </form>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -166,15 +168,16 @@
             },
             pageLength: 3,
             lengthChange: false
-        });        
+        });
     </script>
     <script>
 
         //Script para atualizar a lista de atributos
         function atualizaListaAtr()
         {
-            table = $('#lista').DataTable();
+            var table = $('#lista').DataTable();
 
+            //Limpa a tabela
             table.clear().draw();
 
             //Consulta a tabela novamente
@@ -184,12 +187,15 @@
                 success: function(result){
                     $(result).each(function (index, data)
                     {
-                        table.row.add([
+                        //Cria novas linhas
+                        let row = table.row.add(
+                            [
                             data.IDATRIBUTO,
                             data.NOMEATRIBUTO,
-                            `<a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
-                        ]).draw();
+                            `<a href='#' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
+                        ]).draw().node().id = data.IDATRIBUTO;
                     });
+                    //table.draw();
                 },
             });
         }
@@ -235,19 +241,28 @@
         //Cadastrar atributo 
         function cadastrarAtr()
         {
-            $.ajax({
-                // Cadastra o novo atributo
-                url: '<?php echo URL;?>atributos/cadastrar/',
-                type: 'POST',
-                data: {inputNomeAtr: $("input#inputNomeAtr").val()},
-                success: function(){
-                    atualizaListaAtr(); // atualiza a lista
-                    $('input#inputNomeAtr').val(""); //Limpa o valor do campo 
-                    },
-                error: function(){
-                    alert("Erro ao cadastrar atributo");
-                }
-            });
+            //Cancel form submit
+            cadAtrForm = $('form#cadAtr');
+            cadAtrForm.on('submit', () => {return false});
+
+            if($("input#inputNomeAtr").val() != "")
+            {
+                listaAtr = $('#listaAtributos');
+                $.ajax({
+                    // Cadastra o novo atributo
+                    url: '<?php echo URL;?>atributos/cadastrar/',
+                    type: 'POST',
+                    data: {inputNomeAtr: $("input#inputNomeAtr").val()},
+                    success: function(id){
+                        atualizaListaAtr(); // atualiza a lista
+                        listaAtr.append(`<input type='hidden' name='atributo[${id}]' id='atributo[${id}]' value=''>`);//Adiciona o input atributo 
+                        $('input#inputNomeAtr').val(); //Limpa o valor do campo 
+                        },
+                    error: function(){
+                        alert("Erro ao cadastrar atributo");
+                    }
+                });
+            }
         }
 
         //Excluir atributo
@@ -256,10 +271,22 @@
             $.ajax({
                 //exclui atributo
                 url: '<?php echo URL;?>atributos/excluir/'+id,
+                type: 'GET',
                 success: function(msg){
-                    atualizaListaAtr();
-                    },
-                error: function(msg){
+                    if(msg == "true")
+                    {
+                        //Exclusão executada com sucesso
+                        atualizaListaAtr(); // atualiza a lista
+                        $(`input#atributo\\[${id}\\]`).remove();//Remove o input do atributo
+                    }
+                    else
+                    {
+                        //Exclusão executada com erro   
+                        alert("Erro ao excluir atributo! É possível que o atributo esteja relacionado com alguma espécie");
+                    }
+                    
+                },
+                error: function(){
                     alert("Erro ao excluir atributo");
                 }
             });

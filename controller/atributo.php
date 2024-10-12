@@ -12,9 +12,10 @@ class AtributoController
         $cmd = new Atributo();
         $cmd->NOMEATRIBUTO = $nome;
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar atributo
+        $lastId = $cmd->cadastrar();
+        if($lastId)  //Sucesso ao cadastrar atributo
         {
-            echo true;
+            echo $lastId;
         }
         else
         {
@@ -44,11 +45,11 @@ class AtributoController
 
         if($cmd->excluir())
         {
-            echo true;
+            echo "true";
         }
         else
         {
-            echo false;
+            echo "false";
         }
     }
 }

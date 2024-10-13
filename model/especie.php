@@ -69,6 +69,29 @@ class Especie
         
     }
 
+    //Método desassociar Atributos
+    function desAssociarAtributo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("DELETE FROM TBATRI_ESPECIE WHERE IDESPECIE = :IDESPECIE");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDESPECIE",     $this->IDESPECIE);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+    }
+
     //Método associar atributo
     function associarAtributo()
     {
@@ -176,7 +199,7 @@ class Especie
             return $cmd->execute();
         }
         catch (PDOException $e)
-        {            
+        {
             return false;
         }
     }

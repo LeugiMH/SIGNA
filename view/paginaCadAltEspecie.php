@@ -78,7 +78,7 @@
                                             <?php
                                             foreach($atributos as $atributo)
                                             {
-                                            echo isset($atributo->DESCRICAO) ? "<tr id='$atributo->IDATRIBUTO>' class='table-success'>" : "<tr id='$atributo->IDATRIBUTO'>";
+                                            echo isset($atributo->DESCRICAO) ? "<tr id='$atributo->IDATRIBUTO' class='table-success'>" : "<tr id='$atributo->IDATRIBUTO'>";
                                                 echo "
                                                 <td>$atributo->IDATRIBUTO</td>
                                                 <td>$atributo->NOMEATRIBUTO</td>
@@ -195,7 +195,14 @@
                                 data.IDATRIBUTO,
                                 data.NOMEATRIBUTO,
                                 `<a href='#' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
-                            ]).draw(false).node().id = data.IDATRIBUTO; // Definindo ID da linha
+                            ]);
+                            row.draw().node().id = data.IDATRIBUTO; // Definindo ID da linha
+
+                            //Caso o atributo tenha valor 
+                            if($(`input#atributo\\[${data.IDATRIBUTO}\\]`).val() != "")
+                            {
+                                $(row.node()).addClass('table-success'); //Define cor 
+                            }
                     });
                 }
             });
@@ -223,7 +230,7 @@
         function updInputAtr()
         {
             textArea = $('#inputDescAtr');
-            atrId = textArea.attr("data-idAtr");
+            atrId = textArea.attr("data-idAtr");   
             listItem = $(`tr#${atrId}`);
             
             //Define classe para melhor visualização

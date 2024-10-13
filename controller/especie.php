@@ -60,15 +60,14 @@ class EspecieController
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
 
             //Cadastra os atributos
+            $atr = new Especie();
+            $atr->IDESPECIE = $lastId;
             foreach ($atributos as $atrId=>$atrDesc)
             {
                 if(!empty($atrDesc))
                 {
-                    $atr = new Especie();
-                    $atr->IDESPECIE = $lastId;
                     $atr->IDATRIBUTO = $atrId;
                     $atr->DESCRICAO = $atrDesc;
-
                     $atr->associarAtributo();
                 }
             }
@@ -105,6 +104,7 @@ class EspecieController
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
+        $atributos = $_POST["atributo"];
         
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
@@ -161,6 +161,20 @@ class EspecieController
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
 
             header("location: ".URL."especies/lista");
+
+            //Atualiza os atributos
+            $atr = new Especie();
+            $atr->IDESPECIE = $idEspecie;
+            $atr->desAssociarAtributo();
+            foreach ($atributos as $atrId=>$atrDesc)
+            {
+                if(!empty($atrDesc))
+                {
+                    $atr->IDATRIBUTO = $atrId;
+                    $atr->DESCRICAO = $atrDesc;
+                    $atr->associarAtributo();
+                }
+            }
         }
         else
         {

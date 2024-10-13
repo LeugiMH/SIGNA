@@ -167,7 +167,8 @@
                 url: "<?php echo URL.'resource/json/pt_br.json';?>"
             },
             pageLength: 4,
-            lengthChange: false
+            lengthChange: false,
+            deferRender: false
         });
     </script>
     <script>
@@ -194,8 +195,7 @@
                                 data.IDATRIBUTO,
                                 data.NOMEATRIBUTO,
                                 `<a href='#' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
-                            ]).draw();
-                        $(row.node()).attr("id",data.IDATRIBUTO);// Definindo ID da linha
+                            ]).draw(false).node().id = data.IDATRIBUTO; // Definindo ID da linha
                     });
                 }
             });

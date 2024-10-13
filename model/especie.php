@@ -151,6 +151,21 @@ class Especie
         return $cmd->fetch(PDO::FETCH_OBJ);
     }
 
+    function buscarAtrAssoc()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT NOMEATRIBUTO,DESCRICAO FROM TBATRI_ESPECIE ASS JOIN TBATRIBUTO ART ON ART.IDATRIBUTO = ASS.IDATRIBUTO WHERE IDESPECIE = :IDESPECIE");
+        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
+    }
+
     //Método Alterar
     function alterar()
     {

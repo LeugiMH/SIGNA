@@ -87,6 +87,13 @@ class EspecieController
         return $especie->buscar();
     }
 
+    function buscarAtrAssoc($id)
+    {
+        $atributos = new Especie();
+        $atributos->IDESPECIE = $id;
+        return $atributos->buscarAtrAssoc();
+    }
+
     //Listar
     function listar()
     {

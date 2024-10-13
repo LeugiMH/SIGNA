@@ -54,6 +54,8 @@ class Route
     {
         $planta = new EspecimeController();
         $planta = $planta->buscarTudo($id);
+        $atributos = new EspecieController();
+        $atributos = $atributos->buscarAtrAssoc($id);
         include_once "view/paginaExibePlanta.php";
     }
     

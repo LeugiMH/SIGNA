@@ -199,7 +199,7 @@ class EspecieController
         }
         else
         {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime ou atributo relacionado.</div>",time() + 1,"/");
+            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime relacionado.</div>",time() + 1,"/");
         }
         header("location: ".URL."especies/lista");
     }

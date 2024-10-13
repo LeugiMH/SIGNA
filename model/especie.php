@@ -190,16 +190,32 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("delete FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
-        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+        $con->beginTransaction();
+
+        $cmd1 = $con->prepare("DELETE FROM TBATRI_ESPECIE WHERE IDESPECIE = :IDESPECIE");
+        $cmd1->bindParam(":IDESPECIE", $this->IDESPECIE);
+
+        $cmd2 = $con->prepare("DELETE FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
+        $cmd2->bindParam(":IDESPECIE", $this->IDESPECIE);
         
         //Executando o comando SQL
         try
         {
-            return $cmd->execute();
+            $cmd1->execute();
+            $cmd2->execute();
+
+            //Confirma a transação caso positivo
+            $con->commit();
+
+            return true;
         }
         catch (PDOException $e)
         {
+            setcookie("msgLista","<div class='alert alert-danger'>$e</div><div class='alert alert-danger'>$e</div>",time() + 1,"/");
+
+            //Reverte a transação caso erro 
+            $con->rollBack();
+
             return false;
         }
     }

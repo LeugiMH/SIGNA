@@ -123,7 +123,7 @@ if($_GET)
             {   
                 case "listar":
                     $route = new AtributoController();
-                    $route->ListarAtributos();
+                    $route->listarJSON($url[2]);
                 break;
                 case "cadastrar":
                     $route = new AtributoController();

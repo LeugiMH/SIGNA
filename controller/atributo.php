@@ -24,14 +24,16 @@ class AtributoController
     }
 
     //Listar
-    function listar()
+    function listar($id = null)
     {
         $cmd = new Atributo();
+        $cmd->IDESPECIE = $id;
         return $cmd->listar();
     }
-    function listarAtributos()
+    function listarJSON($id = null)
     {
         $cmd = new Atributo();
+        $cmd->IDESPECIE = $id;
         echo json_encode($cmd->listar());
     }
 

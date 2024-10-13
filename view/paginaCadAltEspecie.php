@@ -78,8 +78,8 @@
                                             <?php
                                             foreach($atributos as $atributo)
                                             {
-                                            echo "
-                                            <tr id='$atributo->IDATRIBUTO'>    
+                                            echo isset($atributo->DESCRICAO) ? "<tr id='$atributo->IDATRIBUTO>' class='table-success'>" : "<tr id='$atributo->IDATRIBUTO'>";
+                                                echo "
                                                 <td>$atributo->IDATRIBUTO</td>
                                                 <td>$atributo->NOMEATRIBUTO</td>
                                                 <td>
@@ -106,7 +106,7 @@
                                 <?php 
                                 foreach($atributos as $atributo)
                                 {
-                                    echo "<input type='hidden' name='atributo[$atributo->IDATRIBUTO]' id='atributo[$atributo->IDATRIBUTO]' value=''>";
+                                    echo "<input type='hidden' name='atributo[$atributo->IDATRIBUTO]' id='atributo[$atributo->IDATRIBUTO]' value='"; echo isset($atributo->DESCRICAO) ? $atributo->DESCRICAO : ''; echo"'>";
                                 }
                                 ?>
                             </div>
@@ -166,7 +166,7 @@
             language: {
                 url: "<?php echo URL.'resource/json/pt_br.json';?>"
             },
-            pageLength: 3,
+            pageLength: 4,
             lengthChange: false
         });
     </script>
@@ -175,28 +175,29 @@
         //Script para atualizar a lista de atributos
         function atualizaListaAtr()
         {
-            var table = $('#lista').DataTable();
+            table = $('#lista').DataTable();
 
             //Limpa a tabela
             table.clear().draw();
 
             //Consulta a tabela novamente
             $.ajax({
-                url: '<?php echo URL;?>atributos/listar/',
+                url: "<?php echo URL."atributos/listar/"; echo isset($especie) ? $especie->IDESPECIE : '';?>",
+                type: "POST",
                 dataType: "JSON",
                 success: function(result){
                     $(result).each(function (index, data)
                     {
                         //Cria novas linhas
-                        let row = table.row.add(
+                        row = table.row.add(
                             [
-                            data.IDATRIBUTO,
-                            data.NOMEATRIBUTO,
-                            `<a href='#' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
-                        ]).draw().node().id = data.IDATRIBUTO;
+                                data.IDATRIBUTO,
+                                data.NOMEATRIBUTO,
+                                `<a href='#' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
+                            ]).draw();
+                        $(row.node()).attr("id",data.IDATRIBUTO);// Definindo ID da linha
                     });
-                    //table.draw();
-                },
+                }
             });
         }
 
@@ -207,11 +208,14 @@
             textArea = $('#inputDescAtr');
             listItem = $(`tr#${idAtr}`);
 
-            //Define classe para melhor visualização
+            //Define classe 'table-warning' para melhor visualização do atributo em edição
             $('tr').removeClass('table-warning');
             listItem.addClass("table-warning");
 
+            //define atributo data-idAtr com o id do atributo em execução
             textArea.attr("data-idAtr",idAtr);
+
+            //Define valor do textarea = valor do input de mesmo id do textarea
             textArea.val(input.val());
         }
 
@@ -226,7 +230,10 @@
 
             input = $(`input#atributo\\[${atrId}\\]`);
             
+            //Define valor do input com id do textarea = valor do text area
             input.val(textArea.val());
+
+            //Caso valor do input seja diferente de vazio, define class 'table-success', caso contrário remove 'table-success'
             if(input.val() != "")
             {
                 listItem.addClass('table-success');
@@ -244,19 +251,24 @@
             //Cancel form submit
             cadAtrForm = $('form#cadAtr');
             cadAtrForm.on('submit', () => {return false});
+            
+            //Input de cadastro de atributo
+            inputNomeAtr = $("input#inputNomeAtr");
 
-            if($("input#inputNomeAtr").val() != "")
+            //Se valor do input for diferente de vazio
+            if(inputNomeAtr.val() != "")
             {
+                //Div lista de atributos
                 listaAtr = $('#listaAtributos');
                 $.ajax({
                     // Cadastra o novo atributo
                     url: '<?php echo URL;?>atributos/cadastrar/',
                     type: 'POST',
-                    data: {inputNomeAtr: $("input#inputNomeAtr").val()},
+                    data: {inputNomeAtr: inputNomeAtr.val()}, //Envia valor do input para cadastro
                     success: function(id){
-                        atualizaListaAtr(); // atualiza a lista
-                        listaAtr.append(`<input type='hidden' name='atributo[${id}]' id='atributo[${id}]' value=''>`);//Adiciona o input atributo 
-                        $('input#inputNomeAtr').val(); //Limpa o valor do campo 
+                        atualizaListaAtr(); //Atualiza a lista
+                        listaAtr.append(`<input type='hidden' name='atributo[${id}]' id='atributo[${id}]' value=''>`); //Adiciona o input atributo 
+                        inputNomeAtr.val(''); //Limpa o valor do input 
                         },
                     error: function(){
                         alert("Erro ao cadastrar atributo");
@@ -269,14 +281,14 @@
         function excluirAtr(id)
         {
             $.ajax({
-                //exclui atributo
+                //Exclui atributo
                 url: '<?php echo URL;?>atributos/excluir/'+id,
                 type: 'GET',
                 success: function(msg){
                     if(msg == "true")
                     {
                         //Exclusão executada com sucesso
-                        atualizaListaAtr(); // atualiza a lista
+                        atualizaListaAtr(); // Atualiza a lista
                         $(`input#atributo\\[${id}\\]`).remove();//Remove o input do atributo
                     }
                     else

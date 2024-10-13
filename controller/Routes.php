@@ -84,7 +84,7 @@ class Route
         $especie = new EspecieController();
         $especie = $especie->buscar($id);
         $atributos = new AtributoController();
-        $atributos = $atributos->listar();
+        $atributos = $atributos->listar($id);
         include_once "view/paginaCadAltEspecie.php";
     }
 

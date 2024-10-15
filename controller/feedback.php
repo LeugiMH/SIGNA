@@ -65,7 +65,7 @@ class FeedbackController
     }
 
     //Alterar
-    function responderFeedback()
+    function enviarRespostaAdmin()
     {
         $idFeedback = $_POST["inputIdFeedback"];
         $email =  $_POST["inputEmail"];

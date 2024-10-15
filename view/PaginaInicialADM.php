@@ -76,8 +76,8 @@
                 <h3>Feedbacks enviados</h3>
                     <?php
                         //Exibindo mensagem de erro
-                        if(isset($_COOKIE["msgF"]))
-                        {echo $_COOKIE["msgF"];}
+                        if(isset($_COOKIE["msgFeedback"]))
+                        {echo $_COOKIE["msgFeedback"];}
                     ?>
                     <table id="listaFeedback" class="table table-striped text-center">
                         <thead>
@@ -87,42 +87,48 @@
                                 <th>Assunto</th>
                                 <th>Feedback</th>
                                 <th>Email</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
-                        <!--<tbody>
-                            <?php
-                            /*foreach($feedbacks as $feedback)
-                            {
-                            echo "
-                            <tr>
-                                <td>$feedback->IDFEEDBACK</td>
-                                <td>$feedback->AVALIACAO</td>
-                                <td>$feedback->IDASSUNTO</td>
-                                <td>$feedback->TEXTO</td>
-                                <td>$feedback->EMAIL</td>
-                            
-                            </tr>
-                            ";
-                            }*/
-                            ?>
-                        </tbody>-->
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>3</td>
-                                <td>Planta Inexistente</td>
-                                <td>O mapa informa que temos um pé de amora, mas não existe essa planta no local.</td>
-                                <td>aluno@email.com</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>5</td>
-                                <td>Outros</td>
-                                <td>Gostei muito do site.</td>
-                                <td></td>
-                            </tr>
+                            <?php
+                            foreach($feedbacks as $feedback)
+                            {
+                                echo "
+                                <tr>
+                                    <td>$feedback->IDFEEDBACK</td>
+                                    <td>$feedback->AVALIACAO</td>
+                                    <td>$feedback->IDASSUNTO</td>
+                                    <td>$feedback->TEXTO</td>
+                                    <td>$feedback->EMAIL</td>
+                                ";
+                                if($feedback->IDADMIN == NULL){
+                                    echo "
+                                        <td>
+                                            <a href='#'onClick='respondeFeedback($feedback->IDFEEDBACK)'>
+                                                <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
+                                                <div class='vr mx-2'></div>
+                                                <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    ";
+                                }
+                                else{
+                                    echo "
+                                        <td>
+                                            <a href='#'onClick='veResposta($feedback->IDFEEDBACK)'>
+                                            <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
+                                            <div class='vr mx-2'></div>
+                                            <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    ";
+                                }
+                            }
+                            ?>
                         </tbody>
-
                         <tfoot>
                             <tr>
                                 <th>ID</th>
@@ -130,6 +136,7 @@
                                 <th>Assunto</th>
                                 <th>Feedback</th>
                                 <th>Email</th>
+                                <th>Ações</th>
                             </tr>
                         </tfoot>
                     </table>
@@ -139,6 +146,10 @@
         <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
+
+    <script>
+
+    </script>
     <script>
         //Exibir Mapa
         // initialize the map on the "map" div with a given center and zoom

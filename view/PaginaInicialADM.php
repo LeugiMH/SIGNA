@@ -35,21 +35,21 @@
             <!-- Feedbacks -->
             <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
             <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative">
-                <h2 class="text-center mb-3">Feedbacks</h2>
-                <div class="col-lg-3 me-3" style="z-index: 2;">
-                    <h3>ASSUNTOS</h3>
+                <h1 class="text-center mb-5">Feedbacks</h2>
+                <div class="col-lg-4 me-3" style="z-index: 2;">
+                    <h3>Assuntos de Feedback</h3>
                     <?php
                         //Exibindo mensagem de erro
                         if(isset($_COOKIE["msgLista"]))
                         {echo $_COOKIE["msgLista"];}
                     ?>
-                    <a href="<?php echo URL.'assuntos/cadastro';?>" class="btn btn-warning">Cadastrar</a>
+                    
                     <table id="listaAssunto" class="table table-striped text-center">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>DESCRIÇÃO</th>
-                                <th>AÇÕES</th>
+                                <th>Descrição</th>
+                                <th>Ações</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -69,17 +69,11 @@
                             }
                             ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>DESCRIÇÃO</th>
-                                <th>AÇÕES</th>
-                            </tr>
-                        </tfoot>
                     </table>
+                    <a href="<?php echo URL.'assuntos/cadastro';?>" class="btn btn-warning">Cadastrar</a>
                 </div>
-                <div class="col-lg-6" style="z-index: 2; background-color: red;">
-                <h3>aaa</h3>
+                <div class="col-lg-7" style="z-index: 2;">
+                <h3>Feedbacks enviados</h3>
                     <?php
                         //Exibindo mensagem de erro
                         if(isset($_COOKIE["msgF"]))
@@ -89,10 +83,10 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>AVALIACAO</th>
-                                <th>ASSUNTO</th>
-                                <th>TEXTO</th>
-                                <th>EMAIL</th>
+                                <th>Avaliação</th>
+                                <th>Assunto</th>
+                                <th>Feedback</th>
+                                <th>Email</th>
                             </tr>
                         </thead>
                         <!--<tbody>
@@ -131,11 +125,11 @@
 
                         <tfoot>
                             <tr>
-                            <th>ID</th>
-                                <th>AVALIACAO</th>
-                                <th>ASSUNTO</th>
-                                <th>TEXTO</th>
-                                <th>EMAIL</th>
+                                <th>ID</th>
+                                <th>Avaliação</th>
+                                <th>Assunto</th>
+                                <th>Feedback</th>
+                                <th>Email</th>
                             </tr>
                         </tfoot>
                     </table>

@@ -61,7 +61,7 @@
                                 <td>$assunto->IDASSUNTO</td>
                                 <td>$assunto->DESCRICAO</td>
                                 <td>
-                                <a type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                <a href='#' data-bs-toggle='modal' data-bs-target='#CadAssuntos' onClick='altAssunto($assunto->IDASSUNTO)'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
                                 <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                 </td>
                             </tr>
@@ -70,7 +70,7 @@
                             ?>
                         </tbody>
                     </table>
-                    <a type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' class="btn btn-warning">Cadastrar</a>
+                    <a href='#' onClick='cadAssunto("assunto_<?php $assunto->IDASSUNTO ?>")' class='btn btn-warning'>Cadastrar</a>
                 </div>
                 <div class="col-lg-7" style="z-index: 2;">
                 <h3>Feedbacks enviados</h3>
@@ -95,7 +95,7 @@
                             foreach($feedbacks as $feedback)
                             {
                                 echo "
-                                <tr>
+                                <tr id='feedback_$feedback->IDFEEDBACK'>
                                     <td>$feedback->IDFEEDBACK</td>
                                     <td>$feedback->AVALIACAO</td>
                                     <td>$feedback->IDASSUNTO</td>
@@ -105,7 +105,7 @@
                                 if($feedback->IDADMIN == NULL){
                                     echo "
                                         <td>
-                                            <a type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'>
+                                            <a href='#' onClick='respondeFeedback('feedback_$feedback->IDFEEDBACK')'>
                                                 <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
@@ -117,7 +117,7 @@
                                 else{
                                     echo "
                                         <td>
-                                            <a type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'>
+                                            <a href='#' onClick='veFeedback('feedback_$feedback->IDFEEDBACK')'>
                                                 <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
@@ -153,7 +153,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="cadAtr">
+                        <form id="formAssunto">
                             <?php
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msgF"]))
@@ -170,7 +170,7 @@
                                 <input type="text" value="" class="form-control" id="inputDescricao" name="inputDescricao" aria-label="Id do Assunto" disabled>
                             </div>
                             
-                            <button onClick="cadastrarAssunto()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
+                            <button id="btnCadAssunto" onClick="alterarAssunto()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
                         </form>
                     </div>
                 </div>
@@ -187,7 +187,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex">
-                            <form id="cadAtr" class="d-flex w-100">
+                            <form id="formFeedback" class="d-flex w-100">
                                 <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
                                 <button onClick="cadastrarAtr()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
                             </form>
@@ -204,8 +204,149 @@
     <?php include_once "resource/plugins.php";?>
 
     <script>
+        //Script de inicialização personalizado da tabela
+        tableAssunto = $('#listaAssunto').DataTable({
+            responsive: true,
+            language: {
+                url: "<?php echo URL.'resource/json/pt_br.json';?>"
+            },
+            pageLength: 4,
+            lengthChange: false,
+            deferRender: false
+        });
 
+        tableFeedback = $('#listaFeedback').DataTable({
+            responsive: true,
+            language: {
+                url: "<?php echo URL.'resource/json/pt_br.json';?>"
+            },
+            pageLength: 4,
+            lengthChange: false,
+            deferRender: false
+        });
     </script>
+
+    <script>
+        //Coloca o valor do atributo textarea
+        function altAssunto(idAssunto)
+        {
+            $('inputIdAssunto').val(idAssunto);
+            //$('inputDescricao') //usa a funçao de buscar do php
+        }
+        function alterarAssunto(idAssunto)
+        {
+            IdAssunto = $('inputIdAssunto');
+            IdAssunto = $('inputDescricao');
+            btnAssunto = $('btnCadAssunto')
+            btnAssunto.on('submit', () => {return false});
+            
+
+            //Se valor do input for diferente de vazio
+            if(descAssunto.val() != "")
+            {
+                //Div lista de atributos
+                listaAtr = $('#listaAtributos');
+                $.ajax({
+                    // Cadastra o novo atributo
+                    url: '<?php echo URL;?>assuntos/cadastrar',
+                    type: 'POST',
+                    data: {IdAssunto: IdAssunto.val(),IdAssunto: IdAssunto.val()}, 
+                    success: function(id){
+                        alert("foi");
+                        },
+                    error: function(){
+                        alert("Erro ao cadastrar atributo");
+                    }
+                });
+            }
+        }
+
+        //Atualiza input do atributo
+        function updInputAtr()
+        {
+            textArea = $('#inputDescAtr');
+            atrId = textArea.attr("data-idAtr");   
+            listItem = $(`tr#${atrId}`);
+            
+            //Define classe para melhor visualização
+
+            input = $(`input#atributo\\[${atrId}\\]`);
+            
+            //Define valor do input com id do textarea = valor do text area
+            input.val(textArea.val());
+
+            //Caso valor do input seja diferente de vazio, define class 'table-success', caso contrário remove 'table-success'
+            if(input.val() != "")
+            {
+                listItem.addClass('table-success');
+            }
+            else
+            {
+                listItem.removeClass('table-success');
+            }
+        }
+
+
+        //Cadastrar atributo 
+        function cadastrarAtr()
+        {
+            //Cancel form submit
+            cadAtrForm = $('form#cadAtr');
+            cadAtrForm.on('submit', () => {return false});
+            
+            //Input de cadastro de atributo
+            inputNomeAtr = $("input#inputNomeAtr");
+
+            //Se valor do input for diferente de vazio
+            if(inputNomeAtr.val() != "")
+            {
+                //Div lista de atributos
+                listaAtr = $('#listaAtributos');
+                $.ajax({
+                    // Cadastra o novo atributo
+                    url: '<?php echo URL;?>atributos/cadastrar/',
+                    type: 'POST',
+                    data: {inputNomeAtr: inputNomeAtr.val()}, //Envia valor do input para cadastro
+                    success: function(id){
+                        atualizaListaAtr(); //Atualiza a lista
+                        listaAtr.append(`<input type='hidden' name='atributo[${id}]' id='atributo[${id}]' value=''>`); //Adiciona o input atributo 
+                        inputNomeAtr.val(''); //Limpa o valor do input 
+                        },
+                    error: function(){
+                        alert("Erro ao cadastrar atributo");
+                    }
+                });
+            }
+        }
+
+        //Excluir atributo
+        function excluirAtr(id)
+        {
+            $.ajax({
+                //Exclui atributo
+                url: '<?php echo URL;?>atributos/excluir/'+id,
+                type: 'GET',
+                success: function(msg){
+                    if(msg == "true")
+                    {
+                        //Exclusão executada com sucesso
+                        atualizaListaAtr(); // Atualiza a lista
+                        $(`input#atributo\\[${id}\\]`).remove();//Remove o input do atributo
+                    }
+                    else
+                    {
+                        //Exclusão executada com erro   
+                        alert("Erro ao excluir atributo! É possível que o atributo esteja relacionado com alguma espécie");
+                    }
+                    
+                },
+                error: function(){
+                    alert("Erro ao excluir atributo");
+                }
+            });
+        }
+    </script>
+
     <script>
         //Exibir Mapa
         // initialize the map on the "map" div with a given center and zoom

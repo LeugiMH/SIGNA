@@ -9,6 +9,7 @@
 <script>
     $(document).ready(function() {
         $('#lista').DataTable({
+            retrieve:true,
             responsive: true,
             language: {
                 url: "<?php echo URL.'resource/json/pt_br.json';?>"

@@ -11,6 +11,9 @@ class Especie
     private $DESCRICAOIMG;
     private $DATACAD;
     private $IDCADADM;
+    //Atributo
+    private $IDATRIBUTO;
+    private $DESCRICAO;
 
     //Método get
     function __get($atributo)
@@ -56,13 +59,65 @@ class Especie
         //Executando e retornando resultado
         try
         {
-            return $cmd->execute();
+            $cmd->execute();
+            return $con->lastInsertId();
         }
         catch (PDOException $e)
         {
             return false;
         }
         
+    }
+
+    //Método desassociar Atributos
+    function desAssociarAtributo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("DELETE FROM TBATRI_ESPECIE WHERE IDESPECIE = :IDESPECIE");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDESPECIE",     $this->IDESPECIE);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+    }
+
+    //Método associar atributo
+    function associarAtributo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("INSERT INTO TBATRI_ESPECIE (IDESPECIE,IDATRIBUTO,DESCRICAO) 
+                                            VALUES (:IDESPECIE,:IDATRIBUTO,:DESCRICAO)");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":IDESPECIE",     $this->IDESPECIE);
+        $cmd->bindParam(":IDATRIBUTO",     $this->IDATRIBUTO);
+        $cmd->bindParam(":DESCRICAO",     $this->DESCRICAO);
+
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            return false;
+        }
+                
     }
 
     //Método Consultar
@@ -94,6 +149,21 @@ class Especie
         $cmd->execute();
         
         return $cmd->fetch(PDO::FETCH_OBJ);
+    }
+
+    function buscarAtrAssoc()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT NOMEATRIBUTO,DESCRICAO FROM TBATRI_ESPECIE ASS JOIN TBATRIBUTO ART ON ART.IDATRIBUTO = ASS.IDATRIBUTO WHERE IDESPECIE = :IDESPECIE");
+        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
     }
 
     //Método Alterar
@@ -135,16 +205,32 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("delete FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
-        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
+        $con->beginTransaction();
+
+        $cmd1 = $con->prepare("DELETE FROM TBATRI_ESPECIE WHERE IDESPECIE = :IDESPECIE");
+        $cmd1->bindParam(":IDESPECIE", $this->IDESPECIE);
+
+        $cmd2 = $con->prepare("DELETE FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
+        $cmd2->bindParam(":IDESPECIE", $this->IDESPECIE);
         
         //Executando o comando SQL
         try
         {
-            return $cmd->execute();
+            $cmd1->execute();
+            $cmd2->execute();
+
+            //Confirma a transação caso positivo
+            $con->commit();
+
+            return true;
         }
         catch (PDOException $e)
-        {            
+        {
+            setcookie("msgLista","<div class='alert alert-danger'>$e</div><div class='alert alert-danger'>$e</div>",time() + 1,"/");
+
+            //Reverte a transação caso erro 
+            $con->rollBack();
+
             return false;
         }
     }

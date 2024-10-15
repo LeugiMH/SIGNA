@@ -57,7 +57,7 @@ class AssuntoController
         else
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar assunto</div>",time() + 1,"/");
-            header("location: ".URL."assuntos/altera/$idEspecie");
+            header("location: ".URL."assuntos/altera/$idAssunto");
         }
     }
 
@@ -68,8 +68,6 @@ class AssuntoController
 
         $cmd = new Assunto();
         $cmd->IDASSUNTO = $idAssunto;
-
-        $especie = $cmd->buscar();
 
         if($cmd->excluir())
         {}

@@ -64,6 +64,9 @@ src:
 *{
     font-family: "luciole" !important;
 }
+body{
+    padding-right: 0 !important;
+}
 .bg-verde
 {
     background-color: var(--verde);

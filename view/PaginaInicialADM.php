@@ -61,7 +61,7 @@
                                 <td>$assunto->IDASSUNTO</td>
                                 <td>$assunto->DESCRICAO</td>
                                 <td>
-                                <a href='".URL."assuntos/altera/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                <a type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
                                 <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                 </td>
                             </tr>
@@ -70,7 +70,7 @@
                             ?>
                         </tbody>
                     </table>
-                    <a href="<?php echo URL.'assuntos/cadastro';?>" class="btn btn-warning">Cadastrar</a>
+                    <a type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' class="btn btn-warning">Cadastrar</a>
                 </div>
                 <div class="col-lg-7" style="z-index: 2;">
                 <h3>Feedbacks enviados</h3>
@@ -105,7 +105,7 @@
                                 if($feedback->IDADMIN == NULL){
                                     echo "
                                         <td>
-                                            <a href='#'onClick='respondeFeedback($feedback->IDFEEDBACK)'>
+                                            <a type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'>
                                                 <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
@@ -117,10 +117,10 @@
                                 else{
                                     echo "
                                         <td>
-                                            <a href='#'onClick='veResposta($feedback->IDFEEDBACK)'>
-                                            <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
-                                            <div class='vr mx-2'></div>
-                                            <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
+                                            <a type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'>
+                                                <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
+                                                <div class='vr mx-2'></div>
+                                                <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
                                             </a>
                                         </td>
                                     </tr>
@@ -143,6 +143,62 @@
                 </div>
             </section>
         </div>
+
+        <!-- Modal Assuntos-->
+        <div class="modal fade" id="CadAssuntos" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content px-3">
+                    <div class="modal-header d-flex">
+                        <h1 class="modal-title fs-5">Atributo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cadAtr">
+                            <?php
+                                //Exibindo mensagem de erro
+                                if(isset($_COOKIE["msgF"]))
+                                {
+                                echo $_COOKIE['msgF'];
+                                }
+                            ?>
+                            <div class="mb-3">
+                                <label for="inputIdAssunto" class="form-label">Id do Assunto</label>
+                                <input type="text" value="" class="form-control" id="inputIdAssunto" name="inputIdAssunto" aria-label="Id do Assunto" disabled>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputDescricao" class="form-label">Id do Assunto</label>
+                                <input type="text" value="" class="form-control" id="inputDescricao" name="inputDescricao" aria-label="Id do Assunto" disabled>
+                            </div>
+                            
+                            <button onClick="cadastrarAssunto()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Feedbacks-->
+        <div class="modal fade" id="RespFeedback" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Resposta ao Feedback</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex">
+                            <form id="cadAtr" class="d-flex w-100">
+                                <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
+                                <button onClick="cadastrarAtr()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
@@ -164,7 +220,7 @@
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl = 'resource/ui/map/map.png'
+        var imageUrl = 'resource/ui/map/mapv1.png'
             imageBounds = [[-23.3357271, -46.7216205], [-23.3365669, -46.722789]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

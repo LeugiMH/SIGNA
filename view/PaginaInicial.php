@@ -51,7 +51,7 @@
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem
-        var imageUrl = 'resource/ui/map/map.png'
+        var imageUrl = 'resource/ui/map/mapv1.png'
             imageBounds = [[-23.3357271, -46.7216205], [-23.3365669, -46.722789]];
             L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

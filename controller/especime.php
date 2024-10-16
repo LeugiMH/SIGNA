@@ -21,7 +21,7 @@ class EspecimeController
         $cmd->DAP           = $DAP;
         $cmd->DATPLANT      = $inputDatPlant;
         $cmd->DESCRICAOIMG  = $ImgDesc;
-        $cmd->DATACAD       = date("d-m-Y h:i:s"); //Data atual de cadastro
+        $cmd->DATACAD       = date("d-m-Y H:i:s"); //Data atual de cadastro
         $cmd->IDCADADM      = $_SESSION["sessaoLogada"]->IDADMIN; //Id do administrador logado
         
         $novoNome = "";
@@ -81,10 +81,15 @@ class EspecimeController
     }
 
     //Listar
-    function listar()
+    function listarAdm()
     {
         $especimes = new Especime();
-        return $especimes->listar();
+        return $especimes->listarAdm();
+    }
+    function listarUsu()
+    {
+        $especimes = new Especime();
+        return $especimes->listarUsu();
     }
 
     //Alterar

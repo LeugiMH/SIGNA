@@ -3,8 +3,6 @@ session_start();
 
     //Import de controllers
     include_once "controller/routes.php";
-    include_once "controller/admin.php";
-
 
 //Definindo fuso horário default
 date_default_timezone_set("America/Sao_Paulo");
@@ -35,6 +33,46 @@ if($_GET)
         case "logar": 
             $route = new AdminController();
             $route->logar();
+        break;
+
+        // FUNÇÕES ADMIN
+        case "admins":
+            switch($url[1])
+            {
+                case "lista":
+                    $route = new Route();
+                    $route->abrirListaAdmin();
+                break;
+                case "cadastro":
+                    $route = new Route();
+                    $route->abrirCadastroAdmin();
+                break;
+                case "cadastrar":
+                    $route = new AdminController();
+                    $route->cadastrarAdmin();
+                break;
+                case "altera":
+                    $route = new Route();
+                    $route->abrirAlteraAdmin($url[2]);
+                break;
+                case "alterar":
+                    $route = new AdminController();
+                    $route->alterarAdmin();
+                break;
+                case "alterarEstado":
+                    $route = new AdminController();
+                    $route->alterarEstado($url[2]);
+                break;
+                case "excluir":
+                    $route = new AdminController();
+                    $route->excluirAdmin($url[2]);
+                break;
+                default:
+                    // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
         break;
 
         // FUNÇÕES ESPÉCIE
@@ -76,9 +114,33 @@ if($_GET)
         // PÁGINA DA PLANTA
         case "especime":
             $route = new Route();
-            $route->abrirExibirEspecime($url[1]);
+            $route->abrirExibirEspecime($url[1],$url[2]);
         break;
         
+        //ATRIBUTOS
+        case "atributos":
+            switch($url[1])
+            {   
+                case "listar":
+                    $route = new AtributoController();
+                    $route->listarJSON($url[2]);
+                break;
+                case "cadastrar":
+                    $route = new AtributoController();
+                    $route->cadastrarAtributo();
+                break;
+                case "excluir":
+                    $route = new AtributoController();
+                    $route->excluirAtributo($url[2]);
+                break;
+                default:
+                // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+        break;
+
         // FUNÇÕES ESPÉCIMES
         case "especimes":
             switch($url[1])
@@ -106,6 +168,8 @@ if($_GET)
                 break;
             }
         break;
+
+        // FUNÇÕES ASSUNTOS
         case "assuntos":
             switch($url[1])
             {

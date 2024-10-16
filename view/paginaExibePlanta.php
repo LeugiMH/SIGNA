@@ -17,28 +17,34 @@
                         <div class="row m-0 mb-md-3">
                             <div class="col-md-6 p-0 mb-3 mb-md-0">
                                 <figure class="figure imgview1">
-                                    <img src="<?php echo URL."resource/imagens/especies/$planta->IMGESPECIE";?>" aria-label="<?php echo "$planta->DESCESPECIE";?>" alt="<?php echo "$planta->DESCESPECIE";?>" class="w-100 rounded">
+                                    <img src="<?php echo isset($planta->IMGESPECIE) ? URL."resource/imagens/especies/$planta->IMGESPECIE" : URL."resource/sem_imagem.jpg";?>" aria-label="<?php echo "$planta->DESCESPECIE";?>" alt="<?php echo "$planta->DESCESPECIE";?>" class="w-100 rounded">
                                     <figcaption class="figure-caption text-white">Imagem de exemplo da espécie.</figcaption>
                                 </figure>
                                     
                             </div>
                             <div class="col-md-6 p-0">
-                                <p><strong><?php echo "Família:</strong> $planta->FAMILIA";?></p>
+                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> ".number_format($planta->DAP, 2, ',', '.');?></p>
                                 <hr>
-                                <p><strong><?php echo "Habitat natural:</strong> $planta->HABITAT";?></p>
-                                <hr>
-                                <p><strong><?php echo "Altura máxima:</strong> $planta->ALTURA";?></p>
+                                <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
                             </div>
                         </div>
                         <div class="row m-0">
                             <div class="col-md-6 p-0">
-                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> $planta->DAP";?></p>
+                                <p><strong><?php echo "Família:</strong> $planta->FAMILIA";?></p>
                                 <hr>
-                                <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
+                                <p><strong><?php echo "Habitat natural:</strong> $planta->HABITAT";?></p>
+                                <hr>
+                                <p><strong><?php echo "Altura máxima:</strong> ".number_format($planta->ALTURA, 2, ',', '.')." metro(s)";?></p>
+                                <?php
+                                    foreach ($atributos as $atributo)
+                                    {
+                                        echo "<hr><p><strong>$atributo->NOMEATRIBUTO:</strong> $atributo->DESCRICAO</p>";
+                                    }
+                                ?>
                             </div>
                             <div class="col-md-6 p-0">
                                 <figure class="figure imgview2">
-                                    <img src="<?php echo URL."resource/imagens/especimes/$planta->IMGESPECIME";?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" class=" w-100 figure-img img-fluid rounded" alt="<?php echo "$planta->DESCESPECIME";?>">
+                                    <img src="<?php echo isset($planta->IMGESPECIME) ? URL."resource/imagens/especimes/$planta->IMGESPECIME" : URL."resource/sem_imagem.jpg" ;?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" class=" w-100 figure-img img-fluid rounded" alt="<?php echo "$planta->DESCESPECIME";?>">
                                     <figcaption class="figure-caption text-end text-white">Imagem da planta na instituição.</figcaption>
                                 </figure>
                                 <!--<img src="<?php echo URL."resource/imagens/especimes/$planta->IMGESPECIME";?>" aria-label="<?php echo "$planta->DESCESPECIME";?>" alt="Imagem da espécie" class="w-100 rounded imgview2">-->

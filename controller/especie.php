@@ -12,6 +12,7 @@ class EspecieController
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
+        $atributos = $_POST["atributo"];
 
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
@@ -21,7 +22,7 @@ class EspecieController
         $cmd->HABITAT      = $habitat;
         $cmd->ALTURA       = $altura;
         $cmd->DESCRICAOIMG = $ImgDesc;
-        $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
+        $cmd->DATACAD      = date("d-m-Y H:i:s"); //Data atual de cadastro
         $cmd->IDCADADM     = $_SESSION["sessaoLogada"]->IDADMIN; //Id do administrador logado
         
         $novoNome = "";
@@ -49,13 +50,27 @@ class EspecieController
             $cmd->IMAGEM = $novoNome;
         }
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar espécie
+        $lastId = $cmd->cadastrar();
+        if($lastId)  //Sucesso ao cadastrar espécie
         {
             setcookie("msg","<div class='alert alert-success'>Espécie cadastrada com sucesso</div>",time() + 1,"/");
 
             //Mover imagem para pastas no servidor
             $pastaDestino = "resource/imagens/especies/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
+
+            //Cadastra os atributos
+            $atr = new Especie();
+            $atr->IDESPECIE = $lastId;
+            foreach ($atributos as $atrId=>$atrDesc)
+            {
+                if(!empty($atrDesc))
+                {
+                    $atr->IDATRIBUTO = $atrId;
+                    $atr->DESCRICAO = $atrDesc;
+                    $atr->associarAtributo();
+                }
+            }
         }
         else
         {
@@ -70,6 +85,13 @@ class EspecieController
         $especie = new Especie();
         $especie->IDESPECIE = $id;
         return $especie->buscar();
+    }
+
+    function buscarAtrAssoc($id)
+    {
+        $atributos = new Especie();
+        $atributos->IDESPECIE = $id;
+        return $atributos->buscarAtrAssoc();
     }
 
     //Listar
@@ -89,6 +111,7 @@ class EspecieController
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
+        $atributos = $_POST["atributo"];
         
         //Cria objeto da classe espécie e define valores
         $cmd = new Especie();
@@ -145,6 +168,20 @@ class EspecieController
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
 
             header("location: ".URL."especies/lista");
+
+            //Atualiza os atributos
+            $atr = new Especie();
+            $atr->IDESPECIE = $idEspecie;
+            $atr->desAssociarAtributo();
+            foreach ($atributos as $atrId=>$atrDesc)
+            {
+                if(!empty($atrDesc))
+                {
+                    $atr->IDATRIBUTO = $atrId;
+                    $atr->DESCRICAO = $atrDesc;
+                    $atr->associarAtributo();
+                }
+            }
         }
         else
         {

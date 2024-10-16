@@ -22,7 +22,7 @@ class EspecieController
         $cmd->HABITAT      = $habitat;
         $cmd->ALTURA       = $altura;
         $cmd->DESCRICAOIMG = $ImgDesc;
-        $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
+        $cmd->DATACAD      = date("d-m-Y H:i:s"); //Data atual de cadastro
         $cmd->IDCADADM     = $_SESSION["sessaoLogada"]->IDADMIN; //Id do administrador logado
         
         $novoNome = "";

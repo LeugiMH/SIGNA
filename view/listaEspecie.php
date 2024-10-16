@@ -47,10 +47,10 @@
                                     <td>$especie->NOMEPOP</td>
                                     <td>$especie->FAMILIA</td>
                                     <td>$especie->HABITAT</td>
-                                    <td>$especie->ALTURA</td>
+                                    <td>".number_format($especie->ALTURA, 2, ',', '.')."</td>
                                     <td><img src='"; echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpg"; echo "' style='width:100px;'></td>
                                     <td>$especie->DESCRICAOIMG</td>
-                                    <td>$especie->DATACAD</td>                               
+                                    <td>".date("d/m/Y H:i",strtotime($especie->DATACAD))."</td>                               
                                     <td>$especie->NOME</td>
                                     <td>
                                     <a href='".URL."especies/altera/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>

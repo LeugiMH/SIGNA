@@ -7,20 +7,34 @@ class AssuntoController
     function cadastrarAssunto()
     {
         $descricao =  $_POST["inputDescricao"];
+        $id = $_POST["inputIdAssunto"];
 
-        //Cria objeto da classe espécie e define valores
         $cmd = new Assunto();
         $cmd->DESCRICAO = $descricao;
 
-        if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
-        {
-            setcookie("msg","<div class='alert alert-success'>Assunto cadastrado com sucesso</div>",time() + 1,"/");
+        if($_POST["inputIdAssunto"]){
+            $id = $_POST["inputIdAssunto"];
+            $cmd->IDASSUNTO = $id;
+            if($cmd->alterar()) //Sucesso ao alterar assunto
+            {
+                setcookie("msgAssunto","<script>alert('Assunto alterado com sucesso')</script>",time() + 1,"/");
+            }
+            else
+            {
+                setcookie("msgAssunto","<script>alert('Erro ao alterar assunto')</script>",time() + 1,"/");
+            }
+        }else{
+            if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
+            {
+                setcookie("msgAssunto","<script>alert('Assunto cadastrado com sucesso')</script>",time() + 1,"/");
+            }
+            else
+            {
+                setcookie("msgAssunto","<script>alert('Erro ao cadastrar o assunto')</script>",time() + 1,"/");
+            }
         }
-        else
-        {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar o assunto</div>",time() + 1,"/");
-        }
-        header("location: ".URL."assuntos/cadastro");
+        
+        header("location: ".URL."inicio#sectionFeedbacks");
     }
 
     //Consultar
@@ -38,29 +52,6 @@ class AssuntoController
         return $cmd->listar();
     }
 
-    //Alterar
-    function alterarAssunto()
-    {
-        $idAssunto =  $_POST["inputId"];
-        $descricao =  $_POST["inputDescricao"];
-
-        
-        //Cria objeto da classe espécie e define valores        
-        $cmd = new Assunto();
-        $cmd->IDASSUNTO = $idAssunto;
-        $cmd->DESCRICAO = $descricao;
-
-        if($cmd->alterar()) //Sucesso ao alterar assunto
-        {
-            header("location: ".URL."assuntos/lista");
-        }
-        else
-        {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao alterar assunto</div>",time() + 1,"/");
-            header("location: ".URL."assuntos/altera/$idAssunto");
-        }
-    }
-
     //Excluir
     function excluirAssunto($id)
     {
@@ -73,9 +64,9 @@ class AssuntoController
         {}
         else
         {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.</div>",time() + 1,"/");
+            setcookie("msgLista","<script>alert('Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.')</script>",time() + 1,"/");
         }
-        header("location: ".URL."assuntos/lista");
+        header("location: ".URL."inicio#sectionFeedbacks");
     }
 }
 

@@ -34,14 +34,14 @@
 
             <!-- Feedbacks -->
             <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
-            <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative">
+            <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative" id="sectionFeedbacks">
                 <h1 class="text-center mb-5">Feedbacks</h2>
                 <div class="col-lg-4 me-3" style="z-index: 2;">
                     <h3>Assuntos de Feedback</h3>
                     <?php
                         //Exibindo mensagem de erro
-                        if(isset($_COOKIE["msgLista"]))
-                        {echo $_COOKIE["msgLista"];}
+                        if(isset($_COOKIE["msgAssunto"]))
+                        {echo $_COOKIE["msgAssunto"];}
                     ?>
                     
                     <table id="listaAssunto" class="table table-striped text-center">
@@ -61,7 +61,7 @@
                                 <td>$assunto->IDASSUNTO</td>
                                 <td>$assunto->DESCRICAO</td>
                                 <td>
-                                <a href='#' data-bs-toggle='modal' data-bs-target='#CadAssuntos' onClick='altAssunto($assunto->IDASSUNTO)'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
+                                <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' data-title='Alterar Assunto' data-content='$assunto->DESCRICAO'data-selector='$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
                                 <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
                                 </td>
                             </tr>
@@ -70,10 +70,10 @@
                             ?>
                         </tbody>
                     </table>
-                    <a href='#' onClick='cadAssunto("assunto_<?php $assunto->IDASSUNTO ?>")' class='btn btn-warning'>Cadastrar</a>
+                    <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' data-title='Cadastrar Assunto' class='btn btn-warning'>Cadastrar</a>
                 </div>
                 <div class="col-lg-7" style="z-index: 2;">
-                <h3>Feedbacks enviados</h3>
+                    <h3>Feedbacks enviados</h3>
                     <?php
                         //Exibindo mensagem de erro
                         if(isset($_COOKIE["msgFeedback"]))
@@ -153,24 +153,18 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="formAssunto">
-                            <?php
-                                //Exibindo mensagem de erro
-                                if(isset($_COOKIE["msgF"]))
-                                {
-                                echo $_COOKIE['msgF'];
-                                }
-                            ?>
+                        <form id="formAssunto" action="<?php echo URL.'assuntos/cadastrar';?>" method="POST" enctype="multipart/form-data">
+                            
                             <div class="mb-3">
                                 <label for="inputIdAssunto" class="form-label">Id do Assunto</label>
-                                <input type="text" value="" class="form-control" id="inputIdAssunto" name="inputIdAssunto" aria-label="Id do Assunto" disabled>
+                                <input type="text" value="" class="form-control" id="inputIdAssunto" name="inputIdAssunto" aria-label="Id do Assunto" readonly="readonly">
                             </div>
                             <div class="mb-3">
-                                <label for="inputDescricao" class="form-label">Id do Assunto</label>
-                                <input type="text" value="" class="form-control" id="inputDescricao" name="inputDescricao" aria-label="Id do Assunto" disabled>
+                                <label for="inputDescricao" class="form-label">Assunto</label>
+                                <input type="text" value="" class="form-control" id="inputDescricao" name="inputDescricao" aria-label="Id do Assunto">
                             </div>
                             
-                            <button id="btnCadAssunto" onClick="alterarAssunto()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
+                            <button id="btnCadAssunto" type="submit" class="modal-title btn btn-success float-end ms-3">Cadastrar</button>
                         </form>
                     </div>
                 </div>
@@ -187,7 +181,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="d-flex">
-                            <form id="formFeedback" class="d-flex w-100">
+                            <form id="formFeedback" action="<?php echo URL."respFeedback"?>" method="post" class="mb-3 mt-3">
                                 <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
                                 <button onClick="cadastrarAtr()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
                             </form>
@@ -228,39 +222,26 @@
 
     <script>
         //Coloca o valor do atributo textarea
-        function altAssunto(idAssunto)
-        {
-            $('inputIdAssunto').val(idAssunto);
-            //$('inputDescricao') //usa a funçao de buscar do php
-        }
-        function alterarAssunto(idAssunto)
-        {
-            IdAssunto = $('inputIdAssunto');
-            IdAssunto = $('inputDescricao');
-            btnAssunto = $('btnCadAssunto')
-            btnAssunto.on('submit', () => {return false});
+        $('#CadAssuntos').on('show.bs.modal', function (event) {
             
+            var title = $(event.relatedTarget).data('title');
+            var assunto = $(event.relatedTarget).data('content');
+            var id = $(event.relatedTarget).data('selector');
+            $(this).find('.modal-title').html(title);
+            $(this).find('#inputIdAssunto').val(id);
+            $(this).find('#inputDescricao').val(assunto);
 
-            //Se valor do input for diferente de vazio
-            if(descAssunto.val() != "")
-            {
-                //Div lista de atributos
-                listaAtr = $('#listaAtributos');
-                $.ajax({
-                    // Cadastra o novo atributo
-                    url: '<?php echo URL;?>assuntos/cadastrar',
-                    type: 'POST',
-                    data: {IdAssunto: IdAssunto.val(),IdAssunto: IdAssunto.val()}, 
-                    success: function(id){
-                        alert("foi");
-                        },
-                    error: function(){
-                        alert("Erro ao cadastrar atributo");
-                    }
-                });
+            if (title.match(/^Cadastrar.*$/)) {
+                $(this).find('#inputIdAssunto').attr('disabled', 'disabled');
+                $(this).find('#inputIdAssunto').attr('hidden', 'hidden');
+                $(this).find('label[for="inputIdAssunto"]').attr('hidden', 'hidden');
+            }else{
+                $(this).find('#inputIdAssunto').removeAttr('disabled', 'disabled');
+                $(this).find('#inputIdAssunto').removeAttr('hidden', 'hidden');
+                $(this).find('label[for="inputIdAssunto"]').removeAttr('hidden', 'hidden');
             }
-        }
-
+        });
+        
         //Atualiza input do atributo
         function updInputAtr()
         {

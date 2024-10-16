@@ -32,6 +32,11 @@ if($_GET)
             $route->enviarFeedback();
         break;
 
+        case "respFeedback":
+            $route = new FeedbackController();
+            $route->enviarRespostaAdmin();
+        break;
+
         // LOGIN 
         case "login": 
             $route = new Route();

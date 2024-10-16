@@ -8,7 +8,7 @@ session_start();
 date_default_timezone_set("America/Sao_Paulo");
 
 //Definindo uma constante para a URL do site
-define("URL","http://localhost/SIGNA/");
+define("URL","http://192.168.68.110/SIGNA/");
 if($_GET)
 {
     //Pegando a URL e apagando a "/" no final dela.
@@ -114,7 +114,7 @@ if($_GET)
         // PÁGINA DA PLANTA
         case "especime":
             $route = new Route();
-            $route->abrirExibirEspecime($url[1]);
+            $route->abrirExibirEspecime($url[1],$url[2]);
         break;
         
         //ATRIBUTOS

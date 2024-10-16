@@ -88,7 +88,7 @@ class Feedback
 
         //Preparar comando SQL para retornar
         $cmd = $con->prepare("SELECT * FROM TBFEEDBACK WHERE IDFEEDBACK = :IDFEEDBACK");
-        $cmd->bindParam(":IDFEEDBACK", $this->IDESPECIE);
+        $cmd->bindParam(":IDFEEDBACK", $this->IDFEEDBACK);
 
         //Executando o comando SQL
         $cmd->execute();

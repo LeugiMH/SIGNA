@@ -36,6 +36,7 @@
             <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
             <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative" id="sectionFeedbacks">
                 <h1 class="text-center mb-5">Feedbacks</h2>
+                <!--Assuntos Lista-->
                 <div class="col-lg-4 me-3" style="z-index: 2;">
                     <h3>Assuntos de Feedback</h3>
                     <?php
@@ -72,10 +73,11 @@
                     </table>
                     <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' data-title='Cadastrar Assunto' class='btn btn-warning'>Cadastrar</a>
                 </div>
+
+                <!--Feedbacks Lista-->
                 <div class="col-lg-7" style="z-index: 2;">
                     <h3>Feedbacks enviados</h3>
                     <?php
-                        //Exibindo mensagem de erro
                         if(isset($_COOKIE["msgFeedback"]))
                         {echo $_COOKIE["msgFeedback"];}
                     ?>
@@ -105,7 +107,7 @@
                                 if($feedback->IDADMIN == NULL){
                                     echo "
                                         <td>
-                                            <a href='#' onClick='respondeFeedback('feedback_$feedback->IDFEEDBACK')'>
+                                            <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
                                                 <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
@@ -172,23 +174,48 @@
         </div>
 
         <!-- Modal Feedbacks-->
-        <div class="modal fade" id="RespFeedback" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
+        <div class="modal fade text-white " id="RespFeedback" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
+                <div class="modal-content bg-verde">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5">Resposta ao Feedback</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="d-flex">
-                            <form id="formFeedback" action="<?php echo URL."respFeedback"?>" method="post" class="mb-3 mt-3">
-                                <input type="text" name="inputNomeAtr" id="inputNomeAtr" placeholder="Tipo de Atributo" class="form-control" aria-label="Digite o tipo de atributo" maxlength="50" required>
-                                <button onClick="cadastrarAtr()" type="submit" class="btn btn-success float-end ms-3">Cadastrar</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                        <form id="formFeedback" action="" method="post" class="mb-3 mt-3">
+                            <div class="mb-3">
+                                <input type="text" value="" class="form-control" id="inputIdFeedback" name="inputIdFeedback" hidden>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputEmail" class="form-label">Endereço de Email</label>
+                                <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="rating" class="form-label">Avaliação</label>
+                                <div class="rating" aria-label="Avaliação" >
+                                    <img class="rating__star star-i star me-2" aria-label="1 estrela" ></img>
+                                    <img class="rating__star star-i star me-2" aria-label="2 estrelas"></img>
+                                    <img class="rating__star star-i star me-2" aria-label="3 estrelas"></img>
+                                    <img class="rating__star star-i star me-2" aria-label="4 estrelas"></img>
+                                    <img class="rating__star star-i star me-2" aria-label="5 estrelas"></img>
+                                </div>
+                                <input type="hidden" value="" class="form-control" id="rating" name="rating">
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputAssunto" class="form-label">Assunto</label>
+                                <input name="inputAssunto" id="inputAssunto" class="form-select" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputMessage" class="form-label">Mensagem</label>
+                                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5"  readonly></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputResposta" class="form-label">Resposta</label>
+                                <textarea class="form-control" name="inputResposta" id="inputResposta" rows="5"></textarea>
+                            </div>
+
+                            <button id="btnRespFeedback" type="submit" class="btn btn-success float-end ms-3">Responder</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -221,7 +248,23 @@
     </script>
 
     <script>
-        //Coloca o valor do atributo textarea
+        //Mostra estrelas
+        function executeRating(avaliacao) {
+            const starClassActive = "rating__star star-a star me-2";
+            const starClassInactive = "rating__star star-i star me-2";
+            const stars = [...document.getElementsByClassName("rating__star")];
+            const starsLength = stars.length;
+            let i=0;
+
+            stars.map((star) => {
+                document.getElementById("rating").value = stars.indexOf(star)+1;
+                for (i; i <= avaliacao-1; ++i) stars[i].className = starClassActive;
+            });
+        }
+    </script>
+
+    <script>
+        //Coloca valores dos data attributes nos inputs
         $('#CadAssuntos').on('show.bs.modal', function (event) {
             
             var title = $(event.relatedTarget).data('title');
@@ -241,92 +284,41 @@
                 $(this).find('label[for="inputIdAssunto"]').removeAttr('hidden', 'hidden');
             }
         });
-        
-        //Atualiza input do atributo
-        function updInputAtr()
-        {
-            textArea = $('#inputDescAtr');
-            atrId = textArea.attr("data-idAtr");   
-            listItem = $(`tr#${atrId}`);
-            
-            //Define classe para melhor visualização
 
-            input = $(`input#atributo\\[${atrId}\\]`);
-            
-            //Define valor do input com id do textarea = valor do text area
-            input.val(textArea.val());
+        //Modal de Feedbacks
+        $('#RespFeedback').on('show.bs.modal', function (event) {
+            var id = $(event.relatedTarget).data('selector');
+            var avaliacao = $(event.relatedTarget).data('content');
+            $(this).find('#inputIdFeedback').val(id);
+            console.log(id);
+            var url = '<?php echo URL."buscaFeedback/";?>';
+            var urlId = url + id
+            console.log(urlId);
 
-            //Caso valor do input seja diferente de vazio, define class 'table-success', caso contrário remove 'table-success'
-            if(input.val() != "")
-            {
-                listItem.addClass('table-success');
-            }
-            else
-            {
-                listItem.removeClass('table-success');
-            }
-        }
-
-
-        //Cadastrar atributo 
-        function cadastrarAtr()
-        {
-            //Cancel form submit
-            cadAtrForm = $('form#cadAtr');
-            cadAtrForm.on('submit', () => {return false});
-            
-            //Input de cadastro de atributo
-            inputNomeAtr = $("input#inputNomeAtr");
-
-            //Se valor do input for diferente de vazio
-            if(inputNomeAtr.val() != "")
-            {
-                //Div lista de atributos
-                listaAtr = $('#listaAtributos');
-                $.ajax({
-                    // Cadastra o novo atributo
-                    url: '<?php echo URL;?>atributos/cadastrar/',
-                    type: 'POST',
-                    data: {inputNomeAtr: inputNomeAtr.val()}, //Envia valor do input para cadastro
-                    success: function(id){
-                        atualizaListaAtr(); //Atualiza a lista
-                        listaAtr.append(`<input type='hidden' name='atributo[${id}]' id='atributo[${id}]' value=''>`); //Adiciona o input atributo 
-                        inputNomeAtr.val(''); //Limpa o valor do input 
-                        },
-                    error: function(){
-                        alert("Erro ao cadastrar atributo");
-                    }
-                });
-            }
-        }
-
-        //Excluir atributo
-        function excluirAtr(id)
-        {
+            executeRating(avaliacao);
             $.ajax({
-                //Exclui atributo
-                url: '<?php echo URL;?>atributos/excluir/'+id,
-                type: 'GET',
-                success: function(msg){
-                    if(msg == "true")
+                // Busca atributo
+                url: urlId,
+                type: 'POST',
+                dataType: "JSON",
+                success: function(result){
+                    $(result).each(function (index, data)
                     {
-                        //Exclusão executada com sucesso
-                        atualizaListaAtr(); // Atualiza a lista
-                        $(`input#atributo\\[${id}\\]`).remove();//Remove o input do atributo
-                    }
-                    else
-                    {
-                        //Exclusão executada com erro   
-                        alert("Erro ao excluir atributo! É possível que o atributo esteja relacionado com alguma espécie");
-                    }
-                    
-                },
-                error: function(){
-                    alert("Erro ao excluir atributo");
+                        email = data.EMAIL
+                        assunto = data.IDASSUNTO
+                        texto = data.TEXTO
+                        coment = data.COMENT_ADMIN
+                    });
                 }
             });
-        }
+
+            $(this).find('#inputEmail').val(email);
+            $(this).find('#inputAssunto').val(assunto);
+            $(this).find('#inputMessage').val(texto);
+            $(this).find('#inputResposta').val(coment);
+        });
     </script>
+
 
     <script>
         //Exibir Mapa

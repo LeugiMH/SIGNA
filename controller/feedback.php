@@ -54,7 +54,7 @@ class FeedbackController
     {
         $feedback = new Feedback();
         $feedback->IDFEEDBACK = $id;
-        return $feedback->buscar();
+        echo json_encode($feedback->buscar());
     }
 
     #Listar

@@ -57,13 +57,13 @@
         }).addTo(map);
 
         //Overlay Imagem
-        var imageUrl_bg = 'resource/ui/map/bg_map.png'
-            imageBounds_bg = [[-23.3355917, -46.7227759], [-23.336397, -46.7216071]];
-            L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
-        ////Overlay Imagem
-        //var imageUrl = 'resource/ui/map/map.png'
-        //    imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
-        //    L.imageOverlay(imageUrl, imageBounds).addTo(map);
+        //var imageUrl_bg = 'resource/ui/map/bg_map.png'
+        //    imageBounds_bg = [[-23.3355917, -46.7227759], [-23.336397, -46.7216071]];
+        //    L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
+        //Overlay Imagem
+        var imageUrl = 'resource/ui/map/map.png'
+           imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
+           L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
 
         //Alterar ìcone do Marker

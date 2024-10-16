@@ -72,7 +72,7 @@ class Feedback
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBFEEDBACK");
+        $cmd = $con->prepare("SELECT TF.*, TA.DESCRICAO FROM TBFEEDBACK TF LEFT JOIN TBASSUNTO TA ON TF.IDASSUNTO = TA.IDASSUNTO");
 
         //Executando o comando SQL
         $cmd->execute();
@@ -87,7 +87,8 @@ class Feedback
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBFEEDBACK WHERE IDFEEDBACK = :IDFEEDBACK");
+        $cmd = $con->prepare("
+                SELECT TF.*, TA.DESCRICAO FROM TBFEEDBACK TF LEFT JOIN TBASSUNTO TA ON TF.IDASSUNTO = TA.IDASSUNTO WHERE IDFEEDBACK = :IDFEEDBACK");
         $cmd->bindParam(":IDFEEDBACK", $this->IDFEEDBACK);
 
         //Executando o comando SQL

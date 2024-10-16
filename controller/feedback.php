@@ -68,39 +68,24 @@ class FeedbackController
     function enviarRespostaAdmin()
     {
         $idFeedback = $_POST["inputIdFeedback"];
-        $email =  $_POST["inputEmail"];
-        $rating =  $_POST["rating"];
-        $assunto =  $_POST["inputAssunto"];
-        $comentario =  $_POST["inputMessage"];
         $idAdmin =  $_SESSION["sessaoLogada"]->IDADMIN;
-        $comentAdmin  =  $_POST["inputAltura"];
+        $comentAdmin  =  $_POST["inputResposta"];
+
+        echo $idFeedback;
         
         //Cria objeto da classe espécie e define valores
         $cmd = new Feedback();
-        $cmd->IDESPECIME      = null;
-        $cmd->TPUSUARIO      = 0;
-        $cmd->AVALIACAO      = $rating;
-        $cmd->IDASSUNTO      = $assunto;
-        $cmd->TEXTO       = $comentario;
         $cmd->IDADMIN = $idAdmin;
         $cmd->COMENT_ADMIN = $comentAdmin;
-        $cmd->EMAIL = $email;
-        $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
-        
-        $busca = new Feedback();
-        $busca->IDFEEDBACK = $idFeedback;
-        $dadosFeedback = $busca->buscar();
+        $cmd->IDFEEDBACK = $idFeedback;
 
-
-        if($cmd->enviarComentario()) //Sucesso ao alterar espécie
+        if($cmd->enviarRespostaAdmin()) //Sucesso ao alterar espécie
         {
             setcookie("msgFeedback","<div class='alert alert-success'>Resposta cadastrada com sucesso.</div>",time() + 1,"/");
-            header("location: ".URL."inicio");
         }
         else
         {
             setcookie("msgFeedback","<div class='alert alert-danger'>Erro ao alterar espécie</div>",time() + 1,"/");
-            header("location: ".URL."inicio");
         }
     }
 

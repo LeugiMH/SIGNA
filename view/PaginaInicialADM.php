@@ -89,7 +89,7 @@
                                 <th>Assunto</th>
                                 <th>Feedback</th>
                                 <th>Email</th>
-                                <th>Ações</th>
+                                <th>Resposta</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -100,7 +100,7 @@
                                 <tr id='feedback_$feedback->IDFEEDBACK'>
                                     <td>$feedback->IDFEEDBACK</td>
                                     <td>$feedback->AVALIACAO</td>
-                                    <td>$feedback->IDASSUNTO</td>
+                                    <td>$feedback->DESCRICAO</td>
                                     <td>$feedback->TEXTO</td>
                                     <td>$feedback->EMAIL</td>
                                 ";
@@ -119,7 +119,7 @@
                                 else{
                                     echo "
                                         <td>
-                                            <a href='#' onClick='veFeedback('feedback_$feedback->IDFEEDBACK')'>
+                                            <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
                                                 <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
@@ -131,25 +131,15 @@
                             }
                             ?>
                         </tbody>
-                        <tfoot>
-                            <tr>
-                                <th>ID</th>
-                                <th>Avaliação</th>
-                                <th>Assunto</th>
-                                <th>Feedback</th>
-                                <th>Email</th>
-                                <th>Ações</th>
-                            </tr>
-                        </tfoot>
                     </table>
                 </div>
             </section>
         </div>
 
         <!-- Modal Assuntos-->
-        <div class="modal fade" id="CadAssuntos" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
+        <div class="modal fade text-white " id="CadAssuntos" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content px-3">
+                <div class="modal-content bg-verde">
                     <div class="modal-header d-flex">
                         <h1 class="modal-title fs-5">Atributo</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -182,7 +172,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="formFeedback" action="" method="post" class="mb-3 mt-3">
+                        <form id="formFeedback" action="<?php echo URL.'respFeedback';?>" method="POST" class="mb-3 mt-3">
                             <div class="mb-3">
                                 <input type="text" value="" class="form-control" id="inputIdFeedback" name="inputIdFeedback" hidden>
                             </div>
@@ -214,7 +204,7 @@
                                 <textarea class="form-control" name="inputResposta" id="inputResposta" rows="5"></textarea>
                             </div>
 
-                            <button id="btnRespFeedback" type="submit" class="btn btn-success float-end ms-3">Responder</button>
+                            <button id="btnEnvFeedback" type="submit" class="btn btn-success float-end ms-3">Responder</button>
                         </form>
                     </div>
                 </div>
@@ -292,8 +282,8 @@
             $(this).find('#inputIdFeedback').val(id);
             console.log(id);
             var url = '<?php echo URL."buscaFeedback/";?>';
-            var urlId = url + id
-            console.log(urlId);
+            var urlId = url + id;
+            console.log(urlId);          
 
             executeRating(avaliacao);
             $.ajax({
@@ -304,19 +294,29 @@
                 success: function(result){
                     $(result).each(function (index, data)
                     {
-                        email = data.EMAIL
-                        assunto = data.IDASSUNTO
-                        texto = data.TEXTO
-                        coment = data.COMENT_ADMIN
+                        escreveFeedback(data);
                     });
                 }
             });
 
-            $(this).find('#inputEmail').val(email);
-            $(this).find('#inputAssunto').val(assunto);
-            $(this).find('#inputMessage').val(texto);
-            $(this).find('#inputResposta').val(coment);
+            
         });
+
+        function escreveFeedback(data){
+            console.log(data)
+            var email = data.EMAIL;
+            var assunto = data.DESCRICAO;
+            var texto = data.TEXTO;
+            var coment = data.COMENT_ADMIN;
+
+            console.log(email);
+
+            $('#inputEmail').val(email);
+            $('#inputAssunto').val(assunto);
+            $('#inputMessage').val(texto);
+            $('#inputResposta').val(coment);
+        }
+
     </script>
 
 

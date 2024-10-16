@@ -48,20 +48,22 @@
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
             center: [-23.33605, -46.72202],
-            zoom: 20
+            zoom: 19
         });
-        // Tile do
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
-            maxZoom: 19,
+            //Não mudar cinza
+            maxNativeZoom: 19,
+            maxZoom: 20,
+            minZoom: 19,
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        //Overlay Imagem
-        //var imageUrl_bg = 'resource/ui/map/bg_map.png'
-        //    imageBounds_bg = [[-23.3355917, -46.7227759], [-23.336397, -46.7216071]];
-        //    L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
-        //Overlay Imagem
-        var imageUrl = 'resource/ui/map/map.png'
+        //Overlay Imagem Fundo Mapa
+        var imageUrl_bg = 'resource/ui/map/bg_map.png'
+            imageBounds_bg = [[-23.3353735, -46.7230551], [-23.3368118, -46.7207015]];
+            L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
+        //Overlay Imagem Mapa
+        var imageUrl = 'resource/ui/map/mapv1.png'
            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
            L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
@@ -71,8 +73,9 @@
             iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
+            alt: 'Marcador'
             /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui\bg\arvore.png',
+            shadowUrl: 'ui/bg/arvore.png',
             shadowSize: [68, 95],
             shadowAnchor: [22, 94]*/
         });
@@ -119,7 +122,8 @@
             echo "var markerBD = [";
             foreach ($especimes as $especime)
             {
-                $especime->DATACAD = date("d/m/Y",strtotime($especime->DATACAD));
+                $dataPlant = date("d/m/Y",strtotime($especime->DATPLANT));
+                echo "<script>console.log($especime->COORD);</script>";
                 echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME/$especime->IDESPECIE\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME/$especime->IDESPECIE\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
             }
             echo "''];";

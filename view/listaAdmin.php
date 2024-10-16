@@ -49,7 +49,7 @@
                                     <td>$admin->NOME</td>
                                     <td>$admin->MATRICULA</td>
                                     <td>$admin->EMAIL</td>
-                                    <td>$admin->DATACAD</td>
+                                    <td>".date("d/m/Y H:i",strtotime($admin->DATACAD))."</td>
                                     <td>"; echo $admin->ESTADO == 1 ?  "<span class='badge text-bg-success'>Ativo</span>" : "<span class='badge text-bg-danger'>Inativo</span>"; echo"</td>
                                     <td>
                                     <a href='".URL."admins/altera/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>

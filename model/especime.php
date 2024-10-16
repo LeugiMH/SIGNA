@@ -84,7 +84,7 @@ class Especime
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT TBB.NOMEPOP, CONVERT(DATE,TBA.DATPLANT) 'DATPLANT',TBA.COORD, TBA.IDESPECIME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE WHERE TBA.ESTADO = '1'");
+        $cmd = $con->prepare("SELECT TBA.IDESPECIE,TBB.NOMEPOP, CONVERT(DATE,TBA.DATPLANT) 'DATPLANT',TBA.COORD, TBA.IDESPECIME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE WHERE TBA.ESTADO = '1'");
 
         //Executando o comando SQL
         $cmd->execute();

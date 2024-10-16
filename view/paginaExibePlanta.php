@@ -23,7 +23,7 @@
                                     
                             </div>
                             <div class="col-md-6 p-0">
-                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> $planta->DAP";?></p>
+                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> ".number_format($planta->DAP, 2, ',', '.');?></p>
                                 <hr>
                                 <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
                             </div>
@@ -34,7 +34,7 @@
                                 <hr>
                                 <p><strong><?php echo "Habitat natural:</strong> $planta->HABITAT";?></p>
                                 <hr>
-                                <p><strong><?php echo "Altura máxima:</strong> $planta->ALTURA";?></p>
+                                <p><strong><?php echo "Altura máxima:</strong> ".number_format($planta->ALTURA, 2, ',', '.')." metro(s)";?></p>
                                 <?php
                                     foreach ($atributos as $atributo)
                                     {

@@ -55,12 +55,12 @@ class Route
         }
     }
 
-    function abrirExibirEspecime($id)
+    function abrirExibirEspecime($idEspecime,$idEspecie)
     {
         $planta = new EspecimeController();
-        $planta = $planta->buscarTudo($id);
+        $planta = $planta->buscarTudo($idEspecime);
         $atributos = new EspecieController();
-        $atributos = $atributos->buscarAtrAssoc($id);
+        $atributos = $atributos->buscarAtrAssoc($idEspecie);
         include_once "view/paginaExibePlanta.php";
     }
     

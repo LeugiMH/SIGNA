@@ -69,7 +69,7 @@ class AdminController
         $cmd->MATRICULA = $matricula;
         $cmd->EMAIL = $email;
         $cmd->SENHA = password_hash($senha,PASSWORD_DEFAULT);
-        $cmd->DATACAD = date("d-m-Y h:i:s"); //Data atual de cadastro;
+        $cmd->DATACAD = date("d-m-Y H:i:s"); //Data atual de cadastro;
         $cmd->ESTADO = $estado;
 
         if($cmd->cadastrar())  //Sucesso ao cadastrar admin

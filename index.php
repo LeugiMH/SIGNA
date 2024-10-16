@@ -132,7 +132,7 @@ if($_GET)
         // PÁGINA DA PLANTA
         case "especime":
             $route = new Route();
-            $route->abrirExibirEspecime($url[1]);
+            $route->abrirExibirEspecime($url[1],$url[2]);
         break;
         
         //ATRIBUTOS

@@ -10,7 +10,8 @@ date_default_timezone_set("America/Sao_Paulo");
 //Definindo uma constante para a URL do site
 define("URL","http://localhost/SIGNA/");
 if($_GET)
-{
+{   
+    // TESTE 16/10/2024
     //Pegando a URL e apagando a "/" no final dela.
     $url = $_GET["url"];
     $url = explode("/",$url);

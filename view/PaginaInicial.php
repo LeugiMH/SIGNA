@@ -52,7 +52,7 @@
 
         //Overlay Imagem Fundo Mapa
         var imageUrl_bg = 'resource/ui/map/bg_map.png'
-            imageBounds_bg = [[-23.3353735, -46.7230551], [-23.3368118, -46.7207015]];
+            imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
             L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
         //Overlay Imagem Mapa
         var imageUrl = 'resource/ui/map/mapv1.png'

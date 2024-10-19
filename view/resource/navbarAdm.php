@@ -13,9 +13,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="<?php echo URL.'admins/lista';?>">Admins</a>
                 </li>
-                <li class="nav-item">
+                <!--<li class="nav-item">
                     <a class="nav-link" href="<?php echo URL.'assuntos/lista';?>">Assuntos</a>
-                </li>
+                </li>-->
             </ul>
             <span class="navbar-text p-0 me-1">
                 <a class="navbar-text p-0 me-1" href="<?php echo URL.'sair';?>">

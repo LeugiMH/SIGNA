@@ -11,7 +11,7 @@ session_start();
 date_default_timezone_set("America/Sao_Paulo");
 
 //Definindo uma constante para a URL do site
-define("URL","http://localhost/SIGNA-1/");
+define("URL","http://localhost/SIGNA/");
 if($_GET)
 {
     //Pegando a URL e apagando a "/" no final dela.

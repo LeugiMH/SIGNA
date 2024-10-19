@@ -44,7 +44,7 @@
                                         <div class="col-sm-6">
                                             <select value="<?php echo isset($especie)?$especie->CONSERV:'';?>" name="inputConserv" placeholder="Estado de conservação" class="form-select" aria-label="Estado de conservação" required>
                                                 <?php
-                                                $estados = [0 => 'Extinto', 1 => 'Extinto na natureza', 2 => 'Criticamente em perigo',3 => 'Em perigo' ,4 => 'Vulnerável' ,5 => 'Quase ameaçado', 6 => 'Pouco preocupante', 7 => 'Dados Deficientes', 8 => 'Não avaliada'];
+                                                $estados = [0 => 'Extinto', 1 => 'Extinto na natureza', 2 => 'Criticamente em perigo', 3 => 'Em perigo', 4 => 'Vulnerável', 5 => 'Quase ameaçado', 6 => 'Pouco preocupante', 7 => 'Dados Deficientes', 8 => 'Não avaliada'];
                                                 
                                                 echo "<option value='' disabled selected>Estado de conservação</option>";
                                                     foreach($estados as $index => $conserv)

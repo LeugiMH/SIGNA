@@ -18,7 +18,7 @@
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">
             </div>
         </div>
-        <?php include_once "resource/rodape.php";?>
+        <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/footerControle.php";?>
 </body>

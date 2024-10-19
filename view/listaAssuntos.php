@@ -59,7 +59,7 @@
                     style="z-index: 0!important;">
             </div>
         </div>
-        <?php include_once "resource/rodape.php";?>
+        <?php include_once "resource/footerControle.php";?>
     </div>
 	<!--Imports-->  
     <?php include_once "resource/plugins.php";?>

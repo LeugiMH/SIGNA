@@ -76,8 +76,9 @@ class EspecieController
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
+            //setcookie("msg","<div class='alert alert-danger'>Erro ao cadastrar espécie</div>",time() + 1,"/");
         }
+        //var_dump($_POST);
         header("location: ".URL."especies/cadastro");
     }
 

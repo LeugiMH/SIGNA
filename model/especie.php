@@ -43,7 +43,7 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,CONSERV,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
+        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,CONSERV,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
                                             VALUES (:NOMECIE,:NOMEPOP,:FAMILIA,:HABITAT,:CONSERV,:ALTURA,:IMAGEM,:DESCRICAOIMG,:DATACAD,:IDCADADM)");
 
         //Definindo parâmetros (SQL INJECTION)
@@ -66,6 +66,7 @@ class Especie
         }
         catch (PDOException $e)
         {
+            setcookie("msg","<div class='alert alert-danger'>$E</div>",time() + 1,"/");
             return false;
         }
         

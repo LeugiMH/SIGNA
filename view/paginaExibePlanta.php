@@ -34,7 +34,7 @@
                                 <hr>
                                 <p><strong><?php echo "Habitat natural:</strong> $planta->HABITAT";?></p>
                                 <hr>
-                                <?php $estadosConservação = [0 => 'Extinto', 1 => 'Extinto na natureza', 2 => 'Criticamente em perigo',3 => 'Em perigo' ,4 => 'Vulnerável' ,5 => 'Quase ameaçado', 6 => 'Pouco preocupante', 7 => 'Dados Deficientes', 8 => 'Não avaliada'];?>
+                                <?php $estadosConservação = [0 => 'Extinto', 1 => 'Extinto na natureza', 2 => 'Criticamente em perigo', 3 => 'Em perigo', 4 => 'Vulnerável', 5 => 'Quase ameaçado', 6 => 'Pouco preocupante', 7 => 'Dados Deficientes', 8 => 'Não avaliada'];?>
                                 <p><strong><?php echo "Estado de conservação:</strong> ".$estadosConservação[$planta->CONSERV];?></p>
                                 <hr>
                                 <p><strong><?php echo "Altura máxima:</strong> ".number_format($planta->ALTURA, 2, ',', '.')." metro(s)";?></p>

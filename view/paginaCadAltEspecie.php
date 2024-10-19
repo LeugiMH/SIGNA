@@ -42,7 +42,17 @@
                                             <input type="number" value="<?php echo isset($especie)?$especie->ALTURA:'';?>" placeholder="Altura adulta(m)" step="0.01" class="form-control" id="inputAltura" name="inputAltura" aria-label="Digite a altura da árvore adulta" min="00.00" max="999.99" required>
                                         </div>
                                         <div class="col-sm-6">
-                                            <input type="text" value="" placeholder="Estado de conservação" class="form-control" aria-label="Estado de conservação">
+                                            <select value="<?php echo isset($especie)?$especie->CONSERV:'';?>" name="inputConserv" placeholder="Estado de conservação" class="form-select" aria-label="Estado de conservação" required>
+                                                <?php
+                                                $estados = [0 => 'Extinto', 1 => 'Extinto na natureza', 2 => 'Criticamente em perigo',3 => 'Em perigo' ,4 => 'Vulnerável' ,5 => 'Quase ameaçado', 6 => 'Pouco preocupante', 7 => 'Dados Deficientes', 8 => 'Não avaliada'];
+                                                
+                                                echo "<option value='' disabled selected>Estado de conservação</option>";
+                                                    foreach($estados as $index => $conserv)
+                                                    {   
+                                                        echo (isset($especie) && $especie->CONSERV == $index) ? "<option value='$index' selected>$conserv</option>" : "<option value='$index'>$conserv</option>";
+                                                    }
+                                                ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

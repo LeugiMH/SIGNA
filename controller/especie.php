@@ -11,6 +11,7 @@ class EspecieController
         $Familia =  $_POST["inputFamilia"];
         $habitat =  $_POST["inputHabitat"];
         $altura  =  $_POST["inputAltura"];
+        $conserv  =  $_POST["inputConserv"];
         $ImgDesc =  $_POST["inputImgDesc"];
         $atributos = $_POST["atributo"];
 
@@ -20,6 +21,7 @@ class EspecieController
         $cmd->NOMEPOP      = $nomePop;
         $cmd->FAMILIA      = $Familia;
         $cmd->HABITAT      = $habitat;
+        $cmd->CONSERV      = $conserv;
         $cmd->ALTURA       = $altura;
         $cmd->DESCRICAOIMG = $ImgDesc;
         $cmd->DATACAD      = date("d-m-Y H:i:s"); //Data atual de cadastro
@@ -109,6 +111,7 @@ class EspecieController
         $nomePop =  $_POST["inputNomePop"];
         $Familia =  $_POST["inputFamilia"];
         $habitat =  $_POST["inputHabitat"];
+        $conserv  =  $_POST["inputConserv"];
         $altura  =  $_POST["inputAltura"];
         $ImgDesc =  $_POST["inputImgDesc"];
         $atributos = $_POST["atributo"];
@@ -120,6 +123,7 @@ class EspecieController
         $cmd->NOMEPOP      = $nomePop;
         $cmd->FAMILIA      = $Familia;
         $cmd->HABITAT      = $habitat;
+        $cmd->CONSERV       = $conserv;
         $cmd->ALTURA       = $altura;
         $cmd->DESCRICAOIMG = $ImgDesc;
         

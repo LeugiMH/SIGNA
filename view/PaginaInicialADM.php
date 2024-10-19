@@ -325,26 +325,34 @@
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
             center: [-23.33605, -46.72202],
-            zoom: 20
+            zoom: 19
         });
-        // Tile do
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
-            maxZoom: 19,
+            //Não mudar cinza
+            maxNativeZoom: 19,
+            maxZoom: 20,
+            minZoom: 19,
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        //Overlay Imagem
+        //Overlay Imagem Fundo Mapa
+        var imageUrl_bg = 'resource/ui/map/bg_map.png'
+            imageBounds_bg = [[-23.3353735, -46.7230551], [-23.3368118, -46.7207015]];
+            L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
+        //Overlay Imagem Mapa
         var imageUrl = 'resource/ui/map/mapv1.png'
-            imageBounds = [[-23.3357271, -46.7216205], [-23.3365669, -46.722789]];
-            L.imageOverlay(imageUrl, imageBounds).addTo(map);
+           imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
+           L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
 
         //Alterar ìcone do Marker
         var myIcon = L.icon({
             iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
+            alt: 'Marcador'
             /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui\bg\arvore.png',
+            shadowUrl: 'ui/bg/arvore.png',
             shadowSize: [68, 95],
             shadowAnchor: [22, 94]*/
         });

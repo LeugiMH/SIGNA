@@ -213,6 +213,7 @@
         <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
+    <?php include_once "resource/pluginsDataTables.php";?>
 
     <script>
         //Script de inicialização personalizado da tabela

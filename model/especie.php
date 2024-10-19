@@ -7,6 +7,7 @@ class Especie
     private $FAMILIA;
     private $HABITAT;
     private $ALTURA;
+    private $CONSERV;
     private $IMAGEM;
     private $DESCRICAOIMG;
     private $DATACAD;
@@ -42,13 +43,14 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
-                                            VALUES (:NOMECIE,:NOMEPOP,:FAMILIA,:HABITAT,:ALTURA,:IMAGEM,:DESCRICAOIMG,:DATACAD,:IDCADADM)");
+        $cmd = $con->prepare("INSERT INTO TBESPECIE (NOMECIE,NOMEPOP,FAMILIA,HABITAT,ALTURA,CONSERV,IMAGEM,DESCRICAOIMG,DATACAD,IDCADADM) 
+                                            VALUES (:NOMECIE,:NOMEPOP,:FAMILIA,:HABITAT,:CONSERV,:ALTURA,:IMAGEM,:DESCRICAOIMG,:DATACAD,:IDCADADM)");
 
         //Definindo parâmetros (SQL INJECTION)
         $cmd->bindParam(":NOMECIE",     $this->NOMECIE);
         $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
         $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
+        $cmd->bindParam(":CONSERV",     $this->CONSERV);
         $cmd->bindParam(":HABITAT",     $this->HABITAT);
         $cmd->bindParam(":ALTURA",      $this->ALTURA);
         $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
@@ -173,7 +175,7 @@ class Especie
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE, NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
+        $cmd = $con->prepare("UPDATE TBESPECIE SET NOMECIE = :NOMECIE, NOMEPOP = :NOMEPOP, FAMILIA = :FAMILIA, HABITAT = :HABITAT, ALTURA = :ALTURA, CONSERV = :CONSERV, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG
                                             WHERE IDESPECIE = :IDESPECIE");
 
         //Definindo parâmetros (SQL INJECTION)
@@ -181,6 +183,7 @@ class Especie
         $cmd->bindParam(":NOMEPOP",     $this->NOMEPOP);
         $cmd->bindParam(":FAMILIA",     $this->FAMILIA);
         $cmd->bindParam(":HABITAT",     $this->HABITAT);
+        $cmd->bindParam(":CONSERV",     $this->CONSERV);
         $cmd->bindParam(":ALTURA",      $this->ALTURA);
         $cmd->bindParam(":IMAGEM",      $this->IMAGEM);
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);

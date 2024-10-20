@@ -96,7 +96,7 @@
             {   
                 $dataPlant = date("d/m/Y",strtotime($especime->DATPLANT));
                 $idade = date_diff(date_create($especime->DATPLANT), date_create(date("d-m-Y")));
-                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Data de platio: $dataPlant </p><p>Idade: "; echo $idade->format("%y ano(s), %m mês(es) e %d dia(s)."); echo"</p><a href=\"".URL."especime/$especime->IDESPECIME/$especime->IDESPECIE\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
+                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Data de platio: $dataPlant </p><p>Idade: "; echo $idade->format("%y ano(s), %m mês(es) e %d dia(s)."); echo"</p><a href=\"".URL."especime/$especime->IDESPECIME\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
             }
             echo "''];";
         ?>

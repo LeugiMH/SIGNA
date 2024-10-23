@@ -53,7 +53,7 @@
                                 <th>Ações</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-break">
                             <?php
                             foreach($assuntos as $assunto)
                             {
@@ -92,7 +92,7 @@
                                 <th>Resposta</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="text-break">
                             <?php
                             foreach($feedbacks as $feedback)
                             {
@@ -107,11 +107,11 @@
                                 if($feedback->IDADMIN == NULL){
                                     echo "
                                         <td>
-                                            <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
+                                            <span href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
                                                 <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
-                                            </a>
+                                            </span>
                                         </td>
                                     </tr>
                                     ";
@@ -119,11 +119,11 @@
                                 else{
                                     echo "
                                         <td>
-                                            <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
+                                            <span href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
                                                 <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
                                                 <div class='vr mx-2'></div>
                                                 <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
-                                            </a>
+                                            </span>
                                         </td>
                                     </tr>
                                     ";

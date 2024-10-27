@@ -123,27 +123,6 @@ class Feedback
         }
         
     }
-
-    //Método Excluir
-    /*Conectando ao banco de dados
-    function excluir()
-    {
-        $con = Conexao::conectar();
-        
-        //Preparar comando SQL para retornar
-        $cmd = $con->prepare("delete FROM TBESPECIE WHERE IDESPECIE = :IDESPECIE");
-        $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
-        
-        //Executando o comando SQL
-        try
-        {
-            return $cmd->execute();
-        }
-        catch (PDOException $e)
-        {            
-            return false;
-        }
-    }*/
 }
 
 ?>

@@ -41,7 +41,7 @@ class FeedbackController
                 
             </script>
         ");
-        echo 'hmmmmmmmm';
+        //echo 'hmmmmmmmm';
 
         if(isset($_COOKIE["msgF"]))
         {echo $_COOKIE["msgF"];}
@@ -71,7 +71,7 @@ class FeedbackController
         $idAdmin =  $_SESSION["sessaoLogada"]->IDADMIN;
         $comentAdmin  =  $_POST["inputResposta"];
 
-        echo $idFeedback;
+        //echo $idFeedback;
         
         //Cria objeto da classe espécie e define valores
         $cmd = new Feedback();
@@ -87,28 +87,9 @@ class FeedbackController
         {
             setcookie("msgFeedback","<div class='alert alert-danger'>Erro ao alterar espécie</div>",time() + 1,"/");
         }
+        header("location: ".URL."inicio");
     }
 
-    //Excluir
-    /*function excluirEspecie($id)
-    {
-        $idEspecie = $id;
-
-        $cmd = new Especie();
-        $cmd->IDESPECIE = $idEspecie;
-
-        $especie = $cmd->buscar();
-
-        if($cmd->excluir())
-        {
-            unlink("resource/imagens/especies/$especie->IMAGEM"); //Excluir imagem
-        }
-        else
-        {
-            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a espécie, é possível que essa espécie possua algum espécime relacionado.</div>",time() + 1,"/");
-        }
-        header("location: ".URL."especies/lista");
-    }*/
 }
 
 if(isset($_POST['envFeedback']))

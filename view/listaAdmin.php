@@ -32,7 +32,7 @@
                                     <th>AÇÕES</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="text-break">
                                 <?php
                                 foreach($admins as $admin)
                                 {

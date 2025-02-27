@@ -1,13 +1,15 @@
 <?php
+require_once "ambiente.php";
 class Conexao{
 
-    static function conectar(){
-
+    static function conectar(){              
+        $server = Ambiente::SERVER;
+        $database = Ambiente::DATABASE;
+        
         //Informações do host para acessar o servidor do banco de dados
-        $host = "sqlsrv:Server=localhost;Database=SIGNA";
-        //Usuário e senha nulos para autenticação windows
-        $usuario = null;
-        $senha = null;
+        $host = "mysql:host=$server;dbname=$database";
+        $usuario = Ambiente::USER;
+        $senha = Ambiente::PASSWORD;
         
         try
         {

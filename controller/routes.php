@@ -4,7 +4,6 @@
 include_once "admin.php";
 include_once "especie.php";
 include_once "especime.php";
-include_once "especime.php";
 include_once "assunto.php";
 include_once "atributo.php";
 

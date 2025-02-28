@@ -11,7 +11,13 @@ session_start();
 date_default_timezone_set("America/Sao_Paulo");
 
 //Definindo uma constante para a URL do site
-define("URL","https://signa.eco.br/");
+if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+    $uri = 'https://';
+} else {
+    $uri = 'http://';
+}
+$uri .= $_SERVER['HTTP_HOST']."/";
+define("URL",$uri);
 if($_GET)
 {   
     // TESTE 16/10/2024
@@ -24,6 +30,7 @@ if($_GET)
     {   
         // PÁGINA INICIAL
         case "inicio":
+            var_dump(URL);
             $route = new Route();
             $route->abrirInicio();
         break;
@@ -269,11 +276,6 @@ if($_GET)
         case "tst":
             $route = new Route();
             $route->abrirTeste();
-        break;
-
-        case "tst2":
-            $route = new Route();
-            $route->abrirTeste2();
         break;
 
         default:

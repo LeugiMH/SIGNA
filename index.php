@@ -24,6 +24,8 @@ if($_GET)
     {   
         // PÁGINA INICIAL
         case "inicio":
+
+            var_dump($_SERVER);
             $route = new Route();
             $route->abrirInicio();
         break;
@@ -269,11 +271,6 @@ if($_GET)
         case "tst":
             $route = new Route();
             $route->abrirTeste();
-        break;
-
-        case "tst2":
-            $route = new Route();
-            $route->abrirTeste2();
         break;
 
         default:

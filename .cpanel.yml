@@ -2,4 +2,4 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home1/signae21/public_html/
-    - repositories/SIGNA -R images $DEPLOYPATH
+    - /bin/cp -r * $DEPLOYPATH

@@ -11,7 +11,7 @@ session_start();
 date_default_timezone_set("America/Sao_Paulo");
 
 //Definindo uma constante para a URL do site
-define("URL","http://localhost/SIGNA/");
+define("URL","https://signa.eco.br/");
 if($_GET)
 {   
     // TESTE 16/10/2024

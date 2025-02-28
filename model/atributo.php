@@ -58,7 +58,7 @@ class Atributo
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("EXEC SP_SELECTATRI_ESPECIE @ESPECIE = :IDESPECIE");
+        $cmd = $con->prepare("CALL SP_SELECTATRI_ESPECIE (:IDESPECIE)");
 
         $cmd->bindParam(":IDESPECIE", $this->IDESPECIE);
 

@@ -66,7 +66,7 @@ class Especie
         }
         catch (PDOException $e)
         {
-            setcookie("msg","<div class='alert alert-danger'>$E</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>$e</div>",time() + 1,"/");
             return false;
         }
         

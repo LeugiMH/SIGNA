@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home1/signae21/public_html/
+    - /bin/cp -r * $DEPLOYPATH

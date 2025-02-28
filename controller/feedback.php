@@ -41,7 +41,7 @@ class FeedbackController
                 
             </script>
         ");
-        echo 'hmmmmmmmm';
+        //echo 'hmmmmmmmm';
 
         if(isset($_COOKIE["msgF"]))
         {echo $_COOKIE["msgF"];}

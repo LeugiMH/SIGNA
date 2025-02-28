@@ -30,7 +30,6 @@ if($_GET)
     {   
         // PÁGINA INICIAL
         case "inicio":
-            var_dump(URL);
             $route = new Route();
             $route->abrirInicio();
         break;

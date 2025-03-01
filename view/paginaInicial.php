@@ -18,7 +18,7 @@
             <section class="container-fluid folhas1 pt-3 m-0 row justify-content-center align-content-center" style="min-height: 30vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
-                    <header class="display-1 text-center my-4">MAPA INTERATIVO 123</header>
+                    <header class="display-1 text-center my-4">MAPA INTERATIVO</header>
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
                     <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>

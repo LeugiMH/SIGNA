@@ -1,15 +1,15 @@
 <?php
-// require_once "ambiente.php";
+require_once "ambiente.php";
 class Conexao{
 
     static function conectar(){              
-        //$server = Ambiente::SERVER;
-        //$database = Ambiente::DATABASE;
+        $server = Ambiente::SERVER;
+        $database = Ambiente::DATABASE;
         
         //Informações do host para acessar o servidor do banco de dados
-        $host = "mysql:host=localhost;dbname=signa";
-        $usuario = 'teste';
-        $senha = 'teste';
+        $host = "mysql:host=$server;dbname=$database";
+        $usuario = Ambiente::USER;
+        $senha = Ambiente::PASSWORD;
         
         try
         {

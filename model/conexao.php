@@ -1,5 +1,5 @@
 <?php
-require_once "ambiente.php";
+require_once "/config/ambiente.php";
 class Conexao{
 
     static function conectar(){              

@@ -1,5 +1,0 @@
-deployment:
-  tasks:
-    - if [ "$BRANCH" = "main" ]; then export DEPLOYPATH=/home1/signae21/public_html/; fi
-    - if [ "$BRANCH" = "miguel" ]; then export DEPLOYPATH=/home1/signae21/miguel_html/; fi
-    - rsync -r * $DEPLOYPATH

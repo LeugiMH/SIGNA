@@ -2,7 +2,7 @@ on:
   push:
     branches:
       - nathaly
-name: 🚀 Deploy website on push
+name: 🚀 Deploy website on push nathaly
 jobs:
   web-deploy:
     name: 🎉 Deploy

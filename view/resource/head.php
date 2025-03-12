@@ -1,4 +1,8 @@
 <meta charset="UTF-8">
+<meta name="description" content="Signa - Sistema de Gerenciamento de Núcleo Arbóreo">
+<meta name="keywords" content="Signa, Sistema, Gerenciamento, Núcleo, Arbóreo">
+<meta name="author" content="Alessandra A.; Carolina M.R.B.; Miguel H.G.S; Nathaly V.">
+<meta name="robots" content="index, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <!-- Boostrap CSS -->

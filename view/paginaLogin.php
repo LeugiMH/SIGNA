@@ -27,14 +27,14 @@
                                 <label for="inputSenha" class="form-label">Senha</label>
                                 <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha para login" maxlength="256" required>
                             </div>
+                            <div class="mb-3">
+                                <a href="<?php echo URL.'redefinir-senha'?>" class="text-info">Redefinir senha</a>
+                            </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
                                 <button type="submit" class="btn btn-success">Logar</button>
                             </div>
                         </form>
-                        <div class="mb-3">
-                            <a href="<?php echo URL.'redefinir-senha'?>">Redefinir senha</a>
-                        </div>
                     </article>
                 </section>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">

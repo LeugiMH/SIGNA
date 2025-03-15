@@ -32,7 +32,9 @@
                                 <button type="submit" class="btn btn-success">Logar</button>
                             </div>
                         </form>
-                        <a href="<?php echo URL.'Redefinir-senha'?>">Redefinir senha</a>
+                        <div class="mb-3">
+                            <a href="<?php echo URL.'redefinir-senha'?>">Redefinir senha</a>
+                        </div>
                     </article>
                 </section>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">

@@ -21,14 +21,12 @@ class Route
             $assuntos = $assuntos->listar();
             $feedbacks = new FeedbackController();
             $feedbacks = $feedbacks->listar();
-            //$especimes->DATPLANT = date("d/m",strtotime($especimes->DATPLANT));
             include_once "view/paginaInicialADM.php";
         }
         else 
         {
             $especimes = new EspecimeController();
             $especimes = $especimes->listarUsu();
-            //$especimes->DATPLANT = date("d/m/Y",strtotime($especimes->DATPLANT));
             include_once "view/paginaInicial.php";
         }
     }

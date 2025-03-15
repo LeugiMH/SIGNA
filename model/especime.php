@@ -130,7 +130,7 @@ class Especime
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIME SET IDESPECIE = :IDESPECIE, COORD = :COORD, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG, ESTADO = :ESTADO, DAP = :DAP
+        $cmd = $con->prepare("UPDATE TBESPECIME SET IDESPECIE = :IDESPECIE, COORD = :COORD, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG, ESTADO = :ESTADO, DAP = :DAP, DATPLANT = :DATPLANT
                                             WHERE IDESPECIME = :IDESPECIME");
 
         //Definindo parâmetros (SQL INJECTION)
@@ -140,6 +140,7 @@ class Especime
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
         $cmd->bindParam(":ESTADO",      $this->ESTADO);
         $cmd->bindParam(":DAP",         $this->DAP);
+        $cmd->bindParam(":DATPLANT",    $this->DATPLANT);
         $cmd->bindParam(":IDESPECIME",  $this->IDESPECIME);
 
         //Executando e retornando resultado

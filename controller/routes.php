@@ -39,6 +39,11 @@ class Route
         include_once "view/paginaLogin.php";
     }
 
+    function abrirRecuperacaoSenha()
+    {  
+        include_once "view/paginaRedefinirSenha.php";
+    }
+
     #Valida login
     function validaLogin()
     {

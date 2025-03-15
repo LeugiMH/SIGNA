@@ -11,7 +11,7 @@
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-8 col-lg-6 col-xl-4 p-0 my-5" style="z-index: 2;">
                     <!-- Conteúdo -->
-                    <header class="display-1 text-center mt- mb-4">Login</header>
+                    <header class="display-1 text-center mt- mb-4">Insira email para recuperação</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
                         <form action="logar" method="POST">
                             <?php
@@ -23,16 +23,11 @@
                                 <label for="inputEmail" class="form-label">Endereço de Email</label>
                                 <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email para login" maxlength="256" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="inputSenha" class="form-label">Senha</label>
-                                <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha para login" maxlength="256" required>
-                            </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
-                                <button type="submit" class="btn btn-success">Logar</button>
+                                <button type="submit" class="btn btn-success">Enviar código de recuperação</button>
                             </div>
                         </form>
-                        <a href="<?php echo URL.'Redefinir-senha'?>">Redefinir senha</a>
                     </article>
                 </section>
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">

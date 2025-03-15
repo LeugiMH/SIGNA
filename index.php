@@ -54,6 +54,11 @@ if($_GET)
             $route = new Route();
             $route->abrirLogin();
         break;
+
+        case "redefinir-senha": 
+            $route = new Route();
+            $route->abrirRecuperacaoSenha();
+        break;
         
         case "logar": 
             $route = new AdminController();

@@ -188,20 +188,14 @@ class AdminController
             $cmd->gerarCodigo();
 
             //Envia Email com o código de recuperação
-            try 
-            {
-                $email = new Email();
-                $email->emailRemetente = Ambiente::EMAIL_SUPORTE_CONTA; 
-                $email->senhaRemetente = Ambiente::SENHA_SUPORTE_CONTA; 
-                $email->nomeRemetente = "Suporte Signa"; 
-                $email->codsenha = $codigo;
-                $email->emailDestinatario = $dadosRecuperacao->EMAIL;
-                $email->enviarCodigo();
-            }
-            catch(Exception $e)
-            {
-                echo $e->getMessage();
-            }
+            $email = new Email();
+            $email->emailRemetente = Ambiente::EMAIL_SUPORTE_CONTA; 
+            $email->senhaRemetente = Ambiente::SENHA_SUPORTE_CONTA; 
+            $email->nomeRemetente = "Suporte Signa"; 
+            $email->codsenha = $codigo;
+            $email->emailDestinatario = $dadosRecuperacao->EMAIL;
+            $email->enviarCodigo();
+
             //header("Location:".URL."codigo-de-recuperacao/$dadosRecuperacao->email");
         }
         else

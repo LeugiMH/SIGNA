@@ -55,6 +55,7 @@ class Email
                 $email->Password = $this->senhaRemetente;
                 $email->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;           //criptografia do email
                 $email->Port = $this->porta;
+                $email->CharSet = "UTF-8";
                 $email->setLanguage('pt_br');
 
                 //Informações de quem enviou
@@ -68,7 +69,7 @@ class Email
                 $email->isHTML(true);
 
                 //Corpo do e-mail
-                $email->Subject = "Redefinição de senha Signa";//Assunto
+                $email->Subject = "Redefinição de senha";//Assunto
                 
                 //conteúdo
                 $email->Body = $Conteudo;
@@ -78,11 +79,11 @@ class Email
                     
                 //envia
                 $email->send();
-                echo "Email enviado com sucesso";
+                echo "<script>alert('Email de recuperação enviado com sucesso!');</script>";
             }
             catch(Exception $e)
             {
-                echo "Mensagem não foi enviada. Error: {$email->ErrorInfo}";
+                echo "<script>alert('Mensagem não foi enviada. Error: {$email->ErrorInfo}');</script>";
             }
         }
     }

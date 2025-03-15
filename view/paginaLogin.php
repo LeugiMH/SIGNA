@@ -13,7 +13,7 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mt- mb-4">Login</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                        <form action="logar" method="POST">
+                        <form action="" method="POST">
                             <?php
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msg"]))

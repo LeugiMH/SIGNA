@@ -24,8 +24,8 @@
                             <thead>
                                 <tr>
                                     <th>IDESPÉCIE</th>
-                                    <th>NOMECIE</th>
                                     <th>NOMEPOP</th>
+                                    <th>NOMECIE</th>
                                     <th>FAMILIA</th>
                                     <th>HABITAT</th>
                                     <th>ALTURA</th>
@@ -64,8 +64,8 @@
                             <tfoot>
                                 <tr>
                                     <th>IDESPÉCIE</th>
-                                    <th>NOMECIE</th>
                                     <th>NOMEPOP</th>
+                                    <th>NOMECIE</th>
                                     <th>FAMILIA</th>
                                     <th>HABITAT</th>
                                     <th>ALTURA</th>

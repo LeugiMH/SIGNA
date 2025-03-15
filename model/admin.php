@@ -182,6 +182,27 @@ class Admin
             return false;
         }
     }
+
+    function gerarCodigo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("UPDATE TBADMIN SET CODRECUPERACAO = :CODRECUPERACAO WHERE IDADMIN = :IDADMIN");
+        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        $cmd->bindParam(":CODRECUPERACAO",     $this->CODRECUPERACAO);
+        
+        //Executando o comando SQL
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {            
+            return false;
+        }
+    }
 }
 
 

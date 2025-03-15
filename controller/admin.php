@@ -1,6 +1,7 @@
 <?php
-include_once "model/admin.php";
 
+include_once "model/admin.php";
+include_once "model/email.php";
 class AdminController
 {
     function logar()
@@ -167,6 +168,47 @@ class AdminController
             $cmd->altEstado();
         }
         header("location: ".URL."admins/lista");
+    }
+
+    //Gerar código de recuperação de senha
+    function gerarCodigoReguperacao()
+    {
+        $emailDest = $_POST['inputEmail'];
+        $cmd = new Admin();
+        $cmd->EMAIL = $emailDest;
+        $dadosRecuperacao = $cmd->logar();
+        
+        if($dadosRecuperacao != null)
+        {
+            $codigo = rand(100000,999999);
+            
+            //Salva código no banco de dados
+            $cmd->IDADMIN = $dadosRecuperacao->IDADMIN;
+            $cmd->CODRECUPERACAO = $codigo;
+            $cmd->gerarCodigo();
+
+            //Envia Email com o código de recuperação
+            try 
+            {
+                $email = new Email();
+                $email->emailRemetente = Ambiente::EMAIL_SUPORTE_CONTA; 
+                $email->senhaRemetente = Ambiente::SENHA_SUPORTE_CONTA; 
+                $email->nomeRemetente = "Suporte Signa"; 
+                $email->codsenha = $codigo;
+                $email->emailDestinatario = $dadosRecuperacao->EMAIL;
+                $email->enviarCodigo();
+            }
+            catch(Exception $e)
+            {
+                echo $e->getMessage();
+            }
+            //header("Location:".URL."codigo-de-recuperacao/$dadosRecuperacao->email");
+        }
+        else
+        {
+            setcookie("msg","<div class='alert alert-danger'>Parece que esse email não existe no sistema</div>",time() + 1,"/");
+            header("Location:".URL."redefinir-senha");
+        }
     }
 }
 ?>

@@ -62,6 +62,11 @@ if($_GET)
             $route = new Route();
             $route->abrirRecuperacaoSenha();
         break;
+
+        case "gerar-codigo":
+            $route = new AdminController();
+            $route->gerarCodigoReguperacao();
+        break;
         
         case "logar": 
             $route = new AdminController();
@@ -222,10 +227,10 @@ if($_GET)
                     $route = new Route();
                     $route->abrirAlteraAssunto($url[2]);
                 break;
-                case "alterar":
+                /*case "alterar":
                     $route = new AssuntoController();
                     $route->alterarAssunto();
-                break;
+                break;*/
                 case "excluir":
                     $route = new AssuntoController();
                     $route->excluirAssunto($url[2]);

@@ -10,7 +10,7 @@ class EspecimeController
         $coord              =  $_POST["inputCoord"];
         $status             =  $_POST["inputStatus"];
         $DAP                =  $_POST["inputDAP"];
-        $inputDatPlant      =  date("d-m-Y",strtotime($_POST["inputDatPlant"]));
+        $inputDatPlant      =  date("Y-m-d",strtotime($_POST["inputDatPlant"]));
         $ImgDesc            =  $_POST["inputImgDesc"];
 
         //Cria objeto da classe espécime e define valores
@@ -21,7 +21,7 @@ class EspecimeController
         $cmd->DAP           = $DAP;
         $cmd->DATPLANT      = $inputDatPlant;
         $cmd->DESCRICAOIMG  = $ImgDesc;
-        $cmd->DATACAD       = date("d-m-Y H:i:s"); //Data atual de cadastro
+        $cmd->DATACAD       = date("Y-m-d H:i:s"); //Data atual de cadastro
         $cmd->IDCADADM      = $_SESSION["sessaoLogada"]->IDADMIN; //Id do administrador logado
         
         $novoNome = "";
@@ -100,7 +100,7 @@ class EspecimeController
         $coord =  $_POST["inputCoord"];
         $status =  $_POST["inputStatus"];
         $DAP =  $_POST["inputDAP"];
-        $inputDatPlant  =  $_POST["inputDatPlant"];
+        $inputDatPlant  =  date("Y-m-d",strtotime($_POST["inputDatPlant"]));
         $ImgDesc =  $_POST["inputImgDesc"];
         
         //Cria objeto da classe espécime e define valores
@@ -156,7 +156,6 @@ class EspecimeController
             //Mover imagem para pastas no servidor
             $pastaDestino = "resource/imagens/especimes/$novoNome";   //pasta destino
             move_uploaded_file($nomeTemp, $pastaDestino);       //mover o arquivo 
-
             header("location: ".URL."inicio");
         }
         else

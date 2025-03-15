@@ -16,13 +16,13 @@ class FeedbackController
 
         #Cria objeto da classe espécie e define valores
         $cmd = new Feedback();
-        $cmd->IDESPECIME      = null;
-        $cmd->TPUSUARIO      = 0;
-        $cmd->AVALIACAO      = $rating;
-        $cmd->IDASSUNTO      = $assunto;
-        $cmd->TEXTO       = $comentario;
+        $cmd->IDESPECIME = null;
+        $cmd->TPUSUARIO = 0;
+        $cmd->AVALIACAO = $rating;
+        $cmd->IDASSUNTO = $assunto;
+        $cmd->TEXTO = $comentario;
         $cmd->EMAIL = $email;
-        $cmd->DATACAD      = date("d-m-Y h:i:s"); //Data atual de cadastro
+        $cmd->DATACAD = date("Y-m-d h:i:s"); //Data atual de cadastro
         
 
         if($cmd->sendFeedback())  //Sucesso ao cadastrar espécie

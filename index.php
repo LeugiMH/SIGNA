@@ -11,12 +11,15 @@ session_start();
 date_default_timezone_set("America/Sao_Paulo");
 
 //Definindo uma constante para a URL do site
-if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS'])) {
+if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS']))
     $uri = 'https://';
-} else {
+else
     $uri = 'http://';
-}
-$uri .= $_SERVER['HTTP_HOST']."/";
+if($_SERVER['HTTP_HOST'] == "localhost")
+    $uri .= $_SERVER['HTTP_HOST']."/SIGNA/";
+else
+    $uri .= $_SERVER['HTTP_HOST']."/";
+
 define("URL",$uri);
 if($_GET)
 {   

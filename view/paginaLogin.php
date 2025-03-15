@@ -28,7 +28,7 @@
                                 <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha para login" maxlength="256" required>
                             </div>
                             <div class="mb-3">
-                                <a href="<?php echo URL.'redefinir-senha'?>" class="text-info">Redefinir senha</a>
+                                <a href="<?php echo URL.'redefinir-senha'?>" class="text-light">Redefinir senha</a>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>

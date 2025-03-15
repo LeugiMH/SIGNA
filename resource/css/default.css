@@ -134,12 +134,10 @@ body{
 }
 
 .corpo-list{
-    font-family: 'Luciole';
     display:contents;
 }
 .conteudo
 {
-    font-family: Luciole;
     grid-area: conteudo;
 }
 .rodape
@@ -153,11 +151,6 @@ body{
 .navbar
 {
     grid-area: navbar;
-}
-
-.display-1
-{
-    font-family: Luciole;
 }
 
 .rating{

@@ -9,6 +9,7 @@
 <link rel="stylesheet"href="<?php echo URL.'resource/css/bootstrap.min.css';?>">
 <link type="image/x-icon" rel="icon" href="<?php echo URL.'resource/imagens/icons/favicon.png';?>">
 <link rel="stylesheet" href="<?php echo URL.'resource/css/default.css';?>">
+<link rel="stylesheet" href="<?php echo URL.'resource/css/overlay.css';?>">
 
 <!-- Leaflet's CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>

@@ -13,7 +13,7 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mt- mb-4">Login</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                        <form action="logar" method="POST">
+                        <form action="<?php echo URL."logar"?>" method="POST">
                             <?php
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msg"]))
@@ -28,7 +28,7 @@
                                 <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a senha para login" maxlength="256" required>
                             </div>
                             <div class="mb-3">
-                                <a href="<?php echo URL.'redefinir-senha'?>" class="text-light">Redefinir senha</a>
+                                <a href="<?php echo URL.'recuperar-senha'?>" class="text-light">Redefinir senha</a>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>

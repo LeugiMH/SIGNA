@@ -203,6 +203,27 @@ class Admin
             return false;
         }
     }
+
+    function alterarSenha()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("UPDATE TBADMIN SET SENHA = :SENHA WHERE IDADMIN = :IDADMIN");
+        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
+        $cmd->bindParam(":SENHA",     $this->SENHA);
+        
+        //Executando o comando SQL
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {            
+            return false;
+        }
+    }
 }
 
 

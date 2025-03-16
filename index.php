@@ -58,19 +58,39 @@ if($_GET)
             $route->abrirLogin();
         break;
 
-        case "redefinir-senha": 
+        case "logar": 
+            $route = new AdminController();
+            $route->logar();
+        break;
+
+        case "recuperar-senha": 
             $route = new Route();
             $route->abrirRecuperacaoSenha();
         break;
 
         case "gerar-codigo":
             $route = new AdminController();
-            $route->gerarCodigoReguperacao();
+            $route->gerarCodigoRecuperacao();
         break;
-        
-        case "logar": 
+
+        case "codigo-recuperacao":
+            $route = new Route();
+            $route->abrirCodigoRecuperacaoSenha($url[1]);
+        break;
+
+        case "confirmar-recuperacao":
             $route = new AdminController();
-            $route->logar();
+            $route->confirmarCodigoRecuperacao();
+        break;
+
+        case "redefinir-senha":
+            $route = new Route();
+            $route->abrirRedefinirSenha($url[1]);
+        break;
+
+        case "alterar-senha":
+            $route = new AdminController();
+            $route->alterarSenha();
         break;
 
         // FUNÇÕES ADMIN
@@ -242,42 +262,6 @@ if($_GET)
                 break;
             }
         break;
-        /*
-        case "esqueci-a-senha": 
-            $route = new Controller();
-            $route->abrirEsqSenha();
-        break;
-        case "recuperar-senha":
-            $route = new UsuarioController();
-            $route->recuperarSenha();
-        break;
-        case "codigo-de-recuperacao":
-            $route = new Controller();
-            $route->abrirRecuperacao($url[1]);
-        break;
-        case "confirmar-recuperacao":
-            $route = new UsuarioController();
-            $route->confirmarCodigo();
-        break;
-        case "redefinir-senha":
-            $route = new UsuarioController();
-            $route->redefinirSenha();
-        break;
-
-        // USUÁRIO
-        case "home-usuario":
-            $route = new Controller();
-            $route->abrirHomeUsuario();
-        break;
-        case "perfil":
-            $route = new Controller();
-            $route->abrirPerfil();
-        break;
-        case "alterar-senha":
-            $route = new Controller();
-            $route->abrirAlterarSenha($url[1]);
-        break;
-        */  
 
         // LOGOFF
         case "sair":

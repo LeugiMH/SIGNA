@@ -171,7 +171,7 @@ class AdminController
     }
 
     //Gerar código de recuperação de senha
-    function gerarCodigoReguperacao()
+    function gerarCodigoRecuperacao()
     {
         $emailDest = $_POST['inputEmail'];
         $cmd = new Admin();
@@ -180,12 +180,10 @@ class AdminController
         
         if($dadosRecuperacao != null)
         {
-            $codigo = rand(100000,999999);
             
             //Salva código no banco de dados
             $cmd->IDADMIN = $dadosRecuperacao->IDADMIN;
-            $cmd->CODRECUPERACAO = $codigo;
-            $cmd->gerarCodigo();
+            $codigo = $this->gerarCodigo($cmd);
 
             //Envia Email com o código de recuperação
             $email = new Email();
@@ -195,14 +193,75 @@ class AdminController
             $email->codsenha = $codigo;
             $email->emailDestinatario = $dadosRecuperacao->EMAIL;
             $email->enviarCodigo();
-
-            //header("Location:".URL."codigo-de-recuperacao/$dadosRecuperacao->email");
+            
+            if(empty($_COOKIE["tentativas"])){setcookie("tentativas", 1, time() + 3600, "/","",true,true);}
+            echo "<script>window.location.href = '".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN'</script>";
         }
         else
         {
             setcookie("msg","<div class='alert alert-danger'>Parece que esse email não existe no sistema</div>",time() + 1,"/");
-            header("Location:".URL."redefinir-senha");
+            header("Location:".URL."recuperar-senha");
         }
+    }
+    #Gerar código de recuperação
+    function gerarCodigo($cmd)
+    {
+        $codigo = rand(100000,999999);
+            
+        //Salva código no banco de dados
+        $cmd->CODRECUPERACAO = $codigo;
+        $cmd->gerarCodigo();
+        return $codigo;
+    }
+
+    function confirmarCodigoRecuperacao()
+    {
+        $idAdmin = $_POST['inputIdAdmin'];
+        $codigo = $_POST['inputCodigo'];
+        $cmd = new Admin();
+        $cmd->IDADMIN = $idAdmin;
+
+        if(empty($_COOKIE["tentativas"])){
+            $this->gerarCodigo($cmd);
+            setcookie("msg","<div class='alert alert-danger'>Muitas tentativas realizadas, tente novamente mais tarde</div>",time() + 1,"/");
+        }
+
+        $dadosRecuperacao = $cmd->buscar();
+
+        if($_COOKIE["tentativas"] < 5)
+        {
+            if(isset($codigo) && strlen($codigo) == 6 && isset($dadosRecuperacao) && $dadosRecuperacao->CODRECUPERACAO == $codigo)
+            {
+                setcookie("tentativas", 0, time() - 1, "/");
+                $_SESSION["PermissaoRedefinirSenha"] = true;
+                header("Location:".URL."redefinir-senha/$idAdmin");
+            }
+            else
+            {
+                setcookie("tentativas", 1 + $_COOKIE["tentativas"], time() + 3600, "/");
+                setcookie("msg","<div class='alert alert-danger'>Código de recuperação incorreto</div>",time() + 1,"/","",true,true);
+                header("Location:".URL."codigo-recuperacao/$idAdmin");
+            }
+        }
+        else
+        {
+            setcookie("msg","<div class='alert alert-danger'>Muitas tentativas realizadas, tente novamente mais tarde</div>",time() + 1,"/");
+            header("Location:".URL."codigo-recuperacao/$idAdmin");
+        }
+    }
+
+    function alterarSenha()
+    {
+        $id = $_POST['inputIdAdmin'];
+        $senha = $_POST['inputSenha'];
+
+        $cmd = new Admin();
+        $cmd->IDADMIN = $id;
+        $cmd->SENHA = password_hash($senha,PASSWORD_DEFAULT);
+        $cmd->alterarSenha();
+
+        setcookie("msg","<div class='alert alert-success'>Senha alterada com sucesso!</div>",time() + 1,"/");
+        header("Location:".URL."login");
     }
 }
 ?>

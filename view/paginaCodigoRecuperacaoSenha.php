@@ -13,25 +13,20 @@
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mt- mb-4">Redefinir senha</header>
                     <article class="bg-verde p-3 p-lg-5 rounded-4 text-white">
-                        <form action="<?php echo URL."alterar-senha"?>" method="POST">
+                        <form action="<?php echo URL."confirmar-recuperacao"?>" method="POST">
                             <?php
                                 //Exibindo mensagem de erro
                                 if(isset($_COOKIE["msg"]))
                                 {echo $_COOKIE['msg'];}
                             ?>
-                            <div class="text-danger alert alert-danger" id="avisoIgualdade" style="display:none;">As senhas devem ser iguais</div>
                             <input type="hidden" value="<?php echo $idadmin;?>" class="d-none" id="inputIdAdmin" name="inputIdAdmin" required>
                             <div class="mb-3">
-                                <label for="inputSenha" class="form-label">Nova senha</label>
-                                <input type="text" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a nova senha" maxlength="255" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="inputConfirmaSenha" class="form-label">Confirmar nova senha</label>
-                                <input type="text" value="" class="form-control" id="inputConfirmaSenha" name="inputConfirmaSenha" aria-label="Digite a nova senha novamente" maxlength="255" required>
+                                <label for="inputCodigo" class="form-label">Código de recuperacao</label>
+                                <input type="text" class="form-control" id="inputCodigo" name="inputCodigo" aria-label="Digite o código de recuperação" maxlength="6" required>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>
-                                <button type="submit" class="btn btn-success">Logar</button>
+                                <button type="submit" class="btn btn-success">Confirmar</button>
                             </div>
                         </form>
                     </article>
@@ -42,16 +37,5 @@
         <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
-    <script type="text/javascript">
-        //confirme a senha
-        $("form").submit(function(){
-            if($("#inputSenha").val() != $("#inputConfirmaSenha").val())
-            {
-                event.preventDefault();
-                $("#avisoIgualdade").show();
-            }
-            else{$("#avisoIgualdade").hide();}
-        });
-    </script>
 </body>
 </html>

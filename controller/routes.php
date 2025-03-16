@@ -36,10 +36,29 @@ class Route
     {  
         include_once "view/paginaLogin.php";
     }
-
+    #Página de recuperação de senha
     function abrirRecuperacaoSenha()
     {  
-        include_once "view/paginaRedefinirSenha.php";
+        include_once "view/paginaRecuperarSenha.php";
+    }
+    #Página inserir código de recuperação
+    function abrirCodigoRecuperacaoSenha($idadmin)
+    {   
+        include_once "view/paginaCodigoRecuperacaoSenha.php";
+    }
+    #Página de redefinição de senha
+    function abrirRedefinirSenha($idadmin)
+    {  
+        if ($_SESSION["PermissaoRedefinirSenha"] == true)
+        {
+            include_once "view/paginaRedefinirSenha.php";
+            $_SESSION["PermissaoRedefinirSenha"] = false;
+        }
+        else
+        {
+            setcookie("msg","<div class='alert alert-danger'>Você não tem permissão para alterar a senha.</div>",time() + 1,"/");
+            header("Location:".URL."login");
+        }
     }
 
     #Valida login

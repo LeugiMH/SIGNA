@@ -23,11 +23,11 @@
                             <input type="hidden" value="<?php echo $idadmin;?>" class="d-none" id="inputIdAdmin" name="inputIdAdmin" required>
                             <div class="mb-3">
                                 <label for="inputSenha" class="form-label">Nova senha</label>
-                                <input type="text" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a nova senha" maxlength="255" required>
+                                <input type="password" value="" class="form-control" id="inputSenha" name="inputSenha" aria-label="Digite a nova senha" maxlength="255" required>
                             </div>
                             <div class="mb-3">
                                 <label for="inputConfirmaSenha" class="form-label">Confirmar nova senha</label>
-                                <input type="text" value="" class="form-control" id="inputConfirmaSenha" name="inputConfirmaSenha" aria-label="Digite a nova senha novamente" maxlength="255" required>
+                                <input type="password" value="" class="form-control" id="inputConfirmaSenha" name="inputConfirmaSenha" aria-label="Digite a nova senha novamente" maxlength="255" required>
                             </div>
                             <div class="d-flex justify-content-between">
                                 <button type="button" class="btn btn-success" onclick="history.back()">Voltar</button>

@@ -37,6 +37,7 @@ if($_GET)
             $route->abrirInicio();
         break;
 
+        // FEEDBACK
         case "envFeedback":
             $route = new FeedbackController();
             $route->enviarFeedback();

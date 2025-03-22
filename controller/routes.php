@@ -56,7 +56,7 @@ class Route
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Você não tem permissão para alterar a senha.</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>Você não tem permissão para alterar a senha ou sua permissão expirou.</div>",time() + 1,"/");
             header("Location:".URL."login");
         }
     }

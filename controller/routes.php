@@ -25,6 +25,8 @@ class Route
         }
         else 
         {
+            $especies = new EspecieController();
+            $especies = $especies->listarUsu();
             $especimes = new EspecimeController();
             $especimes = $especimes->listarUsu();
             include_once "view/paginaInicial.php";

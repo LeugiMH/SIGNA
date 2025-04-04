@@ -11,6 +11,7 @@ class Feedback
     private $DATACAD;  
     private $IDADMIN; 
     private $COMENT_ADMIN; 
+    private $DATAFECH; 
 
     //Método get
     function __get($feedback)
@@ -104,13 +105,14 @@ class Feedback
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBFEEDBACK SET IDADMIN = :IDADMIN, COMENT_ADMIN = :COMENT_ADMIN
+        $cmd = $con->prepare("UPDATE TBFEEDBACK SET IDADMIN = :IDADMIN, COMENT_ADMIN = :COMENT_ADMIN, DATAFECH = :DATAFECH 
                                             WHERE IDFEEDBACK = :IDFEEDBACK");
 
         //Definindo parâmetros (SQL INJECTION)
-        $cmd->bindParam(":IDADMIN",     $this->IDADMIN);
-        $cmd->bindParam(":IDFEEDBACK",     $this->IDFEEDBACK);
-        $cmd->bindParam(":COMENT_ADMIN",     $this->COMENT_ADMIN);
+        $cmd->bindParam(":IDADMIN",         $this->IDADMIN);
+        $cmd->bindParam(":IDFEEDBACK",      $this->IDFEEDBACK);
+        $cmd->bindParam(":DATAFECH",        $this->DATAFECH);
+        $cmd->bindParam(":COMENT_ADMIN",    $this->COMENT_ADMIN);
 
         //Executando e retornando resultado
         try

@@ -30,7 +30,7 @@ class FeedbackController
         $cmd->DATACAD = date("Y-m-d h:i:s"); //Data atual de cadastro
         
 
-        if($cmd->sendFeedback())  //Sucesso ao cadastrar Feedback
+        if($cmd->sendFeedback())  //Sucesso ao Alterar o Feedback
         {
             echo "<script>alert('Feedback enviado com sucesso');</script>";
             setcookie("msgF","<div class='alert alert-success'>Feedback enviado com sucesso</div>",time() + 1,"/");
@@ -81,6 +81,7 @@ class FeedbackController
         $cmd->IDADMIN = $idAdmin;
         $cmd->COMENT_ADMIN = $comentAdmin;
         $cmd->IDFEEDBACK = $idFeedback;
+        $cmd->DATAFECH = date("Y-m-d h:i:s");  //Data atual de fechamento
 
         if($cmd->enviarRespostaAdmin()) //Sucesso ao Enviar Resposta
         {

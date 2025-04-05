@@ -14,7 +14,7 @@
     <?php 
     var_dump(gethostname());
     var_dump($_SERVER['HTTP_SEC_CH_UA_PLATFORM']);
-    var_dump($_SERVER['HTTP_SEC_CH_UA']);
+    var_dump($_SERVER['HTTP_SEC-CH-UA-MODEL']);
     var_dump($_SERVER['HTTP_SEC_CH_UA']);
     ?>
     <div class="corpo h-100">

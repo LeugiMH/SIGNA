@@ -58,7 +58,7 @@
                     <img class="rating__star star-i star me-2" tabindex="1" aria-label="4 estrelas"></img>
                     <img class="rating__star star-i star me-2" tabindex="1" aria-label="5 estrelas"></img>
               </div>
-              <input type="hidden" value="" class="form-control" id="rating" name="rating" required>
+              <input type="hidden" value="0" class="form-control" id="rating" name="rating" required>
             </div>
             <div class="mb-3">
               <label for="inputEmail" class="form-label">Assunto</label>

@@ -35,7 +35,7 @@
                                 foreach ($especies as $especie)
                                 {
                                     echo 
-                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\">$especie->NOMEPOP".
+                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action border-0\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\" style=\"background-color: transparent;\">$especie->NOMEPOP".
                                     "<span class=\"badge text-bg-success rounded-pill float-end\">$especie->QUANTATIVA</span>".
                                     "</a>";
                                 }
@@ -134,6 +134,8 @@
             if(!$(listItem).hasClass("active"))
             {
                 $(listItem).parent().children().removeClass("active");
+                $(listItem).parent().children().prop("style", "background-color: transparent;");
+                $(listItem).prop("style", "");
                 $(listItem).addClass("active");
                 map.eachLayer(function(layer) {
                     // Remove todos os layers do mapa
@@ -147,6 +149,8 @@
             {
                 // Exibe todas os marcadores
                 $(listItem).removeClass("active");
+                $(listItem).parent().children().prop("style", "background-color: transparent;");
+                $(listItem).prop("style", "background-color: transparent;");
                 allLayers.forEach(function(layer) {
                     map.addLayer(layer);
                 });

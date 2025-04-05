@@ -11,12 +11,6 @@
 </head>
 <body class="d-flex flex-column min-vh-100">
 
-    <?php 
-    var_dump(gethostname());
-    var_dump($_SERVER['HTTP_SEC_CH_UA_PLATFORM']);
-    var_dump($_SERVER['HTTP_SEC-CH-UA-MODEL']);
-    var_dump($_SERVER['HTTP_SEC_CH_UA']);
-    ?>
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100 clouds">

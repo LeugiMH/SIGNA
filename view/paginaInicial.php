@@ -134,22 +134,19 @@
             if(!$(listItem).hasClass("active"))
             {
                 $(listItem).parent().children().removeClass("active");
-                $(listItem).removeClass("active");
                 $(listItem).addClass("active");
                 map.eachLayer(function(layer) {
+                    // Remove todos os layers do mapa
                     if (layer != tile && layer != bgOverlay && layer != overlay) {
-                        // Remove layer do mapa
                         map.removeLayer(layer);
                     }
                 });
-                map.removeLayer(layerIndex);
                 map.addLayer(layerIndex);
             }
             else
             {
                 // Exibe todas os marcadores
                 $(listItem).removeClass("active");
-                console.log();
                 allLayers.forEach(function(layer) {
                     map.addLayer(layer);
                 });

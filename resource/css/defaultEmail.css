@@ -1,15 +1,14 @@
 @font-face {
 font-family: 'Luciole';
+font-style: normal;
+font-weight: 400;
 src:
     local('Luciole'),
-    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.ttf') format('opentype') tech(color-COLRv1),
-    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.eot') format('eot'),
-    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff') format('woff'),
-    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff2') format('woff2');
+    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff') format('woff');
 }
 *{
     box-sizing: border-box;
-    font-family: 'Luciole';
+    font-family: 'Luciole',arial;
     text-decoration: none;
 }
 body{
@@ -46,7 +45,6 @@ body{
 .corpo
 {
     height: 100%;
-    font-family: 'Luciole';
     display: grid;
     grid-template-areas: 'conteudo''rodape';
     grid-template-rows: auto minmax(70px,min-content);

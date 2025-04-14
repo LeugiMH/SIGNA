@@ -43,6 +43,11 @@ class Email
             <style type=\"text/css\">
                 /* CSS do email */
                 $default
+                p
+                {
+                    font-family: 'Luciole',monospace,arial;
+                    font-size: 1.2rem;
+                }
                 body
                 {
                     height: 100vh;
@@ -146,23 +151,23 @@ class Email
                 }
                 .rounded-3
                 {
-                    border-radius: 5px !important;
+                    border-radius: 0.3rem !important;
                 }
             </style>
             </head>
             <body>
                 <div class=\"corpo\">
-                    <main class=\"conteudo bg-secondary h-100 m-0\">
-                        <div class=\"container-fluid d-flex folhas p-0 m-0 justify-content-center align-content-center position-relative h-100\">
-                            <section class=\"p-0 my-5 rounded-3 align-content-center\" style=\"z-index: 2; width:70%;\">
+                    <main class=\"conteudo bg-secondary align-content-center justify-content-center h-100 m-0\">
+                        <div class=\"container-fluid folhas p-0 m-0 align-content-center justify-content-center position-relative h-100\">
+                            <section class=\"p-0 my-5 align-content-center justify-content-center rounded-3\" style=\"z-index: 2; width:70%;\">
                                 <!-- Conteúdo -->
                                 <div class=\"display-1 text-center mb-4\">Recuperação de senha</div>
-                                <div class=\"bg-verde text-center text-white m-0\">
-                                    <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
+                                <div class=\"bg-verde text-center text-white rounded-3 m-0\">
+                                    <font face=\"Luciole\"><p>Use o código abaixo para recuperar o seu acesso no SIGNA</p></font>
                                     <h1>$this->codsenha</h1>
                                 </div>
                             </section>
-                            <a href='#' style=\"cursor:default;\">
+                            <a href='#' style=\"cursor:default; user-select:none;\">
                                 <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
                             </a>
                         </div>

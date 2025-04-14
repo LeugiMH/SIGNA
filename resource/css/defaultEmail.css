@@ -7,26 +7,8 @@ src:
     url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff") format("woff"),
     url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff2") format("woff2");
 }
-
-@font-face {
-font-family: "Luciole-Bold";
-src:
-    local("Luciole-Bold"),
-      url("{{url}}resource/css/fonts/Luciole-Bold/Luciole-Bold.ttf") format("opentype") tech(color-COLRv1),
-      url("{{url}}resource/css/fonts/Luciole-Bold/Luciole-Bold.eot") format("eot"),
-      url("{{url}}resource/css/fonts/Luciole-Bold/Luciole-Bold.woff") format("woff"),
-      url("{{url}}resource/css/fonts/Luciole-Bold/Luciole-Bold.woff2") format("woff2");
-}
-@font-face {
-font-family: "Luciole-Italic";
-src:
-    local("Luciole-Italic"),
-    url("{{url}}resource/css/fonts/Luciole-Italic/Luciole-Italic.ttf") format("opentype") tech(color-COLRv1),
-    url("{{url}}resource/css/fonts/Luciole-Italic/Luciole-Italic.woff") format("woff"),
-    url("{{url}}resource/css/fonts/Luciole-Italic/Luciole-Italic.woff2") format("woff2");
-}
 p,h1,h2,h3,h4,h5,h6,span,a,li,button{
-    font-family: "luciole" !important;
+    font-family: "luciole";
 }
 body{
     padding-right: 0 !important;
@@ -53,7 +35,7 @@ body{
 .folhas
 {
     background-color: #C3F8A5;
-    background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.svg'),url('{{url}}resource/ui/bg/bg_arvore_inferior_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_inferior_direito.svg');
+    background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.png'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.png'),url('{{url}}resource/ui/bg/bg_arvore_inferior_esquerdo.png'),url('{{url}}resource/ui/bg/bg_arvore_inferior_direito.png');
     background-repeat: no-repeat;
     background-position: top left, top right, bottom left, bottom right;
     background-size: 20%,10%,20%,10%;
@@ -61,7 +43,7 @@ body{
 .folhas1
 {
     background-color: #C3F8A5;
-    background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.svg');
+    background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.png'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.png');
     background-repeat: no-repeat;
     background-position: top left, top right;
     background-size: 20%,10%;
@@ -69,7 +51,7 @@ body{
 .folhas2
 {
     background-color: white;
-    background-image:url('{{url}}resource/ui/bg/bg_arvore_inferior_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_inferior_direito-svg.svg');
+    background-image:url('{{url}}resource/ui/bg/bg_arvore_inferior_esquerdo.png'),url('{{url}}resource/ui/bg/bg_arvore_inferior_direito.png');
     background-repeat: no-repeat;
     background-position: bottom left, bottom right;
     background-clip: unset;

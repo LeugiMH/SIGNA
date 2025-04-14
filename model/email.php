@@ -40,7 +40,62 @@ class Email
             $Conteudo = 
             "
             <head>
-            <style>
+            <style> <!--Bootstrap-->
+                .text-center
+                {
+                    text-align: center;
+                }
+                .m-0
+                {
+                    margin: 0;
+                }
+                .my
+                {
+                    margin-top: 1.5rem !important;
+                    margin-bottom: 1.5rem !important;
+                }
+                .p-0
+                {
+                    padding: 0;
+                }
+                .bg-secondary
+                {
+                    background-color: #6c757d!important;
+                }
+                .bg-verdee
+                {
+                    background-color: #007bff!important;
+                }
+                .bg-dark
+                {
+                    background-color: rgb(33, 37, 41)!important;
+                }
+                .text-white
+                {
+                    color: #fff!important;
+                }
+                .h-100
+                {
+                    height: 100%!important;
+                }
+                d-flex
+                {
+                    display: flex!important;
+                }
+                display-1
+                {
+                    font-size: calc(1.0rem + 4vw);
+                    font-weight: 300;
+                    line-height: 1.2;
+                }
+                .align-content-center
+                {
+                    align-content: center!important;
+                }
+                .justify-content-center
+                {
+                    justify-content: center!important;
+                }
             </style>
             <style>
             $default
@@ -53,7 +108,7 @@ class Email
                             <section class=\"col-sm-8 col-lg-6 col-xl-4 p-0 my-5\" style=\"z-index: 2;\">
                                 <!-- Conteúdo -->
                                 <header class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</header>
-                                <article class=\"bg-verdee  text-white m-0\">
+                                <article class=\"bg-verde text-white m-0\">
                                     <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
                                     <h1>$this->codsenha</h1>
                                 </article>

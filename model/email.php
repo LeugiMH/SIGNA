@@ -40,7 +40,7 @@ class Email
             $Conteudo = 
             "
             <head>
-            <style> <!--Bootstrap-->
+            <style type=\"text/css\">
                 .text-center
                 {
                     text-align: center;
@@ -96,26 +96,63 @@ class Email
                 {
                     justify-content: center!important;
                 }
-            </style>
-            <style>
-            $default
+                .me-3
+                {
+                    margin-right: 1rem!important;
+                }
+                .mt-3
+                {
+                    margin-top: 1rem!important;
+                }
+                .my-5
+                {
+                    margin-top: 3rem!important;
+                    margin-bottom: 3rem!important;
+                }
+                .p-3
+                {
+                    padding: 1rem!important;
+                }
+                .mb-4
+                {
+                    margin-bottom: 1.5rem!important;
+                }
+                .mt-auto
+                {
+                    margin-top: auto!important;
+                }
+                .position-relative
+                {
+                    position: relative!important;
+                }
+                .container-fluid
+                {
+                    width: 100%;
+                }
+                rounded-3
+                {
+                    border-radius: 0.3rem!important;
+                }
+
+                /* CSS do email */
+                $default
             </style>
             </head>
-            <body>
+            <body style=\"width:80%; height:600px;\">
                 <div class=\"corpo\">
-                    <div class=\"conteudo bg-secondary h-100 clouds\">
-                        <div class=\"container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100\">
-                            <section class=\"col-sm-8 col-lg-6 col-xl-4 p-0 my-5\" style=\"z-index: 2;\">
+                    <main class=\"conteudo bg-secondary h-100 clouds\">
+                        <div class=\"container-fluid folhas p-0 m-0 justify-content-center align-content-center position-relative h-100\">
+                            <section class=\"p-0 my-5 rounded-3 align-content-center\" style=\"z-index: 2; width:70%;\">
                                 <!-- Conteúdo -->
-                                <header class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</header>
-                                <article class=\"bg-verde text-white m-0\">
+                                <div class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</div>
+                                <div class=\"bg-verde text-center text-white m-0\">
                                     <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
                                     <h1>$this->codsenha</h1>
-                                </article>
+                                </div>
                             </section>
                             <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
                         </div>
-                    </div>
+                    </main>
                     <footer class=\"rodape text-white mt-auto\">
                         <div class=\"align-content-center bg-dark text-center justify-content-center m-0 p-3\">
                             <div class=\"d-flex d-flex-row text-center justify-content-center\">

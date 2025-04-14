@@ -1,14 +1,14 @@
 @font-face {
-font-family: "Luciole";
+font-family: 'Luciole';
 src:
-    local("Luciole"),
-    url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.ttf") format("opentype") tech(color-COLRv1),
-    url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.eot") format("eot"),
-    url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff") format("woff"),
-    url("{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff2") format("woff2");
+    local('Luciole'),
+    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.ttf') format('opentype') tech(color-COLRv1),
+    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.eot') format('eot'),
+    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff') format('woff'),
+    url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff2') format('woff2');
 }
-p,h1,h2,h3,h4,h5,h6,span,a,li,button{
-    font-family: "luciole";
+*{
+    font-family: 'luciole';
 }
 body{
     padding-right: 0 !important;

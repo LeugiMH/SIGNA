@@ -35,14 +35,12 @@ class Email
         {
             $url = $_SERVER["HTTP_HOST"] == "localhost" ? "https://signa.eco.br/" : URL;
             $default = file_get_contents($url."resource/css/defaultEmail.css");
-            $bootstrap = file_get_contents($url."resource/css/bootstrap.min.css");
             $default = str_replace("{{url}}", $url, $default);
             //Conteúdo da mensagem enviada
             $Conteudo = 
             "
             <head>
             <style>
-            $bootstrap
             </style>
             <style>
             $default
@@ -55,7 +53,7 @@ class Email
                             <section class=\"col-sm-8 col-lg-6 col-xl-4 p-0 my-5\" style=\"z-index: 2;\">
                                 <!-- Conteúdo -->
                                 <header class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</header>
-                                <article class=\"bg-verde p-3 p-lg-5 rounded-4 text-white m-0\">
+                                <article class=\"bg-verdee  text-white m-0\">
                                     <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
                                     <h1>$this->codsenha</h1>
                                 </article>
@@ -73,10 +71,10 @@ class Email
                                     <img src=\"".$url."resource/imagens/icons/instagram.png\" alt=\"Instragram logo\" target=\"_blank\" style=\"width: 64px;\">
                                 </a>
                                 <a href=\"https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br\" target=\"_blank\" class=\"me-3\">
-                                <img src=\"".$url."resource/imagens/icons/linkedin.png\" alt=\"Linkedin logo\" style=\"width: 64px;\">
+                                    <img src=\"".$url."resource/imagens/icons/linkedin.png\" alt=\"Linkedin logo\" style=\"width: 64px;\">
                                 </a>
                                 <a href=\"https://github.com/LeugiMH/SIGNA\" class=\"me-3\">
-                                <img src=\"".$url."resource/imagens/icons/github.png\" alt=\"Github logo\" style=\"width: 64px;\">
+                                    <img src=\"".$url."resource/imagens/icons/github.png\" alt=\"Github logo\" style=\"width: 64px;\">
                                 </a>
                             </div>
                             <p class=\"mt-3\"> Siga a Fatec Franco da Rocha nas redes sociais! </p>

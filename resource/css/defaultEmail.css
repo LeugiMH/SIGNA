@@ -1,12 +1,3 @@
-:root
-{
-    overflow-x: hidden;
-    --verde:#4D9B44;
-    --verde-claro:#C3F8A5;
-    --verde-escuro:#205732;
-    --terroso-creme:#FFC7A4;
-}
-
 @font-face {
 font-family: "Luciole";
 src:
@@ -34,7 +25,7 @@ src:
     url("{{url}}resource/css/fonts/Luciole-Italic/Luciole-Italic.woff") format("woff"),
     url("{{url}}resource/css/fonts/Luciole-Italic/Luciole-Italic.woff2") format("woff2");
 }
-*{
+p,h1,h2,h3,h4,h5,h6,span,a,li,button{
     font-family: "luciole" !important;
 }
 body{
@@ -42,7 +33,7 @@ body{
 }
 .bg-verde
 {
-    background-color: var(--verde);
+    background-color: #4D9B44;
 }
 .nuvem
 {
@@ -61,7 +52,7 @@ body{
 }
 .folhas
 {
-    background-color: var(--verde-claro);
+    background-color: #C3F8A5;
     background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.svg'),url('{{url}}resource/ui/bg/bg_arvore_inferior_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_inferior_direito.svg');
     background-repeat: no-repeat;
     background-position: top left, top right, bottom left, bottom right;
@@ -69,7 +60,7 @@ body{
 }
 .folhas1
 {
-    background-color: var(--verde-claro);
+    background-color: #C3F8A5;
     background-image:url('{{url}}resource/ui/bg/bg_arvore_topo_esquerdo.svg'),url('{{url}}resource/ui/bg/bg_arvore_topo_direito.svg');
     background-repeat: no-repeat;
     background-position: top left, top right;

@@ -35,18 +35,21 @@ class Email
         {
             $url = $_SERVER["HTTP_HOST"] == "localhost" ? "https://signa.eco.br/" : URL;
             $default = file_get_contents($url."resource/css/defaultEmail.css");
+            $bootstrap = file_get_contents($url."resource/css/bootstrap.min.css");
             $default = str_replace("{{url}}", $url, $default);
             //Conteúdo da mensagem enviada
             $Conteudo = 
             "
             <head>
-            <>
+            <style>
+            $bootstrap
+            </style>
             <style>
             $default
             </style>
             </head>
             <body>
-                <div class=\"corpo min-vh-100 h-100\">
+                <div class=\"corpo\">
                     <div class=\"conteudo bg-secondary h-100 clouds\">
                         <div class=\"container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100\">
                             <section class=\"col-sm-8 col-lg-6 col-xl-4 p-0 my-5\" style=\"z-index: 2;\">

@@ -33,14 +33,51 @@ class Email
 
         function enviarCodigo()
         {
+            $url = $_SERVER["HTTP_HOST"] == "localhost" ? "https://signa.eco.br/" : URL;
+            $default = file_get_contents($url."resource/css/defaultEmail.css");
             //Conteúdo da mensagem enviada
             $Conteudo = 
             "
-            <p><b>Recuperação de senha</b><br/>
-            Foi solicitada a recuperação da senha na sua conta</p>
-            
-            <p>Codigo de Confirmação: <b>$this->codsenha</b></p>
-
+            <head>
+            <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7\" crossorigin=\"anonymous\">
+            <style>
+            $default
+            </style>
+            </head>
+                <div class=\"corpo min-vh-100 h-100\">
+                    <div class=\"conteudo bg-secondary h-100 clouds\">
+                        <div class=\"container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100\">
+                            <section class=\"col-sm-8 col-lg-6 col-xl-4 p-0 my-5\" style=\"z-index: 2;\">
+                                <!-- Conteúdo -->
+                                <header class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</header>
+                                <article class=\"bg-verde p-3 p-lg-5 rounded-4 text-white m-0\">
+                                    <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
+                                    <h1>$this->codsenha</h1>
+                                </article>
+                            </section>
+                            <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
+                        </div>
+                    </div>
+                    <footer class=\"rodape text-white mt-auto\">
+                    <div class=\"align-content-center bg-dark text-center justify-content-center m-0 p-3\">
+                        <div class=\"d-flex d-flex-row text-center justify-content-center\">
+                            <a href=\"https://www.facebook.com/fatecfrancodarocha/?locale=pt_BR\" target=\"_blank\" class=\"me-3\">
+                                <img src=\"".$url."resource/imagens/icons/facebook.png\" alt=\"Facebook icon\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://www.instagram.com/fatecfrancodarocha/\" class=\"me-3\">
+                                <img src=\"".$url."resource/imagens/icons/instagram.png\" alt=\"Instragram logo\" target=\"_blank\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br\" target=\"_blank\" class=\"me-3\">
+                            <img src=\"".$url."resource/imagens/icons/linkedin.png\" alt=\"Linkedin logo\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://github.com/LeugiMH/SIGNA\" class=\"me-3\">
+                            <img src=\"".$url."resource/imagens/icons/github.png\" alt=\"Github logo\" style=\"width: 64px;\">
+                            </a>
+                        </div>
+                        <p class=\"mt-3\"> Siga a Fatec Franco da Rocha nas redes sociais! </p>
+                    </div>
+                </footer>
+                </div>
             ";
 
             $email = new PHPMailer(true);
@@ -56,6 +93,7 @@ class Email
                 $email->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;           //criptografia do email
                 $email->Port = $this->porta;
                 $email->CharSet = "UTF-8";
+                $email->isHTML(true);
                 $email->setLanguage('pt_br');
 
                 //Informações de quem enviou
@@ -64,9 +102,6 @@ class Email
 
                 //endereço para qual será enviado o email
                 $email->addAddress($this->emailDestinatario);
-
-                //define se é html
-                $email->isHTML(true);
 
                 //Corpo do e-mail
                 $email->Subject = "Redefinição de senha";//Assunto

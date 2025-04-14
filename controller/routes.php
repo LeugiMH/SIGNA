@@ -206,7 +206,7 @@ class Route
     #Página teste
     function abrirTeste()
     {
-        include_once "view/LAYOUTPaginaFixa.php";
+        include_once "view/paginaEmail.php";
     }
 }
 ?>

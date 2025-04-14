@@ -41,13 +41,6 @@ class Email
             "
             <head>
             <style type=\"text/css\">
-                /* CSS do email */
-                $default
-                p
-                {
-                    font-family: 'Luciole',monospace,arial;
-                    font-size: 1.2rem;
-                }
                 body
                 {
                     height: 100vh;
@@ -96,17 +89,21 @@ class Email
                 }
                 .display-1
                 {
-                    font-size: 4rem;
+                    font-size: 3rem;
                     font-weight: 300;
                     line-height: 1.2;
-                    font-family: 'Luciole';
                 }
                 h1
                 {
                     font-size: 3.5rem;
                     font-weight: 300;
                     line-height: 1.2;
-                    font-family: 'Luciole';
+                }
+                h2
+                {
+                    font-size: 3rem;
+                    font-weight: 300;
+                    line-height: 1.2;
                 }
                 .align-content-center
                 {
@@ -153,45 +150,47 @@ class Email
                 {
                     border-radius: 0.3rem !important;
                 }
+
+                /* CSS do email */
+                $default
             </style>
             </head>
             <body>
-                <div class=\"corpo\">
-                    <main class=\"conteudo bg-secondary align-content-center justify-content-center h-100 m-0\">
-                        <div class=\"container-fluid folhas p-0 m-0 align-content-center justify-content-center position-relative h-100\">
-                            <section class=\"p-0 my-5 align-content-center justify-content-center rounded-3\" style=\"z-index: 2; width:70%;\">
-                                <!-- Conteúdo -->
-                                <div class=\"display-1 text-center mb-4\">Recuperação de senha</div>
-                                <div class=\"bg-verde text-center text-white rounded-3 m-0\">
-                                    <font face=\"Luciole\"><p>Use o código abaixo para recuperar o seu acesso no SIGNA</p></font>
-                                    <h1>$this->codsenha</h1>
+            <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
+                <tr class=\"folhas\">
+                    <th style=\"text-center align-content-center justify-content-center\">
+                        <h1 class=\"display-1 text-center mb-4\">Recuperação de senha</h1>
+                        <div class=\"p-0 my-5 text-center align-content-center justify-content-center rounded-3\" style=\"z-index: 2; width:70%; margin:auto;\">
+                            <!-- Conteúdo -->
+                            <center>
+                                <div class=\"bg-verde text-center text-white rounded-3 m-0 p-3\">
+                                    <h3>Use o código abaixo para recuperar o seu acesso no SIGNA</h3>
+                                    <h2>$this->codsenha</h2>
                                 </div>
-                            </section>
-                            <a href='#' style=\"cursor:default; user-select:none;\">
-                                <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
+                            </center>
+                        </div>
+                    </th>
+                </tr>
+                <tr class=\"text-center justify-content-center align-content-center\">
+                    <td class=\"rodape text-white mt-auto bg-dark text-center justify-content-center align-content-center m-0 p-3\">
+                        <div class=\"text-center justify-content-center align-content-center\" style=\"margin:auto;\">
+                            <a href=\"https://www.facebook.com/fatecfrancodarocha/?locale=pt_BR\" target=\"_blank\" class=\"me-3\">
+                                <img src=\"".$url."resource/imagens/icons/facebook.png\" alt=\"Facebook icon\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://www.instagram.com/fatecfrancodarocha/\" class=\"me-3\">
+                                <img src=\"".$url."resource/imagens/icons/instagram.png\" alt=\"Instragram logo\" target=\"_blank\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br\" target=\"_blank\" class=\"me-3\">
+                                <img src=\"".$url."resource/imagens/icons/linkedin.png\" alt=\"Linkedin logo\" style=\"width: 64px;\">
+                            </a>
+                            <a href=\"https://github.com/LeugiMH/SIGNA\" class=\"\">
+                                <img src=\"".$url."resource/imagens/icons/github.png\" alt=\"Github logo\" style=\"width: 64px;\">
                             </a>
                         </div>
-                    </main>
-                    <footer class=\"rodape text-white mt-auto\">
-                        <div class=\"align-content-center bg-dark text-center justify-content-center m-0 p-3\">
-                            <div class=\"d-flex text-center justify-content-center\">
-                                <a href=\"https://www.facebook.com/fatecfrancodarocha/?locale=pt_BR\" target=\"_blank\" class=\"me-3\">
-                                    <img src=\"".$url."resource/imagens/icons/facebook.png\" alt=\"Facebook icon\" style=\"width: 64px;\">
-                                </a>
-                                <a href=\"https://www.instagram.com/fatecfrancodarocha/\" class=\"me-3\">
-                                    <img src=\"".$url."resource/imagens/icons/instagram.png\" alt=\"Instragram logo\" target=\"_blank\" style=\"width: 64px;\">
-                                </a>
-                                <a href=\"https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br\" target=\"_blank\" class=\"me-3\">
-                                    <img src=\"".$url."resource/imagens/icons/linkedin.png\" alt=\"Linkedin logo\" style=\"width: 64px;\">
-                                </a>
-                                <a href=\"https://github.com/LeugiMH/SIGNA\" class=\"me-3\">
-                                    <img src=\"".$url."resource/imagens/icons/github.png\" alt=\"Github logo\" style=\"width: 64px;\">
-                                </a>
-                            </div>
-                            <p class=\"mt-3\"> Siga a Fatec Franco da Rocha nas redes sociais! </p>
-                        </div>
-                    </footer>
-                </div>
+                        <p class=\"mt-3\"> Siga a Fatec Franco da Rocha nas redes sociais! </p>
+                    </td>
+                </tr>
+            </table>
             </body>
             ";
 

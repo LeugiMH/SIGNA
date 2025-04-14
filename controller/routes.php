@@ -6,6 +6,7 @@ include_once "especie.php";
 include_once "especime.php";
 include_once "assunto.php";
 include_once "atributo.php";
+include_once "acesso.php";
 
 class Route
 {
@@ -80,6 +81,10 @@ class Route
 
     function abrirExibirEspecime($idEspecime)
     {
+        // Cadastra um acesso para o espécime
+        $acesso = new AcessoController();
+        $acesso->cadastrarAcesso($idEspecime);
+
         $planta = new EspecimeController();
         $planta = $planta->buscarTudo($idEspecime);
         $atributos = new EspecieController();

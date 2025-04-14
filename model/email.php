@@ -41,6 +41,11 @@ class Email
             "
             <head>
             <style type=\"text/css\">
+                body
+                {
+                    height: 100vh;
+                    width: 100%;
+                }
                 .text-center
                 {
                     text-align: center;
@@ -131,16 +136,16 @@ class Email
                 }
                 rounded-3
                 {
-                    border-radius: 0.3rem!important;
+                    border-radius: 0.5rem !important;
                 }
 
                 /* CSS do email */
                 $default
             </style>
             </head>
-            <body style=\"width:80%; height:600px;\">
+            <body>
                 <div class=\"corpo\">
-                    <main class=\"conteudo bg-secondary h-100 clouds\">
+                    <main class=\"conteudo bg-secondary h-100\">
                         <div class=\"container-fluid folhas p-0 m-0 justify-content-center align-content-center position-relative h-100\">
                             <section class=\"p-0 my-5 rounded-3 align-content-center\" style=\"z-index: 2; width:70%;\">
                                 <!-- Conteúdo -->
@@ -150,12 +155,12 @@ class Email
                                     <h1>$this->codsenha</h1>
                                 </div>
                             </section>
-                            <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
+                            <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" alt=\"Imagem nuvem\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
                         </div>
                     </main>
                     <footer class=\"rodape text-white mt-auto\">
                         <div class=\"align-content-center bg-dark text-center justify-content-center m-0 p-3\">
-                            <div class=\"d-flex d-flex-row text-center justify-content-center\">
+                            <div class=\"d-flex text-center justify-content-center\">
                                 <a href=\"https://www.facebook.com/fatecfrancodarocha/?locale=pt_BR\" target=\"_blank\" class=\"me-3\">
                                     <img src=\"".$url."resource/imagens/icons/facebook.png\" alt=\"Facebook icon\" style=\"width: 64px;\">
                                 </a>

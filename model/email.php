@@ -41,6 +41,8 @@ class Email
             "
             <head>
             <style type=\"text/css\">
+                /* CSS do email */
+                $default
                 body
                 {
                     height: 100vh;
@@ -83,15 +85,23 @@ class Email
                 {
                     height: 100%!important;
                 }
-                d-flex
+                .d-flex
                 {
                     display: flex!important;
                 }
-                display-1
+                .display-1
                 {
-                    font-size: calc(1.0rem + 4vw);
+                    font-size: 4rem;
                     font-weight: 300;
                     line-height: 1.2;
+                    font-family: 'Luciole';
+                }
+                h1
+                {
+                    font-size: 3.5rem;
+                    font-weight: 300;
+                    line-height: 1.2;
+                    font-family: 'Luciole';
                 }
                 .align-content-center
                 {
@@ -134,28 +144,27 @@ class Email
                 {
                     width: 100%;
                 }
-                rounded-3
+                .rounded-3
                 {
-                    border-radius: 0.5rem !important;
+                    border-radius: 5px !important;
                 }
-
-                /* CSS do email */
-                $default
             </style>
             </head>
             <body>
                 <div class=\"corpo\">
-                    <main class=\"conteudo bg-secondary h-100\">
-                        <div class=\"container-fluid folhas p-0 m-0 justify-content-center align-content-center position-relative h-100\">
+                    <main class=\"conteudo bg-secondary h-100 m-0\">
+                        <div class=\"container-fluid d-flex folhas p-0 m-0 justify-content-center align-content-center position-relative h-100\">
                             <section class=\"p-0 my-5 rounded-3 align-content-center\" style=\"z-index: 2; width:70%;\">
                                 <!-- Conteúdo -->
-                                <div class=\"display-1 text-center mb-4\">OLÁ \"Nome do usuário\"</div>
+                                <div class=\"display-1 text-center mb-4\">Recuperação de senha</div>
                                 <div class=\"bg-verde text-center text-white m-0\">
                                     <p>Use o código abaixo para recuperar o seu acesso no SIGNA</p>
                                     <h1>$this->codsenha</h1>
                                 </div>
                             </section>
-                            <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" alt=\"Imagem nuvem\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
+                            <a href='#' style=\"cursor:default;\">
+                                <img src=\"".$url."resource/ui/bg/bg_nuvem_completo.png\" class=\"nuvem nuvem-mid p-0\" style=\"z-index: 0!important;\">
+                            </a>
                         </div>
                     </main>
                     <footer class=\"rodape text-white mt-auto\">

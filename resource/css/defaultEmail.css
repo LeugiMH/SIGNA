@@ -8,7 +8,8 @@ src:
     url('{{url}}resource/css/fonts/Luciole-Regular/Luciole-Regular.woff2') format('woff2');
 }
 *{
-    font-family: 'luciole';
+    box-sizing: border-box;
+    font-family: 'Luciole';
     text-decoration: none;
 }
 body{

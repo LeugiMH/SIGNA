@@ -176,6 +176,13 @@
                             <div class="mb-3">
                                 <input type="text" value="" class="form-control" id="inputIdFeedback" name="inputIdFeedback" hidden>
                             </div>
+                            <div class="mb-3" style="display: none;">
+                                <label class="form-label">Espécime: </label>
+                                <a href="" class="link-opacity-50-hover link-underline-opacity-0 link-light btn btn-success">
+                                    <span id="EspecimeFeedback"></span>
+                                    <img src="<?php echo URL.'resource/imagens/icons/sair-do-canto-superior-direito.png'?>" style="width:20px;">
+                                </a>
+                            </div>
                             <div class="mb-3">
                                 <label for="inputEmail" class="form-label">Endereço de Email</label>
                                 <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" readonly>
@@ -312,6 +319,16 @@
 
             console.log(email);
 
+            if(data.IDESPECIME != null)
+            {
+                $('#EspecimeFeedback').parent().parent().show();
+                $('#EspecimeFeedback').html(data.IDESPECIME);
+                $('#EspecimeFeedback').parent().prop("href","<?php echo URL.'especimes/altera/'?>"+data.IDESPECIME);
+            }
+            else
+            {
+                $('#EspecimeFeedback').parent().parent().hide();
+            }
             $('#inputEmail').val(email);
             $('#inputAssunto').val(assunto);
             $('#inputMessage').val(texto);

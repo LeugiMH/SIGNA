@@ -15,10 +15,10 @@ if (!empty($_SERVER['HTTPS']) && ('on' == $_SERVER['HTTPS']))
     $uri = 'https://';
 else
     $uri = 'http://';
-if($_SERVER['HTTP_HOST'] == "localhost")
-    $uri .= $_SERVER['HTTP_HOST']."/SIGNA/";
-else
+if(str_contains($_SERVER['HTTP_HOST'],"signa.eco.br"))
     $uri .= $_SERVER['HTTP_HOST']."/";
+else
+    $uri .= $_SERVER['HTTP_HOST']."/SIGNA/";
 
 define("URL",$uri);
 if($_GET)
@@ -37,6 +37,7 @@ if($_GET)
             $route->abrirInicio();
         break;
 
+        // FEEDBACK
         case "envFeedback":
             $route = new FeedbackController();
             $route->enviarFeedback();

@@ -6,6 +6,7 @@ include_once "especie.php";
 include_once "especime.php";
 include_once "assunto.php";
 include_once "atributo.php";
+include_once "acesso.php";
 
 class Route
 {
@@ -25,6 +26,8 @@ class Route
         }
         else 
         {
+            $especies = new EspecieController();
+            $especies = $especies->listarUsu();
             $especimes = new EspecimeController();
             $especimes = $especimes->listarUsu();
             include_once "view/paginaInicial.php";
@@ -56,7 +59,7 @@ class Route
         }
         else
         {
-            setcookie("msg","<div class='alert alert-danger'>Você não tem permissão para alterar a senha.</div>",time() + 1,"/");
+            setcookie("msg","<div class='alert alert-danger'>Você não tem permissão para alterar a senha ou sua permissão expirou.</div>",time() + 1,"/");
             header("Location:".URL."login");
         }
     }
@@ -78,6 +81,10 @@ class Route
 
     function abrirExibirEspecime($idEspecime)
     {
+        // Cadastra um acesso para o espécime
+        $acesso = new AcessoController();
+        $acesso->cadastrarAcesso($idEspecime);
+
         $planta = new EspecimeController();
         $planta = $planta->buscarTudo($idEspecime);
         $atributos = new EspecieController();

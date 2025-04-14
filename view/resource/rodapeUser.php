@@ -36,7 +36,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="" method="POST">
+        <form action="<?php echo URL."envFeedback"?>" method="POST">
             <?php
                 //Exibindo mensagem de erro
                 if(isset($_COOKIE["msgF"]))
@@ -47,22 +47,23 @@
             <div class="mb-3">
                 <label for="inputEmail" class="form-label">Endereço de Email</label>
                 <input type="email" value="" class="form-control" id="inputEmail" name="inputEmail" aria-label="Digite o email (opcional)" placeholder="Digite o email (opcional)" maxlength="256">
+                <div class="form-text">Ao digitar email você terá o retorno do feedback.</div>
             </div>
             <div class="mb-3">
-                <label for="rating" class="form-label">Avaliação</label>
+                <label for="rating" class="form-label">Satisfação</label>
                 <div class="rating" aria-label="Insira qual a sua avaliação em estrelas (máximo 5)" >
-                    <img class="rating__star star-i star me-2" aria-label="1 estrela" ></img>
-                    <img class="rating__star star-i star me-2" aria-label="2 estrelas"></img>
-                    <img class="rating__star star-i star me-2" aria-label="3 estrelas"></img>
-                    <img class="rating__star star-i star me-2" aria-label="4 estrelas"></img>
-                    <img class="rating__star star-i star me-2" aria-label="5 estrelas"></img>
+                    <img class="rating__star star-i star me-2" tabindex="1" aria-label="1 estrela" ></img>
+                    <img class="rating__star star-i star me-2" tabindex="1" aria-label="2 estrelas"></img>
+                    <img class="rating__star star-i star me-2" tabindex="1" aria-label="3 estrelas"></img>
+                    <img class="rating__star star-i star me-2" tabindex="1" aria-label="4 estrelas"></img>
+                    <img class="rating__star star-i star me-2" tabindex="1" aria-label="5 estrelas"></img>
               </div>
-              <input type="hidden" value="" class="form-control" id="rating" name="rating">
+              <input type="hidden" value="0" class="form-control" id="rating" name="rating" required>
             </div>
             <div class="mb-3">
               <label for="inputEmail" class="form-label">Assunto</label>
               <select name="inputAssunto" id="inputAssunto" class="form-select" aria-label="Selecione um assunto para enviar o feedback" required>
-                <option disabled selected>Selecione um Assunto</option> 
+                <option disabled selected value="">Selecione um Assunto</option> 
                 <?php
                   foreach ($assuntos as $assunto)
                   {
@@ -73,15 +74,11 @@
             </div>
             <div class="mb-3">
                 <label for="inputMessage" class="form-label">Mensagem</label>
-                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback" maxlength="256"></textarea>
+                <input type="hidden" value="<?php echo isset($_GET['url']) ? $_GET['url'] : '' ?>" class="form-control" id="url" name="url">
+                <textarea class="form-control" name="inputMessage" id="inputMessage" rows="5" aria-label="Insira sua mensagem de feedback" maxlength="256" required></textarea>
             </div>
-            <input type="hidden" value="<?php "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" ?>" class="form-control" id="url" name="url">
-            <button type="submit" class="btn btn-success" name="envFeedback">Enviar Feedback</button>
-            
+            <button type="submit" class="btn btn-success">Enviar Feedback</button>
         </form>
-      </div>
-      <div class="modal-footer d-flex justify-content-center">
-            
       </div>
     </div>
   </div>

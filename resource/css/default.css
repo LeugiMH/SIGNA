@@ -156,6 +156,10 @@ body{
 .rating{
     width: 100%;
 }
+.rating__star
+{
+    cursor: pointer;
+}
 .star-a{
     content:url('../imagens/icons/star-active.png');
     height: 32px;

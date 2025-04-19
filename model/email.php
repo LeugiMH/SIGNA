@@ -16,8 +16,12 @@ class Email
         private $nomeRemetente;                             //nome do remetente
         private $porta = Ambiente::PORTA_EMAIL;             //porta do servidor TLS/STARTTLS/SSL 465 ou 587
         private $emailDestinatario;                         //email a ser enviado
-        private $conteudo;
-        private $codsenha;
+        
+        private $assunto;                                   //assunto do email
+        private $comentario;                                //comentário do email
+        private $conteudo;                                  //conteudo do email
+
+        private $codsenha;                                  //código de recuperação de senha                   
 
         //Método get
         function __get($atributo)
@@ -155,15 +159,17 @@ class Email
             <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
                 <tr class=\"folhas\">
                     <th style=\"text-center align-content-center justify-content-center\">
-                        <h1 class=\"display-1 text-center mb-4\">Resposta do feedback</h1>
+                        <h1 class=\"display-1 text-center mb-4\">Resposta ao seu feedback</h1>
                         <div class=\"p-0 my-5 text-center align-content-center justify-content-center rounded-3\" style=\"z-index: 2; width:70%; margin:auto;\">
                             <!-- Conteúdo -->
                             <center>
-                                <div class=\"bg-verde text-center text-white rounded-3 m-0 p-3\">
-                                    <h3>Muito obrigado pelo feedback no Signa, sua mensagem significa muito para nós. Graças ao seu feedback podemos continuar aprimorando nossa plataforma.</h3>
-                                    <br><br>
+                                <div class=\"bg-verde text-center text-white rounded-3 m-0 p-3\" style=\"color:white;\">
+                                    <h2>Seu feedback</h2>
+                                    <h3>Assunto: $this->assunto</h3>
+                                    <h3>Comentário: $this->comentario</h3>
                                     <h2>Resposta do feedback</h2>
-                                    <h2>$this->conteudo</h2>
+                                    <h3>$this->conteudo</h3>
+                                    <h3>Muito obrigado pelo feedback no Signa, sua mensagem significa muito para nós. Graças ao seu feedback podemos continuar aprimorando nossa plataforma.</h3>
                                 </div>
                             </center>
                         </div>

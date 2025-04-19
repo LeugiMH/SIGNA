@@ -73,6 +73,8 @@ class FeedbackController
     {
         $idFeedback = $_POST["inputIdFeedback"];
         $idAdmin =  $_SESSION["sessaoLogada"]->IDADMIN;
+        $comentAssunto  =  $_POST["inputAssunto"];
+        $comentFeedback  =  $_POST["inputMessage"];
         $comentAdmin  =  $_POST["inputResposta"];
         $emailDest = $_POST["inputEmail"];
         
@@ -92,6 +94,8 @@ class FeedbackController
                 $email->emailRemetente = Ambiente::EMAIL_FEEDBACK; 
                 $email->senhaRemetente = Ambiente::SENHA_FEEDBACK; 
                 $email->nomeRemetente = "Resposta de Feedback";
+                $email->assunto = $comentAssunto;
+                $email->comentario = $comentFeedback;
                 $email->conteudo = $comentAdmin;
                 $email->emailDestinatario = $emailDest;
                 $email->enviarRespostaFeedback();

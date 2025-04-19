@@ -38,8 +38,8 @@ class Email
             $default = file_get_contents($url."resource/css/defaultEmail.css");
             $default = str_replace("{{url}}", $url, $default);
             
-            $defaultBootstrap = file_get_contents($url."resource/css/defaultEmailBootrstrap.css");
-            
+            $defaultBootstrap = file_get_contents($url."resource/css/defaultEmailBootstrap.css");
+
             /// TODO: transferir o conteúdo do email para um arquivo separado e incluir aqui
             $Conteudo = 
             "
@@ -138,7 +138,7 @@ class Email
             $default = file_get_contents($url."resource/css/defaultEmail.css");
             $default = str_replace("{{url}}", $url, $default);
             
-            $defaultBootstrap = file_get_contents($url."resource/css/defaultEmailBootrstrap.css");
+            $defaultBootstrap = file_get_contents($url."resource/css/defaultEmailBootstrap.css");
 
             /// TODO: transferir o conteúdo do email para um arquivo separado e incluir aqui
 

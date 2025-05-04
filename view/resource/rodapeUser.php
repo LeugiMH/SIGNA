@@ -29,7 +29,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="FeedBack PopUp page" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content bg-verde">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="exampleModalLabel">Enviar Feedback</h1>

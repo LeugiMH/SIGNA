@@ -48,7 +48,7 @@
                                     <td>$especie->FAMILIA</td>
                                     <td>$especie->HABITAT</td>
                                     <td>".number_format($especie->ALTURA, 2, ',', '.')."</td>
-                                    <td><img src='"; echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpg"; echo "' style='width:100px;'></td>
+                                    <td><img src='"; echo isset($especie->IMAGEM) && file_exists("resource/imagens/especies/$especie->IMAGEM")? URL."resource/imagens/especies/$especie->IMAGEM": URL."resource/sem_imagem.jpg"; echo "' style='width:100px;'></td>
                                     <td>$especie->DESCRICAOIMG</td>
                                     <td>".date("d/m/Y H:i",strtotime($especie->DATACAD))."</td>                               
                                     <td>$especie->NOME</td>

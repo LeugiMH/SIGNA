@@ -61,7 +61,7 @@
                                     <div class="mb-3">
                                         <input type="file" name="inputImagem" id="inputImagem" accept="image/*" hidden>
                                         <label for="inputImagem" class="w-100">
-                                            <img src="<?php echo isset($especie->IMAGEM)? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
+                                            <img src="<?php echo isset($especie->IMAGEM) && file_exists("resource/imagens/especies/$especie->IMAGEM")? URL."resource/imagens/especies/$especie->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem" style="height:100%;">
                                         </label>
                                     </div>
                                     <div class="m-0" style="height:100%;">

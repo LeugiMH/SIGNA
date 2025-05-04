@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>SIGNA</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="shortcut icon" href="logo.png">
+        <script src="ace.js" defer></script>
+    </head>
+
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="titulo">
+                <a href="https://signa.eco.br/" class="cabeça" target="_blank">SIGNA</a>
+            </div>
+            <div class="subtitulo">
+                <a href="https://fatecfrancodarocha.edu.br/" class="cabeça" target="_blank">FATEC Franco da Rocha</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="acessibilidade-container">
+        <button id="toggle-menu">👁️</button>
+        <div class="acessibilidade-menu" id="acessibilidade-menu">
+            <button onclick="setDaltonismo('Protanopia')" class="Protanopia">Protanopia</button>
+            <button onclick="setDaltonismo('Deuteranopia')" class="Deuteranopia">Deuteranopia</button>
+            <button onclick="setDaltonismo('Tritanopia')" class="Tritanopia">Tritanopia</button>
+            <button onclick="setDaltonismo('Monocromacia')" class="Monocromacia">Monocromacia</button>
+            <button onclick="setDaltonismo('normal')" class="Modo Normal">Redefinir</button>
+        </div>
+      </div>
+
+    <img src="https://signa.eco.br/resource/ui/bg/bg_arvore_topo_esquerdo.svg" class="folha1">
+    <img src="https://signa.eco.br/resource/ui/bg/bg_arvore_topo_direito.svg" class="folha2">
+
+    <main>
+        Acessibilidade
+    </main>    
+
+    <div class="fundo"></div>
+    <img src="https://signa.eco.br/resource/ui/bg/bg_arvore_inferior_esquerdo.svg" class="folha4">
+    <img src="https://signa.eco.br/resource/ui/bg/bg_arvore_inferior_direito-svg.svg" class="folha3">
+    <img src="https://signa.eco.br/resource/ui/bg/bg_nuvem_corrected.svg" class="nuvem">
+</body>
+</html>

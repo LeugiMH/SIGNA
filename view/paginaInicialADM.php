@@ -413,14 +413,31 @@
     </script>
     <script>
         //Exibir espécimes no mapa
+        var layerControl = L.control.layers().addTo(map);
+        var allLayers = []; // Array para armazenar todos os marcadores
+
         <?php
-            echo "var markerBD = [";
-            foreach ($especimes as $especime)
+            foreach ($especies as $especie)
             {
-                $especime->DATACAD = date("d/m/Y",strtotime($especime->DATACAD));
-                echo "L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'),";
+                // Cria grupo de marcadores
+                echo "\nvar Makers$especie->IDESPECIE = [];";
+                foreach ($especimes as $especime)
+                {   
+                    // Verifica se o ID da espécie do espécime é igual ao ID da espécie
+                    if($especie->IDESPECIE == $especime->IDESPECIE)
+                    {
+                        $especime->DATACAD = date("d/m/Y",strtotime($especime->DATACAD));
+                        
+                        // Cria o marcador e adiciona ao grupo de marcadores
+                        echo "Makers$especie->IDESPECIE.push(L.marker([$especime->COORD],{icon: myIcon}).addTo(map).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                    }
+                }
+                // Cria o layerGroup e adiciona ao mapa
+                echo "\nvar layer$especie->IDESPECIE = L.layerGroup(Makers$especie->IDESPECIE).addTo(map);";
+                echo "\nallLayers.push(layer$especie->IDESPECIE);";
+                // Adiciona o layerGroup ao controle de camadas
+                echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span id='layer$especie->IDESPECIE'>$especie->NOMEPOP<span>\");";
             }
-            echo "''];";
         ?>
     </script>
 </body>

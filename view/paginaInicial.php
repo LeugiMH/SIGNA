@@ -34,7 +34,7 @@
                                 foreach ($especies as $especie)
                                 {
                                     echo 
-                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action border-0\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\" style=\"background-color: transparent;\">$especie->NOMEPOP".
+                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action border-0 border-bottom blur\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\" style=\"background-color: transparent;\">$especie->NOMEPOP".
                                     "<span class=\"badge text-bg-success rounded-pill float-end\">$especie->QUANTATIVA</span>".
                                     "</a>";
                                 }
@@ -127,15 +127,14 @@
         {
             var IdEspecie = $(listItem).attr("aria-id");
             var layerIndex = this["layer"+IdEspecie];
-            var filterArray = [tile,bgOverlay,overlay];
             // Verifica se o layer já está no mapa
             
-            if(!$(listItem).hasClass("active"))
+            if(!$(listItem).hasClass("ativo"))
             {
-                $(listItem).parent().children().removeClass("active");
+                $(listItem).parent().children().removeClass("ativo");
                 $(listItem).parent().children().prop("style", "background-color: transparent;");
                 $(listItem).prop("style", "");
-                $(listItem).addClass("active");
+                $(listItem).addClass("ativo");
                 map.eachLayer(function(layer) {
                     // Remove todos os layers do mapa
                     if (layer != tile && layer != bgOverlay && layer != overlay) {
@@ -147,7 +146,7 @@
             else
             {
                 // Exibe todas os marcadores
-                $(listItem).removeClass("active");
+                $(listItem).removeClass("ativo");
                 $(listItem).parent().children().prop("style", "background-color: transparent;");
                 $(listItem).prop("style", "background-color: transparent;");
                 allLayers.forEach(function(layer) {

@@ -168,3 +168,12 @@ body{
     content:url('../imagens/icons/star-inactive.png');
     height: 32px;
 }
+.blur
+{
+    backdrop-filter: blur(3px);
+}
+.ativo
+{
+    background-color: var(--verde) !important;
+    color: white !important;
+}

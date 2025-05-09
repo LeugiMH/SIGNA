@@ -17,7 +17,7 @@ class Route
         if(isset($_SESSION["sessaoLogada"])) 
         {
             $especies = new EspecieController();
-            $especies = $especies->listar();
+            $especies = $especies->listarAdm();
             $especimes = new EspecimeController();
             $especimes = $especimes->listarAdm();
             $assuntos = new AssuntoController();

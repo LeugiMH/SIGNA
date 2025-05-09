@@ -139,6 +139,21 @@ class Especie
     }
 
     //Método Consultar
+    function listarAdm()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT ESP.*,NOME, (SELECT COUNT(1) FROM TBESPECIME ESP2 WHERE ESP2.IDESPECIE = ESP.IDESPECIE) AS QUANT FROM TBESPECIE ESP JOIN TBADMIN ADM ON ESP.IDCADADM = ADM.IDADMIN HAVING QUANT > 0");
+
+        //Executando o comando SQL
+        $cmd->execute();
+
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    //Método Consultar
     function listarUsu()
     {
         //Conectando ao banco de dados

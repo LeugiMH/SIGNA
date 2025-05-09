@@ -414,7 +414,6 @@
     <script>
         //Exibir espécimes no mapa
         var layerControl = L.control.layers().addTo(map);
-        var allLayers = []; // Array para armazenar todos os marcadores
 
         <?php
             foreach ($especies as $especie)
@@ -434,7 +433,6 @@
                 }
                 // Cria o layerGroup e adiciona ao mapa
                 echo "\nvar layer$especie->IDESPECIE = L.layerGroup(Makers$especie->IDESPECIE).addTo(map);";
-                echo "\nallLayers.push(layer$especie->IDESPECIE);";
                 // Adiciona o layerGroup ao controle de camadas
                 echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span id='layer$especie->IDESPECIE'>$especie->NOMEPOP<span>\");";
             }

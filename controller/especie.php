@@ -103,6 +103,11 @@ class EspecieController
         $cmd = new Especie();
         return $cmd->listar();
     }
+    function listarAdm()
+    {
+        $cmd = new Especie();
+        return $cmd->listarAdm();
+    }
     function listarUsu()
     {
         $cmd = new Especie();

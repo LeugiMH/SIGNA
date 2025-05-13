@@ -1,4 +1,6 @@
 <?php
+// Acessibilidade
+include_once "acessibilidadeControle.php";
 
 //CONTROLE DA NAVBAR
 if(isset($_SESSION["sessaoLogada"])) //caso esteja logado

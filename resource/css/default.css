@@ -5,6 +5,7 @@
     --verde-claro:#C3F8A5;
     --verde-escuro:#205732;
     --terroso-creme:#FFC7A4;
+    --laranja-warning:#ffc107;
 }
 
 @font-face {
@@ -176,4 +177,62 @@ body{
 {
     background-color: var(--verde) !important;
     color: white !important;
+}
+
+.acessibilidade-container {
+    position: fixed;
+    right: 10px;
+    z-index: 999;
+    filter: none !important;
+    top: 100px;
+}
+
+#toggle-menu{
+    cursor: pointer;
+    filter: none !important;
+    border: none;
+    border-radius: 20%;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+ 
+#acessibilidade-menu {
+    display: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    background-color: var(--laranja-warning);
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.7rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    margin-top: 10px;
+    filter: none !important;
+}
+ 
+#acessibilidade-menu button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    background-color: #c3f8a5;
+    color: #212529;
+    cursor: pointer;
+    font-family: "Luciole", Georgia;
+    filter: none !important;
+}
+
+.Protanopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *) {
+    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(-30deg);
+}
+
+.Deuteranopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *){
+    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(90deg);
+}
+
+.Tritanopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *){
+    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(180deg);
+}
+
+.Monocromacia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *) {
+    filter: grayscale(100%);
 }

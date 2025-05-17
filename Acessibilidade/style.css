@@ -170,16 +170,16 @@ main {
     filter: none !important;
 }
 
-body.Protanopia {
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(-30deg);
+body.Tritanopia {
+    filter: contrast(60%) brightness(70%) saturate(10%) sepia(100%) hue-rotate(-60deg);
 }
 
 body.Deuteranopia {
-    filter: contrast(90%) brightness(100%) saturate(90%) sepia(80%) hue-rotate(45deg);
+    filter: contrast(60%) brightness(70%) saturate(10%) sepia(120%) hue-rotate(0deg);
 }
 
-body.Tritanopia {
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(180deg);
+body.Protanopia {
+    filter: contrast(60%) brightness(70%) saturate(10%) sepia(100%) hue-rotate(170deg);
 }
 
 body.Monocromacia {

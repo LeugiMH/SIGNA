@@ -14,16 +14,16 @@
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100 clouds">
-            <section class="container-fluid folhas1 pt-3 m-0 row justify-content-center align-content-center" style="min-height: 30vh;">
+            <section class="container-fluid folhas1 pt-3 m-0 row justify-content-center align-content-center position-relative" style="min-height: 30vh;">
                 <!--Container de conteúdo-->
                 <div class="col-lg-6" style="z-index: 2;">
                     <header class="display-1 text-center my-4">MAPA INTERATIVO</header>
                     <p class="text-center" id="Mapa-Interativo"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div id="map"></div>
-                    <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
+                    <p class="position-relative" style="z-index: 2;">Legenda: Mapa do entorno da instituição</p>
                 </div>
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0">
             </section>
-            <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
             <section class="container-fluid folhas2 p-3 m-0 row justify-content-center align-content-center position-relative">
                 <div class="col-10">
                     <div class="col-lg-6 mt-5 list-group list-group-flush" style="z-index: 2;">

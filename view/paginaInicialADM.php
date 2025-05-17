@@ -14,7 +14,7 @@
     <div class="corpo h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100 clouds">
-            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center" >
+            <section class="container-fluid folhas1 pt-5 m-0 row justify-content-center align-content-center position-relative">
                 <!--Container de conteúdo-->
                 <div class="col-lg-8 row" style="z-index: 2;">
                     <header class="display-1 text-center my-4 text-break p-0">ADMINISTRADOR BIOSFERA</header>
@@ -27,13 +27,12 @@
                     </div>
                     <div class="col-xl-9">
                         <div id="map"></div>
-                        <p class="position-relative" style="z-index: 100;">Legenda: Mapa do entorno da instituição</p>
+                        <p class="position-relative" style="z-index: 2;">Legenda: Mapa do entorno da instituição</p>
                     </div>
                 </div>
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0">
             </section>
-
             <!-- Feedbacks -->
-            <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-top px-0">
             <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative" id="sectionFeedbacks">
                 <h1 class="text-center mb-5">Feedbacks</h2>
                 <!--Assuntos Lista-->

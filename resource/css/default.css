@@ -84,9 +84,10 @@ body{
     user-select: none;
     -webkit-user-drag: none;
 }
-.nuvem-top
+.nuvem-bottom
 {
-   margin-top: -11.9% !important;
+    bottom: 0;
+   z-index: 0;
 }
 .nuvem-mid
 {

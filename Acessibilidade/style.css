@@ -175,7 +175,7 @@ body.Protanopia {
 }
 
 body.Deuteranopia {
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(90deg);
+    filter: contrast(90%) brightness(100%) saturate(90%) sepia(80%) hue-rotate(45deg);
 }
 
 body.Tritanopia {

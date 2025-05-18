@@ -33,10 +33,10 @@
                 <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0">
             </section>
             <!-- Feedbacks -->
-            <section class="container-fluid folhas2 p-5 m-0  row justify-content-center align-content-center position-relative" id="sectionFeedbacks">
+            <section class="container-fluid folhas2 p-5 m-0 row justify-content-center align-content-center position-relative" id="sectionFeedbacks">
                 <h1 class="text-center mb-5">Feedbacks</h2>
                 <!--Assuntos Lista-->
-                <div class="col-lg-4 me-3" style="z-index: 2;">
+                <div class="col-lg-4" style="z-index: 2;">
                     <h3>Assuntos de Feedback</h3>
                     <?php
                         //Exibindo mensagem de erro
@@ -48,11 +48,11 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Descrição</th>
-                                <th>Ações</th>
+                                <th>DESCRIÇÃO</th>
+                                <th>AÇÕES</th>
                             </tr>
                         </thead>
-                        <tbody class="text-break">
+                        <tbody>
                             <?php
                             foreach($assuntos as $assunto)
                             {
@@ -74,7 +74,7 @@
                 </div>
 
                 <!--Feedbacks Lista-->
-                <div class="col-lg-7" style="z-index: 2;">
+                <div class="col-lg-8 mt-5 mt-lg-0" style="z-index: 2;">
                     <h3>Feedbacks enviados</h3>
                     <?php
                         if(isset($_COOKIE["msgFeedback"]))
@@ -84,25 +84,26 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Avaliação</th>
-                                <th>Assunto</th>
-                                <th>Feedback</th>
-                                <th>Email</th>
-                                <th>Resposta</th>
+                                <th>AVALIAÇÃO</th>
+                                <th>ASSUNTO</th>
+                                <th>FEEDBACK</th>
+                                <th>EMAIL</th>
+                                <th>RESPOSTA</th>
                             </tr>
                         </thead>
-                        <tbody class="text-break">
+                        <tbody>
                             <?php
                             foreach($feedbacks as $feedback)
-                            {
+                            { 
                                 echo "
                                 <tr id='feedback_$feedback->IDFEEDBACK'>
                                     <td>$feedback->IDFEEDBACK</td>
-                                    <td>$feedback->AVALIACAO</td>
-                                    <td>$feedback->DESCRICAO</td>
+                                    <td>";
+                                    for($i = 1; $i <= $feedback->AVALIACAO; $i++){echo"<img src=\"".URL."resource/imagens/icons/star.png\" width=\"20px\">"; }
+                                    echo"</td><td>$feedback->DESCRICAO</td>
                                     <td>$feedback->TEXTO</td>
-                                    <td>$feedback->EMAIL</td>
-                                ";
+                                    <td>$feedback->EMAIL</td>";
+                                
                                 if($feedback->IDADMIN == NULL){
                                     echo "
                                         <td>
@@ -333,7 +334,6 @@
             $('#inputMessage').val(texto);
             $('#inputResposta').val(coment);
         }
-
     </script>
 
 

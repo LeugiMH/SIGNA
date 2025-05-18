@@ -6,6 +6,7 @@
     --verde-escuro:#205732;
     --terroso-creme:#FFC7A4;
     --laranja-warning:#ffc107;
+    --bs-warning: var(--laranja-warning);
 }
 
 @font-face {
@@ -72,10 +73,10 @@ body{
 {
     background-color: var(--verde);
 }
-
 .navbar
 {
     min-height: 70px;
+    background-color: var(--laranja-warning) !important;
 }
 .nuvem
 {
@@ -221,17 +222,17 @@ body{
     font-family: "Luciole", Georgia;
     filter: none !important;
 }
-
 .Protanopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *) {
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(-30deg);
+    filter: contrast(100%) brightness(100%) saturate(90%) hue-rotate(-30deg);
 }
 
 .Deuteranopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *){
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(90deg);
+    filter: contrast(100%) brightness(100%) saturate(90%) hue-rotate(-40deg);
 }
 
 .Tritanopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *){
-    filter: contrast(80%) brightness(100%) saturate(90%) sepia(100%) hue-rotate(180deg);
+    --laranja-warning: #e95bc1 !important;
+    filter: contrast(100%) brightness(100%) saturate(90%) hue-rotate(60deg);
 }
 
 .Monocromacia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *) {

@@ -160,7 +160,7 @@ class Email
             <body>
             <table width=\"100%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">
                 <tr class=\"folhas\">
-                    <th style=\"text-center align-content-center justify-content-center\">
+                    <th class=\"text-center align-content-center justify-content-center\">
                         <h1 class=\"display-1 text-center mb-4\" style=\"color:black;\">Resposta ao seu feedback</h1>
                         <div class=\"p-0 my-5 text-center align-content-center justify-content-center rounded-3\" style=\"z-index: 2; width:70%; margin:auto;\">
                             <!-- Conteúdo -->

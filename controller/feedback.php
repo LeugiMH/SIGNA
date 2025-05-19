@@ -106,7 +106,7 @@ class FeedbackController
         {
             setcookie("msgFeedback","<div class='alert alert-danger'>Erro ao enviar resposta</div>",time() + 1,"/");
         }
-        header("location: ".URL."inicio");
+        header("Location:".URL."inicio");
     }
 }
 

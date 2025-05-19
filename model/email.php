@@ -128,6 +128,8 @@ class Email
                 //envia
                 $email->send();
                 echo "<script>alert('Email de recuperação enviado com sucesso!');</script>";
+                echo "<script>window.location.href = '".URL."inicio';</script>";
+                return true;
             }
             catch(Exception $e)
             {
@@ -235,10 +237,12 @@ class Email
                 //envia
                 $email->send();
                 echo "<script>alert('Email enviado com sucesso!');</script>";
+                echo "<script>window.location.href = '".URL."inicio';</script>";
+                return true;
             }
             catch(Exception $e)
             {
-                echo "<script>alert('Mensagem não foi enviada. Error: {$email->ErrorInfo}');</script>";
+                echo "<script>alert('Mensagem não foi enviada. Error: {$email->ErrorInfo}');</script;>";
             }
         }
     }

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - ADMIN</title>
     <style>
 
     #map { height: 500px; z-index: 100; cursor:pointer;}

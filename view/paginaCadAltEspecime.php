@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Cadastro de espécime</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <?php $url = $_GET["url"]; $url = explode("/",$url);?>

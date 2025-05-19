@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Cadastros de Administrador</title>
 </head>
 <body>
     <?php $url = $_GET["url"]; $url = explode("/",$url);?>

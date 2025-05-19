@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Administradores</title>
 </head>
 
 <body>

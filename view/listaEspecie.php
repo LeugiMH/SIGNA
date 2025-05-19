@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Espécies</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">

@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Sistema de Gerenciamente do Núcleo arbóreo</title>
 </head>
 <body>
     <div class="corpo min-vh-100 h-100">

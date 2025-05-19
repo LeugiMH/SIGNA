@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <title>SIGNA</title>
+    <title>SIGNA - Login</title>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div class="corpo min-vh-100 h-100">

@@ -3,7 +3,7 @@
 <head>
     <?php include_once "resource/head.php";?>
   
-    <title>SIGNA</title>
+    <title>SIGNA - Sistema de Gerenciamente do Núcleo arbóreo</title>
     <style>
 
     #map { height: 500px; z-index: 100; }

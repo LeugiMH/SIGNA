@@ -433,7 +433,7 @@
                 // Cria o layerGroup e adiciona ao mapa
                 echo "\nvar layer$especie->IDESPECIE = L.layerGroup(Makers$especie->IDESPECIE).addTo(map);";
                 // Adiciona o layerGroup ao controle de camadas
-                echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span id='layer$especie->IDESPECIE'>$especie->NOMEPOP<span>\");";
+                echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span id='layer$especie->IDESPECIE'>$especie->NOMEPOP<span><span class='badge text-bg-success rounded-pill float-end'>$especie->QUANT</span>\");";
             }
         ?>
     </script>

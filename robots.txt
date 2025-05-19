@@ -1,0 +1,9 @@
+user-agent: *
+allow: /
+
+user-agent: *
+disallow: /resource/imagens/especies/
+disallow: /resource/imagens/especimes/
+disallow: /resource/imagens/icons/
+disallow: /config/
+disallow: /Bi/

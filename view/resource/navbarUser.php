@@ -13,7 +13,7 @@
             </ul>
             <span class="navbar-text p-0 me-1">
                 <a class="navbar-text p-0 me-1" href="<?php echo URL.'login'?>">
-                    <img src="<?php echo URL.'resource/imagens/icons/user.svg'?>" alt="Login" style="width: 40px;">
+                    <img src="<?php echo URL.'resource/imagens/icons/user.svg'?>" alt="Login" width="40px">
                 </a>
             </span>
         </div>

@@ -30,7 +30,7 @@
                         <p class="position-relative" style="z-index: 2;">Legenda: Mapa do entorno da instituição</p>
                     </div>
                 </div>
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0">
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0" alt="Imagem plano de fundo de núvem" aria-hidden="true">
             </section>
             <!-- Feedbacks -->
             <section class="container-fluid folhas2 p-5 m-0 row justify-content-center align-content-center position-relative" id="sectionFeedbacks">

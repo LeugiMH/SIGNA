@@ -22,7 +22,7 @@
                     <div id="map"></div>
                     <p class="position-relative" style="z-index: 2;">Legenda: Mapa do entorno da instituição</p>
                 </div>
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0">
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_corrected.svg'?>" class="nuvem nuvem-bottom px-0" alt="Imagem plano de fundo de núvem" aria-hidden="true">
             </section>
             <section class="container-fluid folhas2 p-3 m-0 row justify-content-center align-content-center position-relative">
                 <div class="col-10">
@@ -34,7 +34,7 @@
                                 foreach ($especies as $especie)
                                 {
                                     echo 
-                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action border-0 border-bottom blur\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\" style=\"background-color: transparent;\">$especie->NOMEPOP".
+                                    "<a href=\"#Mapa-Interativo\" class=\"list-group-item list-group-item-action border-0 border-bottom blur\" onClick=\"mostraEspecie(this)\" aria-id=\"$especie->IDESPECIE\" style=\"background-color: transparent;\"aria-label=\"Filtrar mapa pela espécie $especie->NOMEPOP.\">$especie->NOMEPOP".
                                     "<span class=\"badge text-bg-success rounded-pill float-end\">$especie->QUANTATIVA</span>".
                                     "</a>";
                                 }

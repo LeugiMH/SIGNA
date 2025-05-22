@@ -6,7 +6,7 @@ class AssuntoController
     //Cadastrar
     function cadastrarAssunto()
     {
-        /*$descricao =  $_POST["inputDescricao"];
+        $descricao =  $_POST["inputDescricao"];
         $id = $_POST["inputIdAssunto"];
 
         $cmd = new Assunto();
@@ -15,7 +15,7 @@ class AssuntoController
         if($_POST["inputIdAssunto"]){
             $id = $_POST["inputIdAssunto"];
             $cmd->IDASSUNTO = $id;
-            if($cmd->alterar()) //Sucesso ao alterar assunto
+            if(/*$cmd->alterar()*/ true) //Sucesso ao alterar assunto
             {
                 setcookie("msgAssunto","<script>alert('Assunto alterado com sucesso')</script>",time() + 1,"/");
             }
@@ -24,7 +24,7 @@ class AssuntoController
                 setcookie("msgAssunto","<script>alert('Erro ao alterar assunto')</script>",time() + 1,"/");
             }
         }else{
-            if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
+            if(/*$cmd->cadastrar()*/ true)  //Sucesso ao cadastrar assunto
             {
                 setcookie("msgAssunto","<script>alert('Assunto cadastrado com sucesso')</script>",time() + 1,"/");
             }
@@ -33,7 +33,6 @@ class AssuntoController
                 setcookie("msgAssunto","<script>alert('Erro ao cadastrar o assunto')</script>",time() + 1,"/");
             }
         }
-        */
         header("Location: ".URL."inicio#sectionFeedbacks");
     }
 

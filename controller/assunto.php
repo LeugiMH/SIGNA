@@ -6,7 +6,7 @@ class AssuntoController
     //Cadastrar
     function cadastrarAssunto()
     {
-        $descricao =  $_POST["inputDescricao"];
+        /*$descricao =  $_POST["inputDescricao"];
         $id = $_POST["inputIdAssunto"];
 
         $cmd = new Assunto();
@@ -33,7 +33,7 @@ class AssuntoController
                 setcookie("msgAssunto","<script>alert('Erro ao cadastrar o assunto')</script>",time() + 1,"/");
             }
         }
-        
+        */
         header("Location: ".URL."inicio#sectionFeedbacks");
     }
 

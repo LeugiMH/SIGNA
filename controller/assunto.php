@@ -34,7 +34,7 @@ class AssuntoController
             }
         }
         
-        header("location: ".URL."inicio#sectionFeedbacks");
+        header("Location: ".URL."inicio#sectionFeedbacks");
     }
 
     //Consultar
@@ -66,7 +66,7 @@ class AssuntoController
         {
             setcookie("msgLista","<script>alert('Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.')</script>",time() + 1,"/");
         }
-        header("location: ".URL."inicio#sectionFeedbacks");
+        header("Location: ".URL."inicio#sectionFeedbacks");
     }
 }
 

@@ -22,7 +22,8 @@
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">
                             <button class="btn btn-warning w-100">ADICIONAR PLANTA</button>
-                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="Coordenadas do marcador" onChange="criaMarkerView(this.value)" maxlength="50" required>
+                            <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="00.0000000, 00.0000000" onChange="criaMarkerView(this.value)" maxlength="50" required>
+                            <div class="form-text">Coordenadas da planta</div>
                         </form>
                     </div>
                     <div class="col-xl-9">

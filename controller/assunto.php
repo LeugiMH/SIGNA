@@ -61,7 +61,7 @@ class AssuntoController
 
         if(!$cmd->excluir())//erro ao excluir assunto
         { 
-            setcookie("msgLista","<script>alert('Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.')</script>",time() + 1,"/");
+            setcookie("msgLista","<div class='alert alert-danger'>Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.</div>",time() + 1,"/");
         }
         header("Location: ".URL."inicio#sectionFeedbacks");
     }

@@ -231,7 +231,8 @@
             },
             pageLength: 4,
             lengthChange: false,
-            deferRender: false
+            deferRender: false,
+            order: [[0, 'asc']]
         });
 
         tableFeedback = $('#listaFeedback').DataTable({
@@ -241,7 +242,8 @@
             },
             pageLength: 4,
             lengthChange: false,
-            deferRender: false
+            deferRender: false,
+            order: [[0, 'desc']]
         });
     </script>
 

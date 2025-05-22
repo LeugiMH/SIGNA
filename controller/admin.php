@@ -52,7 +52,7 @@ class AdminController
     {
         $_SESSION[] = null;
         session_destroy();
-        header("Location: login");
+        header("Location:".URL."login");
     }
 
     //Cadastrar

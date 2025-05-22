@@ -33,7 +33,7 @@ class Assunto
         
         //Preparar comando SQL para inserir
         $cmd = $con->prepare("INSERT INTO TBASSUNTO (DESCRICAO) 
-                                            VALUES (:DESCRICAO)");
+                                            VALUES (:DESCRICAO);");
 
         //Definindo parâmetros (SQL INJECTION)
         $cmd->bindParam(":DESCRICAO",     $this->DESCRICAO);
@@ -57,7 +57,7 @@ class Assunto
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBASSUNTO");
+        $cmd = $con->prepare("SELECT * FROM TBASSUNTO;");
 
         //Executando o comando SQL
         $cmd->execute();
@@ -72,7 +72,7 @@ class Assunto
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT * FROM TBASSUNTO WHERE IDASSUNTO = :IDASSUNTO");
+        $cmd = $con->prepare("SELECT * FROM TBASSUNTO WHERE IDASSUNTO = :IDASSUNTO;");
         $cmd->bindParam(":IDASSUNTO", $this->IDASSUNTO);
 
         //Executando o comando SQL
@@ -89,7 +89,7 @@ class Assunto
         
         //Preparar comando SQL para inserir
         $cmd = $con->prepare("UPDATE TBASSUNTO SET DESCRICAO = :DESCRICAO
-                                            WHERE IDASSUNTO = :IDASSUNTO");
+                                            WHERE IDASSUNTO = :IDASSUNTO;");
 
         //Definindo parâmetros (SQL INJECTION)
         $cmd->bindParam(":IDASSUNTO",     $this->IDASSUNTO);
@@ -112,7 +112,7 @@ class Assunto
         $con = Conexao::conectar();
         
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("DELETE FROM TBASSUNTO WHERE IDASSUNTO = :IDASSUNTO");
+        $cmd = $con->prepare("DELETE FROM TBASSUNTO WHERE IDASSUNTO = :IDASSUNTO;");
         $cmd->bindParam(":IDASSUNTO", $this->IDASSUNTO);
         
         //Executando o comando SQL

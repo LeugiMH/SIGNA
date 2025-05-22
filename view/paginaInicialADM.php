@@ -146,8 +146,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="formAssunto" action="<?php echo URL.'assuntos/cadastrar';?>" method="POST" enctype="multipart/form-data">
-                            
+                        <form id="formAssunto" action="<?php echo URL.'assuntos/cadastrar';?>" method="POST">
                             <div class="mb-3">
                                 <label for="inputIdAssunto" class="form-label">Id do Assunto</label>
                                 <input type="text" value="" class="form-control" id="inputIdAssunto" name="inputIdAssunto" aria-label="Id do Assunto" readonly="readonly">

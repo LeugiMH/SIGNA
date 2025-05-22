@@ -15,7 +15,7 @@ class AssuntoController
         if($_POST["inputIdAssunto"]){
             $id = $_POST["inputIdAssunto"];
             $cmd->IDASSUNTO = $id;
-            if(/*$cmd->alterar()*/ true) //Sucesso ao alterar assunto
+            if($cmd->alterar()) //Sucesso ao alterar assunto
             {
                 //setcookie("msgAssunto","<script>alert('Assunto alterado com sucesso')</script>",time() + 1,"/");
             }
@@ -24,7 +24,7 @@ class AssuntoController
                 //setcookie("msgAssunto","<script>alert('Erro ao alterar assunto')</script>",time() + 1,"/");
             }
         }else{
-            if(/*$cmd->cadastrar()*/ true)  //Sucesso ao cadastrar assunto
+            if($cmd->cadastrar())  //Sucesso ao cadastrar assunto
             {
                 //setcookie("msgAssunto","<script>alert('Assunto cadastrado com sucesso')</script>",time() + 1,"/");
             }

@@ -34,7 +34,7 @@ class AssuntoController
             }
         }
         
-        header("Location: ".URL."inicio#sectionFeedbacks");
+        header("Location: ".URL."#sectionFeedbacks");
     }
 
     //Consultar
@@ -60,13 +60,11 @@ class AssuntoController
         $cmd = new Assunto();
         $cmd->IDASSUNTO = $idAssunto;
 
-        if($cmd->excluir())
-        {}
-        else
-        {
+        if(!$cmd->excluir())//erro ao excluir assunto
+        { 
             setcookie("msgLista","<script>alert('Erro ao excluir a assunto, é possível que esse assunto possua algum feedback relacionado.')</script>",time() + 1,"/");
         }
-        header("Location: ".URL."inicio#sectionFeedbacks");
+        header("Location: ".URL."#sectionFeedbacks");
     }
 }
 

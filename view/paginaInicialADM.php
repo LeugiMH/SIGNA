@@ -103,7 +103,7 @@
                                     for($i = 1; $i <= $feedback->AVALIACAO; $i++){echo"<img src=\"".URL."resource/imagens/icons/star.png\" width=\"20px\">"; }
                                     echo"</td><td>$feedback->DESCRICAO</td>
                                     <td>$feedback->TEXTO</td>
-                                    <td>$feedback->EMAIL</td>";
+                                    <td>";echo $feedback->EMAIL != "" ? $feedback->EMAIL : "-"; echo"</td>";
                                 
                                 if($feedback->IDADMIN == NULL){
                                     echo "
@@ -165,7 +165,7 @@
         </div>
 
         <!-- Modal Feedbacks-->
-        <div class="modal fade text-white " id="RespFeedback" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
+        <div class="modal fade text-white" id="RespFeedback" tabindex="-1" aria-labelledby="Modal cadastro de atributo" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content bg-verde">
                     <div class="modal-header">

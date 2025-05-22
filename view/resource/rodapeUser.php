@@ -25,7 +25,7 @@
 </footer>
 
 <!-- Modal -->
-<div class="modal fade" id="feedback" tabindex="-1" aria-labelledby="FeedBack PopUp page" aria-hidden="true">
+<div class="modal fade text-white" id="feedback" tabindex="-1" aria-labelledby="FeedBack PopUp page" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content bg-verde">
 			<div class="modal-header">

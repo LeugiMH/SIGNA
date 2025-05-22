@@ -56,14 +56,15 @@
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
             center: [-23.33605, -46.72202],
-            zoom: 19
+            zoom: 19,
+            maxBounds: [[-23.3378499, -46.7266859], [-23.3335426, -46.7199262]]
         });
         // Tile do
         var tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
             //Não mudar cinza
             maxNativeZoom: 19,
             maxZoom: 20,
-            minZoom: 19,
+            minZoom: 19
         }).addTo(map);
 
         map.scrollWheelZoom.disable();

@@ -16,7 +16,7 @@
             <a href="https://www.linkedin.com/in/fatec-franco-da-rocha-152720231/?originalSubdomain=br" target="_blank" class="me-3" >
                 <img src="<?php echo URL.'resource/imagens/icons/linkedin.png'?>" alt="Linkedin logo" width="64px">
             </a>
-            <a href="https://github.com/LeugiMH/SIGNA" class="me-3">
+            <a href="https://github.com/LeugiMH/SIGNA" target="_blank" class="me-3">
                 <img src="<?php echo URL.'resource/imagens/icons/github.png'?>" alt="Github logo" width="64px">
             </a>
         </div>

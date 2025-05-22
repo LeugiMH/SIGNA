@@ -17,20 +17,20 @@ class AssuntoController
             $cmd->IDASSUNTO = $id;
             if(/*$cmd->alterar()*/ true) //Sucesso ao alterar assunto
             {
-                setcookie("msgAssunto","<script>alert('Assunto alterado com sucesso')</script>",time() + 1,"/");
+                //setcookie("msgAssunto","<script>alert('Assunto alterado com sucesso')</script>",time() + 1,"/");
             }
             else
             {
-                setcookie("msgAssunto","<script>alert('Erro ao alterar assunto')</script>",time() + 1,"/");
+                //setcookie("msgAssunto","<script>alert('Erro ao alterar assunto')</script>",time() + 1,"/");
             }
         }else{
             if(/*$cmd->cadastrar()*/ true)  //Sucesso ao cadastrar assunto
             {
-                setcookie("msgAssunto","<script>alert('Assunto cadastrado com sucesso')</script>",time() + 1,"/");
+                //setcookie("msgAssunto","<script>alert('Assunto cadastrado com sucesso')</script>",time() + 1,"/");
             }
             else
             {
-                setcookie("msgAssunto","<script>alert('Erro ao cadastrar o assunto')</script>",time() + 1,"/");
+                //setcookie("msgAssunto","<script>alert('Erro ao cadastrar o assunto')</script>",time() + 1,"/");
             }
         }
         header("Location: ".URL."inicio#sectionFeedbacks");

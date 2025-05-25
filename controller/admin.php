@@ -197,9 +197,8 @@ class AdminController
             if(!(isset($_COOKIE["tentativas"])))
             {
                 setcookie("tentativas", 1, time() + 3600, "/","",true,true);
-                sleep(1);
             }
-            header("Location:".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN");
+            echo "<script>window.location.href = '".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN'</script>";
         }
         else
         {

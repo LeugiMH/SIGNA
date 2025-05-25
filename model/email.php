@@ -127,8 +127,8 @@ class Email
                     
                 //envia
                 $email->send();
-                echo "<script>alert('Email de recuperação enviado com sucesso!');</script>";
-                //echo "<script>window.location.href = '".URL."inicio';</script>";
+                setcookie("msg","<div class='alert alert-success'>Email de recuperação enviado com sucesso!</div>",time() + 1,"/");
+                //echo "<script>alert('Email de recuperação enviado com sucesso!');</script>";
                 return true;
             }
             catch(Exception $e)

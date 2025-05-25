@@ -194,7 +194,7 @@ class AdminController
             $email->emailDestinatario = $dadosRecuperacao->EMAIL;
             $email->enviarCodigo();
             
-            if(!(isset($_COOKIE["tentativas"])))
+            if(!isset($_COOKIE["tentativas"]))
             {
                 setcookie("tentativas", 1, time() + 3600, "/","",true,true);
             }
@@ -224,7 +224,7 @@ class AdminController
         $cmd = new Admin();
         $cmd->IDADMIN = $idAdmin;
 
-        if(empty($_COOKIE["tentativas"])){
+        if(!isset($_COOKIE["tentativas"])){
             $this->gerarCodigo($cmd);
             setcookie("msg","<div class='alert alert-danger'>Muitas tentativas realizadas, tente novamente mais tarde</div>",time() + 1,"/");
         }

@@ -196,8 +196,8 @@ class AdminController
             
             if(!(isset($_COOKIE["tentativas"])))
             {
-                var_dump(setcookie("tentativas", 1, time() + 3600, "/","",true,true));
                 setcookie("tentativas", 1, time() + 3600, "/","",true,true);
+                sleep(1);
             }
             header("Location:".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN");
         }

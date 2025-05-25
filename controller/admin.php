@@ -194,9 +194,11 @@ class AdminController
             $email->emailDestinatario = $dadosRecuperacao->EMAIL;
             $email->enviarCodigo();
             
-            var_dump(!isset($_COOKIE["tentativas"]));
-            if(!isset($_COOKIE["tentativas"])){setcookie("tentativas", 1, time() + 3600, "/","",true,true);}
-            //echo "<script>window.location.href = '".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN'</script>";
+            if(!(isset($_COOKIE["tentativas"])))
+            {
+                setcookie("tentativas", 1, time() + 3600, "/","",true,true);
+            }
+            echo "<script>window.location.href = '".URL."codigo-recuperacao/$dadosRecuperacao->IDADMIN'</script>";
         }
         else
         {

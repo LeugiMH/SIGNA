@@ -27,7 +27,7 @@
                                     <input type="hidden" name="inputEspecime" value="<?php echo isset($especime)?$especime->IDESPECIME:'';?>">
                                     <input type="hidden" name="inputCoord" value="<?php echo isset($especime)?$especime->COORD: (isset($_COOKIE['coord']) ? $_COOKIE['coord']: $_POST['inputCoord']);?>">
                                     <div class="mb-3">
-                                        <select name="inputEspecie" id="inputEspecie" class="form-select" aria-label="Selecione a espécie da planta" required>
+                                        <select name="inputEspecie" id="inputEspecie" class="form-select" aria-label="Selecione a espécie da planta" size="10"required>
                                             <option disabled selected>Selecione uma Espécie</option> 
                                             <?php
                                             foreach ($especies as $especie)
@@ -53,7 +53,7 @@
                                         </select>
                                     </div>
                                     <div class="mb-3">
-                                        <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;" rows="4" required><?php echo isset($especime)?$especime->DESCRICAOIMG:'';?></textarea>
+                                        <textarea class="form-control" placeholder="Descrição da imagem" id="inputImgDesc" name="inputImgDesc" style="height:100%; resize:none;" rows="4"><?php echo isset($especime)?$especime->DESCRICAOIMG:'';?></textarea>
                                     </div>
                                     <div class="mb-3">
                                         <select  name="inputStatus" id="inputStatus" class="form-select" aria-label="Selecione o Status da planta" required>

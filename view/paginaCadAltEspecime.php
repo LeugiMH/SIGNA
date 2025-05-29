@@ -27,7 +27,7 @@
                                     <input type="hidden" name="inputEspecime" value="<?php echo isset($especime)?$especime->IDESPECIME:'';?>">
                                     <input type="hidden" name="inputCoord" value="<?php echo isset($especime)?$especime->COORD: (isset($_COOKIE['coord']) ? $_COOKIE['coord']: $_POST['inputCoord']);?>">
                                     <div class="mb-3">
-                                        <select name="inputEspecie" id="inputEspecie" class="form-select" aria-label="Selecione a espécie da planta" size="10"required>
+                                        <select name="inputEspecie" id="inputEspecie" class="form-select" aria-label="Selecione a espécie da planta" required>
                                             <option disabled selected>Selecione uma Espécie</option> 
                                             <?php
                                             foreach ($especies as $especie)

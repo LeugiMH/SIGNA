@@ -343,7 +343,7 @@
         //Exibir Mapa
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
-            center: [-23.33605, -46.72202],
+            center: [-23.3361335, -46.722095],
             zoom: 19
         });
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',

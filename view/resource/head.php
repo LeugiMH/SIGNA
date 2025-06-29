@@ -7,7 +7,7 @@
 
 <!-- Boostrap CSS -->
 <link rel="stylesheet"href="<?php echo URL.'resource/css/bootstrap.min.css';?>">
-<link type="image/x-icon" rel="icon" href="<?php echo URL.'resource/imagens/icons/favicon.png';?>">
+<link type="image/x-icon" rel="icon" href="<?php echo URL.'resource/imagens/icons/favicon.svg';?>">
 <link rel="stylesheet" href="<?php echo URL.'resource/css/default.css';?>">
 <link rel="stylesheet" href="<?php echo URL.'resource/css/overlay.css';?>">
 

@@ -108,7 +108,6 @@ class AdminController
         $email =  $_POST["inputEmail"];
         $senha =  $_POST["inputSenha"];
         $senhaBkp =  $_POST["inputSenhaBkp"];
-        $estado = 1;
 
         //Cria objeto da classe espécie e define valores        
         $cmd = new Admin();
@@ -118,7 +117,6 @@ class AdminController
         $cmd->EMAIL = $email;
         $cmd->SENHA = $senha!="" ? password_hash($senha,PASSWORD_DEFAULT) : $senhaBkp; // caso a senha esteja vazia, vai manter a senha antiga
         $cmd->DATACAD = date("Y-m-d h:i:s"); //Data atual de cadastro;
-        $cmd->ESTADO = $estado;
 
         if($cmd->alterar()) //Sucesso ao alterar admin
         {

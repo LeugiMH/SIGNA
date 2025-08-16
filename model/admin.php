@@ -116,7 +116,7 @@ class Admin
         $con = Conexao::conectar();
                 
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBADMIN SET NOME = :NOME, MATRICULA = :MATRICULA, EMAIL = :EMAIL, SENHA = :SENHA, DATACAD = :DATACAD, ESTADO = :ESTADO
+        $cmd = $con->prepare("UPDATE TBADMIN SET NOME = :NOME, MATRICULA = :MATRICULA, EMAIL = :EMAIL, SENHA = :SENHA, DATACAD = :DATACAD
                                             WHERE IDADMIN = :IDADMIN");
 
         //Definindo parâmetros (SQL INJECTION)
@@ -127,7 +127,6 @@ class Admin
         $cmd->bindParam(":EMAIL",       $this->EMAIL);
         $cmd->bindParam(":SENHA",       $this->SENHA);
         $cmd->bindParam(":DATACAD",     $this->DATACAD);
-        $cmd->bindParam(":ESTADO",      $this->ESTADO);
 
         //Executando e retornando resultado
         try

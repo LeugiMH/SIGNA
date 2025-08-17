@@ -355,7 +355,7 @@
         }).addTo(map);
 
         var mapLocate = new L.Control.SimpleLocate({
-            position: "topleft",
+            position: "bottomleft",
             className: "button-locate",
             afterClick: (result) => {
                 // Do something after the button is clicked.

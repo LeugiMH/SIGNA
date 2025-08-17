@@ -88,8 +88,7 @@
     position: absolute;
     margin: 0 !important;
     left: .5rem;
-    top: calc(var(--vh, 1vh) * 50);
-    transform: translateY(-50%);
+    bottom: 10px;
 }
 
 .leaflet-simple-locate-icon {

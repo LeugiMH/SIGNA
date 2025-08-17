@@ -69,7 +69,7 @@
 
         // Adiciona o controle de localização
         var mapLocate = new L.Control.SimpleLocate({
-            position: "topleft",
+            position: "bottomleft",
             className: "button-locate",
             afterClick: (result) => {
                 console.log("afterClick", result);

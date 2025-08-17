@@ -233,7 +233,7 @@ body{
 
 .Tritanopia>* :not(.libras,.libras *,.acessibilidade-container,.acessibilidade-container *,.leaflet-control-container,.leaflet-control-container *){
     --laranja-warning: #e95bc1 !important;
-    
+    --laranja-warning-rgb: 233, 91, 193 !important;
     filter: contrast(100%) brightness(100%) saturate(90%) hue-rotate(60deg);
 }
 

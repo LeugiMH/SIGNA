@@ -354,6 +354,40 @@
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        var mapLocate = new L.Control.SimpleLocate({
+            position: "topleft",
+            className: "button-locate",
+            afterClick: (result) => {
+                // Do something after the button is clicked.
+            },
+            afterMarkerAdd: () => {
+               const elem = document.getElementById("leaflet-simple-locate-icon-spot");
+                if (elem) {
+                    elem.addEventListener("click", (event) => {
+                        const latlng = control.getLatLng();
+                        const latlng_str = `geolocation: [${Math.round(latlng.lat * 100000) / 100000}, ${Math.round(latlng.lng * 100000) / 100000}]`;
+
+                        const accuracy = control.getAccuracy();
+                        const accuracy_str = `accuracy: ${Math.round(accuracy)} meter`;
+
+                        const angle = control.getAngle();
+                        const angle_str = `orientation: ${Math.round(angle)} degree`;
+
+                        L.popup()
+                            .setLatLng(latlng)
+                            .setContent(`<p style="margin: 0.25rem 0 0.25rem 0">${latlng_str}</p><p style="margin: 0.25rem 0 0.25rem 0">${accuracy_str}</p><p style="margin: 0.25rem 0 0.25rem 0">${angle_str}</p>`)
+                            .openOn(map);
+
+                        event.stopPropagation();
+                        event.preventDefault();
+                    });
+                }
+            },
+            afterDeviceMove: (event) => {
+                // Do something after the device moves.
+            }
+        }).addTo(map);
+
         //Overlay Imagem Fundo Mapa
         var imageUrl_bg = 'resource/ui/map/bg_map.png'
             imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];

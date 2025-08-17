@@ -17,6 +17,11 @@
 <!-- Make sure you put this AFTER Leaflet's CSS -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
+<!-- Leaflet's locate -->
+<script src="<?php echo URL.'resource/js/leaflet-simple-locate.min.js';?>"></script>
+<link rel="stylesheet" href="<?php echo URL.'resource/css/leaflet-locate.css';?>">
+
+
 <!-- Data Tables -->
 <link rel="stylesheet" href="<?php echo URL.'resource/css/dataTables.bootstrap5.css';?>">
 <link rel="stylesheet" href="<?php echo URL.'resource/css/responsive.bootstrap5.css';?>">

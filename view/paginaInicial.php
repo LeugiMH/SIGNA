@@ -57,7 +57,7 @@
         var map = L.map('map', {
             center: [-23.3361335, -46.722095],
             zoom: 19,
-            maxBounds: [[-23.3378499, -46.7266859], [-23.3335426, -46.7199262]]
+            //maxBounds: [[-23.3378499, -46.7266859], [-23.3335426, -46.7199262]]
         });
         // Tile do
         var tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',

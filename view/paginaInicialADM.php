@@ -452,8 +452,8 @@
         var LayerAtivo = L.layerGroup().addTo(map);
         var LayerInativo = L.layerGroup().addTo(map);
 
-        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>ATIVO<span>");
-        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>INATIVO<span>");
+        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>Ativo</span>");
+        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>Inativo</span>");
 
         <?php
             foreach ($especies as $especie)
@@ -483,14 +483,14 @@
                 }
                 // Cria o layerGroup agrupa os marcadores ativos e inativos e adiciona ao mapa
                 echo "\nvar layer$especie->IDESPECIE = L.layerGroup(MarkersAtivos$especie->IDESPECIE).addTo(map);";
-                echo "\n layer$especie->IDESPECIE.addLayer(L.layerGroup(MarkersInativos$especie->IDESPECIE)).addTo(map);";
+                echo "\n layer$especie->IDESPECIE.addLayer(L.layerGroup(MarkersInativos$especie->IDESPECIE));";
             
                 // Adiciona os marcadores aos layers de ativos e inativos
                 echo "\n LayerAtivo.addLayer(L.layerGroup(MarkersAtivos$especie->IDESPECIE));";
                 echo "\n LayerInativo.addLayer(L.layerGroup(MarkersInativos$especie->IDESPECIE));";
 
                 // Adiciona o layerGroup ao controle de camadas
-                echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span class='user-select-none' id='layer$especie->IDESPECIE'>$especie->NOMEPOP<span><span class='badge text-bg-success rounded-pill float-end'>$especie->QUANT</span>\");";
+                echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span class='user-select-none' id='layer$especie->IDESPECIE'>$especie->NOMEPOP</span><span class='badge text-bg-success rounded-pill float-end'>$especie->QUANT</span>\");";
             }
             ?>
     </script>

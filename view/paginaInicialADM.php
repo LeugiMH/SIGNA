@@ -350,7 +350,7 @@
             //Não mudar cinza
             maxNativeZoom: 19,
             maxZoom: 20,
-            minZoom: 19,
+            //minZoom: 19,
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
@@ -389,9 +389,9 @@
         }).addTo(map);
 
         //Overlay Imagem Fundo Mapa
-        var imageUrl_bg = 'resource/ui/map/bg_map.png'
+        /*var imageUrl_bg = 'resource/ui/map/bg_map.png'
             imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
-            L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
+            L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);*/
         //Overlay Imagem Mapa
         var imageUrl = 'resource/ui/map/mapv1.png'
            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];

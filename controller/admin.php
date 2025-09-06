@@ -9,7 +9,7 @@ class AdminController
         $cookieSessao = json_decode($_COOKIE['sessao']);
 
         $email = $cookieSessao->EMAIL;
-        $senha = $cookieSessao->SENHA;
+        $senha = base64_decode($cookieSessao->SENHA);
 
         $cmd = new Admin();
         $cmd->EMAIL = $email;
@@ -27,8 +27,8 @@ class AdminController
         {
             unset($_COOKIE['sessao']); 
             setcookie('sessao', '', 1, '/'); 
-            setcookie("err",$email,time() + 100,"/");
-            setcookie("err",$senha,time() + 100,"/");
+            setcookie("err1",$email,time() + 100,"/");
+            setcookie("err2",$senha,time() + 100,"/");
 
             //header("Location:".URL);
         }
@@ -67,7 +67,7 @@ class AdminController
                 if(!(isset($_COOKIE["sessao"])))
                 {
                     $dadosSessao = (object) array(  'EMAIL' => $_SESSION['sessaoLogada']->EMAIL,
-                                                    'SENHA' => $_SESSION['sessaoLogada']->SENHA);
+                                                    'SENHA' => base64_encode($senha));
 
                     setcookie("sessao",json_encode($dadosSessao),time()+60*60*24*30,"/","",true,true); // Dura um mês
                 }

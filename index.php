@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-    //Import de controllers
-    include_once "controller/routes.php";
-    include_once "controller/admin.php";
-    include_once "controller/feedback.php";
+//Import de controllers
+include_once "controller/routes.php";
+include_once "controller/admin.php";
+include_once "controller/feedback.php";
 
 
 //Definindo fuso horário default
@@ -21,6 +21,16 @@ else
     $uri .= $_SERVER['HTTP_HOST']."/SIGNA/";
 
 define("URL",$uri);
+
+//Criando uma sessão para o usuário
+if(isset($_COOKIE['sessao']) && !(isset($_SESSION['sessaoLogada'])) && !isset($_COOKIE['try']))
+{
+    setcookie("try",".",time() + 1,"/"); // Evita loop infinito
+
+    $admin = new AdminController();
+    $admin->loginByCookie();
+}
+
 if($_GET)
 {   
     // TESTE 16/10/2024

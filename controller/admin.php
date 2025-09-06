@@ -4,6 +4,33 @@ include_once "model/admin.php";
 include_once "model/email.php";
 class AdminController
 {
+    function loginByCookie()
+    {
+        $cookieSessao = json_decode($_COOKIE['sessao']);
+
+        $email = $cookieSessao->EMAIL;
+        $senha = $cookieSessao->SENHA;
+
+        $cmd = new Admin();
+        $cmd->EMAIL = $email;
+
+        $dadosLogin = $cmd->logar();
+
+        if(isset($dadosLogin) && password_verify($senha,$dadosLogin->SENHA))
+        {
+            $_SESSION['sessaoLogada'] = $dadosLogin;
+            
+            //header("Location:".URL);
+        }
+        else
+        {
+            unset($_COOKIE['sessao']); 
+            setcookie('sessao', '', 1, '/'); 
+
+            //header("Location:".URL);
+        }
+    }
+
     function logar()
     {
         //Capturando informações do formulário
@@ -32,6 +59,15 @@ class AdminController
             {
                 //Define informações do usuário para uma sessão
                 $_SESSION['sessaoLogada'] = $dadosLogin;
+
+                //Define cookie de sessão
+                if(!(isset($_COOKIE["sessao"])))
+                {
+                    $dadosSessao = (object) array(  'EMAIL' => $_SESSION['sessaoLogada']->EMAIL,
+                                                    'SENHA' => $_SESSION['sessaoLogada']->SENHA);
+
+                    setcookie("sessao",json_encode($dadosSessao),time()+60*60*24*30,"/","",true,true); // Dura um mês
+                }
     
                 //Direciona para administrador
                 header("Location:".URL."inicio");
@@ -45,11 +81,12 @@ class AdminController
             //Direciona para login 
             header("Location:".URL."login");
         }
-        return 0;
     }
 
     function sair()
     {
+        unset($_COOKIE['sessao']); 
+        setcookie('sessao', '', 1, '/'); 
         $_SESSION[] = null;
         session_destroy();
         header("Location:".URL."login");

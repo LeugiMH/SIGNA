@@ -23,9 +23,9 @@ else
 define("URL",$uri);
 
 //Criando uma sessão para o usuário
-if(isset($_COOKIE['sessao']) && !(isset($_SESSION['sessaoLogada'])) && !isset($_COOKIE['try']))
+if(isset($_COOKIE['sessao']) && !(isset($_SESSION['sessaoLogada'])) && !isset($_SESSION['try']))
 {
-    setcookie("try",".",time() + 1,"/"); // Evita loop infinito
+    $_SESSION['try'] = true; //Evita loop infinito
 
     $admin = new AdminController();
     $admin->loginByCookie();

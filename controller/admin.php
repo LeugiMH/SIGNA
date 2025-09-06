@@ -19,18 +19,11 @@ class AdminController
         if(isset($dadosLogin) && password_verify($senha,$dadosLogin->SENHA))
         {
             $_SESSION['sessaoLogada'] = $dadosLogin;
-            setcookie("passou","tst",time() + 100,"/");
-
-            //header("Location:".URL);
         }
         else
         {
             unset($_COOKIE['sessao']); 
-            setcookie('sessao', '', 1, '/'); 
-            setcookie("err1",$email,time() + 100,"/");
-            setcookie("err2",$senha,time() + 100,"/");
-
-            //header("Location:".URL);
+            setcookie('sessao', '', time() - 1, '/'); 
         }
     }
 
@@ -88,8 +81,8 @@ class AdminController
 
     function sair()
     {
-        //unset($_COOKIE['sessao']); 
-        //setcookie('sessao', '', 1, '/'); 
+        unset($_COOKIE['sessao']); 
+        setcookie('sessao', '', 1, '/'); 
         $_SESSION[] = null;
         session_destroy();
         header("Location:".URL."login");

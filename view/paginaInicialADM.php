@@ -463,8 +463,8 @@
         var LayerAtivo = L.layerGroup().addTo(map);
         var LayerInativo = L.layerGroup().addTo(map);
 
-        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>Ativo</span>");
-        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>Inativo</span>");
+        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>Ativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/plant.png'?>' height='20px'></span>");
+        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>Inativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/dead_plant.png'?>' height='20px'></span>");
 
         <?php
             foreach ($especies as $especie)

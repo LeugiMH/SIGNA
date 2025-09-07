@@ -5,8 +5,10 @@
     <title>SIGNA - ADMIN</title>
     <style>
 
-    #map { height: 500px; z-index: 100; cursor:pointer;}
+    #map { height: 600px; z-index: 100; cursor:pointer;}
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 
@@ -290,10 +292,8 @@
             var id = $(event.relatedTarget).data('selector');
             var avaliacao = $(event.relatedTarget).data('content');
             $(this).find('#inputIdFeedback').val(id);
-            console.log(id);
             var url = '<?php echo URL."buscaFeedback/";?>';
             var urlId = url + id;
-            console.log(urlId);          
 
             executeRating(avaliacao);
             $.ajax({
@@ -313,13 +313,10 @@
         });
 
         function escreveFeedback(data){
-            console.log(data)
             var email = data.EMAIL;
             var assunto = data.DESCRICAO;
             var texto = data.TEXTO;
             var coment = data.COMENT_ADMIN;
-
-            console.log(email);
 
             if(data.IDESPECIME != null)
             {
@@ -354,6 +351,7 @@
             aattribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
+        // Adiciona o controle de localização
         var mapLocate = new L.Control.SimpleLocate({
             position: "bottomleft",
             className: "button-locate",
@@ -429,7 +427,7 @@
         function onMapClick(e) {
 
             //Adiciona marcador baseado no índice e incrementa índice
-            marker [markerIndex] = L.marker(e.latlng, {icon: myIcon}).addTo(map);
+            marker [markerIndex] = L.marker(e.latlng, {icon: PlantIcon}).addTo(map);
             map.addLayer(marker[markerIndex]);
             
             //Remove marcador do índice anterior
@@ -504,6 +502,59 @@
                 echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span class='user-select-none' id='layer$especie->IDESPECIE'>$especie->NOMEPOP</span><span class='badge text-bg-success rounded-pill float-end'>$especie->QUANT</span>\");";
             }
             ?>
+    </script>
+    <script>
+        // Desenhar formas no mapa
+
+        var editableLayers = new L.FeatureGroup();
+        map.addLayer(editableLayers);
+        
+        // Localização em português
+        L.drawLocal.draw.toolbar.actions = {title: 'Cancelar seleção', text: 'Cancelar'};
+        L.drawLocal.draw.toolbar.buttons.rectangle = 'Selecionar área.';
+        L.drawLocal.draw.handlers.rectangle.tooltip.start = 'Clique e arraste para selecionar área.';
+        L.drawLocal.draw.handlers.simpleshape.tooltip.end = 'Solte para finalizar a seleção.';
+
+        // Controlador de desenho
+        var drawControl = new L.Control.Draw({
+            draw: {
+                rectangle: {
+                    shapeOptions: {
+                        color: '#40d82cff',
+                        weight: 3
+                    }
+                },
+                circle: false,
+                polygon: false,
+                polyline: false,
+                marker: false,
+                circlemarker: false
+            }
+        });
+        map.addControl(drawControl);
+
+        // Evento ao criar uma nova forma
+        map.on(L.Draw.Event.CREATED, function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+        
+            
+            //editableLayers.clearLayers();
+            //editableLayers.addLayer(layer);
+            
+            // Iterar entre as os marcadores do layer ativo
+            LayerAtivo.eachLayer(function(MarkersAtivos) {
+                // Iterar entre os marcadores
+                MarkersAtivos.eachLayer(function(Markers) {
+                    // Verifica se o marcador está dentro da forma desenhada
+                    if (layer.getBounds().contains(Markers.getLatLng())) {
+                        Markers.setIcon(DeadPlantIcon);
+                        console.log(Markers);
+                    }
+                });
+            });
+        });
+
     </script>
 </body>
 </html>

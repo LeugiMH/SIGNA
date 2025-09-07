@@ -117,7 +117,7 @@
         var overlay = L.imageOverlay(imageUrl, imageBounds).addTo(map);
 
         //Alterar ìcone do Marker
-        var myIcon = L.icon({
+        var PlantIcon = L.icon({
             iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
             iconSize: [30, 30],
             iconAnchor: [15, 30],
@@ -149,7 +149,7 @@
                         $idade = date_diff(date_create($especime->DATPLANT), date_create(date("d-m-Y")));
                         
                         // Cria o marcador e adiciona ao grupo de marcadores
-                        echo "\nMakers$especie->IDESPECIE.push(L.marker([$especime->COORD],{icon: myIcon,title: \"$especime->NOMEPOP\"}).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Data de platio: $dataPlant </p><p>Idade: "; echo $idade->format("%y ano(s), %m mês(es) e %d dia(s)."); echo"</p><a href=\"".URL."especime/$especime->IDESPECIME\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                        echo "\nMakers$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon,title: \"$especime->NOMEPOP\"}).bindPopup('<p>Espécie: $especime->NOMEPOP</p><p>Data de platio: $dataPlant </p><p>Idade: "; echo $idade->format("%y ano(s), %m mês(es) e %d dia(s)."); echo"</p><a href=\"".URL."especime/$especime->IDESPECIME\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                     }
                 }
                 // Cria o layerGroup e adiciona ao mapa

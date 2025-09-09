@@ -2,9 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
-    <?php include_once "resource/headLeaflet.php";?>
-  
-    <title>SIGNA - Sistema de Gerenciamente do Núcleo arbóreo</title>
+      <title>SIGNA - Sistema de Gerenciamente do Núcleo arbóreo</title>
     <style>
 
     #map { height: 500px; z-index: 100; }

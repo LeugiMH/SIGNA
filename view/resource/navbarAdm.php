@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg" style="z-index: 10;">
     <div class="container-fluid">
-        <a class="navbar-brand text-break" href="<?php echo URL.'inicio';?>" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo"><img src="<?php echo URL.'resource/imagens/icons/Logo.svg'?>" height="40px"></a>
+        <a class="navbar-brand text-break" href="<?php echo URL.'inicio';?>" aria-label="SIGNA, Sistema de Gerenciamento de Núcleo Arbóreo"><img src="<?php echo URL.'resource/imagens/icons/Logo.svg'?>" height="40px" alt="Logo Signa"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
             aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>

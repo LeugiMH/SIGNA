@@ -94,8 +94,8 @@
                                                 <td>$atributo->IDATRIBUTO</td>
                                                 <td>$atributo->NOMEATRIBUTO</td>
                                                 <td>
-                                                <a href='#inputDescAtr' onClick='addAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/botao-adicionar.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                                <a href='#lista' onClick='excluirAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                                <a href='#inputDescAtr' onClick='addAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/botao-adicionar.png' style='width:25px;' alt='Adicionar à espécie'></a><div class='vr mx-2'></div>
+                                                <a href='#lista' onClick='excluirAtr($atributo->IDATRIBUTO)'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;' alt='Excluir atributo'></a>
                                                 </td>
                                             </tr>
                                             ";
@@ -205,7 +205,7 @@
                             [
                                 data.IDATRIBUTO,
                                 data.NOMEATRIBUTO,
-                                `<a href='#inputDescAtr' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;'></a><div class='vr mx-2'></div><a href='#lista' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;'></a>`
+                                `<a href='#inputDescAtr' onClick='addAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/botao-adicionar.png'?>' style='width:25px;' alt='Adicionar à espécie'></a><div class='vr mx-2'></div><a href='#lista' onClick='excluirAtr(${data.IDATRIBUTO})'><img src='<?php echo URL.'resource/imagens/icons/trash.png'?>' style='width:25px;' alt='Excluir atributo'></a>`
                             ]);
                             row.draw().node().id = data.IDATRIBUTO; // Definindo ID da linha
 

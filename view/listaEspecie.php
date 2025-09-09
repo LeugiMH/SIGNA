@@ -54,8 +54,8 @@
                                     <td>".date("d/m/Y H:i",strtotime($especie->DATACAD))."</td>                               
                                     <td>$especie->NOME</td>
                                     <td>
-                                    <a href='".URL."especies/altera/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                    <a href='".URL."especies/excluir/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                    <a href='".URL."especies/altera/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;' alt='Alterar espécie'></a><div class='vr mx-2'></div>
+                                    <a href='".URL."especies/excluir/$especie->IDESPECIE'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;' alt='Excluir espécie'></a>
                                     </td>
                                 </tr>
                                 ";

@@ -69,8 +69,8 @@
                                 <td>$assunto->IDASSUNTO</td>
                                 <td>$assunto->DESCRICAO</td>
                                 <td>
-                                <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' data-title='Alterar Assunto' data-content='$assunto->DESCRICAO'data-selector='$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                <a href='#' type='button' data-bs-toggle='modal' data-bs-target='#CadAssuntos' data-title='Alterar Assunto' data-content='$assunto->DESCRICAO'data-selector='$assunto->IDASSUNTO'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;' alt='Alterar assunto'></a><div class='vr mx-2'></div>
+                                <a href='".URL."assuntos/excluir/$assunto->IDASSUNTO' ><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;' alt='Excluir assunto'></a>
                                 </td>
                             </tr>
                             ";
@@ -107,7 +107,7 @@
                                 <tr id='feedback_$feedback->IDFEEDBACK'>
                                     <td>$feedback->IDFEEDBACK</td>
                                     <td>";
-                                    for($i = 1; $i <= $feedback->AVALIACAO; $i++){echo"<img src=\"".URL."resource/imagens/icons/star.png\" width=\"20px\">"; }
+                                    for($i = 1; $i <= $feedback->AVALIACAO; $i++){echo"<img src=\"".URL."resource/imagens/icons/star.png\" width=\"20px\" alt=\"Estrela\">"; }
                                     echo"</td><td>$feedback->DESCRICAO</td>
                                     <td>$feedback->TEXTO</td>
                                     <td>";echo $feedback->EMAIL != "" ? $feedback->EMAIL : "-"; echo"</td>";
@@ -116,9 +116,9 @@
                                     echo "
                                         <td>
                                             <span href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
-                                                <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;'>
+                                                <img src='".URL."resource/imagens/icons/eye-open.png' style='width:25px;' alt='Visualizado' title='Visualizado'>
                                                 <div class='vr mx-2'></div>
-                                                <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;'>
+                                                <img src='".URL."resource/imagens/icons/email-send.png' style='width:25px;' alt='Responder' title='Responder'>
                                             </span>
                                         </td>
                                     </tr>
@@ -128,9 +128,9 @@
                                     echo "
                                         <td>
                                             <span href='#' type='button' data-bs-toggle='modal' data-bs-target='#RespFeedback'data-content='$feedback->AVALIACAO'data-selector='$feedback->IDFEEDBACK'>
-                                                <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;'>
+                                                <img src='".URL."resource/imagens/icons/eye-closed.png' style='width:25px;' alt='Respondido' title='Respondido'>
                                                 <div class='vr mx-2'></div>
-                                                <img src='".URL."resource/imagens/icons/email.png' style='width:25px;'>
+                                                <img src='".URL."resource/imagens/icons/email.png' style='width:25px;' alt='Visualizar Resposta' title='Visualizar Resposta'>
                                             </span>
                                         </td>
                                     </tr>
@@ -187,7 +187,7 @@
                                 <label class="form-label">Espécime: </label>
                                 <a href="" class="link-opacity-50-hover link-underline-opacity-0 link-light btn btn-success">
                                     <span id="EspecimeFeedback"></span>
-                                    <img src="<?php echo URL.'resource/imagens/icons/sair-do-canto-superior-direito.png'?>" style="width:20px;">
+                                    <img src="<?php echo URL.'resource/imagens/icons/sair-do-canto-superior-direito.png'?>" style="width:20px;" alt="Ir ao Espécime">
                                 </a>
                             </div>
                             <div class="mb-3">
@@ -466,8 +466,8 @@
         var LayerAtivo = L.layerGroup().addTo(map);
         var LayerInativo = L.layerGroup().addTo(map);
 
-        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>Ativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/plant.png'?>' height='20px'></span>");
-        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>Inativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/dead_plant.png'?>' height='20px'></span>");
+        layerControl.addOverlay(LayerAtivo, "<span class='user-select-none' id='layerAtivo'>Ativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/plant.png'?>' height='20px' alt='Planta'></span>");
+        layerControl.addOverlay(LayerInativo, "<span class='user-select-none' id='layerAtivo'>Inativo</span><span class='float-end'><img src='<?php echo URL.'resource/imagens/icons/dead_plant.png'?>' height='20px' alt='Planta morta'></span>");
 
         <?php
             foreach ($especies as $especie)
@@ -486,11 +486,11 @@
                         // Cria o marcador e adiciona ao grupo de marcadores
                         if($especime->ESTADO == 1) // Ativo
                         {
-                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
                         else // Inativo
                         {
-                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
 
                     }

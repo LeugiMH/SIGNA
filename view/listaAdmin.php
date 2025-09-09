@@ -53,9 +53,9 @@
                                     <td>".date("d/m/Y H:i",strtotime($admin->DATACAD))."</td>
                                     <td>"; echo $admin->ESTADO == 1 ?  "<span class='badge text-bg-success'>Ativo</span>" : "<span class='badge text-bg-danger'>Inativo</span>"; echo"</td>
                                     <td>
-                                    <a href='".URL."admins/altera/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                    <a href='".URL."admins/alterarEstado/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/on-off.png' style='width:25px;'></a><div class='vr mx-2'></div>
-                                    <a href='".URL."admins/excluir/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;'></a>
+                                    <a href='".URL."admins/altera/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/caneta-de-pena.png' style='width:25px;' alt='Alterar administrador'></a><div class='vr mx-2'></div>
+                                    <a href='".URL."admins/alterarEstado/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/on-off.png' style='width:25px;' alt='Ligar/Desligar administrador'></a><div class='vr mx-2'></div>
+                                    <a href='".URL."admins/excluir/$admin->IDADMIN'><img src='".URL."resource/imagens/icons/trash.png' style='width:25px;' alt='Excluir administrador'></a>
                                     </td>
                                 </tr>
                                 ";

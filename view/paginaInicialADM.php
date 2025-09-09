@@ -2,13 +2,18 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
+    <?php include_once "resource/headDataTables.php";?>
+    <?php include_once "resource/headLeaflet.php";?>
+
+    <!-- Leaflet Draw -->    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js" async></script>
+
     <title>SIGNA - ADMIN</title>
     <style>
 
     #map { height: 600px; z-index: 100; cursor:pointer;}
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 </head>
 <body class="d-flex flex-column min-vh-100">
 

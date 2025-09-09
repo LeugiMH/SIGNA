@@ -2,6 +2,7 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
+    <?php include_once "resource/headDataTables.php";?>
     <title>SIGNA - Administradores</title>
 </head>
 

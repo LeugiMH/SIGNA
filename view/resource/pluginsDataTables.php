@@ -1,4 +1,3 @@
-
 <!--Importando Bibliotecas-->
 <script src="<?php echo URL.'resource/js/dataTables.js';?>"></script>
 <script src="<?php echo URL.'resource/js/dataTables.bootstrap5.js';?>"></script>

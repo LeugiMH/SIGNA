@@ -186,6 +186,29 @@ if($_GET)
             $route->abrirExibirEspecime($url[1]);
         break;
         
+        //MANEJO
+        case "manejo":
+            switch($url[1])
+            {   
+                case "listar":
+                    $route = new ManejoController();
+                    $route->listar($url[2],true);
+                break;
+                case "cadastrar":
+                    $route = new ManejoController();
+                    $route->cadastrar();
+                break;
+                case "excluir":
+                    $route = new ManejoController();
+                    $route->excluir($url[2]);
+                break;
+                default:
+                // URL INVÁLIDA
+                    $route = new Route();
+                    $route->abrirPaginaNaoEncontrada();
+                break;
+            }
+
         //ATRIBUTOS
         case "atributos":
             switch($url[1])

@@ -486,7 +486,7 @@
                         // Cria o marcador e adiciona ao grupo de marcadores
                         if($especime->ESTADO == 1) // Ativo
                         {
-                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Cadastrar Manejo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
                         else // Inativo
                         {
@@ -510,6 +510,7 @@
     </script>
     <script>
         // Desenhar formas no mapa
+        var selectedMarkers = [];
 
         var editableLayers = new L.FeatureGroup();
         map.addLayer(editableLayers);
@@ -540,6 +541,10 @@
 
         // Evento ao criar uma nova forma
         map.on(L.Draw.Event.CREATED, function (e) {
+
+            // Limpa array para armazenar os marcadores selecionados
+            selectedMarkers = [];
+            
             var type = e.layerType,
                 layer = e.layer;
         
@@ -551,10 +556,14 @@
             LayerAtivo.eachLayer(function(MarkersAtivos) {
                 // Iterar entre os marcadores
                 MarkersAtivos.eachLayer(function(Markers) {
+
+                    // Define o ícone padrão
+                    Markers.setIcon(PlantIcon);
+
                     // Verifica se o marcador está dentro da forma desenhada
                     if (layer.getBounds().contains(Markers.getLatLng())) {
-                        Markers.setIcon(DeadPlantIcon);
-                        console.log(Markers);
+                        Markers.setIcon(DeadPlantIcon); // TODO: Alterar ícone para seleção
+                        selectedMarkers.push(Markers.options.idespecime);
                     }
                 });
             });

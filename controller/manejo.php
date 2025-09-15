@@ -1,0 +1,68 @@
+<?php
+include_once "model/manejo.php";
+
+class ManejoController
+{
+    //Cadastrar
+    function cadastrar()
+    {
+
+        $especime = $_POST["inputEspecime"];
+        $tipoManejo = $_POST["inputTipoManejo"];
+        $dataManejo = date("Y-m-d",strtotime($_POST["inputDataManejo"]));
+
+        #Cria objeto da classe espécie e define valores
+        $cmd = new Manejo();
+        $cmd->tipoManejo = $tipoManejo;
+        $cmd->dataManejo = $dataManejo;  
+
+        $cmd->cadastrar();
+    }
+
+    #Consultar
+    function buscar($id)
+    {
+        $cmd = new Manejo();
+        $cmd->IDMANEJO = $id;
+        return $cmd->buscar();
+    }
+
+    /*
+    #Listar
+    function listar()
+    {
+        $cmd = new Manejo();
+        return $cmd->listar();
+    }*/
+
+    /** Listar manejos por espécime
+     * @param int $id ID do espécime para listar os manejos daquele espécime.
+     * @param bool $json define se o retorno será em JSON.
+     * @return array objeto ou JSON com os manejos daquele espécime.
+     */
+    function listar($id = null, $json = false)
+    {
+        $cmd = new Manejo();
+        $cmd->IDESPECIME = $id;
+
+        if(isset($id))
+            $return = $cmd->listarPorEspecime();
+        else
+            $return = $cmd->listar();
+
+        if($json)
+            echo json_encode($return);
+        else
+            return $return;
+    }
+
+    #Excluir
+    function excluir($id)
+    {
+        $cmd = new Manejo();
+        $cmd->IDMANEJO = $id;
+        return $cmd->excluir();
+    }
+}   
+
+?>

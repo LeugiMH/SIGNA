@@ -23,7 +23,7 @@
                                     
                             </div>
                             <div class="col-md-6 p-0">
-                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> ".number_format($planta->DAP, 2, ',', '.');?></p>
+                                <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> "; echo $planta->DAP == "0,00" ? number_format($planta->DAP, 2, ',', '.') : "Não medido"; ?></p>
                                 <hr>
                                 <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
                             </div>

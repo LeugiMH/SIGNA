@@ -391,8 +391,8 @@
         /*var imageUrl = 'resource/ui/map/mapv1.png'
            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
            L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
-        var imageUrl = 'resource/ui/map/mapv1.png'
-           imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
+        var imageUrl = 'resource/ui/map/mapv2.png'
+        imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
            L.imageOverlay(imageUrl, imageBounds, { opacity: 0.7 }).addTo(map);
 
            L.marker(imageBounds[0]).addTo(map);

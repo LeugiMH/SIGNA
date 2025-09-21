@@ -13,10 +13,13 @@ class ManejoController
 
         #Cria objeto da classe espécie e define valores
         $cmd = new Manejo();
-        $cmd->tipoManejo = $tipoManejo;
-        $cmd->dataManejo = $dataManejo;  
+        $cmd->IDESPECIME = $especime;
+        $cmd->TIPOMANEJO = $tipoManejo;
+        $cmd->DATAMANEJO = $dataManejo;  
 
         $cmd->cadastrar();
+
+        header("Location: ".URL."inicio");
     }
 
     #Consultar
@@ -45,10 +48,39 @@ class ManejoController
         $cmd = new Manejo();
         $cmd->IDESPECIME = $id;
 
-        if(isset($id))
+        if(isset($id) and !empty($id))
             $return = $cmd->listarPorEspecime();
         else
             $return = $cmd->listar();
+
+        // Formata os dados
+        foreach($return as $r)
+        {
+            // Formata a data
+            $r->DATAMANEJO = date("d/m/Y",strtotime($r->DATAMANEJO));
+
+            // Formata o tipo de manejo
+            switch($r->TIPOMANEJO)
+            {
+                case "RG":
+                    $r->TIPOMANEJO = "Rega";
+                break;
+                case "PD":
+                    $r->TIPOMANEJO = "Poda";
+                break;
+                case "AD":
+                    $r->TIPOMANEJO = "Adubação";
+                break;
+                case "CP":
+                    $r->TIPOMANEJO = "Controle de Praga";
+                break;
+                case "OT":
+                    $r->TIPOMANEJO = "Outro";
+                break;
+                default:
+                $r->TIPOMANEJO = "Desconhecido";
+            }
+        }
 
         if($json)
             echo json_encode($return);
@@ -61,7 +93,10 @@ class ManejoController
     {
         $cmd = new Manejo();
         $cmd->IDMANEJO = $id;
-        return $cmd->excluir();
+
+        $cmd->excluir();
+
+        header("Location: ".URL."inicio#sectionFeedbacks");
     }
 }   
 

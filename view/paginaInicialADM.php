@@ -7,7 +7,7 @@
 
     <!-- Leaflet Draw -->    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js" async></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.4.2/leaflet.draw.js"></script>
 
     <title>SIGNA - ADMIN</title>
     <style>
@@ -224,6 +224,74 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal Manejos-->
+        <div class="modal fade text-white " id="ModalManejo" tabindex="-1" aria-labelledby="Modal Manejo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content bg-verde">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Manejo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row mb-3">
+                            <span>
+                                <button id="btnCadManejo" class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#ModalCadManejo" data-especime="">Cadastrar</button>
+                            </span>
+                        </div>
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table id="listaManejos" class="table table-striped text-center">
+                                    <thead>
+                                        <tr>
+                                            <th>DATA</th>
+                                            <th>TIPO</th>
+                                            <th>AÇÃO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="corpoTabelaManejos">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal Cadastro de Manejos-->
+        <div class="modal fade text-white" id="ModalCadManejo" tabindex="-1" aria-labelledby="Modal Cadastro de Manejo" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content bg-verde">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5">Cadastro de manejo</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="formCadManejo" action="<?php echo URL.'manejo/cadastrar';?>" method="POST" class="mb-3 mt-3">
+                            <input type="hidden" value="" class="form-control" id="inputEspecime" name="inputEspecime" aria-hidden="true">
+                            <div class="mb-3">
+                                <label for="inputTipoManejo" class="form-label">Tipo</label>
+                                <select class="form-select" id="inputTipoManejo" name="inputTipoManejo" aria-label="Caixa de seleção do tipo do manejo" required>
+                                    <option selected disabled value="">Tipo de Manejo</option>
+                                    <option value="RG">Rega</option>
+                                    <option value="PD">Poda</option>
+                                    <option value="AD">Adubação</option>
+                                    <option value="CP">Controle de praga</option>
+                                    <option value="OT">Outro</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="inputDataManejo" class="form-label">Data do manejo</label>
+                                <input type="date" value="" class="form-control" id="inputDataManejo" name="inputDataManejo" aria-label="Data do Manejo" placeholder="dd/mm/aaaa" required>
+                            </div>
+                            <button id="btnCadAssunto" type="submit" class="modal-title btn btn-success float-end ms-3">Cadastrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         <?php include_once "resource/footerControle.php";?>
     </div>
     <?php include_once "resource/plugins.php";?>
@@ -313,10 +381,8 @@
                     });
                 }
             });
-
-            
         });
-
+        
         function escreveFeedback(data){
             var email = data.EMAIL;
             var assunto = data.DESCRICAO;
@@ -338,6 +404,56 @@
             $('#inputMessage').val(texto);
             $('#inputResposta').val(coment);
         }
+
+        //Modal de Manejos
+        $('#ModalManejo').on('show.bs.modal', function (event) {
+
+            //Limpar tabela
+            $('#corpoTabelaManejos').html("<tr><td colspan='4'>Carregando...</td></tr>");
+
+            var id = $(event.relatedTarget).data('especime');
+            $(this).find('#btnCadManejo').attr('data-especime', id);
+            var url = '<?php echo URL."manejo/listar/";?>';
+            var urlId = url + id;
+
+            $.ajax({
+                // Busca atributo
+                url: urlId,
+                type: 'POST',
+                dataType: "JSON",
+                success: function(result){
+                    if(result.length == 0)
+                    {
+                        $('#corpoTabelaManejos').html("<tr><td colspan='4'>Nenhum manejo cadastrado</td></tr>");
+                        return;
+                    }
+                    $('#corpoTabelaManejos').html("");
+                    $(result).each(function (index, data)
+                    {
+                        escreveManejo(data);
+                    });
+                }
+            });
+        });
+
+        function escreveManejo(data)
+        {
+            //Criar linha
+            var linha = `<tr id="manejo_${data.IDMANEJO}">`+
+                            `<td>${data.DATAMANEJO}</td>`+
+                            `<td>${data.TIPOMANEJO}</td>`+
+                            `<td><a href="<?php echo URL."manejo/excluir/";?>${data.IDMANEJO}"><img src="<?php echo URL."resource/imagens/icons/trash.png"?>" style="width:25px;" alt="Excluir Manejo"></a></td>`+
+                            `<\\tr>`;
+            //Popular tabela
+            $('#corpoTabelaManejos').append(linha);
+        }
+
+        $('#ModalCadManejo').on('show.bs.modal', function (event) {
+
+            var id = $(event.relatedTarget).data('especime');
+
+            $(this).find('#inputEspecime').val(id);
+        });
     </script>
 
 
@@ -396,9 +512,15 @@
             imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
             L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);*/
         //Overlay Imagem Mapa
-        var imageUrl = 'resource/ui/map/mapv1.png'
+        /*var imageUrl = 'resource/ui/map/mapv1.png'
            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
-           L.imageOverlay(imageUrl, imageBounds).addTo(map);
+           L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
+        var imageUrl = 'resource/ui/map/mapv1.png'
+           imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
+           L.imageOverlay(imageUrl, imageBounds, { opacity: 0.7 }).addTo(map);
+
+           L.marker(imageBounds[0]).addTo(map);
+           L.marker(imageBounds[1]).addTo(map);
 
 
         //Alterar ícone do Marker
@@ -407,10 +529,6 @@
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             alt: 'Marcador'
-            /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui/bg/arvore.png',
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]*/
         });
 
         var DeadPlantIcon = L.icon({
@@ -418,27 +536,31 @@
             iconSize: [30, 30],
             iconAnchor: [15, 30],
             alt: 'Marcador'
-            /*popupAnchor: [-3, -76],
-            shadowUrl: 'ui/bg/arvore.png',
-            shadowSize: [68, 95],
-            shadowAnchor: [22, 94]*/
         });
 
+        var SelectedPlantIcon = L.icon({
+            iconUrl: '<?php echo URL.'resource/imagens/icons/Selected_plant.png'?>',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            alt: 'Marcador'
+        });
+    </script>
+
+    <script>
+        //Adicionar marcador ao clicar no mapa
+
         //Declara variáveis marcador e índice
-        var markerIndex = 0;
         var marker = [];
 
         //Exibir um marcador ao clicar
         function onMapClick(e) {
 
-            //Adiciona marcador baseado no índice e incrementa índice
-            marker [markerIndex] = L.marker(e.latlng, {icon: PlantIcon}).addTo(map);
-            map.addLayer(marker[markerIndex]);
-            
-            //Remove marcador do índice anterior
-            if(markerIndex){
-                map.removeLayer(marker[markerIndex-1]);
-            }
+            //Remove marcador anterior
+            map.removeLayer(marker);
+
+            //Adiciona novo marcador
+            marker = L.marker(e.latlng, {icon: PlantIcon}).addTo(map);
+
             //Elemento input
             const coordInput = document.getElementById("inputCoord");
             
@@ -447,7 +569,6 @@
             //var coord = e.latlng.lat+", "+e.latlng.lng;
             var coord = Math.round(e.latlng.lat * 10000000) / 10000000 + ", " + Math.round(e.latlng.lng * 10000000) / 10000000;
             coordInput.value = coord;
-            markerIndex ++;
         }
 
         //Cria um marcador para visualização baseado na coordenada informada
@@ -460,6 +581,7 @@
 
         map.on('click', onMapClick);
     </script>
+
     <script>
         //Exibir espécimes no mapa
         var layerControl = L.control.layers().addTo(map);
@@ -486,7 +608,7 @@
                         // Cria o marcador e adiciona ao grupo de marcadores
                         if($especime->ESTADO == 1) // Ativo
                         {
-                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Cadastrar Manejo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
                         else // Inativo
                         {
@@ -526,7 +648,7 @@
             draw: {
                 rectangle: {
                     shapeOptions: {
-                        color: '#40d82cff',
+                        color: '#2caed6ff',
                         weight: 3
                     }
                 },
@@ -562,13 +684,12 @@
 
                     // Verifica se o marcador está dentro da forma desenhada
                     if (layer.getBounds().contains(Markers.getLatLng())) {
-                        Markers.setIcon(DeadPlantIcon); // TODO: Alterar ícone para seleção
+                        Markers.setIcon(SelectedPlantIcon);
                         selectedMarkers.push(Markers.options.idespecime);
                     }
                 });
             });
         });
-
     </script>
 </body>
 </html>

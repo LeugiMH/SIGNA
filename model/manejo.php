@@ -3,7 +3,7 @@ class Manejo
 {
     private $IDMANEJO;
     private $IDESPECIME;
-    private $TIPOMANEJO; #0-Rega; 1-Poda; 2-Adubação; 3-Controle de Praga	
+    private $TIPOMANEJO; #RG-Rega; PD-Poda; AD-Adubação; CP-Controle de Praga; OT-Outro
     private $DATAMANEJO;
 
     //Método get
@@ -73,7 +73,7 @@ class Manejo
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT IDMANEJO,IDESPECIME,TIPOMANEJO,DATAMANEJO FROM TBMANEJO WHERE IDESPECIME = :IDESPECIME");
+        $cmd = $con->prepare("SELECT IDMANEJO,IDESPECIME,TIPOMANEJO,DATAMANEJO FROM TBMANEJO WHERE IDESPECIME = :IDESPECIME ORDER BY DATAMANEJO DESC");
         $cmd->bindParam(":IDESPECIME", $this->IDESPECIME);
 
         //Executando o comando SQL

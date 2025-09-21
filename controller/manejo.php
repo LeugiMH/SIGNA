@@ -17,9 +17,9 @@ class ManejoController
         $cmd->TIPOMANEJO = $tipoManejo;
         $cmd->DATAMANEJO = $dataManejo;  
 
-        $cmd->cadastrar();
+        echo json_encode($cmd->cadastrar());
 
-        header("Location: ".URL."inicio");
+        //header("Location: ".URL."inicio");
     }
 
     #Consultar
@@ -94,9 +94,9 @@ class ManejoController
         $cmd = new Manejo();
         $cmd->IDMANEJO = $id;
 
-        $cmd->excluir();
+        echo json_encode($cmd->excluir());
 
-        header("Location: ".URL."inicio#sectionFeedbacks");
+        //header("Location: ".URL."inicio#sectionFeedbacks");
     }
 }   
 

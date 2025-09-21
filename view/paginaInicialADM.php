@@ -286,7 +286,7 @@
                                 <label for="inputDataManejo" class="form-label">Data do manejo</label>
                                 <input type="date" value="" class="form-control" id="inputDataManejo" name="inputDataManejo" aria-label="Data do Manejo" placeholder="dd/mm/aaaa" required>
                             </div>
-                            <button id="btnCadAssunto" type="submit" class="modal-title btn btn-success float-end ms-3">Cadastrar</button>
+                            <button id="btnSubmitManejo" type="submit" class="modal-title btn btn-success float-end ms-3">Cadastrar</button>
                         </form>
                     </div>
                 </div>
@@ -296,13 +296,14 @@
     </div>
     <?php include_once "resource/plugins.php";?>
     <?php include_once "resource/pluginsDataTables.php";?>
+    <script> const URI = "<?php echo URL?>";</script>
 
     <script>
         //Script de inicialização personalizado da tabela
         tableAssunto = $('#listaAssunto').DataTable({
             responsive: true,
             language: {
-                url: "<?php echo URL.'resource/json/pt_br.json';?>"
+                url: `${URI}resource/json/pt_br.json`
             },
             pageLength: 4,
             lengthChange: false,
@@ -313,7 +314,7 @@
         tableFeedback = $('#listaFeedback').DataTable({
             responsive: true,
             language: {
-                url: "<?php echo URL.'resource/json/pt_br.json';?>"
+                url: `${URI}resource/json/pt_br.json`
             },
             pageLength: 4,
             lengthChange: false,
@@ -322,141 +323,16 @@
         });
     </script>
 
-    <script>
-        //Mostra estrelas
-        function executeRating(avaliacao) {
-            const starClassActive = "rating__star star-a star me-2";
-            const starClassInactive = "rating__star star-i star me-2";
-            const stars = [...document.getElementsByClassName("rating__star")];
-            const starsLength = stars.length;
-            let i=0;
+    <!-- Script de Assuntos -->
+    <script src="<?php echo URL.'view/resource/js/assuntos.js'?>"></script>
 
-            stars.map((star) => {
-                document.getElementById("rating").value = stars.indexOf(star)+1;
-                for (i; i <= avaliacao-1; ++i) stars[i].className = starClassActive;
-            });
-        }
-    </script>
+    <!-- Script de Feedbacks -->
+    <script src="<?php echo URL.'view/resource/js/feedback.js'?>"></script>
 
-    <script>
-        //Coloca valores dos data attributes nos inputs
-        $('#CadAssuntos').on('show.bs.modal', function (event) {
-            
-            var title = $(event.relatedTarget).data('title');
-            var assunto = $(event.relatedTarget).data('content');
-            var id = $(event.relatedTarget).data('selector');
-            $(this).find('.modal-title').html(title);
-            $(this).find('#inputIdAssunto').val(id);
-            $(this).find('#inputDescricao').val(assunto);
+    <!-- Script de Manejos -->
+    <script src="<?php echo URL.'view/resource/js/manejo.js'?>"></script>
 
-            if (title.match(/^Cadastrar.*$/)) {
-                $(this).find('#inputIdAssunto').attr('disabled', 'disabled');
-                $(this).find('#inputIdAssunto').attr('hidden', 'hidden');
-                $(this).find('label[for="inputIdAssunto"]').attr('hidden', 'hidden');
-            }else{
-                $(this).find('#inputIdAssunto').removeAttr('disabled', 'disabled');
-                $(this).find('#inputIdAssunto').removeAttr('hidden', 'hidden');
-                $(this).find('label[for="inputIdAssunto"]').removeAttr('hidden', 'hidden');
-            }
-        });
-
-        //Modal de Feedbacks
-        $('#RespFeedback').on('show.bs.modal', function (event) {
-            var id = $(event.relatedTarget).data('selector');
-            var avaliacao = $(event.relatedTarget).data('content');
-            $(this).find('#inputIdFeedback').val(id);
-            var url = '<?php echo URL."buscaFeedback/";?>';
-            var urlId = url + id;
-
-            executeRating(avaliacao);
-            $.ajax({
-                // Busca atributo
-                url: urlId,
-                type: 'POST',
-                dataType: "JSON",
-                success: function(result){
-                    $(result).each(function (index, data)
-                    {
-                        escreveFeedback(data);
-                    });
-                }
-            });
-        });
-        
-        function escreveFeedback(data){
-            var email = data.EMAIL;
-            var assunto = data.DESCRICAO;
-            var texto = data.TEXTO;
-            var coment = data.COMENT_ADMIN;
-
-            if(data.IDESPECIME != null)
-            {
-                $('#EspecimeFeedback').parent().parent().show();
-                $('#EspecimeFeedback').html(data.IDESPECIME);
-                $('#EspecimeFeedback').parent().prop("href","<?php echo URL.'especimes/altera/'?>"+data.IDESPECIME);
-            }
-            else
-            {
-                $('#EspecimeFeedback').parent().parent().hide();
-            }
-            $('#inputEmail').val(email);
-            $('#inputAssunto').val(assunto);
-            $('#inputMessage').val(texto);
-            $('#inputResposta').val(coment);
-        }
-
-        //Modal de Manejos
-        $('#ModalManejo').on('show.bs.modal', function (event) {
-
-            //Limpar tabela
-            $('#corpoTabelaManejos').html("<tr><td colspan='4'>Carregando...</td></tr>");
-
-            var id = $(event.relatedTarget).data('especime');
-            $(this).find('#btnCadManejo').attr('data-especime', id);
-            var url = '<?php echo URL."manejo/listar/";?>';
-            var urlId = url + id;
-
-            $.ajax({
-                // Busca atributo
-                url: urlId,
-                type: 'POST',
-                dataType: "JSON",
-                success: function(result){
-                    if(result.length == 0)
-                    {
-                        $('#corpoTabelaManejos').html("<tr><td colspan='4'>Nenhum manejo cadastrado</td></tr>");
-                        return;
-                    }
-                    $('#corpoTabelaManejos').html("");
-                    $(result).each(function (index, data)
-                    {
-                        escreveManejo(data);
-                    });
-                }
-            });
-        });
-
-        function escreveManejo(data)
-        {
-            //Criar linha
-            var linha = `<tr id="manejo_${data.IDMANEJO}">`+
-                            `<td>${data.DATAMANEJO}</td>`+
-                            `<td>${data.TIPOMANEJO}</td>`+
-                            `<td><a href="<?php echo URL."manejo/excluir/";?>${data.IDMANEJO}"><img src="<?php echo URL."resource/imagens/icons/trash.png"?>" style="width:25px;" alt="Excluir Manejo"></a></td>`+
-                            `<\\tr>`;
-            //Popular tabela
-            $('#corpoTabelaManejos').append(linha);
-        }
-
-        $('#ModalCadManejo').on('show.bs.modal', function (event) {
-
-            var id = $(event.relatedTarget).data('especime');
-
-            $(this).find('#inputEspecime').val(id);
-        });
-    </script>
-
-
+    <!-- Script do Mapa -->
     <script>
         //Exibir Mapa
         // initialize the map on the "map" div with a given center and zoom
@@ -546,9 +422,8 @@
         });
     </script>
 
+    <!-- Adicionar marcador ao clicar no mapa -->
     <script>
-        //Adicionar marcador ao clicar no mapa
-
         //Declara variáveis marcador e índice
         var marker = [];
 
@@ -582,6 +457,7 @@
         map.on('click', onMapClick);
     </script>
 
+    <!-- Exibir espécimes no mapa -->
     <script>
         //Exibir espécimes no mapa
         var layerControl = L.control.layers().addTo(map);
@@ -608,11 +484,11 @@
                         // Cria o marcador e adiciona ao grupo de marcadores
                         if($especime->ESTADO == 1) // Ativo
                         {
-                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersAtivos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: PlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\" data-status=\"ativo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
                         else // Inativo
                         {
-                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\" data-status=\"inativo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
 
                     }
@@ -630,6 +506,8 @@
             }
             ?>
     </script>
+
+    <!-- Script de seleção de múltiplos marcadores -->
     <script>
         // Desenhar formas no mapa
         var selectedMarkers = [];
@@ -669,10 +547,6 @@
             
             var type = e.layerType,
                 layer = e.layer;
-        
-            
-            //editableLayers.clearLayers();
-            //editableLayers.addLayer(layer);
             
             // Iterar entre as os marcadores do layer ativo
             LayerAtivo.eachLayer(function(MarkersAtivos) {

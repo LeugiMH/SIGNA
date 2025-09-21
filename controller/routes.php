@@ -7,6 +7,9 @@ include_once "especime.php";
 include_once "assunto.php";
 include_once "atributo.php";
 include_once "acesso.php";
+include_once "feedback.php";
+include_once "manejo.php";
+
 
 class Route
 {

@@ -3,9 +3,6 @@ session_start();
 
 //Import de controllers
 include_once "controller/routes.php";
-include_once "controller/admin.php";
-include_once "controller/feedback.php";
-
 
 //Definindo fuso horário default
 date_default_timezone_set("America/Sao_Paulo");
@@ -33,7 +30,6 @@ if(isset($_COOKIE['sessao']) && !(isset($_SESSION['sessaoLogada'])) && !isset($_
 
 if($_GET)
 {   
-    // TESTE 16/10/2024
     //Pegando a URL e apagando a "/" no final dela.
     $url = $_GET["url"];
     $url = explode("/",$url);
@@ -192,7 +188,7 @@ if($_GET)
             {   
                 case "listar":
                     $route = new ManejoController();
-                    $route->listar($url[2],true);
+                    $route->listar($url[2] ?? null,true);
                 break;
                 case "cadastrar":
                     $route = new ManejoController();
@@ -208,6 +204,7 @@ if($_GET)
                     $route->abrirPaginaNaoEncontrada();
                 break;
             }
+        break;
 
         //ATRIBUTOS
         case "atributos":

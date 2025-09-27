@@ -54,8 +54,11 @@ $('#ModalManejo').on('show.bs.modal', function (event) {
 
 //Coloca valores dos data attributes nos inputs
 $('#ModalCadManejo').on('show.bs.modal', function (event) {
-    var id = $(event.relatedTarget).data('especime');
-    $(this).find('#inputEspecime').val(id);
+    if($(event.relatedTarget).data('especime') !== undefined)
+    {
+        var id = $(event.relatedTarget).data('especime');
+        $(this).find('#inputEspecime').val(id);
+    }
 });
 
 //Cadastrar manejo

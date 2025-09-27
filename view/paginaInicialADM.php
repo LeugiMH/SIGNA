@@ -388,15 +388,16 @@
             imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
             L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);*/
         //Overlay Imagem Mapa
-        /*var imageUrl = 'resource/ui/map/mapv1.png'
+        /*var imageUrl = 'resource/ui/map/mapv1.png' //{Mapa antigo com coordenadas antigas}
            imageBounds = [[-23.3356483, -46.7212599], [-23.3366457, -46.722830]];
            L.imageOverlay(imageUrl, imageBounds).addTo(map);*/
         var imageUrl = 'resource/ui/map/mapv2.png'
         imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
-           L.imageOverlay(imageUrl, imageBounds, { opacity: 0.7 }).addTo(map);
+           L.imageOverlay(imageUrl, imageBounds, { opacity: 1.0 }).addTo(map);
 
+           /* DEBUG DO mapa
            L.marker(imageBounds[0]).addTo(map);
-           L.marker(imageBounds[1]).addTo(map);
+           L.marker(imageBounds[1]).addTo(map);*/
 
 
         //Alterar ícone do Marker
@@ -545,9 +546,11 @@
             // Limpa array para armazenar os marcadores selecionados
             selectedMarkers = [];
             
+            var countSelected = 0;
             var type = e.layerType,
                 layer = e.layer;
             
+
             // Iterar entre as os marcadores do layer ativo
             LayerAtivo.eachLayer(function(MarkersAtivos) {
                 // Iterar entre os marcadores
@@ -558,11 +561,18 @@
 
                     // Verifica se o marcador está dentro da forma desenhada
                     if (layer.getBounds().contains(Markers.getLatLng())) {
+                        countSelected++;
                         Markers.setIcon(SelectedPlantIcon);
                         selectedMarkers.push(Markers.options.idespecime);
                     }
                 });
             });
+
+            if(countSelected > 0)
+            {
+                $("#inputEspecime").val(selectedMarkers.join(","));
+                $("#ModalCadManejo").modal('show');
+            }
         });
     </script>
 </body>

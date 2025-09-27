@@ -11,6 +11,9 @@ class ManejoController
         $tipoManejo = $_POST["inputTipoManejo"];
         $dataManejo = date("Y-m-d",strtotime($_POST["inputDataManejo"]));
 
+        // Se for um lote, chama o método de cadastrar lote
+        if(count(explode(",",$especime)) > 1){return $this->cadastrarLote();}
+
         #Cria objeto da classe espécie e define valores
         $cmd = new Manejo();
         $cmd->IDESPECIME = $especime;
@@ -20,6 +23,27 @@ class ManejoController
         echo json_encode($cmd->cadastrar());
 
         //header("Location: ".URL."inicio");
+    }
+
+    function cadastrarLote()
+    {
+        $especimes = $_POST["inputEspecime"];
+        $tipoManejo = $_POST["inputTipoManejo"];
+        $dataManejo = date("Y-m-d",strtotime($_POST["inputDataManejo"]));
+
+        #Cria objeto da classe espécie e define valores
+        $especimes = explode(",",$especimes);
+        foreach($especimes as $especime)
+        {
+            $cmd = new Manejo();
+            $cmd->IDESPECIME = $especime;
+            $cmd->TIPOMANEJO = $tipoManejo;
+            $cmd->DATAMANEJO = $dataManejo;  
+    
+            $sucesso = $cmd->cadastrar();
+            //header("Location: ".URL."inicio");
+        }
+        echo json_encode($sucesso);
     }
 
     #Consultar

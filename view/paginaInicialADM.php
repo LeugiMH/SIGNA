@@ -32,6 +32,7 @@
                             <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="00.0000000, 00.0000000" onChange="criaMarkerView(this.value)" maxlength="50" required>
                             <div class="form-text">Coordenadas da planta</div>
                         </form>
+                        <button class="btn btn-danger w-100" id="btnAltCoord" style="display: none;">Alterar posição</button>
                     </div>
                     <div class="col-xl-9">
                         <div id="map"></div>
@@ -461,6 +462,7 @@
     <!-- Exibir espécimes no mapa -->
     <script>
         //Exibir espécimes no mapa
+        var AllMarkers = L.layerGroup().addTo(map);
         var layerControl = L.control.layers().addTo(map);
         var LayerAtivo = L.layerGroup().addTo(map);
         var LayerInativo = L.layerGroup().addTo(map);
@@ -489,7 +491,7 @@
                         }
                         else // Inativo
                         {
-                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\" data-status=\"inativo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
+                            echo "\nMarkersInativos$especie->IDESPECIE.push(L.marker([$especime->COORD],{alt: \"$especime->NOMEPOP\", icon: DeadPlantIcon, idespecime:$especime->IDESPECIME}).bindPopup('<p><a href=\"http://api.qrserver.com/v1/create-qr-code/?data=".URL."especime/$especime->IDESPECIME\" title=\"Gerar QR Code\" target=\"_blank\"><img src=\"".URL."resource/imagens/icons/qr-digitalizar.png\" style=\"width:20px;\" alt=\"Gerar QR Code\"></a> Espécie: $especime->NOMEPOP</p><p>Status: "; echo $especime->ESTADO == 1? "<span class=\"badge text-bg-success\">Ativo</span>": "<span class=\"badge text-bg-danger\">Inativo</span></p>"; echo "<p>Data de cadastro: $especime->DATACAD</p><p>Cadastro por: $especime->NOME</p><a href=\"".URL."especimes/altera/$especime->IDESPECIME\" title=\"Alterar Espécime\"><img src=\"".URL."resource/imagens/icons/caneta-de-pena.png\" style=\"width:20px;\"></a><a href=\"#\" class=\"ms-2\" title=\"Manejo\" data-bs-toggle=\"modal\" data-bs-target=\"#ModalManejo\" data-especime=\"$especime->IDESPECIME\" data-status=\"inativo\"><img src=\"".URL."resource/imagens/icons/manejo.png\" style=\"width:20px;\"\></a><a href=\"".URL."especime/$especime->IDESPECIME\" class=\"float-end\" title=\"Abrir Espécime\"><img src=\"".URL."resource/imagens/icons/sair-do-canto-superior-direito.png\" style=\"width:20px;\"></a>'));";
                         }
 
                     }
@@ -505,7 +507,18 @@
                 // Adiciona o layerGroup ao controle de camadas
                 echo "\nlayerControl.addOverlay(layer$especie->IDESPECIE, \"<span class='user-select-none' id='layer$especie->IDESPECIE'>$especie->NOMEPOP</span><span class='badge text-bg-success rounded-pill float-end'>$especie->QUANT</span>\");";
             }
-            ?>
+        ?>
+        // Armazena todos os marcadores em um único layerGroup
+        LayerAtivo.eachLayer(function(layer) {
+            layer.eachLayer(function(marker) {
+                marker.addTo(AllMarkers);
+            });
+        });
+        LayerInativo.eachLayer(function(layer) {
+            layer.eachLayer(function(marker) {
+                marker.addTo(AllMarkers);
+            });
+        });
     </script>
 
     <!-- Script de seleção de múltiplos marcadores -->
@@ -575,5 +588,9 @@
             }
         });
     </script>
+
+    <!--Alterar coordenada-->
+    <script src="<?php echo URL.'view/resource/js/altCoord.js'?>"></script>
+    
 </body>
 </html>

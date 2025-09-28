@@ -71,7 +71,7 @@ class Especime
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT TBA.*,NOMEPOP,NOME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE JOIN TBADMIN ADM ON TBA.IDCADADM = ADM.IDADMIN");
+        $cmd = $con->prepare("SELECT TBA.IDESPECIME,TBA.IDESPECIE,TBA.COORD,TBA.IMAGEM,TBA.DESCRICAOIMG,TBA.ESTADO,TBA.DAP,TBA.DATPLANT,TBA.DATACAD,TBA.IDCADADM,TBB.NOMEPOP,ADM.NOME FROM TBESPECIME TBA JOIN TBESPECIE TBB ON TBA.IDESPECIE = TBB.IDESPECIE JOIN TBADMIN ADM ON TBA.IDCADADM = ADM.IDADMIN");
 
         //Executando o comando SQL
         $cmd->execute();
@@ -141,6 +141,33 @@ class Especime
         $cmd->bindParam(":ESTADO",      $this->ESTADO);
         $cmd->bindParam(":DAP",         $this->DAP);
         $cmd->bindParam(":DATPLANT",    $this->DATPLANT);
+        $cmd->bindParam(":IDESPECIME",  $this->IDESPECIME);
+
+        //Executando e retornando resultado
+        try
+        {
+            return $cmd->execute();
+        }
+        catch (PDOException $e)
+        {
+            //Debug
+            //setcookie("erro",$e, time() + 1,"/");
+            return false;
+        }
+    }
+
+    //Método Alterar coordenada
+    function alterarCoord()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+        
+        //Preparar comando SQL para inserir
+        $cmd = $con->prepare("UPDATE TBESPECIME SET COORD = :COORD
+                                            WHERE IDESPECIME = :IDESPECIME");
+
+        //Definindo parâmetros (SQL INJECTION)
+        $cmd->bindParam(":COORD",       $this->COORD);
         $cmd->bindParam(":IDESPECIME",  $this->IDESPECIME);
 
         //Executando e retornando resultado

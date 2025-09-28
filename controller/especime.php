@@ -32,7 +32,7 @@ class EspecimeController
             $nomeArquivo = $_FILES["inputImagem"]["name"];    //Nome do arquivo
             $nomeTemp =    $_FILES["inputImagem"]["tmp_name"];   //nome temporário
             
-            //pegar a extensão do arquivo
+            //pegar a extensão do arquivos
             $info = new SplFileInfo($nomeArquivo);
             $extensao = $info->getExtension();
             
@@ -162,6 +162,26 @@ class EspecimeController
         {
             setcookie("msg","<div class='alert alert-danger'>Erro ao alterar espécime</div>",time() + 1,"/");
             header("location: ".URL."especimes/altera/$idEspecime");
+        }
+    }
+
+    function alterarCoordEspecime()
+    {
+        $idEspecime =  $_POST["inputEspecime"];
+        $coord =  $_POST["inputCoord"];
+        
+        //Cria objeto da classe espécime e define valores
+        $cmd = new Especime();
+        $cmd->IDESPECIME    = $idEspecime;
+        $cmd->COORD         = $coord;
+
+        if($cmd->alterarCoord()) //Sucesso ao alterar espécime
+        {
+            echo json_encode(array("status" => "success", "msg" => "Coordenada alterada com sucesso!"));
+        }
+        else
+        {
+            echo json_encode(array("status" => "error", "msg" => "Erro ao alterar coordenada!"));
         }
     }
 }

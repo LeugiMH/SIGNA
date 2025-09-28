@@ -250,6 +250,10 @@ if($_GET)
                     $route = new EspecimeController();
                     $route->alterarEspecime();
                 break;
+                case "altcoord":
+                    $route = new EspecimeController();
+                    $route->alterarCoordEspecime();
+                break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();
@@ -299,12 +303,6 @@ if($_GET)
             $route = new AdminController();
             $route->sair();
         break;
-        
-        case "tst":
-            $route = new Route();
-            $route->abrirTeste();
-        break;
-
         default:
             // URL INVÁLIDA
             $route = new Route();

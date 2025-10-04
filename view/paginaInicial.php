@@ -56,7 +56,7 @@
         //Exibir Mapa
         // initialize the map on the "map" div with a given center and zoom
         var map = L.map('map', {
-            center: [-23.3361335, -46.722095],
+            center: [-23.3360551, -46.7220804],
             zoom: 19,
             //maxBounds: [[-23.3378499, -46.7266859], [-23.3335426, -46.7199262]]
         });

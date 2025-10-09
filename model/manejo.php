@@ -81,6 +81,21 @@ class Manejo
         
         return $cmd->fetchAll(PDO::FETCH_OBJ);
     }
+    //Método Consultar
+    function UltimoDoTipo()
+    {
+        //Conectando ao banco de dados
+        $con = Conexao::conectar();
+
+        //Preparar comando SQL para retornar
+        $cmd = $con->prepare("SELECT TIPOMANEJO,MAX(DATAMANEJO) AS DATAMANEJO  FROM TBMANEJO WHERE IDESPECIME = :IDESPECIME GROUP BY TIPOMANEJO;");
+        $cmd->bindParam(":IDESPECIME", $this->IDESPECIME);
+
+        //Executando o comando SQL
+        $cmd->execute();
+        
+        return $cmd->fetchAll(PDO::FETCH_OBJ);
+    }
 
     //Método Buscar
     function buscar()

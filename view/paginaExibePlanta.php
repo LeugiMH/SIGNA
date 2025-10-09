@@ -26,6 +26,16 @@
                                 <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> "; echo $planta->DAP == "0,00" ? number_format($planta->DAP, 2, ',', '.') : "Não mensurado"; ?></p>
                                 <hr>
                                 <p><strong><?php echo "Data de plantio:</strong> ".date("d/m/Y",strtotime($planta->DATPLANT));?></p>
+                                <hr>
+                                <h4>Último manejo</h4>
+                                <?php 
+                                if(empty($manejos))
+                                    echo "Sem registro";
+                                foreach ($manejos as $manejo)
+                                    {
+                                        echo "<hr></hr><p><strong>$manejo->TIPOMANEJO: </strong>$manejo->DATAMANEJO</p>";
+                                    }
+                                ?>
                             </div>
                         </div>
                         <div class="row m-0">

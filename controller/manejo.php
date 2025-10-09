@@ -54,13 +54,29 @@ class ManejoController
         return $cmd->buscar();
     }
 
-    /*
-    #Listar
-    function listar()
+    function formataTipos(&$tipo)
     {
-        $cmd = new Manejo();
-        return $cmd->listar();
-    }*/
+        switch($tipo)
+        {
+            case "RG":
+                $tipo = "Rega";
+            break;
+            case "PD":
+                $tipo = "Poda";
+            break;
+            case "AD":
+                $tipo = "Adubação";
+            break;
+            case "CP":
+                $tipo = "Controle de Praga";
+            break;
+            case "OT":
+                $tipo = "Outro";
+            break;
+            default:
+            $tipo = "Desconhecido";
+        }
+    }
 
     /** Listar manejos por espécime
      * @param int $id ID do espécime para listar os manejos daquele espécime.
@@ -84,32 +100,33 @@ class ManejoController
             $r->DATAMANEJO = date("d/m/Y",strtotime($r->DATAMANEJO));
 
             // Formata o tipo de manejo
-            switch($r->TIPOMANEJO)
-            {
-                case "RG":
-                    $r->TIPOMANEJO = "Rega";
-                break;
-                case "PD":
-                    $r->TIPOMANEJO = "Poda";
-                break;
-                case "AD":
-                    $r->TIPOMANEJO = "Adubação";
-                break;
-                case "CP":
-                    $r->TIPOMANEJO = "Controle de Praga";
-                break;
-                case "OT":
-                    $r->TIPOMANEJO = "Outro";
-                break;
-                default:
-                $r->TIPOMANEJO = "Desconhecido";
-            }
+            $this->formataTipos($r->TIPOMANEJO);
         }
 
         if($json)
             echo json_encode($return);
         else
             return $return;
+    }
+
+    function ultimoDoTipo($id)
+    {
+        $cmd = new Manejo();
+        $cmd->IDESPECIME = $id;
+
+        $return = $cmd->UltimoDoTipo();
+
+        // Formata os dados
+        foreach($return as $r)
+        {
+            // Formata a data
+            $r->DATAMANEJO = date("d/m/Y",strtotime($r->DATAMANEJO));
+
+            // Formata o tipo de manejo
+            $this->formataTipos($r->TIPOMANEJO);
+        }
+
+        return $return;
     }
 
     #Excluir

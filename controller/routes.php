@@ -79,6 +79,8 @@ class Route
         $planta = $planta->buscarTudo($idEspecime);
         $atributos = new EspecieController();
         $atributos = $atributos->buscarAtrAssoc($planta->IDESPECIE);
+        $manejos = new ManejoController();
+        $manejos = $manejos->ultimoDoTipo($idEspecime);
         include_once "view/paginaExibePlanta.php";
     }
     

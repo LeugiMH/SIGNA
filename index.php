@@ -28,6 +28,21 @@ if(isset($_COOKIE['sessao']) && !(isset($_SESSION['sessaoLogada'])) && !isset($_
     $admin->loginByCookie();
 }
 
+#Valida login
+function validaLogin()
+{
+    //Caso o usuário esteja logado, retorna verdadeiro, caso contrário o usuário é direcionado para a página de login
+    if(isset($_SESSION['sessaoLogada']))
+    {
+        return true;
+    }
+    else
+    {
+        $route = new Route();
+        $route->abrirPaginaNaoEncontrada();
+        return false;
+    }
+}
 if($_GET)
 {   
     //Pegando a URL e apagando a "/" no final dela.
@@ -105,33 +120,54 @@ if($_GET)
             switch($url[1])
             {
                 case "lista":
-                    $route = new Route();
-                    $route->abrirListaAdmin();
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirListaAdmin();
+                    }
                 break;
                 case "cadastro":
-                    $route = new Route();
-                    $route->abrirCadastroAdmin();
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirCadastroAdmin();
+                    }
                 break;
                 case "cadastrar":
-                    $route = new AdminController();
-                    $route->cadastrarAdmin();
+                    if(validaLogin())
+                    {
+                        $route = new AdminController();
+                        $route->cadastrarAdmin();
+                    }
                 break;
                 case "altera":
-                    $route = new Route();
-                    $route->abrirAlteraAdmin($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirAlteraAdmin($url[2]);
+                    }
                 break;
                 case "alterar":
-                    $route = new AdminController();
-                    $route->alterarAdmin();
+                    if(validaLogin())
+                    {
+                        $route = new AdminController();
+                        $route->alterarAdmin();
+                    }
                 break;
                 case "alterarEstado":
-                    $route = new AdminController();
-                    $route->alterarEstado($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new AdminController();
+                        $route->alterarEstado($url[2]);
+                    }
                 break;
                 case "excluir":
-                    $route = new AdminController();
-                    $route->excluirAdmin($url[2]);
-                break;
+                    if(validaLogin())
+                    {
+                        $route = new AdminController();
+                        $route->excluirAdmin($url[2]);
+                    }
+                    break;
                 default:
                     // URL INVÁLIDA
                     $route = new Route();
@@ -145,28 +181,46 @@ if($_GET)
             switch($url[1])
             {
                 case "lista":
-                    $route = new Route();
-                    $route->abrirListaEspecie();
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirListaEspecie();
+                    }
                 break;
                 case "cadastro":
-                    $route = new Route();
-                    $route->abrirCadastroEspecie();
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirCadastroEspecie();
+                    }
                 break;
                 case "cadastrar":
-                    $route = new EspecieController();
-                    $route->cadastrarEspecie();
+                    if(validaLogin())
+                    {
+                        $route = new EspecieController();
+                        $route->cadastrarEspecie();
+                    }
                 break;
                 case "altera":
-                    $route = new Route();
-                    $route->abrirAlteraEspecie($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirAlteraEspecie($url[2]);
+                    }
                 break;
                 case "alterar":
-                    $route = new EspecieController();
-                    $route->alterarEspecie();
+                    if(validaLogin())
+                    {
+                        $route = new EspecieController();
+                        $route->alterarEspecie();
+                    }
                 break;
                 case "excluir":
-                    $route = new EspecieController();
-                    $route->excluirEspecie($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new EspecieController();
+                        $route->excluirEspecie($url[2]);
+                    }
                 break;
                 default:
                     // URL INVÁLIDA
@@ -187,16 +241,25 @@ if($_GET)
             switch($url[1])
             {   
                 case "listar":
-                    $route = new ManejoController();
-                    $route->listar($url[2] ?? null,true);
+                    if(validaLogin())
+                    {
+                        $route = new ManejoController();
+                        $route->listar($url[2] ?? null,true);
+                    }
                 break;
                 case "cadastrar":
-                    $route = new ManejoController();
-                    $route->cadastrar();
+                    if(validaLogin())
+                    {
+                        $route = new ManejoController();
+                        $route->cadastrar();
+                    }
                 break;
                 case "excluir":
-                    $route = new ManejoController();
-                    $route->excluir($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new ManejoController();
+                        $route->excluir($url[2]);
+                    }
                 break;
                 default:
                 // URL INVÁLIDA
@@ -211,16 +274,25 @@ if($_GET)
             switch($url[1])
             {   
                 case "listar":
-                    $route = new AtributoController();
-                    $route->listarJSON($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new AtributoController();
+                        $route->listarJSON($url[2]);
+                    }
                 break;
                 case "cadastrar":
-                    $route = new AtributoController();
-                    $route->cadastrarAtributo();
+                    if(validaLogin())
+                    {
+                        $route = new AtributoController();
+                        $route->cadastrarAtributo();
+                    }
                 break;
                 case "excluir":
-                    $route = new AtributoController();
-                    $route->excluirAtributo($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new AtributoController();
+                        $route->excluirAtributo($url[2]);
+                    }
                 break;
                 default:
                 // URL INVÁLIDA
@@ -235,24 +307,39 @@ if($_GET)
             switch($url[1])
             {
                 case "cadastro":
-                    $route = new Route();
-                    $route->abrirCadastroEspecime();
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirCadastroEspecime();
+                    }
                 break;
                 case "cadastrar":
-                    $route = new EspecimeController();
-                    $route->cadastrarEspecime();
+                    if(validaLogin())
+                    {
+                        $route = new EspecimeController();
+                        $route->cadastrarEspecime();
+                    }
                 break;
                 case "altera":
-                    $route = new Route();
-                    $route->abrirAlteraEspecime($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new Route();
+                        $route->abrirAlteraEspecime($url[2]);
+                    }
                 break;
                 case "alterar":
-                    $route = new EspecimeController();
-                    $route->alterarEspecime();
+                    if(validaLogin())
+                    {
+                        $route = new EspecimeController();
+                        $route->alterarEspecime();
+                    }
                 break;
                 case "altcoord":
-                    $route = new EspecimeController();
-                    $route->alterarCoordEspecime();
+                    if(validaLogin())
+                    {
+                        $route = new EspecimeController();
+                        $route->alterarCoordEspecime();
+                    }
                 break;
                 default:
                     // URL INVÁLIDA
@@ -266,29 +353,19 @@ if($_GET)
         case "assuntos":
             switch($url[1])
             {
-                case "lista":
-                    $route = new Route();
-                    $route->abrirListaAssunto();
-                break;
-                case "cadastro":
-                    $route = new Route();
-                    $route->abrirCadastroAssunto();
-                break;
                 case "cadastrar":
-                    $route = new AssuntoController();
-                    $route->cadastrarAssunto();
+                    if(validaLogin())
+                    {
+                        $route = new AssuntoController();
+                        $route->cadastrarAssunto();
+                    }
                 break;
-                case "altera":
-                    $route = new Route();
-                    $route->abrirAlteraAssunto($url[2]);
-                break;
-                /*case "alterar":
-                    $route = new AssuntoController();
-                    $route->alterarAssunto();
-                break;*/
                 case "excluir":
-                    $route = new AssuntoController();
-                    $route->excluirAssunto($url[2]);
+                    if(validaLogin())
+                    {
+                        $route = new AssuntoController();
+                        $route->excluirAssunto($url[2]);
+                    }
                 break;
                 default:
                     // URL INVÁLIDA

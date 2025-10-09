@@ -69,21 +69,6 @@ class Route
         }
     }
 
-    #Valida login
-    function validaLogin()
-    {
-        //Caso o usuário esteja logado, retorna verdadeiro, caso contrário o usuário é direcionado para a página de login
-        if(isset($_SESSION['sessaoLogada']))
-        {
-            return true;
-        }
-        else
-        {
-            header("Location:".URL."login"); 
-            return false;
-        }
-    }
-
     function abrirExibirEspecime($idEspecime)
     {
         // Cadastra um acesso para o espécime
@@ -101,8 +86,6 @@ class Route
     #Lista
     function abrirListaEspecie()
     {
-        $this->validaLogin();
-
         $especies = new EspecieController();
         $especies = $especies->listar();
         include_once "view/listaEspecie.php";
@@ -110,8 +93,6 @@ class Route
 
     function abrirCadastroEspecie()
     {
-        $this->validaLogin();
-
         $atributos = new AtributoController();
         $atributos = $atributos->listar();
         include_once "view/paginaCadAltEspecie.php";
@@ -119,8 +100,6 @@ class Route
 
     function abrirAlteraEspecie($id)
     {
-        $this->validaLogin();
-
         $especie = new EspecieController();
         $especie = $especie->buscar($id);
         $atributos = new AtributoController();
@@ -132,8 +111,6 @@ class Route
     #Lista
     function abrirListaAdmin()
     {
-        $this->validaLogin();
-
         $admins = new AdminController();
         $admins = $admins->listar();
         include_once "view/listaAdmin.php";
@@ -141,15 +118,11 @@ class Route
 
     function abrirCadastroAdmin()
     {
-        $this->validaLogin();
-
         include_once "view/paginaCadAltAdmin.php";
     }
 
     function abrirAlteraAdmin($id)
     {
-        $this->validaLogin();
-
         $admin = new AdminController();
         $admin = $admin->buscar($id);
         include_once "view/paginaCadAltAdmin.php";
@@ -158,48 +131,18 @@ class Route
     /* Espécimes */
     function abrirCadastroEspecime()
     {
-        $this->validaLogin();
-
         $especies = new EspecieController();
         $especies = $especies->listar();
         include_once "view/paginaCadAltEspecime.php";
     }
     function abrirAlteraEspecime($id)
     {
-        $this->validaLogin();
-
         $especies = new EspecieController();
         $especies = $especies->listar();
         $especime = new EspecimeController();
         $especime = $especime->buscar($id);
         include_once "view/paginaCadAltEspecime.php";
     }
-
-    /* Assuntos */
-    #Lista
-    function abrirListaAssunto()
-    {
-        $this->validaLogin();
-
-        $assuntos = new AssuntoController();
-        $assuntos = $assuntos->listar();
-        include_once "view/listaAssuntos.php";
-    }
-    function abrirCadastroAssunto()
-    {
-        $this->validaLogin();
-
-        include_once "view/paginaCadAltAssunto.php";
-    }
-    function abrirAlteraAssunto($id)
-    {
-        $this->validaLogin();
-
-        $assunto = new AssuntoController();
-        $assunto = $assunto->buscar($id);
-        include_once "view/paginaCadAltAssunto.php";
-    }
-    
 
     /*  */
     #Página não encontrada

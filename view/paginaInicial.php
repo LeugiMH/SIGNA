@@ -113,7 +113,7 @@
         var bgOverlay = L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
 
         //Overlay Imagem Mapa
-        var imageUrl = 'resource/ui/map/mapv2.png';
+        var imageUrl = 'resource/ui/map/mapv2_usu.png';
         var imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
         var overlay = L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

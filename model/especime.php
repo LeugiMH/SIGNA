@@ -8,6 +8,7 @@ class Especime
     private $DESCRICAOIMG;
     private $ESTADO;
     private $DAP;
+    private $CAP;
     private $DATPLANT;
     private $DATACAD;
     private $IDCADADM;
@@ -38,8 +39,8 @@ class Especime
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("INSERT INTO TBESPECIME (IDESPECIE,COORD,IMAGEM,DESCRICAOIMG,ESTADO,DAP,DATPLANT,DATACAD,IDCADADM) 
-                                            VALUES (:IDESPECIE,:COORD,:IMAGEM,:DESCRICAOIMG,:ESTADO,:DAP,:DATPLANT,:DATACAD,:IDCADADM)");
+        $cmd = $con->prepare("INSERT INTO TBESPECIME (IDESPECIE,COORD,IMAGEM,DESCRICAOIMG,ESTADO,DAP,CAP,DATPLANT,DATACAD,IDCADADM) 
+                                            VALUES (:IDESPECIE,:COORD,:IMAGEM,:DESCRICAOIMG,:ESTADO,:DAP,:CAP,:DATPLANT,:DATACAD,:IDCADADM)");
 
         //Definindo parâmetros (SQL INJECTION)
         $cmd->bindParam(":IDESPECIE",   $this->IDESPECIE);
@@ -48,6 +49,7 @@ class Especime
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
         $cmd->bindParam(":ESTADO",      $this->ESTADO);
         $cmd->bindParam(":DAP",         $this->DAP);
+        $cmd->bindParam(":CAP",         $this->CAP);
         $cmd->bindParam(":DATPLANT",    $this->DATPLANT);
         $cmd->bindParam(":DATACAD",     $this->DATACAD);
         $cmd->bindParam(":IDCADADM",    $this->IDCADADM);
@@ -130,7 +132,7 @@ class Especime
         $con = Conexao::conectar();
         
         //Preparar comando SQL para inserir
-        $cmd = $con->prepare("UPDATE TBESPECIME SET IDESPECIE = :IDESPECIE, COORD = :COORD, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG, ESTADO = :ESTADO, DAP = :DAP, DATPLANT = :DATPLANT
+        $cmd = $con->prepare("UPDATE TBESPECIME SET IDESPECIE = :IDESPECIE, COORD = :COORD, IMAGEM = :IMAGEM, DESCRICAOIMG = :DESCRICAOIMG, ESTADO = :ESTADO, DAP = :DAP, CAP = :CAP, DATPLANT = :DATPLANT
                                             WHERE IDESPECIME = :IDESPECIME");
 
         //Definindo parâmetros (SQL INJECTION)
@@ -140,6 +142,7 @@ class Especime
         $cmd->bindParam(":DESCRICAOIMG",$this->DESCRICAOIMG);
         $cmd->bindParam(":ESTADO",      $this->ESTADO);
         $cmd->bindParam(":DAP",         $this->DAP);
+        $cmd->bindParam(":CAP",         $this->CAP);
         $cmd->bindParam(":DATPLANT",    $this->DATPLANT);
         $cmd->bindParam(":IDESPECIME",  $this->IDESPECIME);
 

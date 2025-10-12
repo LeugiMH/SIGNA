@@ -9,7 +9,7 @@ class EspecimeController
         $idEspecie          =  $_POST["inputEspecie"];
         $coord              =  $_POST["inputCoord"];
         $status             =  $_POST["inputStatus"];
-        $DAP                =  $_POST["inputDAP"];
+        $CAP                =  $_POST["inputCAP"];
         $inputDatPlant      =  date("Y-m-d",strtotime($_POST["inputDatPlant"]));
         $ImgDesc            =  $_POST["inputImgDesc"];
 
@@ -18,7 +18,8 @@ class EspecimeController
         $cmd->IDESPECIE     = $idEspecie;
         $cmd->COORD         = $coord;
         $cmd->ESTADO        = $status;
-        $cmd->DAP           = $DAP;
+        $cmd->DAP           = !empty($CAP) ? round($CAP / pi(),2) : NULL; //Calcula DAP a partir do CAP
+        $cmd->CAP           = !empty($CAP) ? $CAP : NULL;
         $cmd->DATPLANT      = $inputDatPlant;
         $cmd->DESCRICAOIMG  = $ImgDesc;
         $cmd->DATACAD       = date("Y-m-d H:i:s"); //Data atual de cadastro
@@ -99,7 +100,7 @@ class EspecimeController
         $idEspecie =  $_POST["inputEspecie"];
         $coord =  $_POST["inputCoord"];
         $status =  $_POST["inputStatus"];
-        $DAP =  $_POST["inputDAP"];
+        $CAP =  $_POST["inputCAP"];
         $inputDatPlant  =  date("Y-m-d",strtotime($_POST["inputDatPlant"]));
         $ImgDesc =  $_POST["inputImgDesc"];
         
@@ -109,7 +110,8 @@ class EspecimeController
         $cmd->IDESPECIE     = $idEspecie;
         $cmd->COORD         = $coord;
         $cmd->ESTADO        = $status;
-        $cmd->DAP           = $DAP;
+        $cmd->DAP           = !empty($CAP) ? round($CAP / pi(),2) : null; //Calcula DAP a partir do CAP
+        $cmd->CAP           = !empty($CAP) ? $CAP : NULL;
         $cmd->DATPLANT      = $inputDatPlant;
         $cmd->DESCRICAOIMG  = $ImgDesc;
         

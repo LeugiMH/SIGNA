@@ -83,7 +83,7 @@
                                             <input type="date" value="<?php echo isset($especime)?str_replace(" 00:00:00","",$especime->DATPLANT):'\"\"';?>" class="form-control" id="inputDatPlant" name="inputDatPlant" aria-label="Digite a data de plantiu" required>
                                         </div>
                                         <div class="col-sm-6 ">
-                                            <input type="number" value="<?php echo isset($especime)?$especime->DAP:'';?>" placeholder="Diam. Alt. Peito(m)" step="0.01" class="form-control" id="inputDAP" name="inputDAP" aria-label="Digite o Diâmetro na Altura do Peito" min="00.00" max="99.99">
+                                            <input type="number" value="<?php echo isset($especime)?$especime->CAP:'';?>" placeholder="Circ. Alt. Peito(m)" step="0.01" class="form-control" id="inputCAP" name="inputCAP" aria-label="Digite o Circunferência na Altura do Peito" min="00.00" max="99.99">
                                         </div>
                                     </div>
                                 </div>

@@ -6,8 +6,8 @@
     <title>SIGNA - Espécies</title>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
-    <div class="corpo-list min-vh-100 h-100">
+<body>
+    <div class="corpo min-vh-100 h-100">
         <?php include_once "resource/navbarControle.php";?>
         <div class="conteudo bg-secondary h-100 clouds">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">

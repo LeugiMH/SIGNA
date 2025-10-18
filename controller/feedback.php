@@ -27,7 +27,7 @@ class FeedbackController
         $cmd->IDASSUNTO = $assunto;
         $cmd->TEXTO = $comentario;
         $cmd->EMAIL = $email;
-        $cmd->DATACAD = date("Y-m-d h:i:s"); //Data atual de cadastro
+        $cmd->DATACAD = date("Y-m-d H:i:s"); //Data atual de cadastro
         
 
         if($cmd->sendFeedback())  //Sucesso ao Alterar o Feedback
@@ -83,7 +83,7 @@ class FeedbackController
         $cmd->IDADMIN = $idAdmin;
         $cmd->COMENT_ADMIN = $comentAdmin;
         $cmd->IDFEEDBACK = $idFeedback;
-        $cmd->DATAFECH = date("Y-m-d h:i:s");  //Data atual de fechamento
+        $cmd->DATAFECH = date("Y-m-d H:i:s");  //Data atual de fechamento
 
         if($cmd->enviarRespostaAdmin()) //Sucesso ao Enviar Resposta
         {

@@ -149,7 +149,7 @@ class AdminController
         $cmd->MATRICULA = $matricula;
         $cmd->EMAIL = $email;
         $cmd->SENHA = $senha!="" ? password_hash($senha,PASSWORD_DEFAULT) : $senhaBkp; // caso a senha esteja vazia, vai manter a senha antiga
-        $cmd->DATACAD = date("Y-m-d h:i:s"); //Data atual de cadastro;
+        $cmd->DATACAD = date("Y-m-d H:i:s"); //Data atual de cadastro;
 
         if($cmd->alterar()) //Sucesso ao alterar admin
         {

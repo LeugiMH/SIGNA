@@ -58,7 +58,7 @@
         var map = L.map('map', {
             center: [-23.3360551, -46.7220804],
             zoom: 19,
-            //maxBounds: [[-23.3378499, -46.7266859], [-23.3335426, -46.7199262]]
+            maxBounds: [[-23.3374978, -46.724504], [-23.3345129, -46.7191953]]
         });
         // Tile do
         var tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
@@ -108,9 +108,9 @@
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem Fundo Mapa
-        var imageUrl_bg = 'resource/ui/map/bg_map.png';
+        /*var imageUrl_bg = 'resource/ui/map/bg_map.png';
         var imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
-        var bgOverlay = L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);
+        var bgOverlay = L.imageOverlay(imageUrl_bg, imageBounds_bg).addTo(map);*/
 
         //Overlay Imagem Mapa
         var imageUrl = 'resource/ui/map/mapv2_usu.png';

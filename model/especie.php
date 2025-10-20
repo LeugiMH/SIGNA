@@ -130,7 +130,7 @@ class Especie
         $con = Conexao::conectar();
 
         //Preparar comando SQL para retornar
-        $cmd = $con->prepare("SELECT ESP.*,NOME FROM TBESPECIE ESP JOIN TBADMIN ADM ON ESP.IDCADADM = ADM.IDADMIN");
+        $cmd = $con->prepare("SELECT ESP.*,NOME FROM TBESPECIE ESP JOIN TBADMIN ADM ON ESP.IDCADADM = ADM.IDADMIN ORDER BY ESP.NOMEPOP ASC");
 
         //Executando o comando SQL
         $cmd->execute();

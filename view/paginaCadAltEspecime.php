@@ -89,7 +89,7 @@
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="h-100 text-center">
-                                        <input type="file" name="inputImagem" id="inputImagem" accept="image/*" capture="environment" hidden>
+                                        <input type="file" name="inputImagem" id="inputImagem" accept="image/*;capture=camera" hidden>
                                         <label for="inputImagem" class="h-100 pb-3">
                                             <img src="<?php echo isset($especime->IMAGEM) && file_exists("resource/imagens/especimes/$especime->IMAGEM")? URL."resource/imagens/especimes/$especime->IMAGEM":URL."resource/sem_imagem_clique.png";?>" id="imagem" class="w-100 h-100 rounded" for="inputImagem">
                                         </label>

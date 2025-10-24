@@ -2,7 +2,12 @@
 <html lang="pt-br">
 <head>
     <?php include_once "resource/head.php";?>
+    <?php include_once "resource/headLeaflet.php";?>
+
     <title>SIGNA - <?php echo $planta->NOMEPOP;?></title>
+    <style>
+    #map { height: 400px; z-index: 100; cursor:default;}
+    </style>
 </head>
 <body class="d-flex flex-column min-vh-100">
     <div class="corpo min-vh-100 h-100">
@@ -10,6 +15,7 @@
         <div class="conteudo bg-secondary h-100 clouds">
             <div class="container-fluid folhas p-0 m-0 row justify-content-center align-content-center position-relative h-100">
                 <section class="col-sm-10 col-lg-8 col-xl-6 p-0 my-5" style="z-index: 2;">
+                    <div id="map" class="m-3 mb-5"></div>
                     <!-- Conteúdo -->
                     <header class="display-1 text-center mb-3 text-break"><?php echo $planta->NOMEPOP;?></header>
                     <h2 class="text-center mb-5"><?php echo $planta->NOMECIE;?></h2>
@@ -20,7 +26,6 @@
                                     <img src="<?php echo isset($planta->IMGESPECIE) && file_exists("resource/imagens/especies/$planta->IMGESPECIE")? URL."resource/imagens/especies/$planta->IMGESPECIE" : URL."resource/sem_imagem.jpg";?>" aria-label="<?php echo "$planta->DESCESPECIE";?>" alt="<?php echo "$planta->DESCESPECIE";?>" class="w-100 rounded">
                                     <figcaption class="figure-caption text-white">Imagem de exemplo da espécie.</figcaption>
                                 </figure>
-                                    
                             </div>
                             <div class="col-md-6 p-0">
                                 <p><strong><?php echo "Diâmetro na altura do peito (m):</strong> "; echo $planta->DAP == null  ? "Não mensurado" : number_format($planta->DAP, 2, ',', '.'); ?></p>
@@ -70,6 +75,54 @@
         </div>
         <?php include_once "resource/footerControle.php";?>
     </div>
+    <script>
+        //Exibir Mapa
+        // initialize the map on the "map" div with a given center and zoom
+        var map = L.map('map', {
+            center: [<?php echo $planta->COORD;?>],
+            zoom: 19,
+            maxBounds: [[-23.3374978, -46.724504], [-23.3345129, -46.7191953]],
+            zoomControl: false
+        });
+        // Tile do
+        var tile = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png?{foo}', {foo: 'bar',
+            //Não mudar cinza
+            maxNativeZoom: 19,
+            maxZoom: 20,
+            minZoom: 19
+        }).addTo(map);
+
+        map.scrollWheelZoom.disable();
+        map.dragging.disable();
+        map.doubleClickZoom.disable();
+        map.boxZoom.disable();
+        map.keyboard.disable();
+        map.touchZoom.disable();
+
+        //Overlay Imagem Fundo Mapa
+        var imageUrl_bg = '<?php echo URL.'resource/ui/map/bg_map.png'?>';
+        var imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
+        var bgOverlay = L.imageOverlay(imageUrl_bg, imageBounds_bg)/*.addTo(map)*/;
+
+        //Overlay Imagem Mapa
+        var imageUrl = '<?php echo URL.'resource/ui/map/mapv2_usu.png'?>';
+        var imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
+        var overlay = L.imageOverlay(imageUrl, imageBounds).addTo(map);
+
+        //Alterar ìcone do Marker
+        var PlantIcon = L.icon({
+            iconUrl: '<?php echo URL.'resource/imagens/icons/plant.png'?>',
+            iconSize: [40, 40],
+            iconAnchor: [20, 40],
+            alt: 'Marcador'
+            /*popupAnchor: [-3, -76],
+            shadowUrl: 'ui/bg/arvore.png',
+            shadowSize: [68, 95],
+            shadowAnchor: [22, 94]*/
+        });
+
+        <?php echo "L.marker([$planta->COORD],{alt: \"$planta->NOMEPOP\", icon: PlantIcon, title: \"$planta->NOMEPOP\"}).addTo(map);"; ?>
+    </script>
     <?php include_once "resource/plugins.php";?>
 </body>
 </html>

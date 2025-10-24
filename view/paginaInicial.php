@@ -99,7 +99,7 @@
                         event.preventDefault();
                     });
                 }
-            },
+            }
             /*afterDeviceMove: (event) => {
                 // Do something after the device moves.
             }*/
@@ -108,12 +108,12 @@
         map.scrollWheelZoom.disable();
 
         //Overlay Imagem Fundo Mapa
-        var imageUrl_bg = 'resource/ui/map/bg_map.png';
+        var imageUrl_bg = '<?php echo URL.'resource/ui/map/bg_map.png'?>';
         var imageBounds_bg = [[-23.3335426, -46.7266859], [-23.3378499, -46.7199262]];
         var bgOverlay = L.imageOverlay(imageUrl_bg, imageBounds_bg)/*.addTo(map)*/;
 
         //Overlay Imagem Mapa
-        var imageUrl = 'resource/ui/map/mapv2_usu.png';
+        var imageUrl = '<?php echo URL.'resource/ui/map/mapv2_usu.png'?>';
         var imageBounds = [[-23.335573, -46.721265], [-23.336502, -46.722828]];
         var overlay = L.imageOverlay(imageUrl, imageBounds).addTo(map);
 

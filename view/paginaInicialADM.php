@@ -28,11 +28,13 @@
                     <p class="text-center"><strong>Mapa interativo da flora nativa da faculdade de Tecnologia</strong></p>
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">
+                        <div class="d-flex">
                             <button class="btn btn-warning w-100">ADICIONAR PLANTA</button>
+                            <span class="btn btn-info align-content-center" id="btnAltCoord"><img src="<?php echo URL.'resource/imagens/icons/marca-de-posicao.png'?>" width="25px" alt="ícone alterar posição"></span>
+                        </div>
                             <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="00.0000000, 00.0000000" onChange="criaMarkerView(this.value)" maxlength="50" required>
                             <div class="form-text">Coordenadas da planta</div>
                         </form>
-                        <button class="btn btn-danger w-100" id="btnAltCoord" style="display: none;">Alterar posição</button>
                     </div>
                     <div class="col-xl-9">
                         <div id="map"></div>

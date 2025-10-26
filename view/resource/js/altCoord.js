@@ -40,8 +40,6 @@ function switchDragabble()
 
 function alterCoord(event)
 {
-    console.log(event);
-
     var idEspecime = event.target.options.idespecime;
     var coord = Math.round(event.target.getLatLng().lat * 10000000) / 10000000 + ", " + Math.round(event.target.getLatLng().lng * 10000000) / 10000000;
 
@@ -54,7 +52,6 @@ function alterCoord(event)
             inputCoord: coord,
         },
         success: function(result){
-            console.log(result)
             console.log("Espécime movida com sucesso: ", idEspecime);
         },
         error: function(xhr, status, error) {

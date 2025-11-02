@@ -29,8 +29,8 @@
                     <div class="col-xl-3">
                         <form action="<?php echo URL."especimes/cadastro"?>" method="post" class="mb-3">
                         <div class="d-flex">
-                            <button class="btn btn-warning w-100">ADICIONAR PLANTA</button>
-                            <a class="btn btn-info align-content-center" id="btnAltCoord" role="button" data-bs-toggle="button"><img src="<?php echo URL.'resource/imagens/icons/marca-de-posicao.png'?>" width="25px" alt="ícone alterar posição"></a>
+                            <button class="btn btn-warning w-100" title="Adicionar planta">ADICIONAR PLANTA</button>
+                            <a class="btn btn-info align-content-center" id="btnAltCoord" role="button" data-bs-toggle="button" title="Habilitar/Desabilitar alterar posição da planta"><img src="<?php echo URL.'resource/imagens/icons/marca-de-posicao.png'?>" width="25px" alt="ícone alterar posição"></a>
                         </div>
                             <input type="text" class="form-control" id="inputCoord" name="inputCoord" value="" placeholder="00.0000000, 00.0000000" onChange="criaMarkerView(this.value)" maxlength="50" required>
                             <div class="form-text">Coordenadas da planta</div>

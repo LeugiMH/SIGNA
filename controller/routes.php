@@ -72,16 +72,20 @@ class Route
     function abrirExibirEspecime($idEspecime)
     {
         // Cadastra um acesso para o espécime
-        $acesso = new AcessoController();
-        $acesso->cadastrarAcesso($idEspecime);
+        try {
+            $acesso = new AcessoController();
+            $acesso->cadastrarAcesso($idEspecime);
 
-        $planta = new EspecimeController();
-        $planta = $planta->buscarTudo($idEspecime);
-        $atributos = new EspecieController();
-        $atributos = $atributos->buscarAtrAssoc($planta->IDESPECIE);
-        $manejos = new ManejoController();
-        $manejos = $manejos->ultimoDoTipo($idEspecime);
-        include_once "view/paginaExibePlanta.php";
+            $planta = new EspecimeController();
+            $planta = $planta->buscarTudo($idEspecime);
+            $atributos = new EspecieController();
+            $atributos = $atributos->buscarAtrAssoc($planta->IDESPECIE);
+            $manejos = new ManejoController();
+            $manejos = $manejos->ultimoDoTipo($idEspecime);
+            include_once "view/paginaExibePlanta.php";
+        } catch (Exception $e) {
+            $this->abrirPaginaNaoEncontrada();
+        }
     }
     
     /* Espécies */

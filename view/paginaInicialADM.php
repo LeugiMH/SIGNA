@@ -443,6 +443,19 @@
             //Elemento input
             const coordInput = document.getElementById("inputCoord");
             
+            //Limpa seleção de marcadores
+            // Iterar entre as os marcadores do layer ativo
+            selectedMarkers = [];
+            LayerAtivo.eachLayer(function(MarkersAtivos) {
+                // Iterar entre os marcadores
+                MarkersAtivos.eachLayer(function(Markers) {
+
+                    // Define o ícone padrão
+                    Markers.setIcon(PlantIcon);
+
+                });
+            });
+
             //Define valor ao input
             
             //var coord = e.latlng.lat+", "+e.latlng.lng;
@@ -575,7 +588,7 @@
                     Markers.setIcon(PlantIcon);
 
                     // Verifica se o marcador está dentro da forma desenhada
-                    if (layer.getBounds().contains(Markers.getLatLng())) {
+                    if (layer.getBounds().contains(Markers.getLatLng()) && map.hasLayer(Markers)) {
                         countSelected++;
                         Markers.setIcon(SelectedPlantIcon);
                         selectedMarkers.push(Markers.options.idespecime);

@@ -70,7 +70,7 @@
                         </div>
                     </article>
                 </section>
-                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" style="z-index: 0!important;">
+                <img src="<?php echo URL.'resource/ui/bg/bg_nuvem_completo.svg'?>" class="nuvem nuvem-mid p-0" alt="Imagem plano de fundo de núvem" style="z-index: 0!important;">
             </div>
         </div>
         <?php include_once "resource/footerControle.php";?>

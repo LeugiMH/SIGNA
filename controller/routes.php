@@ -36,6 +36,15 @@ class Route
             $especimes = new EspecimeController();
             $especimes = $especimes->listarUsu();
             include_once "view/paginaInicial.php";
+            $this->exibirTermosDeUso();
+        }
+    }
+
+    function exibirTermosDeUso()
+    {
+        if(!isset($_COOKIE["aceitouTermosDeUso"]))
+        {
+            include_once "view/paginaTermosDeUso.php";
         }
     }
 
